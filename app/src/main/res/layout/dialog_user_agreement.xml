@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/default_dialog_background"
+    android:orientation="vertical"
+    android:paddingStart="16dp"
+    android:paddingEnd="16dp"
+    tools:context=".ui.launch.fragment.UserAgreementDialog">
+
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="24dp"
+        android:text="@string/m10_accept_policy"
+        android:textSize="@dimen/size_content_sp_14"
+        android:textStyle="bold" />
+
+    <LinearLayout
+        android:id="@+id/ll_content"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:textColor="@color/black" />
+
+        <TextView
+            android:id="@+id/tv_span"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="@string/m19_disagree"
+            android:textColor="@color/color_text_66" />
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:layout_marginTop="24dp"
+        android:background="@color/gray_eeeeeee" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingStart="8dp"
+        android:paddingTop="14dp"
+        android:paddingEnd="8dp"
+        android:paddingBottom="14dp">
+
+        <Button
+            android:id="@+id/disagree_or_confirm"
+            android:layout_width="106dp"
+            android:layout_height="36dp"
+            android:background="@drawable/button_gray_background"
+            android:gravity="center"
+            android:text="@string/m20_agree"
+            android:textColor="@color/color_text_66" />
+
+        <Button
+            android:id="@+id/agree_or_cancel"
+            android:layout_width="106dp"
+            android:layout_height="36dp"
+            android:layout_alignParentEnd="true"
+            android:background="@drawable/button_red_background"
+            android:gravity="center"
+            android:text="@string/m19_disagree"
+            android:textColor="@color/white" />
+
+    </RelativeLayout>
+
+</LinearLayout>

@@ -6,7 +6,7 @@ import android.content.Context.MODE_PRIVATE
 /**
  * 默认的本地存储服务
  */
-class DefaultStorageService(context: Context, name: String = "growatt_atess") : IStorageService {
+class DefaultStorageService(context: Context, name: String = "shuoxd_charge") : IStorageService {
 
     private val storage by lazy(LazyThreadSafetyMode.NONE) {
         context.getSharedPreferences(name, MODE_PRIVATE)

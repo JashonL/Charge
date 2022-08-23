@@ -9,3 +9,8 @@ dependencyResolutionManagement {
 rootProject.name = "Charge"
 include ':app'
 include ':lib'
+
+
+include ':thirdsdk:amap'
+include ':thirdsdk:mpchart'
+include ':thirdsdk:scan'

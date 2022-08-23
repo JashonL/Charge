@@ -28,5 +28,27 @@
     <string name="m16_cancel">取消</string>
     <string name="m17_select_unit">选择单位</string>
     <string name="m18_confirm">确定</string>
+    <string name="m19_disagree">不同意</string>
+    <string name="m20_agree">同意</string>
+    <string name="m21_user_agreement_and_privacy_policy">用户协议及隐私政策</string>
+    <string name="m22_privacy_dialog_tip">不同意协议无法提供服务哦~</string>
+    <string name="m23_user_agreement">《用户协议》</string>
+    <string name="m24_privacy_policy">《隐私政策》</string>
+    <string name="m25_click_agree">点击同意即代表您已阅读并同意%s&amp;%s。</string>
+    <string name="m26_privacy_dialog_content">Enerview旨在保护您的数据隐私与安全的基础上，帮助您高效管理电站。请仔细阅读并充分理解一下条款后再点击同意。</string>
+    <string name="m27_web">网页</string>
+
+    <string name="m28_guide1">Welcome to use Timxon carger super erperience</string>
+    <string name="m29_guide2">Add your charger</string>
+    <string name="m30_guide3">Configure the network</string>
+    <string name="m31_guide4">Regist era user</string>
+
+
+    <string name="m32_tips1">Timxon APP helps you easily manage and monitor the charger</string>
+    <string name="m33_tips2">Scan code orenter SN to add charger</string>
+    <string name="m34_tips3">Configure your charger setting and connectivity with APP</string>
+    <string name="m35_tips4">Registera user,password,email verification</string>
+
+
 
 </resources>

@@ -7,8 +7,8 @@
     tools:context=".ui.guide.activity.GuideActivity">
 
 
-    <com.youth.banner.Banner
-        android:id="@+id/banner"
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/vp"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
 

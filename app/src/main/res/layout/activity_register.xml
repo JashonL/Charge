@@ -224,7 +224,7 @@
             android:layout_height="wrap_content"
             android:text="@string/m10_accept_policy"
             android:textColor="@color/color_text_99"
-            android:textSize="@dimen/text_small" />
+            android:textSize="@dimen/size_content_sp_12" />
 
     </LinearLayout>
 

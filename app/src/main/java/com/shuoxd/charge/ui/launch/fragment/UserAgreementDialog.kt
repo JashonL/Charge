@@ -11,12 +11,15 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.FragmentManager
+import com.shuoxd.charge.BuildConfig
 import com.shuoxd.charge.application.MainApplication
 import com.shuoxd.charge.ui.launch.monitor.UserAgreementMonitor
 import com.shuoxd.lib.util.gone
 import com.shuoxd.lib.util.visible
 import com.shuoxd.charge.R
 import com.shuoxd.charge.base.BaseDialogFragment
+import com.shuoxd.charge.databinding.DialogUserAgreementBinding
+import com.shuoxd.charge.ui.common.activity.WebActivity
 
 /**
  * 用户隐私协议弹框
@@ -53,15 +56,15 @@ class UserAgreementDialog : BaseDialogFragment(), View.OnClickListener {
 
     private fun updateView() {
         if (isShowTipView) {
-            binding.title.text = getString(R.string.privacy_dialog_tip)
+            binding.title.text = getString(R.string.m22_privacy_dialog_tip)
             binding.llContent.gone()
-            binding.disagreeOrConfirm.text = getString(R.string.confirm)
-            binding.agreeOrCancel.text = getString(R.string.cancel)
+            binding.disagreeOrConfirm.text = getString(R.string.m18_confirm)
+            binding.agreeOrCancel.text = getString(R.string.m16_cancel)
         } else {
-            binding.title.text = getString(R.string.user_agreement_and_privacy_policy)
+            binding.title.text = getString(R.string.m21_user_agreement_and_privacy_policy)
             binding.llContent.visible()
-            binding.disagreeOrConfirm.text = getString(R.string.disagree)
-            binding.agreeOrCancel.text = getString(R.string.agree)
+            binding.disagreeOrConfirm.text = getString(R.string.m19_disagree)
+            binding.agreeOrCancel.text = getString(R.string.m20_agree)
         }
     }
 
@@ -76,9 +79,9 @@ class UserAgreementDialog : BaseDialogFragment(), View.OnClickListener {
     }
 
     private fun getTvSpan(): SpannableString {
-        val userAgreement = getString(R.string.user_agreement)
-        val privacyPolicy = getString(R.string.privacy_policy)
-        val content = getString(R.string.click_agree, userAgreement, privacyPolicy)
+        val userAgreement = getString(R.string.m23_user_agreement)
+        val privacyPolicy = getString(R.string.m24_privacy_policy)
+        val content = getString(R.string.m25_click_agree, userAgreement, privacyPolicy)
         return SpannableString(content).apply {
             addColorSpan(this, userAgreement)
             addClickSpan(this, userAgreement) {
@@ -92,7 +95,7 @@ class UserAgreementDialog : BaseDialogFragment(), View.OnClickListener {
     }
 
     private fun addColorSpan(spannable: SpannableString, colorSpanContent: String) {
-        val span = ForegroundColorSpan(resources.getColor(R.color.text_red))
+        val span = ForegroundColorSpan(resources.getColor(R.color.red))
         val startPosition = spannable.toString().indexOf(colorSpanContent)
         val endPosition = startPosition + colorSpanContent.length
         spannable.setSpan(span, startPosition, endPosition, Spannable.SPAN_INCLUSIVE_EXCLUSIVE)

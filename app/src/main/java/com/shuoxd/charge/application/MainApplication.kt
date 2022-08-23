@@ -30,6 +30,9 @@ import com.shuoxd.charge.ui.launch.monitor.UserAgreementMonitor
 
 class MainApplication : LibApplication() {
 
+    val APP_FIRST:String="app_first"
+
+
     companion object {
         private lateinit var instance: MainApplication
         fun instance() = instance

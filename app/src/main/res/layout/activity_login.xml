@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <ImageView
+        android:id="@+id/loggo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/dp_20"
+        android:src="@drawable/lggo"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_experience_hall"
+        app:layout_constraintLeft_toLeftOf="parent" />
+
+
+    <ImageView
+        android:id="@+id/experience_hall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp_30"
+        android:src="@drawable/experience_hall"
+        app:layout_constraintLeft_toLeftOf="@+id/tv_experience_hall"
+        app:layout_constraintRight_toRightOf="@+id/tv_experience_hall"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_experience_hall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/dp_20"
+        android:text="@string/m5_experience_hall"
+        android:textColor="@color/splash_background"
+        android:textSize="@dimen/size_content_sp_14"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/experience_hall" />
+
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/til_user"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/dp_20"
+        android:layout_marginTop="@dimen/dp_80"
+        android:layout_marginEnd="@dimen/dp_20"
+        android:focusable="false"
+        android:focusableInTouchMode="false"
+        app:hintTextAppearance="@style/hintAppearence"
+        app:layout_constraintTop_toBottomOf="@+id/tv_experience_hall">
+
+        <EditText
+            android:id="@+id/et_username"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawableStart="@drawable/login_user"
+            android:drawablePadding="8dp"
+            android:paddingBottom="@dimen/dp_15"
+            android:singleLine="true"
+            android:textSize="@dimen/size_content_sp_14" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/til_password"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/dp_20"
+        android:layout_marginTop="@dimen/dp_10"
+        android:layout_marginEnd="@dimen/dp_20"
+        android:focusable="false"
+        android:focusableInTouchMode="false"
+        app:hintTextAppearance="@style/hintAppearence"
+        app:layout_constraintTop_toBottomOf="@+id/til_user"
+        app:passwordToggleEnabled="true">
+
+        <EditText
+            android:id="@+id/et_password"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawableStart="@drawable/login_pwd"
+            android:drawablePadding="8dp"
+            android:inputType="textPassword"
+            android:paddingBottom="@dimen/dp_15"
+            android:singleLine="true"
+            android:textSize="@dimen/size_content_sp_14" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+    <Button
+        android:id="@+id/btn_login"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="start"
+        android:layout_marginStart="@dimen/dp_20"
+        android:layout_marginTop="@dimen/dp_70"
+        android:layout_marginEnd="@dimen/dp_15"
+        android:layout_marginBottom="@dimen/dp_64"
+        android:background="@drawable/selector_button_rect"
+        android:minWidth="@dimen/dp_250"
+        android:padding="@dimen/dp_5"
+        android:text="@string/m4_login"
+        android:textColor="@color/white"
+        android:textSize="@dimen/size_title_sp_14"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/til_password"
+        app:layout_constraintVertical_bias="0.2" />
+
+
+    <TextView
+        android:id="@+id/tv_register"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp_15"
+        android:padding="@dimen/dp_5"
+        android:text="@string/m6_register"
+        android:textColor="@color/color_text_66"
+        android:textSize="@dimen/size_title_sp_12"
+        app:layout_constraintLeft_toLeftOf="@+id/til_password"
+        app:layout_constraintTop_toBottomOf="@+id/btn_login" />
+
+
+    <TextView
+        android:id="@+id/tv_forgot_pwd"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp_15"
+        android:padding="@dimen/dp_5"
+        android:text="@string/m3_forget_password"
+        android:textColor="@color/color_text_66"
+        android:textSize="@dimen/size_title_sp_12"
+        app:layout_constraintRight_toRightOf="@+id/til_password"
+        app:layout_constraintTop_toBottomOf="@+id/btn_login" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

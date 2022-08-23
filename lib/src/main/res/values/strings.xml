@@ -1,0 +1,4 @@
+<resources>
+    <string name="network_error">网络异常，请稍后重试</string>
+    <string name="parse_error">解析异常</string>
+</resources>

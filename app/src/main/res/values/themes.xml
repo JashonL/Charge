@@ -1,0 +1,70 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Theme.Charge" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
+        <!-- Primary brand color. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryVariant">@color/purple_700</item>
+        <item name="colorOnPrimary">@color/white</item>
+        <!-- Secondary brand color. -->
+        <item name="colorSecondary">@color/teal_200</item>
+        <item name="colorSecondaryVariant">@color/teal_700</item>
+        <item name="colorOnSecondary">@color/black</item>
+        <!-- Status bar color. -->
+        <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
+        <!-- Customize your theme here. -->
+
+        <!--标题栏-->
+        <!--状态栏-->
+        <item name="colorPrimaryDark">@android:color/transparent</item>
+        <!--系统控件：复选框、单选控件选中颜色-->
+        <item name="colorAccent">@color/colorAccent</item>
+        <!--activity的背景色-->
+        <item name="android:windowBackground">@color/color_default_background</item>
+        <!--窗体无标题栏-->
+        <item name="windowNoTitle">true</item>
+        <!--无actionbar-->
+        <item name="windowActionBar">false</item>
+        <item name="android:overScrollMode">never</item>
+
+        <!--控件的基本属性配置-->
+        <item name="android:textViewStyle">@style/AppTextViewStyle</item>
+        <item name="editTextStyle">@style/AppEditTextStyle</item>
+        <item name="android:buttonStyle">@style/AppButtonStyle</item>
+        <item name="alertDialogTheme">@style/AppCompatAlertDialogStyle</item>
+
+        <!--解决按钮不显示的问题-->
+        <item name="android:datePickerDialogTheme">@style/AppCompatAlertDialogStyle</item>
+        <item name="android:timePickerDialogTheme">@style/AppCompatAlertDialogStyle</item>
+
+    </style>
+
+
+    <style name="AppTextViewStyle" parent="Widget.AppCompat.TextView">
+
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textSize">@dimen/size_content_sp_14</item>
+        <item name="android:textColorHint">@color/gray_bbbbbb</item>
+
+    </style>
+
+    <style name="AppEditTextStyle" parent="Widget.AppCompat.EditText">
+
+        <item name="android:background">@android:color/transparent</item>
+
+    </style>
+
+    <style name="AppButtonStyle" parent="Widget.AppCompat.Button.Borderless">
+
+        <item name="android:background">@drawable/button_red_background</item>
+        <item name="android:textColor">@color/white</item>
+
+    </style>
+
+    <style name="AppCompatAlertDialogStyle" parent="Theme.AppCompat.Light.Dialog.Alert">
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
+
+
+
+</resources>

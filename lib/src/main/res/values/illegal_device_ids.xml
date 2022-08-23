@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="illegal_device_ids">
+        　　
+        <item>unknown</item>
+        <item>0123456789ABCDEF</item>
+        <item>ZTEBA510</item>
+        <item>ZTEBA601</item>
+        <item>ZTEBA610T</item>
+        <item>ZTEBA910</item>
+        <item>ZTEBA611T</item>
+        <item>ZTEBV0720</item>
+        <item>ZTEQ529C</item>
+        <item>ZTEQ529T</item>
+        <item>ZTEC880S</item>
+        <item>8720L20131010</item>
+        <item>NX513J</item>
+        <item>ZTEC880U</item>
+        <item>NX529J</item>
+        <item>ZTEC880A</item>
+        <item>ZTEBA610C</item>
+        <item>0123456789</item>
+        <item>ZTEC880D</item>
+        <item>ZTEQ7LTE</item>
+        <item>unknown</item>
+        <item>ZTEB880</item>
+        <item>ZTEVQ806T</item>
+        <item>ZTEQ5LTE</item>
+        <item>870520131010</item>
+        <item>ZTEQ519T</item>
+        <item>NX505J</item>
+        <item>MSM8926</item>
+        <item>LenovoTAB2A8</item>
+        <item>MSM8625QSKUD</item>
+        <item>0000012035ABCDEF</item>
+        <item>Default0string</item>
+        <item>NX403A</item>
+        <item>1234567890ABC</item>
+        <item>LP015070418501</item>
+        <item>01234567890123456789</item>
+        <item>MSM8226</item>
+        <item>134699cc</item>
+        <item>0</item>
+        <item>ST005LMB6C22FF0</item>
+        <item>M95QACPD972FE</item>
+        <item>443bce32</item>
+        <item>a884f4f7</item>
+        <item>NX506J</item>
+        <item>17abca3e</item>
+        <item>ec3ad4d4</item>
+        <item>7131e057</item>
+        <item>52f91d85</item>
+        <item>M95QSCPKB883X</item>
+        <item>HDD55F0ITR014VZ</item>
+        <item>M95QACP69SU5E</item>
+        <item>K7OZY5NN99999999</item>
+        　　
+    </string-array>
+</resources>
+
+
+
+

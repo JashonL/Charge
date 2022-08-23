@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TextView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/color_default_background"
+    android:gravity="center"
+    android:text="@string/m13_loading_error_please_click_retry"
+    android:textColor="@color/color_text_99"
+    android:textSize="@dimen/size_content_sp_14" />

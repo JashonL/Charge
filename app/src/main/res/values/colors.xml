@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#008577</color>
+    <color name="colorPrimaryDark">#00574B</color>
+    <color name="colorAccent">#D81B60</color>
+
+
+    <color name="purple_200">#FFBB86FC</color>
+    <color name="purple_500">#FF6200EE</color>
+    <color name="purple_700">#FF3700B3</color>
+    <color name="teal_200">#FF03DAC5</color>
+    <color name="teal_700">#FF018786</color>
+
+    <!--公共颜色-->
+    <color name="black">#000000</color>
+    <color name="gray">#999999</color>
+    <color name="white" >#ffffff</color>
+    <color name="white_1a">#1affffff</color>
+    <color name="white_dd">#99ffffff</color>
+    <color name="white_f2">#f2ffffff</color>
+    <color name="white_33">#33ffffff</color>
+    <color name="silver_grey">#edf0f2</color>
+    <color name="nocolor">#00000000</color>
+    <color name="black_999999">#999999</color>
+    <color name="black_333333">#333333</color>
+    <color name="gray_eeeeeee">#eeeeee</color>
+    <color name="gray_aaaaaa">#aaaaaa</color>
+    <color name="gray_bbbbbb">#FFBBBBBB</color>
+    <color name="gray_d2d2d">#d2d2d2</color>
+    <color name="gray_fb">#bfbfbf</color>
+    <color name="color_theme_green_light">#708c73</color>
+    <color name="mask_view_color">#40000000</color>
+    <color name="gray_f7">#f7f8f9</color>
+    <color name="forgot_color">#F38700</color>
+    <color name="gray_f6">#fff6f7f8</color>
+    <color name="gray_ff00">#ff000000</color>
+    <color name="gray_f5">#F5F5F5</color>
+    <color name="red">#FA5151</color>
+    <color name="orangle">#F28800</color>
+    <color name="yellow">#FFF143</color>
+
+
+    <!--主色-->
+    <color name="color_app_main">#2CDB7B</color>
+    <color name="color_app_main_pressed">#00B050</color>
+    <!--分割线颜色-->
+    <color name="color_item_divider_66">#666666</color>
+    <color name="color_item_divider_99">#999999</color>
+
+    <!--文字颜色-->
+    <color name="color_text_00">#000000</color>
+    <color name="color_text_33">#333333</color>
+    <color name="color_text_66">#666666</color>
+    <color name="color_text_99">#999999</color>
+    <color name="color_theme_green">#4B814B</color>
+
+
+
+    <color name="splash_background">#58B653</color>
+
+    <!--登录-->
+    <color name="color_login_background">#ECEFF1</color>
+
+
+    <!--消息-->
+    <color name="color_message_close">#FB6E72</color>
+    <color name="color_message_press">#FF6600</color>
+
+    <!--条件筛选-->
+    <color name="color_fiter_reset">#F0A33B</color>
+    <color name="color_fiter_reset_press">#FFA33B</color>
+    <color name="color_fiter_apply">#F25E2A</color>
+    <color name="color_fiter_apply_press">#F2662A</color>
+
+<!--图表-->
+    <color name="barchart_color">#F38700</color>
+    <color name="barchart_hight_color">#F25E2A</color>
+
+    <color name="button_normal">#a1acb3</color>
+    <color name="button_click">#05c356</color>
+    <color name="pie_am">#4554E1</color>
+    <color name="pie_pm">#FE7701</color>
+
+
+
+    <color name="color_navigation">#00AF50</color>
+    <color name="color_navigation_press">#00AF99</color>
+    <color name="color_bill_chart">#55BFBF</color>
+
+
+
+    <color name="color_btn_start">#1AC6BA</color>
+    <color name="color_btn_end">#59C657</color>
+
+    <color name="color_default_background">#F6F6F6</color>
+
+    <color name="color_red_80">#CCE2001A</color>
+
+
+</resources>

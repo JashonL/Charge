@@ -1,0 +1,109 @@
+import java.text.SimpleDateFormat
+
+plugins {
+    id 'com.android.application'
+    id 'kotlin-android'
+    id 'kotlin-kapt'
+    id 'kotlin-parcelize'
+}
+
+def dependency = rootProject.ext.dependency
+def versions = rootProject.ext.versions
+def publish = rootProject.ext.publish
+def odm = rootProject.ext.odm
+
+static def packageTime() {
+    return new SimpleDateFormat("yyyy-MM-dd").format(new Date())
+}
+
+android {
+    compileSdk versions.compileSdkVersion
+
+    defaultConfig {
+        applicationId publish.applicationId
+        minSdk versions.minSdkVersion
+        targetSdk versions.targetSdkVersion
+        versionCode publish.versionCode
+        versionName publish.versionName
+
+        buildConfigField("String", "userAgreementUrl", "\"${odm.userAgreementUrl}\"")
+        buildConfigField("String", "privacyPolicyUrl", "\"${odm.privacyPolicyUrl}\"")
+        buildConfigField("String", "companyWebsite", "\"${odm.companyWebsite}\"")
+        buildConfigField("String", "companyPhone", "\"${odm.companyPhone}\"")
+        buildConfigField("String", "noticeForCancelAccountUrl", "\"${odm.noticeForCancelAccountUrl}\"")
+        buildConfigField("String", "apiServerUrl", "\"${odm.apiServerUrl}\"")
+
+        ndk {
+            abiFilters "armeabi-v7a", "arm64-v8a"
+        }
+    }
+
+    viewBinding {
+        enabled = true
+    }
+
+    dataBinding {
+        enabled = true
+    }
+
+    signingConfigs {
+        release {
+            keyAlias "android.keystore"
+            keyPassword "shinephone"
+            storeFile file("../keyStore/key.jks")
+            storePassword "shinephone"
+        }
+    }
+
+    buildTypes {
+        debug {
+            minifyEnabled false
+            signingConfig signingConfigs.release
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+
+        release {
+            minifyEnabled false
+            signingConfig signingConfigs.release
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    //控制Java使用jdk8编译
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    //控制Kotlin使用jdk8编译
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+}
+
+// 修改apk的名称，并且指定输出路径
+android.applicationVariants.all { variant ->
+    if (variant.buildType.name.contains("release")) {
+        variant.outputs.all {
+            outputFileName = "app_${variant.buildType.name}_v${versionName}_${packageTime()}.apk"
+        }
+        // 打包完成之后，将apk复制到指定目录
+        def outputFilePath = "./release/apk"
+        File outputFile = new File(outputFilePath)
+        variant.assemble.doLast {
+            copy {
+                variant.outputs.all { file ->
+                    copy {
+                        from file.outputFile
+                        into outputFile
+                    }
+                }
+            }
+        }
+    }
+}
+
+
+dependencies {
+    implementation project(path: ':lib')
+
+}

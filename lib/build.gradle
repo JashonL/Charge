@@ -1,0 +1,65 @@
+plugins {
+    id 'com.android.library'
+    id 'kotlin-android'
+    id 'kotlin-kapt'
+    id 'kotlin-parcelize'
+}
+def dependency = rootProject.ext.dependency
+def versions = rootProject.ext.versions
+
+android {
+    compileSdk versions.compileSdkVersion
+
+    defaultConfig {
+        minSdk versions.minSdkVersion
+        targetSdk versions.targetSdkVersion
+        versionCode 1
+        versionName "1.0.0"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+}
+
+dependencies {
+    //注意Android官方库版本不能升级，升级后compileSdk得提升到31，就需要对Android12进行适配
+    api dependency.androidxCoreKtx
+    api dependency.androidxAppcompat
+    api dependency.material
+    api dependency.androidxConstraintlayout
+
+    api dependency.androidxViewmodelKtx
+    api dependency.androidxLivedataKtx
+    api dependency.androidxLifecycleKtx
+    kapt dependency.androidxLifecycleCompiler
+    api dependency.androidxLifecycleCommonJava8
+    api dependency.okhttp3
+    api dependency.okhttp3LoggingInterceptor
+    api dependency.smartRefreshLayoutKernel
+    api dependency.smartRefreshHeaderMaterial
+    api dependency.glide
+    api dependency.lottie
+    api dependency.gson
+    api dependency.kotlinStdlib
+    api dependency.kotlinxCoroutinesAndroid
+    api dependency.androidxLocalbroadcastmanager
+    api dependency.activityKtx
+    api dependency.fragmentKtx
+    api dependency.androidxRecyclerView
+    api dependency.androidxViewPager2
+    api dependency.flexbox
+    api dependency.banner
+    //方便查看gradle源码
+    compileOnly "com.android.tools.build:gradle:3.0.1"
+}

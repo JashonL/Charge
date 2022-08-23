@@ -1,4 +1,4 @@
-package com.growatt.lib.view.statusbar
+package com.shuoxd.lib.view.statusbar
 
 import android.animation.ValueAnimator
 import android.annotation.TargetApi
@@ -16,8 +16,8 @@ import androidx.core.view.ViewCompat
 import com.google.android.material.appbar.AppBarLayout
 import com.google.android.material.appbar.AppBarLayout.OnOffsetChangedListener
 import com.google.android.material.appbar.CollapsingToolbarLayout
-import com.growatt.lib.util.AttrUtils.getThemePrimaryDarkColor
-import com.growatt.lib.view.statusbar.StatusBarCompat.BaseImpl
+import com.shuoxd.lib.util.AttrUtils.getThemePrimaryDarkColor
+import com.shuoxd.lib.view.statusbar.StatusBarCompat.BaseImpl
 import java.io.BufferedReader
 import java.io.InputStreamReader
 import java.lang.reflect.Field

@@ -6,11 +6,11 @@ import android.os.Looper
 import com.shuoxd.charge.BuildConfig
 import com.shuoxd.charge.R
 import com.shuoxd.charge.application.MainApplication
-import com.growatt.lib.service.http.HttpErrorModel
-import com.growatt.lib.service.http.IHttpCallback
-import com.growatt.lib.service.http.IHttpService
-import com.growatt.lib.util.GsonManager
-import com.growatt.lib.util.LogUtil
+import com.shuoxd.lib.service.http.HttpErrorModel
+import com.shuoxd.lib.service.http.IHttpCallback
+import com.shuoxd.lib.service.http.IHttpService
+import com.shuoxd.lib.util.GsonManager
+import com.shuoxd.lib.util.LogUtil
 import okhttp3.*
 import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.RequestBody.Companion.asRequestBody

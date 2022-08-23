@@ -1,4 +1,4 @@
-package com.growatt.lib.service.location
+package com.shuoxd.lib.service.location
 
 import android.os.Parcelable
 import kotlinx.parcelize.Parcelize

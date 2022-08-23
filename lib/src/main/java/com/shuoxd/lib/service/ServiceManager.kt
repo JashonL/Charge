@@ -1,10 +1,10 @@
-package com.growatt.lib.service
+package com.shuoxd.lib.service
 
-import com.growatt.lib.service.account.IAccountService
-import com.growatt.lib.service.device.IDeviceService
-import com.growatt.lib.service.http.IHttpService
-import com.growatt.lib.service.location.ILocationService
-import com.growatt.lib.service.storage.IStorageService
+import com.shuoxd.lib.service.account.IAccountService
+import com.shuoxd.lib.service.device.IDeviceService
+import com.shuoxd.lib.service.http.IHttpService
+import com.shuoxd.lib.service.location.ILocationService
+import com.shuoxd.lib.service.storage.IStorageService
 
 /**
  * 服务管理类

@@ -1,10 +1,10 @@
-package com.growatt.lib.view
+package com.shuoxd.lib.view
 
 import android.content.Context
 import android.util.AttributeSet
 import android.view.View
-import com.growatt.lib.util.ViewUtil
-import com.growatt.lib.view.statusbar.StatusBarCompat
+import com.shuoxd.lib.util.ViewUtil
+import com.shuoxd.lib.view.statusbar.StatusBarCompat
 
 class StatusBarHeightView @JvmOverloads constructor(
     context: Context,

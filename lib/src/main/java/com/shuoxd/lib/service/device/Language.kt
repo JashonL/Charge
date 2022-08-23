@@ -1,4 +1,4 @@
-package com.growatt.lib.service.device
+package com.shuoxd.lib.service.device
 
 import android.content.res.Resources
 import android.os.Build

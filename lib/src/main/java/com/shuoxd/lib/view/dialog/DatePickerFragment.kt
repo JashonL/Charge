@@ -1,4 +1,4 @@
-package com.growatt.lib.view.dialog
+package com.shuoxd.lib.view.dialog
 
 import android.app.DatePickerDialog
 import android.app.Dialog

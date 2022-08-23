@@ -5,14 +5,14 @@ import android.os.Build
 import android.os.LocaleList
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
-import com.growatt.lib.LibApplication
-import com.growatt.lib.service.ServiceManager
-import com.growatt.lib.service.account.IAccountService
-import com.growatt.lib.service.device.IDeviceService
-import com.growatt.lib.service.device.Language
-import com.growatt.lib.service.http.IHttpService
-import com.growatt.lib.service.location.ILocationService
-import com.growatt.lib.service.storage.IStorageService
+import com.shuoxd.lib.LibApplication
+import com.shuoxd.lib.service.ServiceManager
+import com.shuoxd.lib.service.account.IAccountService
+import com.shuoxd.lib.service.device.IDeviceService
+import com.shuoxd.lib.service.device.Language
+import com.shuoxd.lib.service.http.IHttpService
+import com.shuoxd.lib.service.location.ILocationService
+import com.shuoxd.lib.service.storage.IStorageService
 
 abstract class BaseActivity : AppCompatActivity(), ServiceManager.ServiceInterface, IDisplay {
 

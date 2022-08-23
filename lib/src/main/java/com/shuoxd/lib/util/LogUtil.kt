@@ -1,7 +1,7 @@
-package com.growatt.lib.util
+package com.shuoxd.lib.util
 
 import android.util.Log
-import com.growatt.lib.BuildConfig
+import com.shuoxd.lib.BuildConfig
 
 object LogUtil {
 

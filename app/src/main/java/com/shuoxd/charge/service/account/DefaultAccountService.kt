@@ -2,7 +2,7 @@ package com.shuoxd.charge.service.account
 
 import android.content.Context
 import com.shuoxd.charge.application.Foreground
-import com.growatt.lib.service.account.BaseAccountService
+import com.shuoxd.lib.service.account.BaseAccountService
 
 class DefaultAccountService : BaseAccountService() {
 

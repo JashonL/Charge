@@ -1,4 +1,9 @@
 package com.shuoxd.charge.ui.guide.activity
 
-class GuideActivity {
+import com.shuoxd.charge.base.BaseActivity
+
+class GuideActivity :BaseActivity(){
+
+
+
 }

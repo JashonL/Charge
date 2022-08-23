@@ -1,8 +1,8 @@
-package com.growatt.lib.service.device
+package com.shuoxd.lib.service.device
 
 import android.content.Context
 import android.content.pm.PackageInfo
-import com.growatt.lib.LibApplication
+import com.shuoxd.lib.LibApplication
 
 class DefaultDeviceService(private val context: Context) : IDeviceService {
 

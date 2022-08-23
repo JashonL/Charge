@@ -1,7 +1,7 @@
-package com.growatt.lib.service.http
+package com.shuoxd.lib.service.http
 
-import com.growatt.lib.LibApplication
-import com.growatt.lib.service.Service
+import com.shuoxd.lib.LibApplication
+import com.shuoxd.lib.service.Service
 import java.io.File
 
 /**

@@ -1,3 +1,3 @@
-package com.growatt.lib.service
+package com.shuoxd.lib.service
 
 interface Service

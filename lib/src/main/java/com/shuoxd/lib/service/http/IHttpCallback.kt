@@ -1,4 +1,4 @@
-package com.growatt.lib.service.http
+package com.shuoxd.lib.service.http
 
 interface IHttpCallback {
 

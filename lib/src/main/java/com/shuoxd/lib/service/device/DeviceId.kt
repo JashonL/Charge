@@ -1,9 +1,9 @@
-package com.growatt.lib.service.device
+package com.shuoxd.lib.service.device
 
 import android.content.Context
 import android.os.Build
 import android.text.TextUtils
-import com.growatt.lib.R
+import com.shuoxd.lib.R
 import java.io.File
 import java.io.FileOutputStream
 import java.io.IOException

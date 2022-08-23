@@ -1,6 +1,6 @@
-package com.growatt.lib.service.storage
+package com.shuoxd.lib.service.storage
 
-import com.growatt.lib.service.Service
+import com.shuoxd.lib.service.Service
 
 interface IStorageService : Service {
 

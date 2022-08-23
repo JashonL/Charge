@@ -1,7 +1,7 @@
-package com.growatt.lib.service.location
+package com.shuoxd.lib.service.location
 
 import android.app.Application
-import com.growatt.lib.service.Service
+import com.shuoxd.lib.service.Service
 
 interface ILocationService : Service {
 

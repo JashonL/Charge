@@ -1,4 +1,4 @@
-package com.growatt.lib.util
+package com.shuoxd.lib.util
 
 import android.app.Activity
 import android.content.Context

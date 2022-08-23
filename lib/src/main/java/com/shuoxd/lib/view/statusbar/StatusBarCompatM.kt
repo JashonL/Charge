@@ -1,4 +1,4 @@
-package com.growatt.lib.view.statusbar
+package com.shuoxd.lib.view.statusbar
 
 import android.annotation.TargetApi
 import android.app.Activity

@@ -13,8 +13,8 @@ import android.view.ViewGroup
 import androidx.fragment.app.FragmentManager
 import com.shuoxd.charge.application.MainApplication
 import com.shuoxd.charge.ui.launch.monitor.UserAgreementMonitor
-import com.growatt.lib.util.gone
-import com.growatt.lib.util.visible
+import com.shuoxd.lib.util.gone
+import com.shuoxd.lib.util.visible
 import com.shuoxd.charge.R
 import com.shuoxd.charge.base.BaseDialogFragment
 

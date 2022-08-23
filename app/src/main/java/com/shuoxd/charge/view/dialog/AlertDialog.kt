@@ -6,8 +6,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.FragmentManager
-import com.growatt.lib.util.gone
-import com.growatt.lib.util.visible
+import com.shuoxd.lib.util.gone
+import com.shuoxd.lib.util.visible
 import com.shuoxd.charge.base.BaseDialogFragment
 import com.shuoxd.charge.databinding.DialogAlertBinding
 

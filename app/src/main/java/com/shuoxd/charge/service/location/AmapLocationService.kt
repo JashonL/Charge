@@ -5,9 +5,9 @@ import com.amap.api.location.AMapLocation
 import com.amap.api.location.AMapLocationClient
 import com.amap.api.location.AMapLocationClientOption
 import com.amap.api.location.AMapLocationListener
-import com.growatt.lib.service.location.ILocationService
-import com.growatt.lib.service.location.LocationInfo
-import com.growatt.lib.service.location.OnLocationListener
+import com.shuoxd.lib.service.location.ILocationService
+import com.shuoxd.lib.service.location.LocationInfo
+import com.shuoxd.lib.service.location.OnLocationListener
 
 /**
  * 高德定位解决方案

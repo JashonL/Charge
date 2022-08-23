@@ -1,7 +1,7 @@
-package com.growatt.lib.service.account
+package com.shuoxd.lib.service.account
 
 import android.content.Context
-import com.growatt.lib.service.Service
+import com.shuoxd.lib.service.Service
 
 interface IAccountService : Service {
 

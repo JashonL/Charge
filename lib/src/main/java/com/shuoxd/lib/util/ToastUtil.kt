@@ -1,7 +1,7 @@
-package com.growatt.lib.util
+package com.shuoxd.lib.util
 
 import android.widget.Toast
-import com.growatt.lib.LibApplication
+import com.shuoxd.lib.LibApplication
 import java.lang.ref.WeakReference
 
 object ToastUtil {

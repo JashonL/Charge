@@ -1,4 +1,4 @@
-package com.growatt.lib.util
+package com.shuoxd.lib.util
 
 import android.app.ActivityManager
 import android.content.Context
@@ -9,7 +9,7 @@ import android.os.Process
 import android.text.TextUtils
 import androidx.fragment.app.FragmentActivity
 import androidx.fragment.app.FragmentManager
-import com.growatt.lib.LibApplication
+import com.shuoxd.lib.LibApplication
 import org.json.JSONObject
 import java.io.File
 import java.math.BigDecimal

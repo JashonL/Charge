@@ -1,4 +1,4 @@
-package com.growatt.lib.util
+package com.shuoxd.lib.util
 
 import com.google.gson.Gson
 import java.lang.reflect.Type

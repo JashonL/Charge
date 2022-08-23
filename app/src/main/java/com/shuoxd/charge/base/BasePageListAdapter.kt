@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.shuoxd.charge.base.viewholder.ItemLoadingEndViewHolder
 import com.shuoxd.charge.base.viewholder.ItemLoadingErrorViewHolder
 import com.shuoxd.charge.base.viewholder.ItemLoadingViewHolder
-import com.growatt.lib.service.http.PageModel
+import com.shuoxd.lib.service.http.PageModel
 import com.scwang.smart.refresh.layout.SmartRefreshLayout
 
 /**

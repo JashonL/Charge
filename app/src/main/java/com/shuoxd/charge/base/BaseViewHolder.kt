@@ -5,12 +5,12 @@ import androidx.annotation.ColorRes
 import androidx.annotation.StringRes
 import androidx.recyclerview.widget.RecyclerView
 import com.shuoxd.charge.application.MainApplication
-import com.growatt.lib.service.ServiceManager
-import com.growatt.lib.service.account.IAccountService
-import com.growatt.lib.service.device.IDeviceService
-import com.growatt.lib.service.http.IHttpService
-import com.growatt.lib.service.location.ILocationService
-import com.growatt.lib.service.storage.IStorageService
+import com.shuoxd.lib.service.ServiceManager
+import com.shuoxd.lib.service.account.IAccountService
+import com.shuoxd.lib.service.device.IDeviceService
+import com.shuoxd.lib.service.http.IHttpService
+import com.shuoxd.lib.service.location.ILocationService
+import com.shuoxd.lib.service.storage.IStorageService
 import com.shuoxd.charge.base.BaseActivity
 
 open class BaseViewHolder(

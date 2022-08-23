@@ -1,6 +1,6 @@
-package com.growatt.lib.service.device
+package com.shuoxd.lib.service.device
 
-import com.growatt.lib.service.Service
+import com.shuoxd.lib.service.Service
 
 interface IDeviceService : Service {
 

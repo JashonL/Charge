@@ -1,7 +1,7 @@
-package com.growatt.lib
+package com.shuoxd.lib
 
 import android.app.Application
-import com.growatt.lib.service.ServiceManager
+import com.shuoxd.lib.service.ServiceManager
 
 abstract class LibApplication : Application(), ServiceManager.ServiceInterface {
 

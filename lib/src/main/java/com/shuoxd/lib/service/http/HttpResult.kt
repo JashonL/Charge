@@ -1,4 +1,4 @@
-package com.growatt.lib.service.http
+package com.shuoxd.lib.service.http
 
 /**
  * 网络响应基本字段

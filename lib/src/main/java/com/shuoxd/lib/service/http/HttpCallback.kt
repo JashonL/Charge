@@ -1,8 +1,8 @@
-package com.growatt.lib.service.http
+package com.shuoxd.lib.service.http
 
-import  com.growatt.lib.LibApplication
-import com.growatt.lib.util.GsonManager
-import com.growatt.lib.util.ToastUtil
+import  com.shuoxd.lib.LibApplication
+import com.shuoxd.lib.util.GsonManager
+import com.shuoxd.lib.util.ToastUtil
 import org.json.JSONException
 import org.json.JSONObject
 import java.lang.reflect.ParameterizedType
@@ -29,7 +29,7 @@ abstract class HttpCallback<R> : IHttpCallback {
         if (result == null) {
             onFailure(
                 HttpErrorModel.ERROR_CODE_PARSE,
-                LibApplication.instance().getString(com.growatt.lib.R.string.parse_error)
+                LibApplication.instance().getString(com.shuoxd.lib.R.string.parse_error)
             )
         } else {
             success(result)

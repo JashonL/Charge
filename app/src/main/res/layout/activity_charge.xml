@@ -5,7 +5,7 @@
     android:layout_height="match_parent">
 
 
-    <com.growatt.lib.view.StatusBarHeightView
+    <com.shuoxd.lib.view.StatusBarHeightView
         android:id="@+id/status_bar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

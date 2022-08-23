@@ -1,4 +1,4 @@
-package com.growatt.lib.view.statusbar
+package com.shuoxd.lib.view.statusbar
 
 import android.app.Activity
 import android.content.Context

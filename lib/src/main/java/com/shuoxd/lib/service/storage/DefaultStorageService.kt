@@ -1,4 +1,4 @@
-package com.growatt.lib.service.storage
+package com.shuoxd.lib.service.storage
 
 import android.content.Context
 import android.content.Context.MODE_PRIVATE

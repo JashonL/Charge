@@ -1,4 +1,4 @@
-package com.growatt.lib.view.statusbar
+package com.shuoxd.lib.view.statusbar
 
 import android.annotation.TargetApi
 import android.app.Activity
@@ -11,7 +11,7 @@ import androidx.core.view.ViewCompat
 import com.google.android.material.appbar.AppBarLayout
 import com.google.android.material.appbar.AppBarLayout.OnOffsetChangedListener
 import com.google.android.material.appbar.CollapsingToolbarLayout
-import com.growatt.lib.view.statusbar.StatusBarCompat.BaseImpl
+import com.shuoxd.lib.view.statusbar.StatusBarCompat.BaseImpl
 import kotlin.math.abs
 
 /**

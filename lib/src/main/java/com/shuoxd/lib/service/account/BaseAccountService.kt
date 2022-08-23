@@ -1,9 +1,9 @@
-package com.growatt.lib.service.account
+package com.shuoxd.lib.service.account
 
 import android.text.TextUtils
-import com.growatt.lib.LibApplication
-import com.growatt.lib.service.storage.DefaultStorageService
-import com.growatt.lib.util.GsonManager
+import com.shuoxd.lib.LibApplication
+import com.shuoxd.lib.service.storage.DefaultStorageService
+import com.shuoxd.lib.util.GsonManager
 
 abstract class BaseAccountService : IAccountService {
 

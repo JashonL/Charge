@@ -1,4 +1,4 @@
-package com.growatt.lib.util
+package com.shuoxd.lib.util
 
 import android.app.Activity
 import android.content.Context
@@ -7,7 +7,7 @@ import android.graphics.drawable.Drawable
 import android.graphics.drawable.GradientDrawable
 import android.widget.NumberPicker
 import androidx.annotation.ColorInt
-import com.growatt.lib.LibApplication
+import com.shuoxd.lib.LibApplication
 
 object ViewUtil {
 

@@ -104,38 +104,38 @@ class RequestPermissionHub : Fragment() {
         when (permission) {
             Manifest.permission.CAMERA -> {
                 title = getString(
-                    R.string.app_want_to_visit_format,
+                    R.string.m47_app_want_to_visit_format,
                     appName,
-                    getString(R.string.camera)
+                    getString(R.string.m48_camera)
                 )
                 messagge = getString(
-                    R.string.to_app_set_permission_format,
+                    R.string.m51_to_app_set_permission_format,
                     appName,
-                    getString(R.string.camera)
+                    getString(R.string.m48_camera)
                 )
             }
             Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_EXTERNAL_STORAGE -> {
                 title = getString(
-                    R.string.app_want_to_visit_format,
+                    R.string.m47_app_want_to_visit_format,
                     appName,
-                    getString(R.string.photo_album)
+                    getString(R.string.m49_photo_album)
                 )
                 messagge = getString(
-                    R.string.to_app_set_permission_format,
+                    R.string.m51_to_app_set_permission_format,
                     appName,
-                    getString(R.string.storage_photo_album)
+                    getString(R.string.m54_storage_photo_album)
                 )
             }
             Manifest.permission.ACCESS_FINE_LOCATION -> {
                 title = getString(
-                    R.string.app_want_to_visit_format,
+                    R.string.m47_app_want_to_visit_format,
                     appName,
-                    getString(R.string.location)
+                    getString(R.string.m50_location)
                 )
                 messagge = getString(
-                    R.string.to_app_set_permission_format,
+                    R.string.m51_to_app_set_permission_format,
                     appName,
-                    getString(R.string.location)
+                    getString(R.string.m50_location)
                 )
             }
         }
@@ -143,9 +143,9 @@ class RequestPermissionHub : Fragment() {
         AlertDialog.Builder(requireContext())
             .setTitle(title)
             .setMessage(messagge)
-            .setNegativeButton(R.string.cancel, null)
+            .setNegativeButton(R.string.m16_cancel, null)
             .setPositiveButton(
-                R.string.to_set
+                R.string.m55_to_set
             ) { _, _ -> openAppSetting() }
             .show()
     }

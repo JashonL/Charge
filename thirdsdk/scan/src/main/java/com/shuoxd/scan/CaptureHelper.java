@@ -33,9 +33,9 @@ import androidx.fragment.app.Fragment;
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.DecodeHintType;
 import com.google.zxing.Result;
-import com.growatt.scan.camera.CameraManager;
-import com.growatt.scan.camera.FrontLightMode;
-import com.growatt.scan.util.LogUtils;
+import com.shuoxd.scan.camera.CameraManager;
+import com.shuoxd.scan.camera.FrontLightMode;
+import com.shuoxd.scan.util.LogUtils;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -51,7 +51,7 @@ import java.util.Map;
 /**
  * @author <a href="mailto:jenly1314@gmail.com">Jenly</a>
  */
-public class CaptureHelper implements com.growatt.scan.CaptureLifecycle, com.growatt.scan.CaptureTouchEvent, CaptureManager, SurfaceHolder.Callback {
+public class CaptureHelper implements CaptureLifecycle, CaptureTouchEvent, CaptureManager, SurfaceHolder.Callback {
 
     /**
      * 默认触控误差值
@@ -61,10 +61,10 @@ public class CaptureHelper implements com.growatt.scan.CaptureLifecycle, com.gro
     private final SurfaceView surfaceView;
     private final ViewfinderView viewfinderView;
     private final View ivTorch;
-    private com.growatt.scan.CaptureHandler captureHandler;
-    private com.growatt.scan.OnCaptureListener onCaptureListener;
+    private CaptureHandler captureHandler;
+    private OnCaptureListener onCaptureListener;
     private CameraManager cameraManager;
-    private com.growatt.scan.InactivityTimer inactivityTimer;
+    private InactivityTimer inactivityTimer;
     private BeepManager beepManager;
     private AmbientLightManager ambientLightManager;
     private SurfaceHolder surfaceHolder;
@@ -143,7 +143,7 @@ public class CaptureHelper implements com.growatt.scan.CaptureLifecycle, com.gro
     /**
      * 扫码回调
      */
-    private com.growatt.scan.OnCaptureCallback onCaptureCallback;
+    private OnCaptureCallback onCaptureCallback;
 
     private boolean hasCameraFlash;
 
@@ -193,7 +193,7 @@ public class CaptureHelper implements com.growatt.scan.CaptureLifecycle, com.gro
     public void onCreate() {
         surfaceHolder = surfaceView.getHolder();
         hasSurface = false;
-        inactivityTimer = new com.growatt.scan.InactivityTimer(activity);
+        inactivityTimer = new InactivityTimer(activity);
         beepManager = new BeepManager(activity);
         ambientLightManager = new AmbientLightManager(activity);
 
@@ -338,7 +338,7 @@ public class CaptureHelper implements com.growatt.scan.CaptureLifecycle, com.gro
             cameraManager.openDriver(surfaceHolder);
             // Creating the handler starts the preview, which can also throw a RuntimeException.
             if (captureHandler == null) {
-                captureHandler = new com.growatt.scan.CaptureHandler(activity, viewfinderView, onCaptureListener, decodeFormats, decodeHints, characterSet, cameraManager);
+                captureHandler = new CaptureHandler(activity, viewfinderView, onCaptureListener, decodeFormats, decodeHints, characterSet, cameraManager);
                 captureHandler.setSupportVerticalCode(isSupportVerticalCode);
                 captureHandler.setReturnBitmap(isReturnBitmap);
                 captureHandler.setSupportAutoZoom(isSupportAutoZoom);
@@ -536,7 +536,7 @@ public class CaptureHelper implements com.growatt.scan.CaptureLifecycle, com.gro
                     return;
                 }
                 Intent intent = new Intent();
-                intent.putExtra(com.growatt.scan.Intents.Scan.RESULT, text);
+                intent.putExtra(Intents.Scan.RESULT, text);
                 activity.setResult(Activity.RESULT_OK, intent);
                 activity.finish();
             }, 100);
@@ -549,7 +549,7 @@ public class CaptureHelper implements com.growatt.scan.CaptureLifecycle, com.gro
             return;
         }
         Intent intent = new Intent();
-        intent.putExtra(com.growatt.scan.Intents.Scan.RESULT, text);
+        intent.putExtra(Intents.Scan.RESULT, text);
         activity.setResult(Activity.RESULT_OK, intent);
         activity.finish();
     }
@@ -827,7 +827,7 @@ public class CaptureHelper implements com.growatt.scan.CaptureLifecycle, com.gro
      * @param callback
      * @return
      */
-    public CaptureHelper setOnCaptureCallback(com.growatt.scan.OnCaptureCallback callback) {
+    public CaptureHelper setOnCaptureCallback(OnCaptureCallback callback) {
         this.onCaptureCallback = callback;
         return this;
     }
@@ -863,12 +863,12 @@ public class CaptureHelper implements com.growatt.scan.CaptureLifecycle, com.gro
     }
 
     /**
-     * {@link com.growatt.scan.InactivityTimer}
+     *
      *
      * @return {@link #inactivityTimer}
      */
     @Override
-    public com.growatt.scan.InactivityTimer getInactivityTimer() {
+    public InactivityTimer getInactivityTimer() {
         return inactivityTimer;
     }
 }

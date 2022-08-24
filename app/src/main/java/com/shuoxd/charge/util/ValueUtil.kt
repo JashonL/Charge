@@ -14,18 +14,18 @@ object ValueUtil {
     fun valueFromKWh(kwhValue: Double?): Pair<String, String> {
         return when {
             kwhValue == null -> {
-                Pair("0", MainApplication.instance().getString(R.string.kwh))
+                Pair("0", MainApplication.instance().getString(R.string.m56_kwh))
             }
             kwhValue < 100000 -> {
                 Pair(
                     Util.getDoubleText(kwhValue),
-                    MainApplication.instance().getString(R.string.kwh)
+                    MainApplication.instance().getString(R.string.m56_kwh)
                 )
             }
             else -> {
                 Pair(
                     Util.getDoubleText(kwhValue / 1000),
-                    MainApplication.instance().getString(R.string.mwh)
+                    MainApplication.instance().getString(R.string.m57_mwh)
                 )
             }
         }
@@ -37,18 +37,18 @@ object ValueUtil {
     fun valueFromW(wValue: Double?): Pair<String, String> {
         return when {
             wValue == null -> {
-                Pair("0", MainApplication.instance().getString(R.string.kw))
+                Pair("0", MainApplication.instance().getString(R.string.m60_kw))
             }
             wValue < 1000000000 -> {
                 Pair(
                     Util.getDoubleText(wValue / 1000),
-                    MainApplication.instance().getString(R.string.kw)
+                    MainApplication.instance().getString(R.string.m60_kw)
                 )
             }
             else -> {
                 Pair(
                     Util.getDoubleText(wValue / 1000000),
-                    MainApplication.instance().getString(R.string.mw)
+                    MainApplication.instance().getString(R.string.m61_mw)
                 )
             }
         }
@@ -61,18 +61,18 @@ object ValueUtil {
     fun valueFromWp(wValue: Double?): Pair<String, String> {
         return when {
             wValue == null -> {
-                Pair("0", MainApplication.instance().getString(R.string.kwp))
+                Pair("0", MainApplication.instance().getString(R.string.m58_kwp))
             }
             wValue < 100000000 -> {
                 Pair(
                     Util.getDoubleText(wValue / 1000),
-                    MainApplication.instance().getString(R.string.kwp)
+                    MainApplication.instance().getString(R.string.m58_kwp)
                 )
             }
             else -> {
                 Pair(
                     Util.getDoubleText(wValue / 1000000),
-                    MainApplication.instance().getString(R.string.mwp)
+                    MainApplication.instance().getString(R.string.m59_mwp)
                 )
             }
         }
@@ -84,18 +84,18 @@ object ValueUtil {
     fun valueFromKG(kgValue: Double?): Pair<String, String> {
         return when {
             kgValue == null -> {
-                Pair("0", MainApplication.instance().getString(R.string.kg))
+                Pair("0", MainApplication.instance().getString(R.string.m67_kg))
             }
             kgValue < 100000 -> {
                 Pair(
                     Util.getDoubleText(kgValue),
-                    MainApplication.instance().getString(R.string.kg)
+                    MainApplication.instance().getString(R.string.m67_kg)
                 )
             }
             else -> {
                 Pair(
                     Util.getDoubleText(kgValue / 1000),
-                    MainApplication.instance().getString(R.string.t)
+                    MainApplication.instance().getString(R.string.m68_t)
                 )
             }
         }

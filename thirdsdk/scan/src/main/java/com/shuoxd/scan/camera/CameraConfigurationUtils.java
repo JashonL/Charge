@@ -21,7 +21,8 @@ import android.graphics.Rect;
 import android.hardware.Camera;
 import android.os.Build;
 
-import com.growatt.scan.util.LogUtils;
+
+import com.shuoxd.scan.util.LogUtils;
 
 import java.util.Arrays;
 import java.util.Collection;

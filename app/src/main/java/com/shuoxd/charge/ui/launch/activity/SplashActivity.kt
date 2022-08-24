@@ -1,12 +1,13 @@
 package com.shuoxd.charge.ui.launch.activity
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
-import com.shuoxd.charge.R
 import com.shuoxd.charge.application.MainApplication
+import com.shuoxd.charge.application.MainApplication.Companion.APP_FIRST
 import com.shuoxd.charge.databinding.ActivitySplashBinding
 import com.shuoxd.charge.ui.guide.activity.GuideActivity
+import com.shuoxd.charge.ui.mine.activity.LoginActivity
 import com.shuoxd.lib.view.statusbar.StatusBarCompat
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
@@ -35,14 +36,14 @@ class SplashActivity : AppCompatActivity() {
         delay(2000)
 
         val boolean = MainApplication.instance().storageService()
-            .getBoolean(MainApplication.instance().APP_FIRST, true)
+            .getBoolean(APP_FIRST, true)
 
         if (boolean){
             //跳转到引导页
             GuideActivity.start(this)
         }else{
             //跳转到登录页
-
+            LoginActivity.start(this)
         }
         finish()
 

@@ -22,7 +22,7 @@ ext {
             //高德地图key
             amapKey                  : "3e94f84cb3993b597dd1916935b5f4a1",
             //正式服务器域名
-            apiServerUrl             : "http://47.243.120.111/",
+            apiServerUrl             : "http://charger.shuoxd.com:50015/",
     ]
 
 
@@ -30,7 +30,7 @@ ext {
             compileSdkVersion: 32,
             minSdkVersion    : 21,
             targetSdkVersion : 32,
-            lifecycle_version: "2.3.0",
+            lifecycle_version: "2.5.0",
     ]
 
     dependency = [

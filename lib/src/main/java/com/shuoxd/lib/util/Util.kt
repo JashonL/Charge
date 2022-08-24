@@ -3,8 +3,10 @@ package com.shuoxd.lib.util
 import android.app.ActivityManager
 import android.content.Context
 import android.content.Intent
+import android.content.pm.PackageManager.NameNotFoundException
 import android.location.LocationManager
 import android.net.Uri
+import android.os.Build
 import android.os.Process
 import android.text.TextUtils
 import androidx.fragment.app.FragmentActivity
@@ -115,4 +117,26 @@ object Util {
         }
         return null
     }
+
+
+    /**
+     * 获取手机型号
+     */
+    fun getPhoneModel():String{
+         return Build.MODEL
+    }
+
+
+    fun getVersion(context: Context): String? {
+        try {
+            return context.packageManager.getPackageInfo(
+                context.packageName, 0
+            ).versionName
+        } catch (e: NameNotFoundException) {
+            e.printStackTrace()
+        }
+        return "1.0"
+    }
+
+
 }

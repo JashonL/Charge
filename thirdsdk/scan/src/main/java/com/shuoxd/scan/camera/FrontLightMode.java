@@ -20,7 +20,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 
-import com.growatt.scan.Preferences;
+import com.shuoxd.scan.Preferences;
 
 
 /**

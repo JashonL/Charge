@@ -19,7 +19,7 @@ package com.shuoxd.scan.camera.open;
 
 import android.hardware.Camera;
 
-import com.growatt.scan.util.LogUtils;
+import com.shuoxd.scan.util.LogUtils;
 
 
 /**

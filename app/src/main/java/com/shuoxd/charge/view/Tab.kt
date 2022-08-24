@@ -72,9 +72,9 @@ class Tab @JvmOverloads constructor(
             typeface = if (isSelect) Typeface.DEFAULT_BOLD else Typeface.DEFAULT
             setTextSize(
                 TypedValue.COMPLEX_UNIT_PX,
-                context.resources.getDimension(if (isSelect) R.dimen.text_subtitle else R.dimen.text_medium)
+                context.resources.getDimension(if (isSelect) R.dimen.size_content_sp_14 else R.dimen.size_content_sp_12)
             )
-            setTextColor(context.resources.getColor(if (isSelect) R.color.text_black else R.color.text_gray_99))
+            setTextColor(context.resources.getColor(if (isSelect) R.color.black else R.color.color_text_99))
         }
         binding.indicator.visibility = if (isSelect) VISIBLE else INVISIBLE
     }

@@ -48,10 +48,10 @@ android {
 
     signingConfigs {
         release {
-            keyAlias "android.keystore"
-            keyPassword "shinephone"
-            storeFile file("../keyStore/key.jks")
-            storePassword "shinephone"
+            keyAlias "key"
+            keyPassword "123456"
+            storeFile file("D:\\workplace\\key\\sxd\\sxd.jks")
+            storePassword "123456"
         }
     }
 

@@ -42,7 +42,7 @@ import com.google.zxing.common.HybridBinarizer;
 import com.google.zxing.qrcode.QRCodeReader;
 import com.google.zxing.qrcode.QRCodeWriter;
 import com.google.zxing.qrcode.decoder.ErrorCorrectionLevel;
-import com.growatt.scan.DecodeFormatManager;
+import com.shuoxd.scan.DecodeFormatManager;
 
 import java.util.HashMap;
 import java.util.Map;

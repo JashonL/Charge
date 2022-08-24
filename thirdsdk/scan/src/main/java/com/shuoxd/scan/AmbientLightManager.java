@@ -25,8 +25,8 @@ import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.preference.PreferenceManager;
 
-import com.growatt.scan.camera.CameraManager;
-import com.growatt.scan.camera.FrontLightMode;
+import com.shuoxd.scan.camera.CameraManager;
+import com.shuoxd.scan.camera.FrontLightMode;
 
 
 /**

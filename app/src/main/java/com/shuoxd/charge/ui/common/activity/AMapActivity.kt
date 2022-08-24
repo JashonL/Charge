@@ -62,10 +62,10 @@ class AMapActivity : BaseActivity(), View.OnClickListener, AMap.OnMyLocationChan
                 binding.tvLocationAddress.text = locationInfo?.address
                 binding.tvLocationCity.text = "${locationInfo?.city}(${
                     getString(
-                        R.string.longitude_format,
+                        R.string.m45_longitude_format,
                         locationInfo?.longitudeStr()
                     )
-                },${getString(R.string.latitude_format, locationInfo?.latitudeStr())})"
+                },${getString(R.string.m46_latitude_format, locationInfo?.latitudeStr())})"
             }
         }
     }

@@ -16,7 +16,7 @@
 package com.shuoxd.scan;
 
 
-import com.growatt.scan.camera.CameraManager;
+import com.shuoxd.scan.camera.CameraManager;
 
 /**
  * @author <a href="mailto:jenly1314@gmail.com">Jenly</a>
@@ -31,23 +31,23 @@ public interface CaptureManager {
     CameraManager getCameraManager();
 
     /**
-     * Get {@link com.growatt.scan.BeepManager}
+     * Get {@link BeepManager}
      *
-     * @return {@link com.growatt.scan.BeepManager}
+     * @return {@link BeepManager}
      */
-    com.growatt.scan.BeepManager getBeepManager();
+    BeepManager getBeepManager();
 
     /**
-     * Get {@link com.growatt.scan.AmbientLightManager}
+     * Get {@link AmbientLightManager}
      *
-     * @return {@link com.growatt.scan.AmbientLightManager}
+     * @return {@link AmbientLightManager}
      */
-    com.growatt.scan.AmbientLightManager getAmbientLightManager();
+    AmbientLightManager getAmbientLightManager();
 
     /**
-     * Get {@link com.growatt.scan.InactivityTimer}
+     * Get {@link InactivityTimer}
      *
-     * @return {@link com.growatt.scan.InactivityTimer}
+     * @return {@link InactivityTimer}
      */
-    com.growatt.scan.InactivityTimer getInactivityTimer();
+    InactivityTimer getInactivityTimer();
 }

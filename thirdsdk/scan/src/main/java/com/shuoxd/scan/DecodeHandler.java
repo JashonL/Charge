@@ -36,8 +36,8 @@ import com.google.zxing.Result;
 import com.google.zxing.ResultPoint;
 import com.google.zxing.common.GlobalHistogramBinarizer;
 import com.google.zxing.common.HybridBinarizer;
-import com.growatt.scan.camera.CameraManager;
-import com.growatt.scan.util.LogUtils;
+import com.shuoxd.scan.camera.CameraManager;
+import com.shuoxd.scan.util.LogUtils;
 
 import java.io.ByteArrayOutputStream;
 import java.util.Map;
@@ -46,13 +46,13 @@ final class DecodeHandler extends Handler {
 
     private final Context context;
     private final CameraManager cameraManager;
-    private final com.growatt.scan.CaptureHandler handler;
+    private final CaptureHandler handler;
     private final MultiFormatReader multiFormatReader;
     private boolean running = true;
 
     private long lastZoomTime;
 
-    DecodeHandler(Context context, CameraManager cameraManager, com.growatt.scan.CaptureHandler handler, Map<DecodeHintType, Object> hints) {
+    DecodeHandler(Context context, CameraManager cameraManager, CaptureHandler handler, Map<DecodeHintType, Object> hints) {
         multiFormatReader = new MultiFormatReader();
         multiFormatReader.setHints(hints);
         this.context = context;

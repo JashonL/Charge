@@ -21,8 +21,9 @@ import android.hardware.Camera;
 import android.os.AsyncTask;
 import android.preference.PreferenceManager;
 
-import com.growatt.scan.Preferences;
-import com.growatt.scan.util.LogUtils;
+
+import com.shuoxd.scan.Preferences;
+import com.shuoxd.scan.util.LogUtils;
 
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;

@@ -4,20 +4,18 @@ import android.content.Context
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import android.widget.LinearLayout
 import android.widget.TextView
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
-import androidx.core.view.setPadding
 import com.shuoxd.charge.R
 import com.shuoxd.charge.databinding.GuidePageBinding
 import com.shuoxd.lib.util.gone
 import com.shuoxd.lib.util.visible
-import java.util.*
 
 class GuidePager @JvmOverloads constructor(
     context: Context, attrs: AttributeSet? = null, current: Int
-) : LinearLayout(context, attrs), View.OnClickListener {
+) : ConstraintLayout(context, attrs), View.OnClickListener {
 
 
     private val bing: GuidePageBinding
@@ -62,10 +60,9 @@ class GuidePager @JvmOverloads constructor(
             val textView = TextView(context)
             textView.apply {
                 //设置大小
-                layoutParams = LayoutParams(
-                    ViewGroup.LayoutParams.WRAP_CONTENT,
-                    ViewGroup.LayoutParams.WRAP_CONTENT
-                )
+                val layoutParams = LinearLayout.LayoutParams(35, 35)
+                layoutParams.setMargins(0,0,20,0)
+                setLayoutParams(layoutParams)
 
                 //设置背景
                 if (i == current) {
@@ -73,9 +70,7 @@ class GuidePager @JvmOverloads constructor(
                 } else {
                     background = ContextCompat.getDrawable(context, R.drawable.circle_gray)
                 }
-                setPadding(10)
             }
-
 
 
             bing.llDir.addView(textView)
@@ -86,6 +81,8 @@ class GuidePager @JvmOverloads constructor(
         bing.title.text = titles[current]
         bing.car.setImageResource(imagesRes[current])
         bing.title.text = tips[current]
+
+        bing.btUse.setOnClickListener(this)
 
         if (current == 3) {
             bing.btUse.visible()
@@ -103,7 +100,9 @@ class GuidePager @JvmOverloads constructor(
 
     override fun onClick(view: View?) {
         when {
-            view === bing.btUse -> listener
+            view === bing.btUse -> {
+                listener?.invoke()
+            }
         }
     }
 

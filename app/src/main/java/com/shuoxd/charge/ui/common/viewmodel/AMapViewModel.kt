@@ -8,7 +8,7 @@ import com.amap.api.services.geocoder.RegeocodeQuery
 import com.amap.api.services.geocoder.RegeocodeResult
 import com.shuoxd.charge.application.MainApplication
 import com.shuoxd.charge.base.BaseViewModel
-import com.growatt.lib.service.location.LocationInfo
+import com.shuoxd.lib.service.location.LocationInfo
 
 /**
  * 高德地图

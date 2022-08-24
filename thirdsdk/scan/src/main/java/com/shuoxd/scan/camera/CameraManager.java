@@ -27,9 +27,9 @@ import android.view.SurfaceHolder;
 import androidx.annotation.FloatRange;
 
 import com.google.zxing.PlanarYUVLuminanceSource;
-import com.growatt.scan.camera.open.OpenCamera;
-import com.growatt.scan.camera.open.OpenCameraInterface;
-import com.growatt.scan.util.LogUtils;
+import com.shuoxd.scan.camera.open.OpenCamera;
+import com.shuoxd.scan.camera.open.OpenCameraInterface;
+import com.shuoxd.scan.util.LogUtils;
 
 import java.io.IOException;
 

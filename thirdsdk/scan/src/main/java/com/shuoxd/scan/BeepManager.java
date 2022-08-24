@@ -27,7 +27,8 @@ import android.os.Build;
 import android.os.Vibrator;
 import android.preference.PreferenceManager;
 
-import com.growatt.scan.util.LogUtils;
+
+import com.shuoxd.scan.util.LogUtils;
 
 import java.io.Closeable;
 import java.io.IOException;

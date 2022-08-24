@@ -3,7 +3,6 @@ package com.shuoxd.charge.ui.guide.activity
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.os.PersistableBundle
 import android.view.View
 import android.view.ViewGroup
 import androidx.viewpager.widget.PagerAdapter
@@ -11,6 +10,7 @@ import com.shuoxd.charge.application.MainApplication
 import com.shuoxd.charge.base.BaseActivity
 import com.shuoxd.charge.databinding.ActivityGuideBinding
 import com.shuoxd.charge.ui.guide.view.GuidePager
+import com.shuoxd.charge.ui.mine.activity.LoginActivity
 
 class GuideActivity : BaseActivity() {
 
@@ -31,28 +31,28 @@ class GuideActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         guideBinding = ActivityGuideBinding.inflate(layoutInflater)
         setContentView(guideBinding.root)
-
-        for (i in 0..4) {
+        pagers= mutableListOf()
+        for (i in 0..3) {
             val pager = GuidePager(this, null, i)
             pager.setOnclickListeners {
                 //跳转到登录页面
-
-                MainApplication.instance().storageService().put(MainApplication.instance().APP_FIRST,false);
+                LoginActivity.start(this)
+                MainApplication.instance().storageService().put(MainApplication.APP_FIRST,false);
                 finish()
             }
             pagers.add(pager)
 
         }
-        val vpAdapter = VpAdapter(pagers)
-
-        guideBinding.vp.adapter = vpAdapter
+        guideBinding.viewPager.adapter=VpAdapter(pagers)
 
     }
 
 
     class VpAdapter(var pagers: MutableList<GuidePager>) : PagerAdapter() {
         override fun instantiateItem(container: ViewGroup, position: Int): Any {
-            return pagers.get(position)
+            val view = pagers.get(position)
+            container.addView(view)
+            return view
         }
         override fun getCount(): Int {
             return pagers.size

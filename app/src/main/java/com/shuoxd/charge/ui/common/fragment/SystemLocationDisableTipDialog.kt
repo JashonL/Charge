@@ -8,8 +8,8 @@ import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatDialogFragment
 import androidx.fragment.app.FragmentManager
 import com.shuoxd.charge.R
-import com.growatt.lib.util.ToastUtil
-import com.growatt.lib.util.Util
+import com.shuoxd.lib.util.ToastUtil
+import com.shuoxd.lib.util.Util
 
 /**
  * 系统定位服务未开启提示Dialog
@@ -31,10 +31,10 @@ class SystemLocationDisableTipDialog : AppCompatDialogFragment() {
     private var callback: ((isOpen: Boolean) -> Unit)? = null
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
-        return AlertDialog.Builder(requireContext()).setTitle(R.string.tip)
-            .setMessage(R.string.need_to_open_location_service)
+        return AlertDialog.Builder(requireContext()).setTitle(R.string.m36_tip)
+            .setMessage(R.string.m37_need_to_open_location_service)
             .setPositiveButton(
-                R.string.setting
+                R.string.m38_setting
             ) { _, _ -> openLocationSettingActivity() }
             .setNegativeButton(android.R.string.cancel, null).create()
     }
@@ -44,7 +44,7 @@ class SystemLocationDisableTipDialog : AppCompatDialogFragment() {
             val intent = Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS)
             startActivityForResult(intent, REQUEST_CODE_OPEN_LOCATION_SWITCH)
         } catch (e: Exception) {
-            ToastUtil.show(getString(R.string.please_to_setting_page_location_service))
+            ToastUtil.show(getString(R.string.m39_please_to_setting_page_location_service))
         }
     }
 

@@ -148,7 +148,7 @@ class OkhttpService : IHttpService() {
                         response.code
                         callback.onFailure(
                             HttpErrorModel.ERROR_CODE_SERVER,
-                            MainApplication.instance().getString(R.string.loading_error)
+                            MainApplication.instance().getString(R.string.m41_network_error)
                         )
                     }
                 }

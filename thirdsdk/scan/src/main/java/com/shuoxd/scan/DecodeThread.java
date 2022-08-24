@@ -26,8 +26,8 @@ import android.preference.PreferenceManager;
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.DecodeHintType;
 import com.google.zxing.ResultPointCallback;
-import com.growatt.scan.camera.CameraManager;
-import com.growatt.scan.util.LogUtils;
+import com.shuoxd.scan.camera.CameraManager;
+import com.shuoxd.scan.util.LogUtils;
 
 import java.util.Collection;
 import java.util.EnumMap;
@@ -48,12 +48,12 @@ final class DecodeThread extends Thread {
     private final Context context;
     private final CameraManager cameraManager;
     private final Map<DecodeHintType, Object> hints;
-    private final com.growatt.scan.CaptureHandler captureHandler;
+    private final CaptureHandler captureHandler;
     private final CountDownLatch handlerInitLatch;
     private Handler handler;
 
     DecodeThread(Context context, CameraManager cameraManager,
-                 com.growatt.scan.CaptureHandler captureHandler,
+                 CaptureHandler captureHandler,
                  Collection<BarcodeFormat> decodeFormats,
                  Map<DecodeHintType, Object> baseHints,
                  String characterSet,
@@ -113,7 +113,7 @@ final class DecodeThread extends Thread {
     @Override
     public void run() {
         Looper.prepare();
-        handler = new com.growatt.scan.DecodeHandler(context, cameraManager, captureHandler, hints);
+        handler = new DecodeHandler(context, cameraManager, captureHandler, hints);
         handlerInitLatch.countDown();
         Looper.loop();
     }

@@ -6,8 +6,8 @@ import android.os.Bundle
 import android.view.MotionEvent
 import com.shuoxd.charge.base.BaseActivity
 import com.shuoxd.charge.databinding.ActivityScanBinding
-import com.growatt.scan.CaptureHelper
-import com.growatt.scan.OnCaptureCallback
+import com.shuoxd.scan.CaptureHelper
+import com.shuoxd.scan.OnCaptureCallback
 
 /**
  * 扫码Activity

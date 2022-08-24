@@ -16,7 +16,7 @@ import com.google.zxing.DecodeHintType;
 import com.google.zxing.Result;
 import com.google.zxing.ResultPoint;
 import com.google.zxing.ResultPointCallback;
-import com.growatt.scan.camera.CameraManager;
+import com.shuoxd.scan.camera.CameraManager;
 
 import java.util.Collection;
 import java.util.Map;

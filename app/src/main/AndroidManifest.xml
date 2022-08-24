@@ -12,7 +12,8 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.Charge"
+        android:usesCleartextTraffic="true"
+        android:theme="@style/AppTheme"
         tools:targetApi="31">
 
         <activity
@@ -34,6 +35,18 @@
             android:name=".ui.common.activity.WebActivity"
             android:exported="false"
             android:screenOrientation="nosensor" />
+
+        <activity
+            android:name=".ui.guide.activity.GuideActivity"
+            android:exported="false"
+            android:screenOrientation="nosensor" />
+
+
+        <activity
+            android:name=".ui.mine.activity.LoginActivity"
+            android:exported="false"
+            android:screenOrientation="nosensor" />
+
 
     </application>
 

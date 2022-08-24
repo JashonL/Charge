@@ -4,6 +4,14 @@ import android.content.Context
 import android.os.Build
 import android.os.LocaleList
 import android.os.Process
+import com.scwang.smart.refresh.header.MaterialHeader
+import com.scwang.smart.refresh.layout.SmartRefreshLayout
+import com.shuoxd.charge.R
+import com.shuoxd.charge.service.account.DefaultAccountService
+import com.shuoxd.charge.service.http.OkhttpService
+import com.shuoxd.charge.service.location.AmapLocationService
+import com.shuoxd.charge.ui.launch.fragment.UserAgreementDialog
+import com.shuoxd.charge.ui.launch.monitor.UserAgreementMonitor
 import com.shuoxd.lib.LibApplication
 import com.shuoxd.lib.service.ServiceManager
 import com.shuoxd.lib.service.ServiceType
@@ -17,23 +25,14 @@ import com.shuoxd.lib.service.storage.DefaultStorageService
 import com.shuoxd.lib.service.storage.IStorageService
 import com.shuoxd.lib.util.Util
 
-import com.scwang.smart.refresh.header.MaterialHeader
-import com.scwang.smart.refresh.layout.SmartRefreshLayout
-
-import com.shuoxd.charge.R
-import com.shuoxd.charge.service.account.DefaultAccountService
-import com.shuoxd.charge.service.http.OkhttpService
-import com.shuoxd.charge.service.location.AmapLocationService
-import com.shuoxd.charge.ui.launch.fragment.UserAgreementDialog
-import com.shuoxd.charge.ui.launch.monitor.UserAgreementMonitor
-
 
 class MainApplication : LibApplication() {
 
-    val APP_FIRST:String="app_first"
-
 
     companion object {
+        const val APP_FIRST: String = "app_first"
+        const val APP_OS = 0
+
         private lateinit var instance: MainApplication
         fun instance() = instance
 

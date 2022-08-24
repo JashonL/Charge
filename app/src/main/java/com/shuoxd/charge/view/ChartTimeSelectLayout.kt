@@ -72,25 +72,25 @@ class ChartTimeSelectLayout @JvmOverloads constructor(
         }
         when (this.dateType) {
             DateType.HOUR -> {
-                binding.tvHour.setTextColor(resources.getColor(R.color.text_gray_99))
+                binding.tvHour.setTextColor(resources.getColor(R.color.color_text_99))
                 binding.tvHour.setBackgroundColor(Color.TRANSPARENT)
                 binding.tvSelectDate.text = DateUtils.yyyy_MM_dd_format(selectDate)
                 binding.tvSelectDate.visible()
             }
             DateType.DAY -> {
-                binding.tvDay.setTextColor(resources.getColor(R.color.text_gray_99))
+                binding.tvDay.setTextColor(resources.getColor(R.color.color_text_99))
                 binding.tvSelectDate.text = DateUtils.yyyy_MM_format(selectDate)
                 binding.tvDay.setBackgroundColor(Color.TRANSPARENT)
                 binding.tvSelectDate.visible()
             }
             DateType.MONTH -> {
-                binding.tvMonth.setTextColor(resources.getColor(R.color.text_gray_99))
+                binding.tvMonth.setTextColor(resources.getColor(R.color.color_text_99))
                 binding.tvSelectDate.text = DateUtils.yyyy_format(selectDate)
                 binding.tvMonth.setBackgroundColor(Color.TRANSPARENT)
                 binding.tvSelectDate.visible()
             }
             DateType.YEAR -> {
-                binding.tvYear.setTextColor(resources.getColor(R.color.text_gray_99))
+                binding.tvYear.setTextColor(resources.getColor(R.color.color_text_99))
                 binding.tvYear.setBackgroundColor(Color.TRANSPARENT)
                 binding.tvSelectDate.gone()
             }
@@ -98,25 +98,25 @@ class ChartTimeSelectLayout @JvmOverloads constructor(
 
         when (dateType) {
             DateType.HOUR -> {
-                binding.tvHour.setTextColor(resources.getColor(R.color.text_white))
+                binding.tvHour.setTextColor(resources.getColor(R.color.white))
                 binding.tvHour.setBackgroundResource(R.color.colorAccent)
                 binding.tvSelectDate.text = DateUtils.yyyy_MM_dd_format(selectDate)
                 binding.tvSelectDate.visible()
             }
             DateType.DAY -> {
-                binding.tvDay.setTextColor(resources.getColor(R.color.text_white))
+                binding.tvDay.setTextColor(resources.getColor(R.color.white))
                 binding.tvDay.setBackgroundResource(R.color.colorAccent)
                 binding.tvSelectDate.text = DateUtils.yyyy_MM_format(selectDate)
                 binding.tvSelectDate.visible()
             }
             DateType.MONTH -> {
-                binding.tvMonth.setTextColor(resources.getColor(R.color.text_white))
+                binding.tvMonth.setTextColor(resources.getColor(R.color.white))
                 binding.tvMonth.setBackgroundResource(R.color.colorAccent)
                 binding.tvSelectDate.text = DateUtils.yyyy_format(selectDate)
                 binding.tvSelectDate.visible()
             }
             DateType.YEAR -> {
-                binding.tvYear.setTextColor(resources.getColor(R.color.text_white))
+                binding.tvYear.setTextColor(resources.getColor(R.color.white))
                 binding.tvYear.setBackgroundResource(R.color.colorAccent)
                 binding.tvSelectDate.gone()
             }

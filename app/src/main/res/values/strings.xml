@@ -48,7 +48,48 @@
     <string name="m33_tips2">Scan code orenter SN to add charger</string>
     <string name="m34_tips3">Configure your charger setting and connectivity with APP</string>
     <string name="m35_tips4">Registera user,password,email verification</string>
+    <string name="m36_tip">提示</string>
+    <string name="m37_need_to_open_location_service">需要打开定位服务</string>
+    <string name="m38_setting">设置</string>
+    <string name="m39_please_to_setting_page_location_service">请到设置页面打开定位服务</string>
+    <string name="m40_scan">扫一扫</string>
+    <string name="m41_network_error">网络异常,请稍后重试</string>
+    <string name="m42_loading_error">加载异常,请稍后重试</string>
+    <string name="m43_loading_error_click_retry">加载异常,请点击重试</string>
+    <string name="m44_map_for_choosing">地图选点</string>
+    <string name="m45_longitude_format">经度:%s</string>
+    <string name="m46_latitude_format">纬度:%s</string>
+    <string name="m47_app_want_to_visit_format">"%s"想访问您的%s</string>
+    <string name="m48_camera">相机</string>
+    <string name="m49_photo_album">相册</string>
+    <string name="m50_location">位置</string>
 
+    <string name="m51_to_app_set_permission_format">您未允许%s获得你的%s权限，您可在应用设置中开启</string>
+    <string name="m52_camera">相机</string>
+    <string name="m53_photo_album">相册</string>
+    <string name="m54_storage_photo_album">存储（相册）</string>
+    <string name="m55_to_set">去设置</string>
+    <string name="m56_kwh">kWh</string>
+    <string name="m57_mwh">MWh</string>
+    <string name="m58_kwp">kWp</string>
+    <string name="m59_mwp">MWp</string>
+    <string name="m60_kw">kW</string>
+    <string name="m61_mw">MW</string>
+    <string name="m62_hz">Hz</string>
+    <string name="m63_kva">KVA</string>
+    <string name="m64_kvar">KVar</string>
+    <string name="m65_v">V</string>
+    <string name="m66_a">A</string>
+    <string name="m67_kg">kg</string>
+    <string name="m68_t">t</string>
 
+    <string name="m69_hour">时</string>
+    <string name="m70_day">日</string>
+    <string name="m71_month">月</string>
+    <string name="m72_year">年</string>
+    <string name="m73_sms_find_back">短信找回</string>
+    <string name="m74_please_input_username">请输入用户名</string>
+    <string name="m75_please_input_password">请输入密码</string>
+    <string name="m76_password_cant_empty">密码不能为空</string>
 
 </resources>

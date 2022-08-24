@@ -26,10 +26,10 @@ import android.view.Display;
 import android.view.Surface;
 import android.view.WindowManager;
 
-import com.growatt.scan.Preferences;
-import com.growatt.scan.camera.open.CameraFacing;
-import com.growatt.scan.camera.open.OpenCamera;
-import com.growatt.scan.util.LogUtils;
+import com.shuoxd.scan.Preferences;
+import com.shuoxd.scan.camera.open.CameraFacing;
+import com.shuoxd.scan.camera.open.OpenCamera;
+import com.shuoxd.scan.util.LogUtils;
 
 
 /**

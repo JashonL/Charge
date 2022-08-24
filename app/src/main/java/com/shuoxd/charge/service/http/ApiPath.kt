@@ -6,7 +6,8 @@ object ApiPath {
         /**
          * 登录
          */
-        const val LOGIN = "ATSLogin"
+
+        const val LOGIN = "v1/user/login"
 
         /**
          * 登出

@@ -4,6 +4,7 @@ import android.app.ActivityManager
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager.NameNotFoundException
+import android.icu.text.TimeZoneFormat
 import android.location.LocationManager
 import android.net.Uri
 import android.os.Build
@@ -15,6 +16,7 @@ import com.shuoxd.lib.LibApplication
 import org.json.JSONObject
 import java.io.File
 import java.math.BigDecimal
+import java.util.*
 import kotlin.system.exitProcess
 
 object Util {
@@ -122,8 +124,8 @@ object Util {
     /**
      * 获取手机型号
      */
-    fun getPhoneModel():String{
-         return Build.MODEL
+    fun getPhoneModel(): String {
+        return Build.MODEL
     }
 
 
@@ -136,6 +138,22 @@ object Util {
             e.printStackTrace()
         }
         return "1.0"
+    }
+
+
+    fun getTimeZone(): String {
+
+        var tz: String
+        val timezone: TimeZone = TimeZone.getDefault()
+        val displayName = timezone.getDisplayName(false, TimeZone.SHORT)
+        val substring = displayName.substring(4)
+        val split = substring.split(":")
+        tz = split[0].toInt().toString()
+        if (split[1] == "30") {
+            tz += "0.5"
+        }
+        return tz
+
     }
 
 

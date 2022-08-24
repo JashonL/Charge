@@ -6,6 +6,7 @@ import com.shuoxd.charge.base.BaseViewModel
 import com.shuoxd.charge.service.http.ApiPath
 import com.shuoxd.lib.service.account.User
 import com.shuoxd.lib.service.http.HttpCallback
+import com.shuoxd.lib.service.http.HttpErrorModel
 import com.shuoxd.lib.service.http.HttpResult
 import kotlinx.coroutines.launch
 
@@ -37,10 +38,24 @@ class LoginViewModel : BaseViewModel() {
                 object : HttpCallback<HttpResult<User>>() {
                     override fun success(result: HttpResult<User>) {
                         val user = result.data
+                        if (result.isBusinessSuccess()&&user!=null){
+                            loginLiveData.value = Pair(user, null)
+                        }else{
+                            loginLiveData.value = Pair(null, result.msg ?: "")
+                        }
+
                     }
 
 
+                    override fun onFailure(errorModel: HttpErrorModel) {
+                        loginLiveData.value = Pair(null, errorModel.errorMsg ?: "")
+
+                    }
+
                 })
+
+
+
 
 
         }

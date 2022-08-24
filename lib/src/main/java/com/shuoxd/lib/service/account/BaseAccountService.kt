@@ -83,7 +83,7 @@ abstract class BaseAccountService : IAccountService {
     }
 
     override fun isGuest(): Boolean {
-        return user()?.userName == INFO_SPACE_USER_NAME
+        return user()?.email == INFO_SPACE_USER_NAME
     }
 
     override fun addAccountListener(accountListener: IAccountService.AccountListener) {

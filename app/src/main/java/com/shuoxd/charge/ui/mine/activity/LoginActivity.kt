@@ -11,6 +11,7 @@ import com.shuoxd.charge.application.MainApplication.Companion.APP_OS
 import com.shuoxd.charge.base.BaseActivity
 import com.shuoxd.charge.databinding.ActivityLoginBinding
 import com.shuoxd.charge.ui.mine.viewmodel.LoginViewModel
+import com.shuoxd.lib.service.account.User
 import com.shuoxd.lib.util.MD5Util
 import com.shuoxd.lib.util.ToastUtil
 import com.shuoxd.lib.util.Util
@@ -34,16 +35,49 @@ class LoginActivity : BaseActivity(), View.OnClickListener {
         super.onCreate(savedInstanceState)
         bingding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(bingding.root)
-        bingding.btnLogin.setOnClickListener(this)
 
 
+        initData()
 
+        setListener()
 
     }
+
+    private fun initData() {
+
+        viewModel.loginLiveData.observe(this) {
+            dismissDialog()
+            if (it.second == null) {
+                val user = it.first
+                loginSuccess(user)
+            } else {
+                ToastUtil.show(it.second)
+            }
+
+        }
+
+    }
+
+    private fun loginSuccess(user: User?) {
+        accountService().saveUserInfo(user)
+        finish()
+
+    }
+
+
+    private fun setListener() {
+        bingding.btnLogin.setOnClickListener(this)
+        bingding.tvRegister.setOnClickListener(this)
+
+    }
+
 
     override fun onClick(p0: View?) {
         when {
             p0 === bingding.btnLogin -> checkInfo()
+            p0 === bingding.tvRegister -> {
+                RegisterActivity.start(this)
+            }
         }
     }
 
@@ -58,7 +92,6 @@ class LoginActivity : BaseActivity(), View.OnClickListener {
             TextUtils.isEmpty(password) -> {
                 ToastUtil.show(getString(R.string.m76_password_cant_empty))
             }
-
             else -> {
                 //校验成功
                 showDialog()

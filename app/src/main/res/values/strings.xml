@@ -91,5 +91,22 @@
     <string name="m74_please_input_username">请输入用户名</string>
     <string name="m75_please_input_password">请输入密码</string>
     <string name="m76_password_cant_empty">密码不能为空</string>
+    <string name="m77_password">Password</string>
+    <string name="m77_re_enter_password">Re-enter Password</string>
+    <string name="m78_city">City</string>
+    <string name="m79_country">Country</string>
+    <string name="m80_time_zone">Time Zone</string>
+
+    <string name="m81_please_check_agree_agreement">请勾选同意协议</string>
+    <string name="m82_password_cant_empty">密码不能为空</string>
+    <string name="m83_passwords_are_inconsistent">两次密码不一致</string>
+    <string name="m84_password_cannot_be_less_than_6_digits">密码不能少于6位数</string>
+    <string name="m85_no_phone_number">未填写手机号码</string>
+    <string name="m86_no_timezone">未填写时区</string>
+    <string name="m87_no_country">未填写国家</string>
+    <string name="m88_agree_company_user_agreement">同意本公司各项%s&amp;%s</string>
+    <string name="m89_no_email">未填写邮箱</string>
+    <string name="m90_register_success">注册成功</string>
+
 
 </resources>

@@ -17,7 +17,7 @@ object ApiPath {
         /**
          * 注册
          */
-        const val REGISTER = "ATSregister/reHome"
+        const val REGISTER = "v1/user/register"
 
         /**
          * 通过邮箱或手机号发送验证码

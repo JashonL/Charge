@@ -20,7 +20,7 @@ object MD5Util {
             for (i in resultByte.indices) {
                 val hex = Integer.toHexString(ENCRYPT_KEY and resultByte[i].toInt())
                 if (hex.length == 1) {
-                    cacheChar.append("c")
+                    cacheChar.append("0")
                 }
                 cacheChar.append(hex)
             }

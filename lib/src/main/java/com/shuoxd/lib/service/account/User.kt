@@ -10,9 +10,12 @@ package com.shuoxd.lib.service.account
  */
 data class User(
     val id: String,
-    val userName: String,
-    var phoneNum: String?,
-    var agentCode: String?,
-    var email: String?,
-    val token: String
+    val email: String,
+    var userType: String,
+    var phoneNum: String,
+    var country: String,
+    var city: String,
+    var timeZone: String,
+
+
 )

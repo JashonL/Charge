@@ -37,7 +37,7 @@ class LoginViewModel : BaseViewModel() {
                 params,
                 object : HttpCallback<HttpResult<User>>() {
                     override fun success(result: HttpResult<User>) {
-                        val user = result.data
+                        val user = result.obj
                         if (result.isBusinessSuccess()&&user!=null){
                             loginLiveData.value = Pair(user, null)
                         }else{

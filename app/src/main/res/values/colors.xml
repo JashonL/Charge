@@ -41,7 +41,7 @@
 
 
     <!--主色-->
-    <color name="color_app_main">#2CDB7B</color>
+    <color name="color_app_main">#5AB755</color>
     <color name="color_app_main_pressed">#00B050</color>
     <!--分割线颜色-->
     <color name="color_item_divider_66">#666666</color>
@@ -91,10 +91,13 @@
 
     <color name="color_btn_start">#1AC6BA</color>
     <color name="color_btn_end">#59C657</color>
-
     <color name="color_default_background">#F6F6F6</color>
-
     <color name="color_red_80">#CCE2001A</color>
+
+
+
+
+
 
 
 </resources>

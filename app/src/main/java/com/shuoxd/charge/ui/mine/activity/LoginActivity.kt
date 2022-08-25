@@ -10,6 +10,7 @@ import com.shuoxd.charge.R
 import com.shuoxd.charge.application.MainApplication.Companion.APP_OS
 import com.shuoxd.charge.base.BaseActivity
 import com.shuoxd.charge.databinding.ActivityLoginBinding
+import com.shuoxd.charge.ui.charge.activity.ChargeActivity
 import com.shuoxd.charge.ui.mine.viewmodel.LoginViewModel
 import com.shuoxd.lib.service.account.User
 import com.shuoxd.lib.util.MD5Util
@@ -60,6 +61,7 @@ class LoginActivity : BaseActivity(), View.OnClickListener {
 
     private fun loginSuccess(user: User?) {
         accountService().saveUserInfo(user)
+        ChargeActivity.start(this)
         finish()
 
     }

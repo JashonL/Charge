@@ -108,5 +108,12 @@
     <string name="m89_no_email">未填写邮箱</string>
     <string name="m90_register_success">注册成功</string>
 
+    <string name="m91_charge_setting">Charge Setting</string>
+    <string name="m92_charge_capacity">Charge capacity</string>
+    <string name="m93_current">Current</string>
+    <string name="m94_voltage">Voltage</string>
+    <string name="m95_consumption">Consumption</string>
+    <string name="m96_charge_time">Charge Time</string>
+
 
 </resources>

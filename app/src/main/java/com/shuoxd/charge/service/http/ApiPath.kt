@@ -96,8 +96,11 @@ object ApiPath {
         /**
          * 电桩列表
          */
-        const val CHARGE_LIST = "/v1/charger/chargerList"
-
+        const val CHARGE_LIST = "v1/charger/chargerList"
+        /**
+         * 获取交易枪的详情
+         */
+        const val TRANSACTION_OVERVIEW="v1/transaction/getTransactionOverview"
 
 
     }

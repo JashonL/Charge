@@ -36,6 +36,7 @@ class OptionsDialog : BottomSheetDialogFragment() {
             dialog.show(fragmentManager, OptionsDialog::class.java.name)
         }
 
+
     }
 
     private lateinit var options: Array<String>

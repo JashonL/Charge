@@ -103,6 +103,7 @@ class MainApplication : LibApplication() {
         ServiceManager.instance().registerService(ServiceType.DEVICE, DefaultDeviceService(this))
         ServiceManager.instance().registerService(ServiceType.ACCOUNT, DefaultAccountService())
         ServiceManager.instance().registerService(ServiceType.LOCATION, AmapLocationService())
+
     }
 
     override fun apiService(): IHttpService {

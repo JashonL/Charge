@@ -17,11 +17,11 @@ data class TransactionModel(
         val stopTimeLocalDetail: String,
         val stopReason: String,
         val status: Int,
-        val energyKWH: Double,
+        val energyKWH: Double?,
         val charingTimeText: String,
-        val cost: Int,
-        val power: Int,
-        val current: Int
+        val cost: Double,
+        val power: Double,
+        val current: Double
     )
 
 

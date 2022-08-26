@@ -118,4 +118,16 @@
     <string name="m98_no_online">不在线</string>
 
 
+    <string name="m93_unavailable">不可用</string>
+    <string name="m94_available">空闲</string>
+    <string name="m95_prepear">准备中</string>
+    <string name="m96_charging">充电中</string>
+    <string name="m97_car_stop">车辆停止充电</string>
+    <string name="m98_charge_finish">充电结束</string>
+    <string name="m99_reservce">预约中</string>
+    <string name="m100_unavailable1">不在线</string>
+    <string name="m101_fault">故障</string>
+    <string name="m102_device_stop">充电设施停用</string>
+
+
 </resources>

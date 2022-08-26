@@ -82,7 +82,7 @@ class ChargeViewModel : BaseViewModel() {
                 object : HttpCallback<HttpResult<TransactionModel>>() {
                     override fun success(result: HttpResult<TransactionModel>) {
                         if (result.isBusinessSuccess()){
-                            chargeInfoLiveData.value=Pair(result.obj,"")
+                            chargeInfoLiveData.value=Pair(result.obj,null)
                         }else{
                             chargeInfoLiveData.value=Pair(null,result.msg?:"")
                         }

@@ -31,6 +31,61 @@ object ValueUtil {
         }
     }
 
+
+    /**
+     * 电流单位：数值转换，基础单位是A
+     */
+    fun valueFromA(kwhValue: Double?): Pair<String, String> {
+        return when {
+            kwhValue == null -> {
+                Pair("0", MainApplication.instance().getString(R.string.m66_a))
+            }
+            else -> {
+                Pair(
+                    Util.getDoubleText(kwhValue),
+                    MainApplication.instance().getString(R.string.m66_a)
+                )
+            }
+        }
+    }
+
+
+
+
+    /**
+     * 电压单位：数值转换，基础单位是A
+     */
+    fun valueFromV(kwhValue: Double?): Pair<String, String> {
+        return when {
+            kwhValue == null -> {
+                Pair("0", MainApplication.instance().getString(R.string.m65_v))
+            }
+            else -> {
+                Pair(
+                    Util.getDoubleText(kwhValue),
+                    MainApplication.instance().getString(R.string.m65_v)
+                )
+            }
+        }
+    }
+
+
+
+    /**
+     * 费用单位：数值转换
+     */
+    fun valueFromCost(kwhValue: Double?):String {
+        return when {
+            kwhValue == null -> {
+                "0"
+            }
+            else -> {
+                Util.getDoubleText(kwhValue)
+            }
+        }
+    }
+
+
     /**
      * 功率单位(平均)：数值转换，基础单位是w
      */

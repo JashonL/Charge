@@ -16,6 +16,7 @@ class DataItemView @JvmOverloads constructor(
 
     private var leftIcon: Drawable?
     private var title: String
+    private var value: String
 
     init {
         val view = LayoutInflater.from(context).inflate(R.layout.charging_item, this)
@@ -29,6 +30,8 @@ class DataItemView @JvmOverloads constructor(
             try {
                 leftIcon = getDrawable(R.styleable.DataItemView_lefticon)
                 title = getString(R.styleable.DataItemView_title) ?: ""
+                value=getString(R.styleable.DataItemView_value)?:""
+
             } finally {
                 recycle()
             }
@@ -44,8 +47,8 @@ class DataItemView @JvmOverloads constructor(
     }
 
 
-    private fun setValue(value:String?) {
-        bingding.tvTitle.text = value
+     fun setValue(value:String?) {
+        bingding.tvValue.text = value
     }
 
 

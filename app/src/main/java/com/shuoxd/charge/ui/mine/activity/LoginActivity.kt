@@ -36,11 +36,20 @@ class LoginActivity : BaseActivity(), View.OnClickListener {
         super.onCreate(savedInstanceState)
         bingding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(bingding.root)
-
-
         initData()
-
         setListener()
+        initViews()
+
+    }
+
+    private fun initViews() {
+        val user = accountService().user()
+        user?.let {
+            val email = it.email
+            val password = it.password
+            login(password, email)
+        }
+
 
     }
 
@@ -60,6 +69,7 @@ class LoginActivity : BaseActivity(), View.OnClickListener {
     }
 
     private fun loginSuccess(user: User?) {
+        user?.password=bingding.etPassword.toString()
         accountService().saveUserInfo(user)
         ChargeActivity.start(this)
         finish()
@@ -96,15 +106,19 @@ class LoginActivity : BaseActivity(), View.OnClickListener {
             }
             else -> {
                 //校验成功
-                showDialog()
-                val pwd_md5 = MD5Util.md5(password)
-                var version = Util.getVersion(this)
-                val phoneModel = Util.getPhoneModel()
-                if (version == null) version = "";
-                if (pwd_md5 != null) {
-                    viewModel.login(userName, pwd_md5, APP_OS, phoneModel, version)
-                }
+                login(password, userName)
             }
+        }
+    }
+
+    private fun login(password: String, userName: String) {
+        showDialog()
+        val pwd_md5 = MD5Util.md5(password)
+        var version = Util.getVersion(this)
+        val phoneModel = Util.getPhoneModel()
+        if (version == null) version = "";
+        if (pwd_md5 != null) {
+            viewModel.login(userName, pwd_md5, APP_OS, phoneModel, version)
         }
     }
 

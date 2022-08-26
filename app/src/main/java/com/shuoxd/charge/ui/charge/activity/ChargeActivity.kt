@@ -9,8 +9,11 @@ import com.shuoxd.charge.R
 import com.shuoxd.charge.base.BaseActivity
 import com.shuoxd.charge.databinding.ActivityChargeBinding
 import com.shuoxd.charge.model.charge.ChargeModel
+import com.shuoxd.charge.ui.charge.ChargeStatus
 import com.shuoxd.charge.ui.charge.viewmodel.ChargeViewModel
 import com.shuoxd.charge.ui.mine.activity.LoginActivity
+import com.shuoxd.charge.util.StatusUtil
+import com.shuoxd.charge.util.ValueUtil
 import com.shuoxd.charge.view.dialog.OptionsDialog
 import com.shuoxd.lib.util.ToastUtil
 
@@ -76,19 +79,33 @@ class ChargeActivity : BaseActivity(), View.OnClickListener {
 
 
 
-        chargeViewModel.chargeInfoLiveData.observe(this){
-            if (it.second==null){
-                //
+        chargeViewModel.chargeInfoLiveData.observe(this) {
+            dismissDialog()
+            if (it.second == null) {
+                //获取单个充电桩详情数据
                 binding.smartRefresh.finishRefresh()
-                val first=it.first
-                
-            }else{
+                binding.chargeInfo = it.first
+                it.first?.let { it ->
+                    StatusUtil.setImageStatus(this, it.status, binding.ivChargeStatus, 50)
+                    val valueFromKWh = ValueUtil.valueFromKWh(it.transaction.energyKWH)
+                    val valueFromA = ValueUtil.valueFromA(it.transaction.current)
+                    val valueFromV = ValueUtil.valueFromV(it.transaction.power)
+                    val valueFromCost = ValueUtil.valueFromCost(it.transaction.cost)
 
+                    binding.dataViewCapacity.setValue(valueFromKWh.first + valueFromKWh.second)
+                    binding.dataViewCurrent.setValue(valueFromA.first + valueFromA.second)
+                    binding.dataViewVoltage.setValue(valueFromV.first + valueFromV.second)
+                    binding.dataViewConsumption.setValue(valueFromCost)
+                    binding.dataViewTime.setValue(it.transaction.charingTimeText)
+
+                }
+
+            } else {
+                ToastUtil.show(it.second)
             }
 
 
         }
-
 
 
     }
@@ -101,11 +118,6 @@ class ChargeActivity : BaseActivity(), View.OnClickListener {
             chargeViewModel.chargerId = chargeModel.chargerId
             chargeViewModel.connectorId = "1"
 
-
-            chargeViewModel.chargerId?.let {
-                binding.tvChargeChoose.text =  it
-                chargeViewModel.getChargeInfo()
-            }
             chargeViewModel.chargeids.clear()
             for (i in first.indices) {
                 val charge = first.get(i)
@@ -113,6 +125,13 @@ class ChargeActivity : BaseActivity(), View.OnClickListener {
                     chargeViewModel.chargeids.add(it)
                 }
             }
+
+            chargeViewModel.chargerId?.let {
+                binding.tvChargeChoose.text = it
+                chargeViewModel.getChargeInfo()
+            }
+
+
         } else {
             //没有充电桩
             binding.ivChargeStatus.setImageResource(R.drawable.button_gray_background)

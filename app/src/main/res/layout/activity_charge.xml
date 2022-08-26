@@ -1,260 +1,284 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    xmlns:tools="http://schemas.android.com/tools">
 
+    <data>
 
-    <com.shuoxd.lib.view.StatusBarHeightView
-        android:id="@+id/status_bar"
+        <import type="com.shuoxd.charge.util.StatusUtil" />
+
+        <import type="com.shuoxd.charge.util.ValueUtil" />
+
+        <variable
+            name="chargeInfo"
+            type="com.shuoxd.charge.model.charge.TransactionModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_height="match_parent">
 
 
-    <View
-        android:id="@+id/v_bg"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:background="@drawable/shape_charge_top"
-        app:layout_constraintBottom_toBottomOf="@+id/v_top_bg"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-
-    <View
-        android:id="@+id/v_top_bg"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/dp_90"
-        app:layout_constraintTop_toBottomOf="@+id/status_bar" />
-
-
-    <ImageView
-        android:id="@+id/iv_avatar"
-        android:layout_width="@dimen/dp_37"
-        android:layout_height="@dimen/dp_37"
-        android:layout_centerVertical="true"
-        android:layout_marginStart="@dimen/dp_10"
-        android:scaleType="centerCrop"
-        android:src="@drawable/mine"
-        app:layout_constraintBottom_toBottomOf="@+id/v_top_bg"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/v_top_bg"
-        app:roundPercent="1" />
-
-
-    <ImageView
-        android:id="@+id/iv_center"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/lggo_w"
-        app:layout_constraintBottom_toBottomOf="@+id/v_top_bg"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/v_top_bg" />
-
-
-    <androidx.constraintlayout.utils.widget.ImageFilterView
-        android:id="@+id/iv_set"
-        android:layout_width="@dimen/dp_37"
-        android:layout_height="@dimen/dp_37"
-        android:layout_centerVertical="true"
-        android:layout_marginEnd="@dimen/dp_10"
-        android:scaleType="centerCrop"
-        android:src="@drawable/setting"
-
-        app:layout_constraintBottom_toBottomOf="@+id/v_top_bg"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/v_top_bg"
-        app:roundPercent="1" />
-
-
-    <com.scwang.smart.refresh.layout.SmartRefreshLayout
-        android:id="@+id/smart_refresh"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@+id/v_top_bg">
-
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <com.shuoxd.lib.view.StatusBarHeightView
+            android:id="@+id/status_bar"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-            <ScrollView
+
+        <View
+            android:id="@+id/v_bg"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:background="@drawable/shape_charge_top"
+            app:layout_constraintBottom_toBottomOf="@+id/v_top_bg"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+        <View
+            android:id="@+id/v_top_bg"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_90"
+            app:layout_constraintTop_toBottomOf="@+id/status_bar" />
+
+
+        <ImageView
+            android:id="@+id/iv_avatar"
+            android:layout_width="@dimen/dp_37"
+            android:layout_height="@dimen/dp_37"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="@dimen/dp_10"
+            android:scaleType="centerCrop"
+            android:src="@drawable/mine"
+            app:layout_constraintBottom_toBottomOf="@+id/v_top_bg"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/v_top_bg"
+            app:roundPercent="1" />
+
+
+        <ImageView
+            android:id="@+id/iv_center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/lggo_w"
+            app:layout_constraintBottom_toBottomOf="@+id/v_top_bg"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/v_top_bg" />
+
+
+        <androidx.constraintlayout.utils.widget.ImageFilterView
+            android:id="@+id/iv_set"
+            android:layout_width="@dimen/dp_37"
+            android:layout_height="@dimen/dp_37"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="@dimen/dp_10"
+            android:scaleType="centerCrop"
+            android:src="@drawable/setting"
+
+            app:layout_constraintBottom_toBottomOf="@+id/v_top_bg"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/v_top_bg"
+            app:roundPercent="1" />
+
+
+        <com.scwang.smart.refresh.layout.SmartRefreshLayout
+            android:id="@+id/smart_refresh"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@+id/v_top_bg">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:layout_constraintTop_toTopOf="parent">
+                android:layout_height="wrap_content">
 
-                <androidx.constraintlayout.widget.ConstraintLayout
+                <ScrollView
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toTopOf="parent">
 
-                    <TextView
-                        android:id="@+id/tv_charge_choose"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_centerVertical="true"
-                        android:layout_margin="@dimen/dp_10"
-                        android:background="@drawable/setting_layer"
-                        android:padding="@dimen/dp_5"
-                        android:text="ACBDEFG"
-                        android:textColor="@color/white"
-                        android:textSize="@dimen/size_content_sp_14"
-                        android:textStyle="bold"
-                        app:layout_constraintLeft_toLeftOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
-
-
-                    <TextView
-                        android:id="@+id/tv_charging_setting"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_centerVertical="true"
-                        android:layout_margin="@dimen/dp_10"
-                        android:background="@drawable/setting_layer"
-                        android:padding="@dimen/dp_5"
-                        android:text="@string/m91_charge_setting"
-                        android:textColor="@color/white"
-                        android:textSize="@dimen/size_content_sp_14"
-                        android:textStyle="bold"
-                        app:layout_constraintRight_toRightOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
-
-
-                    <ImageView
-                        android:id="@+id/iv_charge_status"
-                        android:layout_width="@dimen/dp_200"
-                        android:layout_height="@dimen/dp_200"
-                        android:src="@drawable/pre_1"
-                        app:layout_constraintLeft_toLeftOf="parent"
-                        app:layout_constraintRight_toRightOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/tv_charging_setting" />
-
-
-                    <ImageView
-                        android:id="@+id/iv_lock"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:src="@drawable/lock"
-                        app:layout_constraintBottom_toBottomOf="@+id/iv_charge_status"
-                        app:layout_constraintRight_toLeftOf="@+id/iv_charge_status" />
-
-
-                    <ImageView
-                        android:id="@+id/iv_menu"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:src="@drawable/menu"
-                        app:layout_constraintBottom_toBottomOf="@+id/iv_charge_status"
-                        app:layout_constraintLeft_toRightOf="@+id/iv_charge_status" />
-
-
-                    <TextView
-                        android:id="@+id/tv_charge_excption"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_centerVertical="true"
-                        android:layout_margin="@dimen/dp_10"
-                        android:padding="@dimen/dp_5"
-                        android:text="@string/m91_charge_setting"
-                        android:textColor="@color/color_text_33"
-                        android:textSize="@dimen/size_content_sp_14"
-                        android:textStyle="bold"
-                        app:layout_constraintLeft_toLeftOf="@+id/iv_charge_status"
-                        app:layout_constraintRight_toRightOf="@+id/iv_charge_status"
-                        app:layout_constraintTop_toBottomOf="@+id/iv_charge_status" />
-
-
-                    <ImageView
-                        android:id="@+id/iv_start"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:padding="@dimen/dp_10"
-                        android:src="@drawable/start"
-                        app:layout_constraintLeft_toLeftOf="@+id/iv_charge_status"
-                        app:layout_constraintRight_toRightOf="@+id/iv_charge_status"
-                        app:layout_constraintTop_toBottomOf="@+id/tv_charge_excption" />
-
-
-                    <LinearLayout
-                        android:id="@+id/ll_charging"
+                    <androidx.constraintlayout.widget.ConstraintLayout
                         android:layout_width="match_parent"
-                        android:layout_height="@dimen/dp_100"
-                        android:layout_marginStart="@dimen/dp_10"
-                        android:layout_marginEnd="@dimen/dp_10"
-                        android:orientation="horizontal"
-                        app:layout_constraintLeft_toLeftOf="parent"
-                        app:layout_constraintRight_toRightOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/iv_start">
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:id="@+id/tv_charge_choose"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_margin="@dimen/dp_10"
+                            android:background="@drawable/setting_layer"
+                            android:padding="@dimen/dp_5"
+                            android:text="ACBDEFG"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/size_content_sp_14"
+                            android:textStyle="bold"
+                            app:layout_constraintLeft_toLeftOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
 
 
-                        <com.shuoxd.charge.view.DataItemView
-                            android:layout_width="0dp"
-                            android:layout_height="match_parent"
-                            android:layout_weight="1"
-                            app:lefticon="@drawable/capacity"
-                            app:title="@string/m92_charge_capacity" />
-
-                        <com.shuoxd.charge.view.DataItemView
-                            android:layout_width="0dp"
-                            android:layout_height="match_parent"
-                            android:layout_weight="1"
-                            app:lefticon="@drawable/current"
-                            app:title="@string/m93_current" />
-
-                        <com.shuoxd.charge.view.DataItemView
-                            android:layout_width="0dp"
-                            android:layout_height="match_parent"
-                            android:layout_weight="1"
-                            app:lefticon="@drawable/voltage"
-                            app:title="@string/m94_voltage" />
+                        <TextView
+                            android:id="@+id/tv_charging_setting"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_margin="@dimen/dp_10"
+                            android:background="@drawable/setting_layer"
+                            android:padding="@dimen/dp_5"
+                            android:text="@string/m91_charge_setting"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/size_content_sp_14"
+                            android:textStyle="bold"
+                            app:layout_constraintRight_toRightOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
 
 
-                    </LinearLayout>
+                        <ImageView
+                            android:id="@+id/iv_charge_status"
+                            android:layout_width="@dimen/dp_200"
+                            android:layout_height="@dimen/dp_200"
+                            android:src="@drawable/pre_1"
+                            app:layout_constraintLeft_toLeftOf="parent"
+                            app:layout_constraintRight_toRightOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/tv_charging_setting"
+
+                            />
 
 
-                    <LinearLayout
-                        android:id="@+id/ll_charging2"
-                        android:layout_width="match_parent"
-                        android:layout_height="@dimen/dp_100"
-                        android:layout_marginStart="@dimen/dp_10"
-                        android:layout_marginTop="@dimen/dp_10"
-                        android:layout_marginEnd="@dimen/dp_10"
-                        android:orientation="horizontal"
-                        app:layout_constraintLeft_toLeftOf="parent"
-                        app:layout_constraintRight_toRightOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/ll_charging">
+                        <ImageView
+                            android:id="@+id/iv_lock"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/lock"
+                            app:layout_constraintBottom_toBottomOf="@+id/iv_charge_status"
+                            app:layout_constraintRight_toLeftOf="@+id/iv_charge_status" />
 
 
-                        <com.shuoxd.charge.view.DataItemView
-                            android:layout_width="0dp"
-                            android:layout_height="match_parent"
-                            android:layout_weight="1"
-                            app:lefticon="@drawable/consumption"
-                            app:title="@string/m95_consumption" />
+                        <ImageView
+                            android:id="@+id/iv_menu"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/menu"
+                            app:layout_constraintBottom_toBottomOf="@+id/iv_charge_status"
+                            app:layout_constraintLeft_toRightOf="@+id/iv_charge_status" />
 
 
-                        <com.shuoxd.charge.view.DataItemView
-                            android:layout_width="0dp"
-                            android:layout_height="match_parent"
+                        <TextView
+                            android:id="@+id/tv_charge_excption"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_margin="@dimen/dp_10"
+                            android:padding="@dimen/dp_5"
+                            android:text="@{StatusUtil.INSTANCE.getChargeStatus(chargeInfo.status)}"
+                            android:textColor="@color/color_text_33"
+                            android:textSize="@dimen/size_content_sp_14"
+                            android:textStyle="bold"
+                            app:layout_constraintLeft_toLeftOf="@+id/iv_charge_status"
+                            app:layout_constraintRight_toRightOf="@+id/iv_charge_status"
+                            app:layout_constraintTop_toBottomOf="@+id/iv_charge_status"
+                            tools:text="@string/m94_available" />
+
+
+                        <ImageView
+                            android:id="@+id/iv_start"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:padding="@dimen/dp_10"
+                            android:src="@{StatusUtil.INSTANCE.getActionImageStatus(context,chargeInfo.status)}"
+                            app:layout_constraintLeft_toLeftOf="@+id/iv_charge_status"
+                            app:layout_constraintRight_toRightOf="@+id/iv_charge_status"
+                            app:layout_constraintTop_toBottomOf="@+id/tv_charge_excption"
+                            tools:src="@drawable/start" />
+
+
+                        <LinearLayout
+                            android:id="@+id/ll_charging"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/dp_100"
                             android:layout_marginStart="@dimen/dp_10"
-                            android:layout_weight="1"
-                            app:lefticon="@drawable/charge_time"
-                            app:title="@string/m96_charge_time" />
+                            android:layout_marginEnd="@dimen/dp_10"
+                            android:orientation="horizontal"
+                            app:layout_constraintLeft_toLeftOf="parent"
+                            app:layout_constraintRight_toRightOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/iv_start">
 
 
-                    </LinearLayout>
+                            <com.shuoxd.charge.view.DataItemView
+                                android:id="@+id/dataView_capacity"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                app:lefticon="@drawable/capacity"
+                                app:title="@string/m92_charge_capacity" />
 
-                </androidx.constraintlayout.widget.ConstraintLayout>
+                            <com.shuoxd.charge.view.DataItemView
+                                android:id="@+id/dataView_current"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                app:lefticon="@drawable/current"
+                                app:title="@string/m93_current" />
 
-            </ScrollView>
+                            <com.shuoxd.charge.view.DataItemView
+                                android:id="@+id/dataView_voltage"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                app:lefticon="@drawable/voltage"
+                                app:title="@string/m94_voltage" />
 
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
+                        </LinearLayout>
 
 
-    </com.scwang.smart.refresh.layout.SmartRefreshLayout>
+                        <LinearLayout
+                            android:id="@+id/ll_charging2"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/dp_100"
+                            android:layout_marginStart="@dimen/dp_10"
+                            android:layout_marginTop="@dimen/dp_10"
+                            android:layout_marginEnd="@dimen/dp_10"
+                            android:orientation="horizontal"
+                            app:layout_constraintLeft_toLeftOf="parent"
+                            app:layout_constraintRight_toRightOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/ll_charging">
 
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+                            <com.shuoxd.charge.view.DataItemView
+                                android:id="@+id/dataView_consumption"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                app:lefticon="@drawable/consumption"
+                                app:title="@string/m95_consumption" />
+
+
+                            <com.shuoxd.charge.view.DataItemView
+                                android:id="@+id/dataView_time"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_marginStart="@dimen/dp_10"
+                                android:layout_weight="1"
+                                app:lefticon="@drawable/charge_time"
+                                app:title="@string/m96_charge_time" />
+
+
+                        </LinearLayout>
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                </ScrollView>
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        </com.scwang.smart.refresh.layout.SmartRefreshLayout>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

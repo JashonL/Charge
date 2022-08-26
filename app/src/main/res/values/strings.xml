@@ -114,6 +114,8 @@
     <string name="m94_voltage">Voltage</string>
     <string name="m95_consumption">Consumption</string>
     <string name="m96_charge_time">Charge Time</string>
+    <string name="m97_please_add_charge">Please Add Charger</string>
+    <string name="m98_no_online">不在线</string>
 
 
 </resources>

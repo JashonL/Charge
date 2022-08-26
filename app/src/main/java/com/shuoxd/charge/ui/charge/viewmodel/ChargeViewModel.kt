@@ -32,8 +32,8 @@ class ChargeViewModel : BaseViewModel() {
             apiService().postForm(
                 ApiPath.Charge.CHARGE_LIST,
                 params,
-                object : HttpCallback<HttpResult<List<ChargeModel>>>() {
-                    override fun success(result: HttpResult<List<ChargeModel>>) {
+                object : HttpCallback<HttpResult<Array<ChargeModel>>>() {
+           /*         override fun success(result: HttpResult<List<ChargeModel>>) {
                         val mutableListOf = mutableListOf<ChargeModel>()
                         if (result.isBusinessSuccess()) {
                             val obj = result.obj
@@ -44,10 +44,24 @@ class ChargeViewModel : BaseViewModel() {
                         } else {
                             chargeListLiveData.value = Pair(emptyList(), result.msg ?: "")
                         }
-                    }
+                    }*/
 
                     override fun onFailure(errorModel: HttpErrorModel) {
                         chargeListLiveData.value = Pair(emptyList(), errorModel.errorMsg ?: "")
+                    }
+
+                    override fun success(result: HttpResult<Array<ChargeModel>>) {
+                        val mutableListOf = mutableListOf<ChargeModel>()
+                        if (result.isBusinessSuccess()) {
+                            val obj = result.obj
+                            obj?.let {
+                                mutableListOf.addAll(it)
+                            }
+                            chargeListLiveData.value = Pair(mutableListOf, null)
+                        } else {
+                            chargeListLiveData.value = Pair(emptyList(), result.msg ?: "")
+                        }
+
                     }
                 })
         }

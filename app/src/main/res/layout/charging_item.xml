@@ -26,6 +26,7 @@
         android:textColor="@color/color_text_33"
         android:textSize="@dimen/size_content_sp_14"
         android:textStyle="bold"
+        android:text="0.0"
         app:layout_constraintBottom_toTopOf="@+id/tv_title"
         app:layout_constraintLeft_toRightOf="@+id/iv_icon"
         app:layout_constraintRight_toRightOf="parent"

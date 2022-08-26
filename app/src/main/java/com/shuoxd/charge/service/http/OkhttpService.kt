@@ -9,6 +9,7 @@ import com.shuoxd.charge.application.MainApplication
 import com.shuoxd.lib.service.http.HttpErrorModel
 import com.shuoxd.lib.service.http.IHttpCallback
 import com.shuoxd.lib.service.http.IHttpService
+import com.shuoxd.lib.service.http.cookie.CookiesManager
 import com.shuoxd.lib.util.GsonManager
 import com.shuoxd.lib.util.LogUtil
 import okhttp3.*
@@ -39,6 +40,7 @@ class OkhttpService : IHttpService() {
         .connectTimeout(30, TimeUnit.SECONDS)
         .readTimeout(30, TimeUnit.SECONDS)
         .writeTimeout(30, TimeUnit.SECONDS)
+        .cookieJar(CookiesManager(MainApplication.instance()))
         .addNetworkInterceptor(HttpLoggingInterceptor {
             LogUtil.i(TAG, it)
         }.also {

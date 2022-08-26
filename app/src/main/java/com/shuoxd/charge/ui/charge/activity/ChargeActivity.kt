@@ -5,6 +5,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import androidx.activity.viewModels
+import com.shuoxd.charge.R
 import com.shuoxd.charge.base.BaseActivity
 import com.shuoxd.charge.databinding.ActivityChargeBinding
 import com.shuoxd.charge.model.charge.ChargeModel
@@ -35,9 +36,17 @@ class ChargeActivity : BaseActivity(), View.OnClickListener {
         binding = ActivityChargeBinding.inflate(layoutInflater)
         setContentView(binding.root)
 //        GlideUtil.showGif(this, R.drawable.pre_75,binding.ivChargeStatus)
+        initViews()
         freshChage()
         initData()
         setOnclickListeners()
+    }
+
+    private fun initViews() {
+        binding.smartRefresh.setOnRefreshListener {
+            freshChage()
+        }
+
     }
 
     private fun setOnclickListeners() {
@@ -70,6 +79,7 @@ class ChargeActivity : BaseActivity(), View.OnClickListener {
         chargeViewModel.chargeInfoLiveData.observe(this){
             if (it.second==null){
                 //
+                binding.smartRefresh.finishRefresh()
                 val first=it.first
                 
             }else{
@@ -88,12 +98,16 @@ class ChargeActivity : BaseActivity(), View.OnClickListener {
         if (first.isNotEmpty()) {
             //取第一个充电桩
             val chargeModel = first[0]
-            val chargerId = chargeModel.chargerId
-            chargerId?.let {
-                binding.tvChargeChoose.text = chargerId
+            chargeViewModel.chargerId = chargeModel.chargerId
+            chargeViewModel.connectorId = "1"
+
+
+            chargeViewModel.chargerId?.let {
+                binding.tvChargeChoose.text =  it
+                chargeViewModel.getChargeInfo()
             }
             chargeViewModel.chargeids.clear()
-            for (i in 0..first.size) {
+            for (i in first.indices) {
                 val charge = first.get(i)
                 charge.chargerId?.let {
                     chargeViewModel.chargeids.add(it)
@@ -101,7 +115,9 @@ class ChargeActivity : BaseActivity(), View.OnClickListener {
             }
         } else {
             //没有充电桩
-
+            binding.ivChargeStatus.setImageResource(R.drawable.button_gray_background)
+            binding.tvChargeExcption.setText(R.string.m97_please_add_charge)
+            binding.ivStart.setImageResource(R.drawable.start)
         }
     }
 

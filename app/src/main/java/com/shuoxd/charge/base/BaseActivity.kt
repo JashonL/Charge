@@ -5,6 +5,8 @@ import android.os.Build
 import android.os.LocaleList
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
+import com.shuoxd.charge.model.charge.ChargeModel
+import com.shuoxd.charge.service.charge.ChargeManager
 import com.shuoxd.lib.LibApplication
 import com.shuoxd.lib.service.ServiceManager
 import com.shuoxd.lib.service.account.IAccountService
@@ -14,7 +16,8 @@ import com.shuoxd.lib.service.http.IHttpService
 import com.shuoxd.lib.service.location.ILocationService
 import com.shuoxd.lib.service.storage.IStorageService
 
-abstract class BaseActivity : AppCompatActivity(), ServiceManager.ServiceInterface, IDisplay {
+abstract class BaseActivity : AppCompatActivity(), ServiceManager.ServiceInterface, IDisplay,
+    ChargeManager.ServiceInterface {
 
     private val display: IDisplay by lazy(LazyThreadSafetyMode.NONE) {
         AndroidDisplay(this)
@@ -58,6 +61,29 @@ abstract class BaseActivity : AppCompatActivity(), ServiceManager.ServiceInterfa
     override fun locationService(): ILocationService {
         return LibApplication.instance().locationService()
     }
+
+
+    override fun setChargeList(list: MutableList<ChargeModel>) {
+        ChargeManager.getInstance().setChargeList(list)
+    }
+
+
+    override fun getChargeList(): List<ChargeModel> {
+        return ChargeManager.getInstance().getChargeList()
+    }
+
+
+    override fun setCurrenChargeModel(chargeModel: ChargeModel) {
+        ChargeManager.getInstance().setCurrentCharge(chargeModel)
+
+    }
+
+    override fun getCurrentChargeModel(): ChargeModel? {
+
+        return ChargeManager.getInstance().getCurrentCharge()
+    }
+
+
 
     override fun showDialog() {
         display.showDialog()

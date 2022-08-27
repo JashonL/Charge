@@ -24,6 +24,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
+        android:gravity="center"
         tools:text="@string/m26_privacy_dialog_content"
         android:textColor="@color/black" />
 

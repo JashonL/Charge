@@ -57,6 +57,16 @@
             android:exported="false"
             android:screenOrientation="nosensor" />
 
+        <activity
+            android:name=".ui.mine.activity.MineActivity"
+            android:exported="false"
+            android:screenOrientation="nosensor" />
+
+        <activity
+            android:name=".ui.charge.activity.AddYourChargeActivity"
+            android:exported="false"
+            android:screenOrientation="nosensor" />
+
 
     </application>
 

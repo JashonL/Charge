@@ -128,6 +128,22 @@
     <string name="m100_unavailable1">不在线</string>
     <string name="m101_fault">故障</string>
     <string name="m102_device_stop">充电设施停用</string>
+    <string name="m103_unlock_gun">解锁</string>
+    <string name="m104_unlock_gun_tips">您确定要解锁该枪吗？</string>
+
+    <string name="m105_unlock_success">unlock success</string>
+    <string name="m106_unlock_fail">unlock fail</string>
+    <string name="m107_logout">Logout</string>
+    <string name="m108_add_your_charge">Add your charger</string>
+    <string name="m109_authorize">Authorize to other users</string>
+    <string name="m110_personal_info">Personal INFO</string>
+    <string name="m111_help_support">Help&amp;Support</string>
+    <string name="m112_other">other</string>
+    <string name="m113_enter_serial">Please enter the charger serial number</string>
+    <string name="m114_add">Add</string>
+    <string name="m115_scan_code">Scan code to Add</string>
+    <string name="m116_sn_not_null">序列号不能为空</string>
+
 
 
 </resources>

@@ -49,6 +49,7 @@
     <ImageView
         android:id="@+id/iv_right"
         android:layout_width="20dp"
+        android:src="@drawable/right"
         android:layout_height="20dp" />
 
 </LinearLayout>

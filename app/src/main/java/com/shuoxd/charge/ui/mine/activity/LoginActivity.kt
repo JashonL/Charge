@@ -24,6 +24,12 @@ class LoginActivity : BaseActivity(), View.OnClickListener {
         fun start(context: Context?) {
             context?.startActivity(Intent(context, LoginActivity::class.java))
         }
+
+        fun startClearTask(context: Context?) {
+            val intent = Intent(context, LoginActivity::class.java)
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
+            context?.startActivity(intent)
+        }
     }
 
 
@@ -47,6 +53,8 @@ class LoginActivity : BaseActivity(), View.OnClickListener {
         user?.let {
             val email = it.email
             val password = it.password
+            bingding.etUsername.setText(email)
+            bingding.etPassword.setText(password)
             login(password, email)
         }
 
@@ -69,7 +77,7 @@ class LoginActivity : BaseActivity(), View.OnClickListener {
     }
 
     private fun loginSuccess(user: User?) {
-        user?.password=bingding.etPassword.toString()
+        user?.password = bingding.etPassword.text.toString()
         accountService().saveUserInfo(user)
         ChargeActivity.start(this)
         finish()
@@ -112,14 +120,17 @@ class LoginActivity : BaseActivity(), View.OnClickListener {
     }
 
     private fun login(password: String, userName: String) {
-        showDialog()
-        val pwd_md5 = MD5Util.md5(password)
-        var version = Util.getVersion(this)
-        val phoneModel = Util.getPhoneModel()
-        if (version == null) version = "";
-        if (pwd_md5 != null) {
-            viewModel.login(userName, pwd_md5, APP_OS, phoneModel, version)
+        if (!TextUtils.isEmpty(password)) {
+            showDialog()
+            val pwd_md5 = MD5Util.md5(password)
+            var version = Util.getVersion(this)
+            val phoneModel = Util.getPhoneModel()
+            if (version == null) version = "";
+            if (pwd_md5 != null) {
+                viewModel.login(userName, pwd_md5, APP_OS, phoneModel, version)
+            }
         }
+
     }
 
 

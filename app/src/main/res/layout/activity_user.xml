@@ -15,7 +15,6 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="@dimen/dp_100"
-        android:layout_marginTop="@dimen/dp_10"
         android:background="@color/white"
         android:padding="@dimen/dp_16">
 
@@ -25,6 +24,7 @@
             android:layout_height="48dp"
             android:layout_centerVertical="true"
             android:scaleType="centerCrop"
+            android:src="@drawable/big_user"
             app:roundPercent="1" />
 
         <TextView
@@ -44,6 +44,8 @@
         android:id="@+id/ll_list"
         android:layout_width="match_parent"
         android:layout_height="@dimen/dp_140"
+        android:layout_marginTop="@dimen/dp_10"
+        android:background="@color/white"
         android:orientation="vertical">
 
 
@@ -64,7 +66,9 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rlv_charge"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            tools:listitem="@layout/item_charge_in_mine" />
 
 
     </LinearLayout>
@@ -72,7 +76,8 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp_10">
 
 
         <LinearLayout
@@ -89,50 +94,50 @@
                 android:showDividers="middle">
 
                 <com.shuoxd.charge.view.SettingItemView
-                    android:id="@+id/item_user_name"
+                    android:id="@+id/item_add_charger"
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
-                    app:showRightIcon="false"
+                    app:itemName="@string/m108_add_your_charge"
+                    app:leftIcon="@drawable/add_charge"
+                    app:showLeftIcon="true"
+                    app:showRightIcon="true"
                     app:showSubName="true" />
 
                 <com.shuoxd.charge.view.SettingItemView
                     android:id="@+id/item_language"
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
+                    app:itemName="@string/m109_authorize"
+                    app:leftIcon="@drawable/authorize"
+                    app:showLeftIcon="true"
                     app:showSubName="true" />
 
                 <com.shuoxd.charge.view.SettingItemView
                     android:id="@+id/item_modify_password"
                     android:layout_width="match_parent"
-                    android:layout_height="50dp" />
+                    android:layout_height="50dp"
+                    app:itemName="@string/m110_personal_info"
+                    app:leftIcon="@drawable/personal"
+                    app:showLeftIcon="true" />
 
                 <com.shuoxd.charge.view.SettingItemView
                     android:id="@+id/item_phone"
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
-
+                    app:itemName="@string/m111_help_support"
+                    app:leftIcon="@drawable/help"
+                    app:showLeftIcon="true"
                     app:showSubName="true" />
 
                 <com.shuoxd.charge.view.SettingItemView
                     android:id="@+id/item_email"
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
-
+                    app:itemName="@string/m112_other"
+                    app:leftIcon="@drawable/other"
+                    app:showLeftIcon="true"
                     app:showSubName="true" />
 
-                <com.shuoxd.charge.view.SettingItemView
-                    android:id="@+id/item_installer_no"
-                    android:layout_width="match_parent"
-                    android:layout_height="50dp"
-
-                    app:showSubName="true" />
-
-                <com.shuoxd.charge.view.SettingItemView
-                    android:id="@+id/item_cancel_account"
-                    android:layout_width="match_parent"
-                    android:layout_height="50dp"
-
-                    app:showSubName="true" />
 
             </LinearLayout>
 
@@ -144,6 +149,9 @@
                 android:layout_marginStart="36dp"
                 android:layout_marginTop="50dp"
                 android:layout_marginEnd="36dp"
+                android:textColor="@color/white"
+                android:text="@string/m107_logout"
+                android:background="@drawable/selector_button_rect"
                 android:textSize="@dimen/size_content_sp_12" />
 
         </LinearLayout>

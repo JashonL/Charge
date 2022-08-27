@@ -20,6 +20,13 @@
         <attr name="subName" format="string" />
     </declare-styleable>
 
+    <declare-styleable name="ToolbarLayout">
+        <attr name="toolbarLeftIcon" format="reference" />
+        <attr name="toolbarTitle" format="string" />
+        <attr name="toolbarRightIcon" format="reference"/>
+    </declare-styleable>
+
+
     <declare-styleable name="TitleBarLayout">
         <attr name="titleText" format="string" />
         <attr name="showLeftBackIcon" format="boolean" />

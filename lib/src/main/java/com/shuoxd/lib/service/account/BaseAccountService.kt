@@ -68,7 +68,7 @@ abstract class BaseAccountService : IAccountService {
     }
 
     override fun logout() {
-        userStorage.clear()
+//        userStorage.clear()
         token = null
         user = null
         dispatchAccountChanged()

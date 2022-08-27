@@ -7,6 +7,7 @@ import androidx.core.content.ContextCompat
 import androidx.databinding.BindingAdapter
 import com.shuoxd.charge.R
 import com.shuoxd.charge.application.MainApplication
+import com.shuoxd.charge.service.http.ApiPath
 import com.shuoxd.charge.ui.charge.ChargeStatus
 import com.shuoxd.lib.util.GlideUtil
 
@@ -83,6 +84,23 @@ object StatusUtil {
                 else -> R.drawable.start
             }
         )
+    }
+
+
+    fun getActionUrl(@ChargeStatus status: Int): String {
+        return when (status) {
+            ChargeStatus.UNAVAILABLE -> ""
+            ChargeStatus.AVAILABLE -> ApiPath.Charge.REMOTESTARTTRANSACTION
+            ChargeStatus.PREPEAR -> ApiPath.Charge.REMOTESTARTTRANSACTION
+            ChargeStatus.CHARGING -> ApiPath.Charge.REMOTESTOPTRANSACTION
+            ChargeStatus.DEVICE_STOP -> ""
+            ChargeStatus.CAR_STOP -> ""
+            ChargeStatus.CHARGE_FINISH -> ""
+            ChargeStatus.RESERVCE -> ""
+            ChargeStatus.UNAVAILABLE1 -> ""
+            else -> ""
+        }
+
     }
 
 

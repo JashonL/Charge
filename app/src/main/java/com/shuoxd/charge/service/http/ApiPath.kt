@@ -12,7 +12,7 @@ object ApiPath {
         /**
          * 登出
          */
-        const val LOGOUT = "ATSLogout"
+        const val LOGOUT = "v1/user/logOut"
 
         /**
          * 注册
@@ -97,10 +97,31 @@ object ApiPath {
          * 电桩列表
          */
         const val CHARGE_LIST = "v1/charger/chargerList"
+
         /**
          * 获取交易枪的详情
          */
-        const val TRANSACTION_OVERVIEW="v1/transaction/getTransactionOverview"
+        const val TRANSACTION_OVERVIEW = "v1/transaction/getTransactionOverview"
+
+        /**
+         * 解锁
+         */
+        const val UNLOCKCONNECTOR = "/v1/charger/unlockConnector"
+
+        /**
+         * 开始充电
+         */
+        const val REMOTESTARTTRANSACTION = "v1/transaction/remoteStartTransaction"
+
+        /**
+         * 停止充电
+         */
+        const val REMOTESTOPTRANSACTION = "v1/transaction/remoteStopTransaction"
+
+        /**
+         * 绑定充电桩
+         */
+        const val ADDCHARGER = "v1/charger/addCharger"
 
 
     }

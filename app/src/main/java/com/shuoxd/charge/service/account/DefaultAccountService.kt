@@ -2,12 +2,13 @@ package com.shuoxd.charge.service.account
 
 import android.content.Context
 import com.shuoxd.charge.application.Foreground
+import com.shuoxd.charge.ui.mine.activity.LoginActivity
 import com.shuoxd.lib.service.account.BaseAccountService
 
 class DefaultAccountService : BaseAccountService() {
 
     override fun login(context: Context) {
-//        LoginActivity.startClearTask(context)
+        LoginActivity.startClearTask(context)
     }
 
     override fun tokenExpired() {

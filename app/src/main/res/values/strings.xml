@@ -143,6 +143,12 @@
     <string name="m114_add">Add</string>
     <string name="m115_scan_code">Scan code to Add</string>
     <string name="m116_sn_not_null">序列号不能为空</string>
+    <string name="m117_record">Record</string>
+    <string name="m118_electricity">Electricity</string>
+    <string name="m119_time">Time</string>
+    <string name="m120_money">Money</string>
+
+    <string name="m121_norecord">没有充电记录</string>
 
 
 

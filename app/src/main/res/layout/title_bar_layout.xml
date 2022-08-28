@@ -27,11 +27,11 @@
 
     <ImageView
         android:id="@+id/iv_back"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
+        android:layout_width="@dimen/dp_30"
+        android:layout_height="@dimen/dp_30"
+        android:padding="@dimen/dp_6"
         android:layout_centerVertical="true"
-        android:src="@drawable/back"
-        />
+        android:src="@drawable/back" />
 
     <Button
         android:id="@+id/bt_right"

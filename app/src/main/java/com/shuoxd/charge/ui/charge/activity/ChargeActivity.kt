@@ -21,6 +21,7 @@ import com.shuoxd.charge.view.dialog.AlertDialog
 import com.shuoxd.charge.view.dialog.OptionsDialog
 import com.shuoxd.lib.util.ToastUtil
 import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 
 class ChargeActivity : BaseActivity(), View.OnClickListener {
 
@@ -96,7 +97,7 @@ class ChargeActivity : BaseActivity(), View.OnClickListener {
                 ) {
                     chargeViewModel.getChargeInfo()
                 }
-                delay(10 * 1000)
+                delay(15 * 1000)
             }
         }
     }
@@ -113,6 +114,7 @@ class ChargeActivity : BaseActivity(), View.OnClickListener {
         binding.ivLock.setOnClickListener(this)
         binding.ivStart.setOnClickListener(this)
         binding.ivAvatar.setOnClickListener(this)
+        binding.ivMenu.setOnClickListener(this)
     }
 
 
@@ -178,9 +180,13 @@ class ChargeActivity : BaseActivity(), View.OnClickListener {
 
         chargeViewModel.chargeTransactionLiveData.observe(this) {
             dismissDialog()
-            //成功或者失败都立刻刷新一次
-            chargeViewModel.getChargeInfo()
             ToastUtil.show(it.second)
+
+            //成功或者失败都立刻刷新一次(延迟3秒)
+            lifecycleScope.launch {
+                delay(3000)
+                chargeViewModel.getChargeInfo()
+            }
         }
 
 
@@ -222,7 +228,7 @@ class ChargeActivity : BaseActivity(), View.OnClickListener {
             p0 === binding.ivLock -> unlock()
             p0 === binding.ivStart -> chargeAction()
             p0 === binding.ivAvatar -> MineActivity.start(this)
-
+            p0 === binding.ivMenu -> RecordActivity.start(this)
         }
     }
 

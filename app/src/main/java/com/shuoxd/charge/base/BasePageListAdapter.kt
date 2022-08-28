@@ -1,6 +1,7 @@
 package com.shuoxd.charge.base
 
 import android.annotation.SuppressLint
+import android.util.Log
 import android.view.ViewGroup
 import androidx.annotation.IntDef
 import androidx.recyclerview.widget.RecyclerView
@@ -52,7 +53,7 @@ abstract class BasePageListAdapter<T>(
      */
     private var isRefreshing = false
 
-    var currentPage = 0
+    var currentPage = 1
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseViewHolder {
         return when (viewType) {
@@ -89,13 +90,13 @@ abstract class BasePageListAdapter<T>(
 
     @SuppressLint("NotifyDataSetChanged")
     fun setResultSuccess(pageModel: PageModel<T>) {
-        this.currentPage = pageModel.currentPage
+        this.currentPage = pageModel.pageNow
         refreshView?.setEnableRefresh(true)
-        if (pageModel.currentPage == 1) {
+        if (pageModel.pageNow == 1) {
             isRefreshing = false
             refreshView?.finishRefresh()
             dataList.clear()
-            dataList.addAll(pageModel.list?.toList() ?: mutableListOf())
+            dataList.addAll(pageModel.dataList?.toList() ?: mutableListOf())
             if (dataList.size == 0) {
                 showEmptyView()
             } else {
@@ -110,8 +111,8 @@ abstract class BasePageListAdapter<T>(
         } else {
             isLoading = false
             val positionStart = dataList.size
-            val count = pageModel.list?.size ?: 0
-            dataList.addAll(pageModel.list?.toList() ?: mutableListOf())
+            val count = pageModel.dataList?.size ?: 0
+            dataList.addAll(pageModel.dataList?.toList() ?: mutableListOf())
             if (pageModel.isLastPage()) {
                 loadState = LoadStateType.LOADING_END
                 notifyItemRangeInserted(positionStart, count)

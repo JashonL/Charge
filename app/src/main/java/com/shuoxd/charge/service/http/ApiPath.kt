@@ -122,6 +122,10 @@ object ApiPath {
          * 绑定充电桩
          */
         const val ADDCHARGER = "v1/charger/addCharger"
+        /**
+         * 获取充电记录
+         */
+        const val TRANSACTIONLIST="v1/transaction/transactionList/"
 
 
     }

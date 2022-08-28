@@ -11,8 +11,10 @@ import com.shuoxd.charge.R
 import com.shuoxd.charge.base.BaseActivity
 import com.shuoxd.charge.databinding.ActivityChargeBinding
 import com.shuoxd.charge.model.charge.ChargeModel
+import com.shuoxd.charge.service.charge.ChargeSettingManager
 import com.shuoxd.charge.ui.charge.monitor.ChargeAactivityMonitor
 import com.shuoxd.charge.ui.charge.viewmodel.ChargeViewModel
+import com.shuoxd.charge.ui.chargesetting.activity.ChargeSettingActivity
 import com.shuoxd.charge.ui.mine.activity.LoginActivity
 import com.shuoxd.charge.ui.mine.activity.MineActivity
 import com.shuoxd.charge.util.StatusUtil
@@ -115,6 +117,8 @@ class ChargeActivity : BaseActivity(), View.OnClickListener {
         binding.ivStart.setOnClickListener(this)
         binding.ivAvatar.setOnClickListener(this)
         binding.ivMenu.setOnClickListener(this)
+        binding.tvChargingSetting.setOnClickListener(this)
+        binding.ivSet.setOnClickListener(this)
     }
 
 
@@ -229,6 +233,15 @@ class ChargeActivity : BaseActivity(), View.OnClickListener {
             p0 === binding.ivStart -> chargeAction()
             p0 === binding.ivAvatar -> MineActivity.start(this)
             p0 === binding.ivMenu -> RecordActivity.start(this)
+            p0 === binding.tvChargingSetting -> showSelectSetting()
+            p0 === binding.ivSet -> ChargeSettingActivity.start(this)
+        }
+    }
+
+
+    private fun showSelectSetting() {
+        OptionsDialog.show(supportFragmentManager, ChargeSettingManager.List.toTypedArray()) {
+
         }
     }
 

@@ -150,6 +150,12 @@
 
     <string name="m121_norecord">没有充电记录</string>
 
+    <string name="m122_bluetooth_connection">Bluetooth Connection</string>
+    <string name="m123_wifi_account">WIFI Account</string>
+    <string name="m124_wifi_password">WIFI Password</string>
+    <string name="m125_charger_setting">Charger Setting</string>
+    <string name="m126_done">Done</string>
+
 
 
 </resources>

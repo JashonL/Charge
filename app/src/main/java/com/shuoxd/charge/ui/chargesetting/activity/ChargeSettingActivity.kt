@@ -23,9 +23,15 @@ class ChargeSettingActivity:BaseActivity() {
         super.onCreate(savedInstanceState)
         binding=ActivitySettingBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        initLiseners()
 
     }
 
+    private fun initLiseners() {
+        binding.itemSetRate.setOnClickListener {
+            RateActivity.start(this)
+        }
+    }
 
 
 }

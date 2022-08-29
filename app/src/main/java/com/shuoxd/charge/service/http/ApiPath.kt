@@ -126,7 +126,10 @@ object ApiPath {
          * 获取充电记录
          */
         const val TRANSACTIONLIST="v1/transaction/transactionList/"
-
+        /**
+         * 设置费率
+         */
+        const val SETRATE="v1/charger/modifyChargerInfo"
 
     }
 

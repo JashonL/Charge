@@ -23,59 +23,20 @@
 
 
     <com.shuoxd.charge.view.SettingItemView
-        android:id="@+id/item_bluetooth_connet"
+        android:id="@+id/item_set_rate"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_marginTop="@dimen/dp_30"
-        app:itemName="@string/m122_bluetooth_connection"
-        app:leftIcon="@drawable/add_charge"
-        app:showLeftIcon="true"
-        app:showRightIcon="true"
-        app:showSubName="true" />
-
-    <com.shuoxd.charge.view.SettingItemView
-        android:id="@+id/item_wifi_account"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        app:itemName="@string/m123_wifi_account"
-        app:leftIcon="@drawable/add_charge"
-        app:showLeftIcon="true"
-        app:showRightIcon="true"
-        app:showSubName="true" />
-
-    <com.shuoxd.charge.view.SettingItemView
-        android:id="@+id/item_wifi_password"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        app:itemName="@string/m124_wifi_password"
-        app:leftIcon="@drawable/add_charge"
-        app:showLeftIcon="true"
-        app:showRightIcon="true"
-        app:showSubName="true" />
-
-    <com.shuoxd.charge.view.SettingItemView
-        android:id="@+id/item_charger_setting"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        app:itemName="@string/m125_charger_setting"
+        app:itemName="@string/m129_rate"
         app:leftIcon="@drawable/add_charge"
         app:showLeftIcon="true"
         app:showRightIcon="true"
         app:showSubName="true" />
 
 
-    <Button
-        android:id="@+id/bt_done"
-        android:layout_width="match_parent"
-        android:layout_height="44dp"
-        android:layout_marginStart="36dp"
-        android:layout_marginTop="50dp"
-        android:layout_marginEnd="36dp"
-        android:textAllCaps="false"
-        android:text="@string/m126_done"
-        android:background="@drawable/selector_button_rect"
-        android:textColor="@color/white"
-        android:textSize="@dimen/size_content_sp_12" />
+
+
+
 
 
 </LinearLayout>

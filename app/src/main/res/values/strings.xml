@@ -157,7 +157,12 @@
     <string name="m126_done">Done</string>
     <string name="m127_try_now">立即体验</string>
     <string name="m128_power">Power</string>
+    <string name="m129_rate">设置充电费率</string>
+    <string name="m130_confirm">确定</string>
 
+    <string name="m131_set_success">设置成功</string>
+    <string name="m132_set_fail">设置失败</string>
+    <string name="m133_rate_not_null">费率不能设置为空~</string>
 
 
 </resources>

@@ -12,9 +12,12 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:usesCleartextTraffic="true"
         android:theme="@style/AppTheme"
+        android:usesCleartextTraffic="true"
         tools:targetApi="31">
+        <activity
+            android:name=".ui.chargesetting.activity.RateActivity"
+            android:exported="false" />
 
         <activity
             android:name=".ui.launch.activity.SplashActivity"
@@ -25,61 +28,45 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-
         <activity
             android:name=".MainActivity"
             android:exported="true" />
-
         <activity
             android:name=".ui.common.activity.WebActivity"
             android:exported="false"
             android:screenOrientation="nosensor" />
-
         <activity
             android:name=".ui.guide.activity.GuideActivity"
             android:exported="false"
             android:screenOrientation="nosensor" />
-
-
         <activity
             android:name=".ui.mine.activity.LoginActivity"
             android:exported="false"
             android:screenOrientation="nosensor" />
-
         <activity
             android:name=".ui.mine.activity.RegisterActivity"
             android:exported="false"
             android:screenOrientation="nosensor" />
-
         <activity
             android:name=".ui.charge.activity.ChargeActivity"
             android:exported="false"
             android:screenOrientation="nosensor" />
-
         <activity
             android:name=".ui.mine.activity.MineActivity"
             android:exported="false"
             android:screenOrientation="nosensor" />
-
         <activity
             android:name=".ui.charge.activity.AddYourChargeActivity"
             android:exported="false"
             android:screenOrientation="nosensor" />
-
         <activity
             android:name=".ui.charge.activity.RecordActivity"
             android:exported="false"
             android:screenOrientation="nosensor" />
-
         <activity
             android:name=".ui.chargesetting.activity.ChargeSettingActivity"
             android:exported="false"
             android:screenOrientation="nosensor" />
-
-
-
     </application>
-
 
 </manifest>

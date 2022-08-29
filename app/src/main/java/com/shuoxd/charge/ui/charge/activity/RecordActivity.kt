@@ -1,7 +1,6 @@
 package com.shuoxd.charge.ui.charge.activity
 
 import android.R
-import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
@@ -10,7 +9,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.activity.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.shuoxd.charge.base.BaseActivity
 import com.shuoxd.charge.base.BasePageListAdapter
 import com.shuoxd.charge.base.BaseViewHolder
@@ -141,45 +139,47 @@ class RecordActivity : BaseActivity() {
     }
 
 
-}
+
+    class RecordViewHolder(
+        itemView: View,
+    ) : BaseViewHolder(itemView) {
+
+        companion object {
+            fun create(
+                parent: ViewGroup,
+                onItemClickListener: OnItemClickListener?
+            ): RecordViewHolder {
+                val binding = ItemRecordBinding.inflate(
+                    LayoutInflater.from(parent.context),
+                    parent,
+                    false
+                )
+                val holder = RecordViewHolder(binding.root)
+                holder.binding = binding
+                holder.binding.root.setOnClickListener(holder)
+                return holder
+            }
+        }
+
+        private lateinit var binding: ItemRecordBinding
+
+        fun bindData(chargeModel: RecordModel) {
+            binding.tvName.text = chargeModel.chargerId
+            binding.tvDate.text = chargeModel.startDate
+            binding.tvGunName.text = chargeModel.connectorText
+            binding.tvStartTime.text = chargeModel.startTimeLocalDetail
+            binding.tvEndTime.text = chargeModel.stopTimeLocalDetail
 
 
-class RecordViewHolder(
-    itemView: View,
-) : BaseViewHolder(itemView) {
+            val valueFromKWh = ValueUtil.valueFromKWh(chargeModel.energyKWH.toDouble())
+            binding.tvEnergyValue.text =
+                String.format("%s%s", valueFromKWh.first, valueFromKWh.second)
+            binding.tvTimeValue.text = chargeModel.charingTimeText
+            binding.tvCostValue.text = chargeModel.cost
 
-    companion object {
-        fun create(
-            parent: ViewGroup,
-            onItemClickListener: OnItemClickListener?
-        ): RecordViewHolder {
-            val binding = ItemRecordBinding.inflate(
-                LayoutInflater.from(parent.context),
-                parent,
-                false
-            )
-            val holder = RecordViewHolder(binding.root)
-            holder.binding = binding
-            holder.binding.root.setOnClickListener(holder)
-            return holder
         }
     }
 
-    private lateinit var binding: ItemRecordBinding
-
-    fun bindData(chargeModel: RecordModel) {
-        binding.tvName.text = chargeModel.chargerId
-        binding.tvDate.text = chargeModel.startDate
-        binding.tvGunName.text = chargeModel.connectorText
-        binding.tvStartTime.text = chargeModel.startTimeLocalDetail
-        binding.tvEndTime.text = chargeModel.stopTimeLocalDetail
-
-
-        val valueFromKWh = ValueUtil.valueFromKWh(chargeModel.energyKWH.toDouble())
-        binding.tvEnergyValue.text =
-            String.format("%s%s", valueFromKWh.first, valueFromKWh.second)
-        binding.tvTimeValue.text = chargeModel.charingTimeText
-        binding.tvCostValue.text = chargeModel.cost
-
-    }
 }
+
+

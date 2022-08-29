@@ -109,7 +109,7 @@
     <string name="m90_register_success">注册成功</string>
 
     <string name="m91_charge_setting">Charge Setting</string>
-    <string name="m92_charge_capacity">Charge capacity</string>
+    <string name="m92_energy">Energy</string>
     <string name="m93_current">Current</string>
     <string name="m94_voltage">Voltage</string>
     <string name="m95_consumption">Consumption</string>
@@ -155,6 +155,8 @@
     <string name="m124_wifi_password">WIFI Password</string>
     <string name="m125_charger_setting">Charger Setting</string>
     <string name="m126_done">Done</string>
+    <string name="m127_try_now">立即体验</string>
+    <string name="m128_power">Power</string>
 
 
 

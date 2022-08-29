@@ -28,6 +28,9 @@ class ChargeViewModel : BaseViewModel() {
     var chargerId: String? = ""
     var connectorId: String? = ""
     var status: Int = 0
+    var isListCallback=false
+
+
 
     fun getChargeList(
         email: String,
@@ -58,6 +61,7 @@ class ChargeViewModel : BaseViewModel() {
                     }
 
                     override fun success(result: HttpResult<Array<ChargeModel>>) {
+                        isListCallback=true
                         val mutableListOf = mutableListOf<ChargeModel>()
                         if (result.isBusinessSuccess()) {
                             val obj = result.obj

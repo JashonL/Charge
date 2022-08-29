@@ -11,6 +11,7 @@ import com.shuoxd.charge.base.BaseActivity
 import com.shuoxd.charge.databinding.ActivityGuideBinding
 import com.shuoxd.charge.ui.guide.view.GuidePager
 import com.shuoxd.charge.ui.mine.activity.LoginActivity
+import com.shuoxd.lib.view.statusbar.StatusBarCompat
 
 class GuideActivity : BaseActivity() {
 
@@ -29,6 +30,10 @@ class GuideActivity : BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        StatusBarCompat.translucentStatusBar(this,true)
+        StatusBarCompat.setWindowLightStatusBar(this, true)
+
         guideBinding = ActivityGuideBinding.inflate(layoutInflater)
         setContentView(guideBinding.root)
         pagers= mutableListOf()

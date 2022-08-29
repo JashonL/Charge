@@ -60,7 +60,7 @@ class ChargeActivity : BaseActivity(), View.OnClickListener {
      */
     var listener1 = fun() {
         val currentChargeModel = getCurrentChargeModel()
-        if (currentChargeModel != null) {
+        if (chargeViewModel.isListCallback && currentChargeModel != null) {
             chargeViewModel.chargerId = currentChargeModel.chargerId
             binding.tvChargeChoose.text = chargeViewModel.chargerId
             chargeViewModel.getChargeInfo()
@@ -107,7 +107,11 @@ class ChargeActivity : BaseActivity(), View.OnClickListener {
 
     private fun initViews() {
         binding.smartRefresh.setOnRefreshListener {
-            freshChage()
+            if (!TextUtils.isEmpty(chargeViewModel.chargerId) &&
+                !TextUtils.isEmpty(chargeViewModel.connectorId)
+            ) {
+                chargeViewModel.getChargeInfo()
+            }
         }
     }
 
@@ -158,12 +162,12 @@ class ChargeActivity : BaseActivity(), View.OnClickListener {
                     StatusUtil.setImageStatus(this, it.status, binding.ivChargeStatus, 50)
                     val valueFromKWh = ValueUtil.valueFromKWh(it.transaction.energyKWH)
                     val valueFromA = ValueUtil.valueFromA(it.transaction.current)
-                    val valueFromV = ValueUtil.valueFromV(it.transaction.power)
+                    val valueFromW = ValueUtil.valueFromW(it.transaction.power)
                     val valueFromCost = ValueUtil.valueFromCost(it.transaction.cost)
 
                     binding.dataViewCapacity.setValue(valueFromKWh.first + valueFromKWh.second)
                     binding.dataViewCurrent.setValue(valueFromA.first + valueFromA.second)
-                    binding.dataViewVoltage.setValue(valueFromV.first + valueFromV.second)
+                    binding.dataViewVoltage.setValue(valueFromW.first + valueFromW.second)
                     binding.dataViewConsumption.setValue(valueFromCost)
                     binding.dataViewTime.setValue(it.transaction.charingTimeText)
 

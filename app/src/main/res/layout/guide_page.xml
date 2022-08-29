@@ -74,6 +74,9 @@
         android:layout_marginStart="36dp"
         android:layout_marginTop="50dp"
         android:layout_marginEnd="36dp"
+        android:textColor="@color/white"
+        android:text="@string/m127_try_now"
+        android:background="@drawable/selector_button_rect"
         android:layout_marginBottom="@dimen/dp_30"
         android:textSize="@dimen/size_content_sp_12"
         app:layout_constraintBottom_toBottomOf="parent" />

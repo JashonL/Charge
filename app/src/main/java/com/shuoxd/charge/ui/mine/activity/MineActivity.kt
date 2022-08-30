@@ -17,6 +17,7 @@ import com.shuoxd.charge.base.OnItemClickListener
 import com.shuoxd.charge.databinding.ActivityUserBinding
 import com.shuoxd.charge.databinding.ItemChargeInMineBinding
 import com.shuoxd.charge.model.charge.ChargeModel
+import com.shuoxd.charge.ui.authorize.AuthListActivity
 import com.shuoxd.charge.ui.charge.activity.AddYourChargeActivity
 import com.shuoxd.charge.ui.mine.viewmodel.SettingViewModel
 import com.shuoxd.charge.view.itemdecoration.DividerItemDecoration
@@ -49,7 +50,7 @@ class MineActivity : BaseActivity(),View.OnClickListener {
         bind.itemAddCharger.setOnClickListener(this)
         bind.ivAvatar.setOnClickListener(this)
         bind.itemEmail.setOnClickListener(this)
-        bind.itemLanguage.setOnClickListener(this)
+        bind.itemAuth.setOnClickListener(this)
         bind.itemModifyPassword.setOnClickListener(this)
         bind.itemPhone.setOnClickListener(this)
         bind.btLogout.setOnClickListener(this)
@@ -88,6 +89,8 @@ class MineActivity : BaseActivity(),View.OnClickListener {
                 viewModel.logout(accountService().user()?.email)
             }
             v===bind.itemAddCharger-> AddYourChargeActivity.start(this)
+
+            v===bind.itemAuth->AuthListActivity.start(this)
         }
     }
 

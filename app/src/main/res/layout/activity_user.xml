@@ -104,7 +104,7 @@
                     app:showSubName="true" />
 
                 <com.shuoxd.charge.view.SettingItemView
-                    android:id="@+id/item_language"
+                    android:id="@+id/item_auth"
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
                     app:itemName="@string/m109_authorize"

@@ -163,6 +163,8 @@
     <string name="m131_set_success">设置成功</string>
     <string name="m132_set_fail">设置失败</string>
     <string name="m133_rate_not_null">费率不能设置为空~</string>
+    <string name="m134_auth">电桩授权</string>
+    <string name="m135_delete">删除</string>
 
 
 </resources>

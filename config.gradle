@@ -75,7 +75,9 @@ ext {
             flexbox                      : 'com.google.android.flexbox:flexbox:3.0.0',
 
             //轮播图
-            banner                       : 'io.github.youth5201314:banner:2.2.2'
+            banner                       : 'io.github.youth5201314:banner:2.2.2',
+            //侧滑
+            swipe                        : 'com.github.mcxtzhang:SwipeDelMenuLayout:V1.3.0'
 
 
     ]

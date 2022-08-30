@@ -60,6 +60,7 @@ dependencies {
     api dependency.androidxViewPager2
     api dependency.flexbox
     api dependency.banner
+    api dependency.swipe
     //方便查看gradle源码
     compileOnly "com.android.tools.build:gradle:3.0.1"
 }

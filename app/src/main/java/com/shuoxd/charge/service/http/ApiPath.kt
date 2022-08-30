@@ -130,6 +130,15 @@ object ApiPath {
          * 设置费率
          */
         const val SETRATE="v1/charger/modifyChargerInfo"
+        /**
+         * 获取授权列表
+         */
+        const val GETAUTHLIST="v1/charger/authChargerList/1"
+
+        /**
+         * 添加授权用户
+         */
+        const val AUTHCHARGER="v1/charger/authCharger"
 
     }
 

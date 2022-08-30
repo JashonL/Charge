@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Shuoxd Charge</string>
+    <string name="app_name">Timxon Charge</string>
 
     <string name="m2_parse_error_msg">Failed to parse data</string>
     <string name="m3_bad_network_msg">Internet problem</string>
@@ -165,6 +165,26 @@
     <string name="m133_rate_not_null">费率不能设置为空~</string>
     <string name="m134_auth">电桩授权</string>
     <string name="m135_delete">删除</string>
+    <string name="m136_choose">请选择电桩</string>
+    <string name="m137_add_success">添加成功</string>
+    <string name="m138_add_fail">添加失败</string>
+
+    <string name="m139_change_password">修改密码</string>
+    <string name="m140_mailbox">Mailbox</string>
+
+
+    <string name="m141_card_model1">Card Model 1</string>
+    <string name="m142_card_model2">Card Model 2</string>
+
+    <string name="m143_support_email">Support email</string>
+    <string name="m144_support_phone">Support Phone</string>
+    <string name="m145_support_time">Support time</string>
+    <string name="m146_feedback">Feedback</string>
+
+
+    <string name="m147_version_information">Version Information</string>
+    <string name="m148_privacy_agreement">User data privacy agreement</string>
+    <string name="m149_delete_account">Delete account</string>
 
 
 </resources>

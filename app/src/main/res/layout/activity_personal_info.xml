@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+
+    <com.shuoxd.lib.view.StatusBarHeightView
+        android:id="@+id/status_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <com.shuoxd.charge.view.TitleBarLayout
+        android:id="@+id/title_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/status_bar"
+        app:titleText="@string/m110_personal_info" />
+
+
+    <androidx.constraintlayout.utils.widget.ImageFilterView
+        android:layout_width="@dimen/dp_80"
+        android:layout_height="@dimen/dp_80"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="@dimen/dp_30"
+        android:src="@drawable/liuyifei"
+        app:round="@dimen/dp_40" />
+
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_margin="@dimen/dp_10"
+        android:layout_weight="1">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+
+            <com.shuoxd.charge.view.PersonalView
+                android:id="@+id/person_name"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp_40"
+                app:personinfo="@string/m7_username" />
+
+            <com.shuoxd.charge.view.PersonalView
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp_40"
+                android:layout_marginTop="@dimen/dp_1"
+                app:personinfo="@string/m139_change_password" />
+
+            <com.shuoxd.charge.view.PersonalView
+                android:id="@+id/person_mailbox"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp_40"
+                android:layout_marginTop="@dimen/dp_1"
+                app:personinfo="@string/m140_mailbox" />
+
+            <com.shuoxd.charge.view.PersonalView
+                android:id="@+id/person_phone"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp_40"
+                android:layout_marginTop="@dimen/dp_1"
+                app:personinfo="@string/m9_phone" />
+
+            <com.shuoxd.charge.view.PersonalView
+                android:id="@+id/person_city"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp_40"
+                android:layout_marginTop="@dimen/dp_1"
+                app:personinfo="@string/m78_city" />
+
+            <com.shuoxd.charge.view.PersonalView
+                android:id="@+id/person_country"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp_40"
+                android:layout_marginTop="@dimen/dp_1"
+                app:personinfo="@string/m79_country" />
+
+            <com.shuoxd.charge.view.PersonalView
+                android:id="@+id/person_card_model1"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp_40"
+                app:personinfo="@string/m141_card_model1" />
+
+            <com.shuoxd.charge.view.PersonalView
+                android:id="@+id/person_card_model2"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp_40"
+                android:layout_marginTop="@dimen/dp_1"
+                app:personinfo="@string/m142_card_model2" />
+
+
+        </LinearLayout>
+
+
+    </ScrollView>
+
+
+ <!--   <Button
+        android:id="@+id/bt_add"
+        android:layout_width="match_parent"
+        android:layout_height="44dp"
+        android:layout_marginStart="36dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginEnd="36dp"
+        android:layout_marginBottom="@dimen/dp_50"
+        android:background="@drawable/selector_button_rect"
+        android:text="@string/m126_done"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        android:textSize="@dimen/size_content_sp_12" />-->
+
+
+</LinearLayout>

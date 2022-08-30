@@ -113,7 +113,7 @@
                     app:showSubName="true" />
 
                 <com.shuoxd.charge.view.SettingItemView
-                    android:id="@+id/item_modify_password"
+                    android:id="@+id/item_persional_info"
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
                     app:itemName="@string/m110_personal_info"
@@ -121,7 +121,7 @@
                     app:showLeftIcon="true" />
 
                 <com.shuoxd.charge.view.SettingItemView
-                    android:id="@+id/item_phone"
+                    android:id="@+id/item_help_support"
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
                     app:itemName="@string/m111_help_support"
@@ -130,7 +130,7 @@
                     app:showSubName="true" />
 
                 <com.shuoxd.charge.view.SettingItemView
-                    android:id="@+id/item_email"
+                    android:id="@+id/item_other"
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
                     app:itemName="@string/m112_other"

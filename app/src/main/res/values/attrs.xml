@@ -20,6 +20,13 @@
         <attr name="subName" format="string" />
     </declare-styleable>
 
+
+    <declare-styleable name="PersonalView">
+        <attr name="personinfo" format="string" />
+    </declare-styleable>
+
+
+
     <declare-styleable name="ToolbarLayout">
         <attr name="toolbarLeftIcon" format="reference" />
         <attr name="toolbarTitle" format="string" />

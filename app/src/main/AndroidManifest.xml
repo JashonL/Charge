@@ -69,9 +69,21 @@
             android:screenOrientation="nosensor" />
 
         <activity
-            android:name=".ui.authorize.AuthListActivity"
+            android:name=".ui.authorize.activity.AuthListActivity"
             android:exported="false"
             android:screenOrientation="nosensor" />
+
+        <activity
+            android:name=".ui.mine.activity.PersonalInfoActivity"
+            android:exported="false"
+            android:screenOrientation="nosensor" />
+
+        <activity
+            android:name=".ui.mine.activity.HelpSupportActivity"
+            android:exported="false"
+            android:screenOrientation="nosensor" />
+
+
 
 
     </application>

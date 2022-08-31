@@ -57,7 +57,7 @@
                 android:padding="@dimen/dp_10"
                 android:text="cp2002"
                 android:textColor="@color/color_text_33"
-                android:textSize="@dimen/size_content_sp_20" />
+                android:textSize="@dimen/size_content_sp_16" />
 
 
             <Space

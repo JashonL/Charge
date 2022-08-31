@@ -20,8 +20,8 @@
 
         <androidx.constraintlayout.utils.widget.ImageFilterView
             android:id="@+id/iv_avatar"
-            android:layout_width="48dp"
-            android:layout_height="48dp"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
             android:layout_centerVertical="true"
             android:scaleType="centerCrop"
             android:src="@drawable/big_user"
@@ -35,6 +35,8 @@
             android:layout_marginStart="@dimen/dp_16"
             android:layout_toRightOf="@+id/iv_avatar"
             android:textColor="@color/black"
+            android:text="@string/m38_setting"
+            android:textSize="@dimen/size_content_sp_20"
             android:textStyle="bold" />
 
     </RelativeLayout>
@@ -43,7 +45,7 @@
     <LinearLayout
         android:id="@+id/ll_list"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/dp_140"
+        android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/dp_10"
         android:background="@color/white"
         android:orientation="vertical">
@@ -66,8 +68,8 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rlv_charge"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/dp_10"
             tools:listitem="@layout/item_charge_in_mine" />
 
 

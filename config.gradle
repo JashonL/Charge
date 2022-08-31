@@ -16,13 +16,18 @@ ext {
             //公司官网
             companyWebsite           : "www.atesspower.com",
             //公司手机号
-            companyPhone             : "+86 755 2998 8492",
+            companyPhone             : "0755-23242585",
             //注销账号须知
             noticeForCancelAccountUrl: "https://www.baidu.com/",
             //高德地图key
             amapKey                  : "3e94f84cb3993b597dd1916935b5f4a1",
             //正式服务器域名
             apiServerUrl             : "http://charger.shuoxd.com:50015/",
+            //服务邮箱
+            serviceEmail             : "support@timxon.com",
+            //服务时间
+            serviceTime              : "09:00-18:00"
+
     ]
 
 

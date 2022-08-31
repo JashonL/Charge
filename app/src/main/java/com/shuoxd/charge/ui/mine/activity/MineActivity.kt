@@ -43,7 +43,6 @@ class MineActivity : BaseActivity(),View.OnClickListener {
         initViews()
         initData()
         setlisteners()
-
     }
 
     private fun setlisteners() {

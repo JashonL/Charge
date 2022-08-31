@@ -4,7 +4,6 @@ import android.R
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.text.TextUtils
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -19,8 +18,6 @@ import com.shuoxd.charge.databinding.ItemAuthBinding
 import com.shuoxd.charge.model.charge.AuthModel
 import com.shuoxd.charge.ui.authorize.monitor.AuthMonitor
 import com.shuoxd.charge.ui.authorize.viewmodel.AuthViewModel
-import com.shuoxd.charge.ui.charge.activity.RecordActivity
-import com.shuoxd.charge.ui.charge.viewmodel.RecordViewModel
 import com.shuoxd.charge.view.itemdecoration.DividerItemDecoration
 import com.shuoxd.lib.util.ToastUtil
 
@@ -35,28 +32,34 @@ class AuthListActivity : BaseActivity() {
     }
 
 
-    private lateinit var authListBinding: ActivityAuthListBinding
+    private lateinit var binding: ActivityAuthListBinding
 
     private val authModel: AuthViewModel by viewModels()
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        authListBinding = ActivityAuthListBinding.inflate(layoutInflater)
-        setContentView(authListBinding.root)
+        binding = ActivityAuthListBinding.inflate(layoutInflater)
+        setContentView(binding.root)
         initViews()
         initData()
+        requestData()
+    }
 
+
+    private fun requestData() {
+        (binding.rlAuthlist.adapter as Adapter).refresh()
     }
 
 
     private fun initData() {
         AuthMonitor.watch(lifecycle) {
             getAdapter().currentPage=1
-            (authListBinding.rlAuthlist.adapter as Adapter).refresh()
+            (binding.rlAuthlist.adapter as Adapter).refresh()
         }
 
         authModel.authListLiveData.observe(this){
+            binding.srlPull.finishRefresh()
             dismissDialog()
             if (it.second == null) {
                 getAdapter().setResultSuccess(it.first!!)
@@ -73,7 +76,7 @@ class AuthListActivity : BaseActivity() {
 
 
     private fun getAdapter(): Adapter {
-        return authListBinding.rlAuthlist.adapter as Adapter
+        return binding.rlAuthlist.adapter as Adapter
     }
 
     private fun getRecordlist(curentPage: Int) {
@@ -84,13 +87,13 @@ class AuthListActivity : BaseActivity() {
 
     private fun initViews() {
 
-        authListBinding.srlPull.setOnRefreshListener {
+        binding.srlPull.setOnRefreshListener {
             getAdapter().currentPage=1
-            (authListBinding.rlAuthlist.adapter as Adapter).refresh()
+            (binding.rlAuthlist.adapter as Adapter).refresh()
         }
 
 
-        authListBinding.rlAuthlist.addItemDecoration(
+        binding.rlAuthlist.addItemDecoration(
             DividerItemDecoration(
                 this,
                 LinearLayoutManager.VERTICAL,
@@ -98,8 +101,8 @@ class AuthListActivity : BaseActivity() {
                 1f
             )
         )
-        authListBinding.rlAuthlist.adapter = Adapter()
-        authListBinding.titleBar.setOnRightImageClickListener {
+        binding.rlAuthlist.adapter = Adapter()
+        binding.titleBar.setOnRightImageClickListener {
             AddAuthActivity.start(this)
         }
     }
@@ -169,8 +172,8 @@ class AuthListActivity : BaseActivity() {
 
         fun bindData(authModel: AuthModel) {
             binding.tvChargeId.text = authModel.chargerId
-            binding.tvTime.text = authModel.lastHeartbeatTime
-            binding.tvUsername.text = authModel.userId
+            binding.tvTime.text = authModel.addTime
+            binding.tvUsername.text = authModel.usernameLater
         }
 
 

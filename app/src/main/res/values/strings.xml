@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Timxon Charge</string>
+    <string name="app_name">Timxon</string>
 
     <string name="m2_parse_error_msg">Failed to parse data</string>
     <string name="m3_bad_network_msg">Internet problem</string>
@@ -9,7 +9,7 @@
 
 
     <!--排序开始-->
-    <string name="m1_welcom_erperience">Welcome to use Timxon carger super erperience</string>
+    <string name="m1_welcom_erperience">Welcome to use Timxon charger super erperience</string>
     <string name="m2_timxon">Timxon APP helps you easily manage and monitor the charger</string>
     <string name="m3_forget_password">Forget password</string>
     <string name="m4_login">Login</string>
@@ -20,60 +20,61 @@
     <string name="m9_phone">Phone</string>
     <string name="m10_accept_policy">Accept terms and data privacy policy</string>
 
-    <string name="m11_charge_id">Charge ID:</string>
-    <string name="m12_loading">加载中...</string>
-    <string name="m13_loading_error_please_click_retry">加载失败,请点击重试</string>
-    <string name="m14_all_page_loading_finish">已全部加载完成</string>
-    <string name="m15_please_select">请选择</string>
-    <string name="m16_cancel">取消</string>
-    <string name="m17_select_unit">选择单位</string>
-    <string name="m18_confirm">确定</string>
-    <string name="m19_disagree">不同意</string>
-    <string name="m20_agree">同意</string>
-    <string name="m21_user_agreement_and_privacy_policy">用户协议及隐私政策</string>
-    <string name="m22_privacy_dialog_tip">不同意协议无法提供服务哦~</string>
-    <string name="m23_user_agreement">《用户协议》</string>
-    <string name="m24_privacy_policy">《隐私政策》</string>
-    <string name="m25_click_agree">点击同意即代表您已阅读并同意%s&amp;%s。</string>
-    <string name="m26_privacy_dialog_content">Enerview旨在保护您的数据隐私与安全的基础上，帮助您高效管理电站。请仔细阅读并充分理解一下条款后再点击同意。</string>
-    <string name="m27_web">网页</string>
+    <string name="m11_charge_id">Charger ID:</string>
+    <string name="m12_loading">loading...</string>
+    <string name="m13_loading_error_please_click_retry">load fail,try again...</string>
+    <string name="m14_all_page_loading_finish">load success</string>
+    <string name="m15_please_select">select</string>
+    <string name="m16_cancel">cancel</string>
+    <string name="m17_select_unit">select unit</string>
+    <string name="m18_confirm">confirm</string>
+    <string name="m19_disagree">Cancel</string>
+    <string name="m20_agree">Ok</string>
 
+    <string name="m21_user_agreement_and_privacy_policy">User Agreement and Privacy Policy</string>
+    <string name="m22_privacy_dialog_tip">ou can\'t provide services unless you agree to the agreement</string>
+    <string name="m23_user_agreement">《User Agreement》</string>
+    <string name="m24_privacy_policy">《Privacy Policy》</string>
+    <string name="m25_click_agree">Click Agree to indicate that you have read and agree%s&amp;%s。</string>
+    <string name="m26_privacy_dialog_content">Enerview is designed to protect your data privacy with security based on helping you efficiently manage power plants. Please read and fully understand the terms and conditions before clicking agree.</string>
+    <string name="m27_web">Web</string>
     <string name="m28_guide1">Welcome to use Timxon carger super erperience</string>
     <string name="m29_guide2">Add your charger</string>
     <string name="m30_guide3">Configure the network</string>
+
     <string name="m31_guide4">Regist era user</string>
-
-
     <string name="m32_tips1">Timxon APP helps you easily manage and monitor the charger</string>
     <string name="m33_tips2">Scan code orenter SN to add charger</string>
     <string name="m34_tips3">Configure your charger setting and connectivity with APP</string>
     <string name="m35_tips4">Registera user,password,email verification</string>
-    <string name="m36_tip">提示</string>
-    <string name="m37_need_to_open_location_service">需要打开定位服务</string>
-    <string name="m38_setting">设置</string>
-    <string name="m39_please_to_setting_page_location_service">请到设置页面打开定位服务</string>
-    <string name="m40_scan">扫一扫</string>
-    <string name="m41_network_error">网络异常,请稍后重试</string>
-    <string name="m42_loading_error">加载异常,请稍后重试</string>
-    <string name="m43_loading_error_click_retry">加载异常,请点击重试</string>
-    <string name="m44_map_for_choosing">地图选点</string>
-    <string name="m45_longitude_format">经度:%s</string>
-    <string name="m46_latitude_format">纬度:%s</string>
-    <string name="m47_app_want_to_visit_format">"%s"想访问您的%s</string>
-    <string name="m48_camera">相机</string>
-    <string name="m49_photo_album">相册</string>
-    <string name="m50_location">位置</string>
+    <string name="m36_tip">Tips</string>
+    <string name="m37_need_to_open_location_service">The location service needs to be enabled</string>
+    <string name="m38_setting">Setting</string>
+    <string name="m39_please_to_setting_page_location_service">Please go to the settings page to open the location service</string>
+    <string name="m40_scan">scan</string>
+
+    <string name="m41_network_error">Network exception. Please try again later</string>
+    <string name="m42_loading_error">Loading exception, please try again later</string>
+    <string name="m43_loading_error_click_retry">Loading exception, please click Retry</string>
+    <string name="m44_map_for_choosing">Map point selection</string>
+    <string name="m45_longitude_format">longitude:%s</string>
+    <string name="m46_latitude_format">latitude:%s</string>
+    <string name="m47_app_want_to_visit_format">"%s"Want to visit your%s</string>
+    <string name="m48_camera">camera</string>
+    <string name="m49_photo_album">album</string>
+    <string name="m50_location">location</string>
 
     <string name="m51_to_app_set_permission_format">您未允许%s获得你的%s权限，您可在应用设置中开启</string>
-    <string name="m52_camera">相机</string>
-    <string name="m53_photo_album">相册</string>
-    <string name="m54_storage_photo_album">存储（相册）</string>
-    <string name="m55_to_set">去设置</string>
+    <string name="m52_camera">camera</string>
+    <string name="m53_photo_album">album</string>
+    <string name="m54_storage_photo_album">Storage (photo album)</string>
+    <string name="m55_to_set">set</string>
     <string name="m56_kwh">kWh</string>
     <string name="m57_mwh">MWh</string>
     <string name="m58_kwp">kWp</string>
     <string name="m59_mwp">MWp</string>
     <string name="m60_kw">kW</string>
+
     <string name="m61_mw">MW</string>
     <string name="m62_hz">Hz</string>
     <string name="m63_kva">KVA</string>
@@ -82,31 +83,31 @@
     <string name="m66_a">A</string>
     <string name="m67_kg">kg</string>
     <string name="m68_t">t</string>
+    <string name="m69_hour">hour</string>
+    <string name="m70_day">date</string>
 
-    <string name="m69_hour">时</string>
-    <string name="m70_day">日</string>
-    <string name="m71_month">月</string>
-    <string name="m72_year">年</string>
-    <string name="m73_sms_find_back">短信找回</string>
-    <string name="m74_please_input_username">请输入用户名</string>
-    <string name="m75_please_input_password">请输入密码</string>
-    <string name="m76_password_cant_empty">密码不能为空</string>
+    <string name="m71_month">monyear</string>
+    <string name="m72_year">year</string>
+    <string name="m73_sms_find_back">Message back</string>
+    <string name="m74_please_input_username">Please enter a user name</string>
+    <string name="m75_please_input_password">enter your password</string>
+    <string name="m76_password_cant_empty">The password cannot be empty</string>
     <string name="m77_password">Password</string>
     <string name="m77_re_enter_password">Re-enter Password</string>
     <string name="m78_city">City</string>
     <string name="m79_country">Country</string>
     <string name="m80_time_zone">Time Zone</string>
 
-    <string name="m81_please_check_agree_agreement">请勾选同意协议</string>
-    <string name="m82_password_cant_empty">密码不能为空</string>
-    <string name="m83_passwords_are_inconsistent">两次密码不一致</string>
-    <string name="m84_password_cannot_be_less_than_6_digits">密码不能少于6位数</string>
-    <string name="m85_no_phone_number">未填写手机号码</string>
-    <string name="m86_no_timezone">未填写时区</string>
-    <string name="m87_no_country">未填写国家</string>
-    <string name="m88_agree_company_user_agreement">同意本公司各项%s&amp;%s</string>
-    <string name="m89_no_email">未填写邮箱</string>
-    <string name="m90_register_success">注册成功</string>
+    <string name="m81_please_check_agree_agreement">Please check Agree Agreement</string>
+    <string name="m82_password_cant_empty">The password cannot be empty</string>
+    <string name="m83_passwords_are_inconsistent">The two passwords are different</string>
+    <string name="m84_password_cannot_be_less_than_6_digits">The password must be at least six digits long</string>
+    <string name="m85_no_phone_number">No mobile phone number was entered</string>
+    <string name="m86_no_timezone">Time zone not specified</string>
+    <string name="m87_no_country">Country not entered</string>
+    <string name="m88_agree_company_user_agreement">Agree with the company%s&amp;%s</string>
+    <string name="m89_no_email">Email not filled in</string>
+    <string name="m90_register_success">Registered successfully</string>
 
     <string name="m91_charge_setting">Charge Setting</string>
     <string name="m92_energy">Energy</string>
@@ -115,61 +116,61 @@
     <string name="m95_consumption">Consumption</string>
     <string name="m96_charge_time">Charge Time</string>
     <string name="m97_please_add_charge">Please Add Charger</string>
-    <string name="m98_no_online">不在线</string>
+    <string name="m98_no_online">not online</string>
 
 
-    <string name="m93_unavailable">不可用</string>
-    <string name="m94_available">空闲</string>
-    <string name="m95_prepear">准备中</string>
-    <string name="m96_charging">充电中</string>
-    <string name="m97_car_stop">车辆停止充电</string>
-    <string name="m98_charge_finish">充电结束</string>
-    <string name="m99_reservce">预约中</string>
-    <string name="m100_unavailable1">不在线</string>
-    <string name="m101_fault">故障</string>
-    <string name="m102_device_stop">充电设施停用</string>
-    <string name="m103_unlock_gun">解锁</string>
-    <string name="m104_unlock_gun_tips">您确定要解锁该枪吗？</string>
+    <string name="m93_unavailable">unavailable</string>
+    <string name="m94_available">free</string>
+    <string name="m95_prepear">preparing</string>
+    <string name="m96_charging">Charging…</string>
+    <string name="m97_car_stop">car stop charging</string>
+    <string name="m98_charge_finish">charging finish</string>
+    <string name="m99_reservce">reserving…</string>
+    <string name="m100_unavailable1">offline</string>
+    <string name="m101_fault">error</string>
+    <string name="m102_device_stop">charger unavailable</string>
+    <string name="m103_unlock_gun">unlock</string>
+    <string name="m104_unlock_gun_tips">Are you sure you want to unlock the gun？</string>
 
     <string name="m105_unlock_success">unlock success</string>
     <string name="m106_unlock_fail">unlock fail</string>
     <string name="m107_logout">Logout</string>
-    <string name="m108_add_your_charge">Add your charger</string>
-    <string name="m109_authorize">Authorize to other users</string>
-    <string name="m110_personal_info">Personal INFO</string>
-    <string name="m111_help_support">Help&amp;Support</string>
-    <string name="m112_other">other</string>
+    <string name="m108_add_your_charge">Add charger</string>
+    <string name="m109_authorize">Authorize Charger to Other</string>
+    <string name="m110_personal_info">User Information</string>
+    <string name="m111_help_support">Support</string>
+    <string name="m112_other">Other</string>
     <string name="m113_enter_serial">Please enter the charger serial number</string>
     <string name="m114_add">Add</string>
     <string name="m115_scan_code">Scan code to Add</string>
-    <string name="m116_sn_not_null">序列号不能为空</string>
+    <string name="m116_sn_not_null">No. Not Empty</string>
     <string name="m117_record">Record</string>
     <string name="m118_electricity">Electricity</string>
     <string name="m119_time">Time</string>
     <string name="m120_money">Money</string>
 
-    <string name="m121_norecord">没有充电记录</string>
+    <string name="m121_norecord">not record</string>
 
     <string name="m122_bluetooth_connection">Bluetooth Connection</string>
     <string name="m123_wifi_account">WIFI Account</string>
     <string name="m124_wifi_password">WIFI Password</string>
     <string name="m125_charger_setting">Charger Setting</string>
     <string name="m126_done">Done</string>
-    <string name="m127_try_now">立即体验</string>
+    <string name="m127_try_now">Experience immediately</string>
     <string name="m128_power">Power</string>
-    <string name="m129_rate">设置充电费率</string>
-    <string name="m130_confirm">确定</string>
+    <string name="m129_rate">Set Charging Rate</string>
+    <string name="m130_confirm">Ok</string>
 
-    <string name="m131_set_success">设置成功</string>
-    <string name="m132_set_fail">设置失败</string>
-    <string name="m133_rate_not_null">费率不能设置为空~</string>
-    <string name="m134_auth">电桩授权</string>
-    <string name="m135_delete">删除</string>
-    <string name="m136_choose">请选择电桩</string>
-    <string name="m137_add_success">添加成功</string>
-    <string name="m138_add_fail">添加失败</string>
+    <string name="m131_set_success">success</string>
+    <string name="m132_set_fail">fail</string>
+    <string name="m133_rate_not_null">charge rate not enpty~</string>
+    <string name="m134_auth">Charger Authorization</string>
+    <string name="m135_delete">Delete</string>
+    <string name="m136_choose">Select Charger</string>
+    <string name="m137_add_success">Add Success</string>
+    <string name="m138_add_fail">Add Fail</string>
 
-    <string name="m139_change_password">修改密码</string>
+    <string name="m139_change_password">Modify Password</string>
     <string name="m140_mailbox">Mailbox</string>
 
 
@@ -185,6 +186,15 @@
     <string name="m147_version_information">Version Information</string>
     <string name="m148_privacy_agreement">User data privacy agreement</string>
     <string name="m149_delete_account">Delete account</string>
+
+
+
+    <string name="m150_old_password">Old Password</string>
+    <string name="m151_new_password">New Password</string>
+    <string name="m152_new_password_again">Enter the new password again</string>
+
+
+    <string name="m153_email">Email</string>
 
 
 </resources>

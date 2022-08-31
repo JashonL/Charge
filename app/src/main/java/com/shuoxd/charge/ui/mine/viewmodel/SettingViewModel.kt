@@ -8,21 +8,15 @@ import com.shuoxd.lib.service.http.HttpCallback
 import com.shuoxd.lib.service.http.HttpErrorModel
 import com.shuoxd.lib.service.http.HttpResult
 import kotlinx.coroutines.launch
-import java.io.File
 
 /**
  * 选择国家/地区
  */
 class SettingViewModel : BaseViewModel() {
 
-    val userAvatarLiveData = MutableLiveData<Pair<String?, String?>>()
-    val logoutLiveData = MutableLiveData<String?>()
-    val modifyPasswordLiveData = MutableLiveData<String?>()
-    val changePhoneOrEmailLiveData = MutableLiveData<String?>()
-    val modifyInstallerNoLiveData = MutableLiveData<String?>()
-    val cancelAccountLiveData = MutableLiveData<String?>()
 
-    val uploadUserAvatarLiveData = MutableLiveData<Pair<String?, String?>>()
+    val logoutLiveData = MutableLiveData<String?>()
+
 
 
     /**

@@ -30,6 +30,10 @@ interface IAccountService : Service {
 
     fun isLogin(): Boolean
 
+    fun isLogout():Boolean
+
+
+
     /**
      * 是否是体验账号
      */

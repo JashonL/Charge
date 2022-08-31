@@ -7,7 +7,7 @@ data  class AuthModel(
     val chargerId:String,
     val alias:String,
     val timezone:String,
-    val lastHeartbeatTime:String,
+    val addTime:String,
     val chargePointVendor:String,
     val chargePointModel:String,
     val chargePointSerialNumber:String,
@@ -18,6 +18,7 @@ data  class AuthModel(
     val meterSerialNumber:String,
     val charingRate:String,
     val connectorNum:String,
+    val usernameLater:String
 )
 
 

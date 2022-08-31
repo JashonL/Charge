@@ -26,6 +26,8 @@ abstract class BaseAccountService : IAccountService {
     private val userProfileChangeListeners =
         mutableSetOf<IAccountService.OnUserProfileChangeListener>()
 
+    private var logout: Boolean = false
+
     private val userStorage by lazy {
         DefaultStorageService(LibApplication.instance(), "account")
     }
@@ -54,6 +56,7 @@ abstract class BaseAccountService : IAccountService {
     override fun saveUserInfo(user: User?) {
         userStorage.put(KEY_USER, GsonManager.toJson(user))
         this.user = user
+        logout=false
         dispatchUserProfileChanged()
     }
 
@@ -69,10 +72,18 @@ abstract class BaseAccountService : IAccountService {
 
     override fun logout() {
 //        userStorage.clear()
-        token = null
-        user = null
+//        token = null
+//        user = null
+        logout=true
         dispatchAccountChanged()
     }
+
+
+    override fun isLogout(): Boolean {
+        return logout
+    }
+
+
 
     override fun id(): String? {
         return user?.id
@@ -81,6 +92,12 @@ abstract class BaseAccountService : IAccountService {
     override fun isLogin(): Boolean {
         return !TextUtils.isEmpty(token)
     }
+
+
+
+
+
+
 
     override fun isGuest(): Boolean {
         return user()?.email == INFO_SPACE_USER_NAME

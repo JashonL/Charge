@@ -33,6 +33,9 @@ android {
         buildConfigField("String", "noticeForCancelAccountUrl", "\"${odm.noticeForCancelAccountUrl}\"")
         buildConfigField("String", "apiServerUrl", "\"${odm.apiServerUrl}\"")
 
+        buildConfigField("String", "serviceEmail", "\"${odm.serviceEmail}\"")
+        buildConfigField("String", "serviceTime", "\"${odm.serviceTime}\"")
+
         ndk {
             abiFilters "armeabi-v7a", "arm64-v8a"
         }
@@ -50,8 +53,8 @@ android {
         release {
             keyAlias "key"
             keyPassword "123456"
-//            storeFile file("D:\\workplace\\key\\sxd\\sxd.jks")
-            storeFile file("G:\\WorkPlace\\key\\sxd.jks")
+            storeFile file("D:\\workplace\\key\\sxd\\sxd.jks")
+//            storeFile file("G:\\WorkPlace\\key\\sxd.jks")
             storePassword "123456"
         }
     }

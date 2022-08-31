@@ -13,6 +13,8 @@
         android:id="@+id/tv_item_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:minWidth="@dimen/dp_100"
+        android:gravity="center"
         android:text="@string/m7_username"
         android:textSize="@dimen/size_content_sp_14"
         android:textStyle="bold" />

@@ -9,6 +9,7 @@ import androidx.activity.viewModels
 import com.shuoxd.charge.R
 import com.shuoxd.charge.base.BaseActivity
 import com.shuoxd.charge.databinding.AuthOtherUsersBinding
+import com.shuoxd.charge.ui.authorize.monitor.AuthMonitor
 import com.shuoxd.charge.ui.authorize.viewmodel.AddAuthViewModel
 import com.shuoxd.charge.view.dialog.OptionsDialog
 import com.shuoxd.lib.util.ToastUtil
@@ -42,6 +43,7 @@ class AddAuthActivity:BaseActivity() ,View.OnClickListener{
             dismissDialog()
             ToastUtil.show(it.second)
             if (it.first) {
+                AuthMonitor.notifyPlant()
                 finish()
             }
         }
@@ -49,6 +51,7 @@ class AddAuthActivity:BaseActivity() ,View.OnClickListener{
 
     private fun setOnclickListener() {
         binding.btAdd.setOnClickListener(this)
+        binding.tvChargeId.setOnClickListener(this)
     }
 
 
@@ -82,7 +85,7 @@ class AddAuthActivity:BaseActivity() ,View.OnClickListener{
     private fun showSelectChartType() {
         val chargeList = getChargeList()
         val list= mutableListOf<String>()
-        for (i in 0.. chargeList.size){
+        for (i in chargeList.indices){
             chargeList.get(i).chargerId?.let { list.add(it) }
         }
         OptionsDialog.show(supportFragmentManager, list.toTypedArray()) {

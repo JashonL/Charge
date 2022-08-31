@@ -19,76 +19,18 @@ object ApiPath {
          */
         const val REGISTER = "v1/user/register"
 
-        /**
-         * 通过邮箱或手机号发送验证码
-         */
-        const val GET_VERIFY_CODE = "ATSregister/sendValidCode"
-
-        /**
-         * 获取国家列表
-         */
-        const val GET_COUNTRY_LIST = "ATSregister/getCountryList"
-
-        /**
-         * 校验验证码
-         */
-        const val VERIFY_CODE = "ATSregister/validCode"
-
-        /**
-         * 获取用户头像
-         */
-        const val GET_USER_AVATAR = "ATSSetting/getUserIcon"
-
-        /**
-         * 找回密码-修改密码
-         */
-        const val MODIFY_PASSWORD_BY_PHONE_OR_EMAIL =
-            "ATSregister/changePasswordByPhoneOrEmail"
 
         /**
          * 设置-修改密码
          */
-        const val MODIFY_PASSWORD = "ATSSetting/changePWD"
+        const val MODIFY_PASSWORD = "/v1/user/modifyPassword"
 
         /**
-         * 更换邮箱
+         * 修改用户信息
          */
-        const val CHANGE_EMAIL = "ATSSetting/updateEmail"
+        const val MODIFYUSERINFO = "/v1/user/modifyUserInfo"
 
-        /**
-         * 更换手机号
-         */
-        const val CHANGE_PHONE = "ATSSetting/updatePhoneNum"
 
-        /**
-         * 修改安装商编号
-         */
-        const val MODIFY_INSTALLER_NO = "ATSSetting/updateAgentCode"
-
-        /**
-         * 注销账号
-         */
-        const val CANCEL_ACCOUNT = "ATSSetting/eraseUser"
-
-        /**
-         * 上传用户头像
-         */
-        const val UPLOAD_USER_ICON = "ATSSetting/uploadUserIcon"
-
-        /**
-         * 获取消息列表
-         */
-        const val GET_MESSAGE_LIST = "ATSSetting/getUserMsgList"
-
-        /**
-         * 获取未读消息数量
-         */
-        const val GET_MESSAGE_UNREAD_NUM = "ATSSetting/getUserUnreadMsgNum"
-
-        /**
-         * 删除消息
-         */
-        const val DELETE_MESSAGE = "ATSSetting/delMsgById"
 
     }
 
@@ -133,7 +75,7 @@ object ApiPath {
         /**
          * 获取授权列表
          */
-        const val GETAUTHLIST="v1/charger/authChargerList/1"
+        const val GETAUTHLIST="v1/charger/authChargerList/"
 
         /**
          * 添加授权用户

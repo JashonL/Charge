@@ -84,6 +84,19 @@
             android:screenOrientation="nosensor" />
 
 
+        <activity
+            android:name=".ui.authorize.activity.AddAuthActivity"
+            android:exported="false"
+            android:screenOrientation="nosensor" />
+        <activity
+            android:name=".ui.mine.activity.ModifyPasswordActivity"
+            android:exported="false"
+            android:screenOrientation="nosensor" />
+
+        <activity
+            android:name=".ui.mine.activity.OhterActivity"
+            android:exported="false"
+            android:screenOrientation="nosensor" />
 
 
     </application>

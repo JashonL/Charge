@@ -27,15 +27,14 @@
         android:layout_height="@dimen/dp_80"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="@dimen/dp_30"
-        android:src="@drawable/liuyifei"
+        android:src="@drawable/big_user"
         app:round="@dimen/dp_40" />
 
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_margin="@dimen/dp_10"
-        android:layout_weight="1">
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/dp_10">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -43,58 +42,58 @@
             android:orientation="vertical">
 
 
-            <com.shuoxd.charge.view.PersonalView
-                android:id="@+id/person_name"
+            <com.shuoxd.charge.view.SettingItemView
+                android:id="@+id/email"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/dp_40"
-                app:personinfo="@string/m7_username" />
+                app:itemName="@string/m153_email"
+                app:showLeftIcon="false"
+                app:showRightIcon="false"
+                app:showSubName="true" />
 
-            <com.shuoxd.charge.view.PersonalView
+
+            <com.shuoxd.charge.view.SettingItemView
+                android:id="@+id/password"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/dp_40"
                 android:layout_marginTop="@dimen/dp_1"
-                app:personinfo="@string/m139_change_password" />
+                app:itemName="@string/m139_change_password"
+                app:showLeftIcon="false"
+                app:showRightIcon="false"
+                app:showSubName="true" />
 
-            <com.shuoxd.charge.view.PersonalView
-                android:id="@+id/person_mailbox"
+
+            <com.shuoxd.charge.view.SettingItemView
+                android:id="@+id/phone"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/dp_40"
                 android:layout_marginTop="@dimen/dp_1"
-                app:personinfo="@string/m140_mailbox" />
+                app:itemName="@string/m9_phone"
+                app:showLeftIcon="false"
+                app:showRightIcon="false"
+                app:showSubName="true" />
 
-            <com.shuoxd.charge.view.PersonalView
-                android:id="@+id/person_phone"
+
+            <com.shuoxd.charge.view.SettingItemView
+                android:id="@+id/city"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/dp_40"
                 android:layout_marginTop="@dimen/dp_1"
-                app:personinfo="@string/m9_phone" />
+                app:itemName="@string/m78_city"
+                app:showLeftIcon="false"
+                app:showRightIcon="false"
+                app:showSubName="true" />
 
-            <com.shuoxd.charge.view.PersonalView
-                android:id="@+id/person_city"
+
+            <com.shuoxd.charge.view.SettingItemView
+                android:id="@+id/country"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/dp_40"
                 android:layout_marginTop="@dimen/dp_1"
-                app:personinfo="@string/m78_city" />
-
-            <com.shuoxd.charge.view.PersonalView
-                android:id="@+id/person_country"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/dp_40"
-                android:layout_marginTop="@dimen/dp_1"
-                app:personinfo="@string/m79_country" />
-
-            <com.shuoxd.charge.view.PersonalView
-                android:id="@+id/person_card_model1"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/dp_40"
-                app:personinfo="@string/m141_card_model1" />
-
-            <com.shuoxd.charge.view.PersonalView
-                android:id="@+id/person_card_model2"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/dp_40"
-                android:layout_marginTop="@dimen/dp_1"
-                app:personinfo="@string/m142_card_model2" />
+                app:itemName="@string/m79_country"
+                app:showLeftIcon="false"
+                app:showRightIcon="false"
+                app:showSubName="true" />
 
 
         </LinearLayout>
@@ -103,8 +102,8 @@
     </ScrollView>
 
 
- <!--   <Button
-        android:id="@+id/bt_add"
+    <Button
+        android:id="@+id/bt_done"
         android:layout_width="match_parent"
         android:layout_height="44dp"
         android:layout_marginStart="36dp"
@@ -115,7 +114,7 @@
         android:text="@string/m126_done"
         android:textAllCaps="false"
         android:textColor="@color/white"
-        android:textSize="@dimen/size_content_sp_12" />-->
+        android:textSize="@dimen/size_content_sp_12" />
 
 
 </LinearLayout>

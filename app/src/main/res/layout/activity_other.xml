@@ -22,7 +22,7 @@
 
 
     <TextView
-        android:id="@+id/tv_support_email"
+        android:id="@+id/tv_version_information"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/dp_20"
@@ -35,7 +35,7 @@
 
 
     <TextView
-        android:id="@+id/tv_support_phone"
+        android:id="@+id/tv_privacy_agreement"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/dp_5"
@@ -48,7 +48,7 @@
 
 
     <TextView
-        android:id="@+id/tv_support_time"
+        android:id="@+id/tv_delete_account"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/dp_5"

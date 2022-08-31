@@ -50,12 +50,15 @@ class LoginActivity : BaseActivity(), View.OnClickListener {
 
     private fun initViews() {
         val user = accountService().user()
+        val logout = accountService().isLogout()
         user?.let {
             val email = it.email
             val password = it.password
             bingding.etUsername.setText(email)
             bingding.etPassword.setText(password)
-            login(password, email)
+            if (!logout) {
+                login(password, email)
+            }
         }
 
 

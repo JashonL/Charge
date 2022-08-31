@@ -21,53 +21,41 @@
         app:titleText="@string/m111_help_support" />
 
 
-    <TextView
-        android:id="@+id/tv_support_email"
+    <com.shuoxd.charge.view.PersonalView
+        android:id="@+id/support_email"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/m143_support_email"
-        android:layout_marginTop="@dimen/dp_20"
-        android:padding="@dimen/dp_15"
-        android:background="@color/white"
-        android:textSize="@dimen/size_content_sp_14"
-        android:textStyle="bold" />
+        android:layout_height="@dimen/dp_45"
+        android:layout_marginTop="@dimen/dp_10"
+        app:personinfo="@string/m143_support_email" />
 
 
-
-    <TextView
-        android:id="@+id/tv_support_phone"
+    <com.shuoxd.charge.view.PersonalView
+        android:id="@+id/support_phone"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/m144_support_phone"
+        android:layout_height="@dimen/dp_45"
         android:layout_marginTop="@dimen/dp_1"
-        android:padding="@dimen/dp_15"
-        android:background="@color/white"
-        android:textSize="@dimen/size_content_sp_14"
-        android:textStyle="bold" />
+        app:personinfo="@string/m144_support_phone" />
 
 
-    <TextView
-        android:id="@+id/tv_support_time"
+    <com.shuoxd.charge.view.PersonalView
+        android:id="@+id/support_time"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/m145_support_time"
+        android:layout_height="@dimen/dp_45"
         android:layout_marginTop="@dimen/dp_1"
-        android:padding="@dimen/dp_15"
-        android:background="@color/white"
-        android:textSize="@dimen/size_content_sp_14"
-        android:textStyle="bold" />
+        app:personinfo="@string/m145_support_time" />
 
 
     <TextView
         android:id="@+id/tv_feekback"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/m146_feedback"
         android:layout_marginTop="@dimen/dp_1"
-        android:padding="@dimen/dp_15"
         android:background="@color/white"
+        android:padding="@dimen/dp_15"
+        android:text="@string/m146_feedback"
         android:textSize="@dimen/size_content_sp_14"
-        android:textStyle="bold" />
+        android:textStyle="bold"
+        android:visibility="gone" />
 
 
 </LinearLayout>

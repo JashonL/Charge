@@ -23,7 +23,7 @@ import android.widget.ProgressBar;
 import androidx.core.util.Pair;
 import androidx.exifinterface.media.ExifInterface;
 
-import com.growatt.atess.R;
+import com.shuoxd.charge.R;
 
 import java.lang.ref.WeakReference;
 import java.util.UUID;

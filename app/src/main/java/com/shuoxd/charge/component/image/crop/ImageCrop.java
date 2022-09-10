@@ -26,7 +26,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-import com.growatt.atess.R;
+import com.shuoxd.charge.R;
 
 import java.io.File;
 import java.io.InputStream;
@@ -139,7 +139,7 @@ public final class ImageCrop {
      * @param context used to access Android APIs, like content resolve, it is your activity/fragment/widget.
      */
     public static Intent getPickImageChooserIntent(@NonNull Context context) {
-        return getPickImageChooserIntent(context, context.getString(R.string.pick_image_intent_chooser_title), false);
+        return getPickImageChooserIntent(context, context.getString(R.string.m162_pick_image_intent_chooser_title), false);
     }
 
     /**

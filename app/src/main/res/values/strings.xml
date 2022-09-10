@@ -203,4 +203,8 @@
     <string name="m159_please_verify_code">Please enter the verification code</string>
     <string name="m160_second_after_send">%ds second after send</string>
 
+
+    <string name="m161_crop_image_menu_crop">裁剪</string>
+    <string name="m162_pick_image_intent_chooser_title">Select source</string>
+
 </resources>

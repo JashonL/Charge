@@ -13,8 +13,8 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 
-import com.growatt.atess.base.BaseActivity;
-import com.growatt.atess.databinding.ActivityCropLayoutBinding;
+import com.shuoxd.charge.base.BaseActivity;
+import com.shuoxd.charge.databinding.ActivityCropLayoutBinding;
 
 import java.io.File;
 import java.io.IOException;

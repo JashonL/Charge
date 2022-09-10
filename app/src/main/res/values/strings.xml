@@ -195,6 +195,12 @@
 
 
     <string name="m153_email">Email</string>
-
+    <string name="m154_delete_charge">Delete charge</string>
+    <string name="m155_delete_tips">Are you sure you want to delete the charge？</string>
+    <string name="m156_take_photo">Take a photo</string>
+    <string name="m157_select_album">Select from album</string>
+    <string name="m158_send_verify_code">Send verify code</string>
+    <string name="m159_please_verify_code">Please enter the verification code</string>
+    <string name="m160_second_after_send">%ds second after send</string>
 
 </resources>

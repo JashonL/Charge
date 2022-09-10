@@ -98,6 +98,22 @@
             android:exported="false"
             android:screenOrientation="nosensor" />
 
+        <activity
+            android:name=".ui.mine.activity.ForgotPasswordActivity"
+            android:exported="false"
+            android:screenOrientation="nosensor" />
+
+
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="${applicationId}.fileProvider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths" />
+        </provider>
+
 
     </application>
 

@@ -3,16 +3,16 @@ ext {
     //发版可能需要更改这个位置
     publish = [
             versionCode  : 1,
-            versionName  : "1.0.0",
+            versionName  : "1.1.2209010.0",
             applicationId: "com.shuoxd.charge"
     ]
 
     //ODM定制属性
     odm = [
             //用户协议
-            userAgreementUrl         : "https://www.baidu.com/",
+            userAgreementUrl         : "http://charger.shuoxd.com:50015/resources/userterms/",
             //隐私条款
-            privacyPolicyUrl         : "https://www.baidu.com/",
+            privacyPolicyUrl         : "http://charger.shuoxd.com:50015/resources/userterms/",
             //公司官网
             companyWebsite           : "www.atesspower.com",
             //公司手机号

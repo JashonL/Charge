@@ -7,7 +7,9 @@ import android.os.Build
 import android.os.Environment
 import androidx.annotation.WorkerThread
 import androidx.core.content.FileProvider
+import com.shuoxd.charge.BuildConfig
 import com.shuoxd.charge.application.MainApplication
+import com.shuoxd.lib.LibApplication
 import com.shuoxd.lib.util.DateUtils
 import java.io.File
 import java.io.IOException
@@ -92,4 +94,28 @@ object AppUtil {
         }
         return Uri.fromFile(file)
     }
+
+
+    fun getUserAgreement():String{
+        val appLang = LibApplication.instance().deviceService().getAppLang()
+        val agreementUrl: String;
+        when{
+            appLang==="zh_CN"->agreementUrl= BuildConfig.userAgreementUrl+"userterms_cn.html"
+            else->agreementUrl= BuildConfig.userAgreementUrl+"userterms_en.html"
+        }
+        return agreementUrl;
+    }
+
+
+    fun getPrivacy():String{
+        val appLang = LibApplication.instance().deviceService().getAppLang()
+        val agreementUrl: String;
+        when{
+            appLang==="zh_CN"->agreementUrl= BuildConfig.userAgreementUrl+"userterms_cn.html"
+            else->agreementUrl= BuildConfig.userAgreementUrl+"userterms_en.html"
+        }
+        return agreementUrl;
+    }
+
+
 }

@@ -30,6 +30,17 @@ object ApiPath {
          */
         const val MODIFYUSERINFO = "/v1/user/modifyUserInfo"
 
+        /**
+         * 找回密码
+         */
+        const val FINDPASSWORD ="/v1/user/findPassword"
+
+        /**
+         * 获取邮箱验证码
+         */
+        const val SENDEMAILCODE ="/v1/user/sendEmailCode"
+
+
 
 
     }
@@ -81,6 +92,12 @@ object ApiPath {
          * 添加授权用户
          */
         const val AUTHCHARGER="v1/charger/authCharger"
+
+
+        /**
+         * 删除充电桩
+         */
+        const val DELETECHARGER="v1/charger/removeCharger"
 
     }
 

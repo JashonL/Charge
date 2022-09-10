@@ -101,6 +101,8 @@ class LoginActivity : BaseActivity(), View.OnClickListener {
             p0 === bingding.tvRegister -> {
                 RegisterActivity.start(this)
             }
+
+            p0===bingding.tvForgotPwd->ForgotPasswordActivity.start(this)
         }
     }
 

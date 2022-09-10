@@ -20,6 +20,8 @@ import com.shuoxd.charge.R
 import com.shuoxd.charge.base.BaseDialogFragment
 import com.shuoxd.charge.databinding.DialogUserAgreementBinding
 import com.shuoxd.charge.ui.common.activity.WebActivity
+import com.shuoxd.charge.util.AppUtil
+import com.shuoxd.lib.LibApplication
 
 /**
  * 用户隐私协议弹框
@@ -85,11 +87,11 @@ class UserAgreementDialog : BaseDialogFragment(), View.OnClickListener {
         return SpannableString(content).apply {
             addColorSpan(this, userAgreement)
             addClickSpan(this, userAgreement) {
-                WebActivity.start(requireActivity(), BuildConfig.userAgreementUrl)
+                WebActivity.start(requireActivity(), AppUtil.getUserAgreement())
             }
             addColorSpan(this, privacyPolicy)
             addClickSpan(this, privacyPolicy) {
-                WebActivity.start(requireActivity(), BuildConfig.privacyPolicyUrl)
+                WebActivity.start(requireActivity(), AppUtil.getPrivacy())
             }
         }
     }

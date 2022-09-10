@@ -38,7 +38,7 @@ object StatusUtil {
         energy: Int
     ) {
         when (status) {
-            ChargeStatus.UNAVAILABLE -> GlideUtil.showGif(context, R.drawable.pre_75, imageView)
+            ChargeStatus.UNAVAILABLE -> GlideUtil.showImage(context,R.drawable.unavailable,imageView,R.drawable.unavailable)
             ChargeStatus.AVAILABLE -> GlideUtil.showGif(context, R.drawable.pre_75, imageView)
             ChargeStatus.PREPEAR -> GlideUtil.showGif(context, R.drawable.pre_75, imageView)
 
@@ -57,14 +57,14 @@ object StatusUtil {
                     GlideUtil.showGif(context, R.drawable.precent_100, imageView)
                 }
 
-            ChargeStatus.DEVICE_STOP -> GlideUtil.showGif(context, R.drawable.pre_75, imageView)
+            ChargeStatus.DEVICE_STOP -> GlideUtil.showImage(context,R.drawable.unavailable,imageView,R.drawable.unavailable)
 
-            ChargeStatus.CAR_STOP -> GlideUtil.showGif(context, R.drawable.pre_75, imageView)
+            ChargeStatus.CAR_STOP -> GlideUtil.showImage(context,R.drawable.unavailable,imageView,R.drawable.unavailable)
 
             ChargeStatus.CHARGE_FINISH -> GlideUtil.showGif(context, R.drawable.pre_75, imageView)
             ChargeStatus.RESERVCE -> GlideUtil.showGif(context, R.drawable.pre_75, imageView)
-            ChargeStatus.UNAVAILABLE1 -> GlideUtil.showGif(context, R.drawable.pre_75, imageView)
-            else -> GlideUtil.showGif(context, R.drawable.pre_75, imageView)
+            ChargeStatus.UNAVAILABLE1 ->GlideUtil.showImage(context,R.drawable.unavailable,imageView,R.drawable.unavailable)
+            else -> GlideUtil.showImage(context,R.drawable.unavailable,imageView,R.drawable.unavailable)
         }
     }
 
@@ -72,15 +72,15 @@ object StatusUtil {
     fun getActionImageStatus(context: Context, @ChargeStatus status: Int): Drawable? {
         return ContextCompat.getDrawable(
             context, when (status) {
-                ChargeStatus.UNAVAILABLE -> R.drawable.start
-                ChargeStatus.AVAILABLE -> R.drawable.start
+                ChargeStatus.UNAVAILABLE -> R.drawable.cant_start
+                ChargeStatus.AVAILABLE -> R.drawable.cant_start
                 ChargeStatus.PREPEAR -> R.drawable.start
                 ChargeStatus.CHARGING -> R.drawable.start
-                ChargeStatus.DEVICE_STOP -> R.drawable.start
-                ChargeStatus.CAR_STOP -> R.drawable.start
+                ChargeStatus.DEVICE_STOP -> R.drawable.cant_start
+                ChargeStatus.CAR_STOP -> R.drawable.cant_start
                 ChargeStatus.CHARGE_FINISH -> R.drawable.start
                 ChargeStatus.RESERVCE -> R.drawable.start
-                ChargeStatus.UNAVAILABLE1 -> R.drawable.start
+                ChargeStatus.UNAVAILABLE1 -> R.drawable.cant_start
                 else -> R.drawable.start
             }
         )

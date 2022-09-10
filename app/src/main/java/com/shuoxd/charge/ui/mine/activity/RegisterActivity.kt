@@ -18,6 +18,7 @@ import com.shuoxd.charge.base.BaseActivity
 import com.shuoxd.charge.databinding.ActivityRegisterBinding
 import com.shuoxd.charge.ui.common.activity.WebActivity
 import com.shuoxd.charge.ui.mine.viewmodel.RegisterViewModel
+import com.shuoxd.charge.util.AppUtil
 import com.shuoxd.lib.util.ToastUtil
 import com.shuoxd.lib.util.Util
 
@@ -72,19 +73,19 @@ class RegisterActivity : BaseActivity(), View.OnClickListener {
     }
 
 
-
     private fun getTvSpan(): SpannableString {
         val userAgreement = getString(R.string.m23_user_agreement)
         val privacyPolicy = getString(R.string.m24_privacy_policy)
-        val content = getString(R.string.m88_agree_company_user_agreement, userAgreement, privacyPolicy)
+        val content =
+            getString(R.string.m88_agree_company_user_agreement, userAgreement, privacyPolicy)
         return SpannableString(content).apply {
             addColorSpan(this, userAgreement)
             addClickSpan(this, userAgreement) {
-                WebActivity.start(this@RegisterActivity, BuildConfig.userAgreementUrl)
+                WebActivity.start(this@RegisterActivity, AppUtil.getUserAgreement())
             }
             addColorSpan(this, privacyPolicy)
             addClickSpan(this, privacyPolicy) {
-                WebActivity.start(this@RegisterActivity, BuildConfig.privacyPolicyUrl)
+                WebActivity.start(this@RegisterActivity, AppUtil.getPrivacy())
             }
         }
     }
@@ -96,7 +97,6 @@ class RegisterActivity : BaseActivity(), View.OnClickListener {
         val endPosition = startPosition + colorSpanContent.length
         spannable.setSpan(span, startPosition, endPosition, Spannable.SPAN_INCLUSIVE_EXCLUSIVE)
     }
-
 
 
     private fun addClickSpan(
@@ -171,14 +171,12 @@ class RegisterActivity : BaseActivity(), View.OnClickListener {
             ToastUtil.show(getString(R.string.m85_no_phone_number))
         } else if (TextUtils.isEmpty(city)) {
             ToastUtil.show(getString(R.string.m89_no_email))
-        }
-
-        else if (TextUtils.isEmpty(country)) {
+        } else if (TextUtils.isEmpty(country)) {
             ToastUtil.show(getString(R.string.m87_no_country))
         } else if (TextUtils.isEmpty(timeZone)) {
             ToastUtil.show(getString(R.string.m86_no_timezone))
         } else {
-            viewModel.register(username,password,country,city,phone,timeZone)
+            viewModel.register(username, password, country, city, phone, timeZone)
         }
     }
 

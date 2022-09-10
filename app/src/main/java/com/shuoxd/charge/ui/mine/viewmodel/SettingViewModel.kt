@@ -17,15 +17,18 @@ class SettingViewModel : BaseViewModel() {
 
     val logoutLiveData = MutableLiveData<String?>()
 
+    val deleteLiveData = MutableLiveData<Pair<Boolean, String?>>()
+
+    var position: Int = 0
 
 
     /**
      * 登出
      */
-    fun logout(email:String?) {
+    fun logout(email: String?) {
 
         val params = hashMapOf<String, String>().apply {
-             put("email",email?:"")
+            put("email", email ?: "")
         }
 
         viewModelScope.launch {
@@ -49,6 +52,33 @@ class SettingViewModel : BaseViewModel() {
         }
     }
 
+    /**
+     * 删除充电桩
+     */
+    fun delete(chargerId: String?) {
+
+        val params = hashMapOf<String, String>().apply {
+            put("chargerId", chargerId ?: "")
+        }
+
+        viewModelScope.launch {
+            apiService().postForm(
+                ApiPath.Charge.DELETECHARGER,
+                params,
+                object : HttpCallback<HttpResult<String>>() {
+                    override fun success(result: HttpResult<String>) {
+                        deleteLiveData.value = Pair(result.isBusinessSuccess(), result.msg ?: "")
+                    }
+
+                    override fun onFailure(errorModel: HttpErrorModel) {
+                        deleteLiveData.value = Pair(false, errorModel.errorMsg ?: "")
+                    }
+
+                })
+        }
+
+
+    }
 
 
 }

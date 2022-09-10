@@ -13,7 +13,16 @@
 
         <!--activity的背景色-->
         <item name="android:windowBackground">@color/color_default_background</item>
+
+        <item name="editTextStyle">@style/AppEditTextStyle</item>
+
     </style>
+
+
+
+
+
+
 
 
     <!--导航tab-->

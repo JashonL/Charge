@@ -68,7 +68,7 @@ abstract class BaseActivity : AppCompatActivity(), ServiceManager.ServiceInterfa
     }
 
 
-    override fun getChargeList(): List<ChargeModel> {
+    override fun getChargeList(): MutableList<ChargeModel> {
         return ChargeManager.getInstance().getChargeList()
     }
 

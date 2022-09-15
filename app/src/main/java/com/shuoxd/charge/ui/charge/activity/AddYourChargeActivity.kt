@@ -42,7 +42,7 @@ class AddYourChargeActivity : BaseActivity(), View.OnClickListener {
 
     private fun initListeners() {
         binding.btAdd.setOnClickListener(this)
-        binding.btScan.setOnClickListener(this)
+        binding.llScan.setOnClickListener(this)
 
     }
 
@@ -81,7 +81,7 @@ class AddYourChargeActivity : BaseActivity(), View.OnClickListener {
                 }
             }
 
-            p0===binding.btScan->{
+            p0===binding.llScan->{
                 RequestPermissionHub.requestPermission(
                     supportFragmentManager,
                     arrayOf(Manifest.permission.CAMERA)

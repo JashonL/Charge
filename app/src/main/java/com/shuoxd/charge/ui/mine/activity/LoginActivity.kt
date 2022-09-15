@@ -91,6 +91,7 @@ class LoginActivity : BaseActivity(), View.OnClickListener {
     private fun setListener() {
         bingding.btnLogin.setOnClickListener(this)
         bingding.tvRegister.setOnClickListener(this)
+        bingding.tvForgotPwd.setOnClickListener(this)
 
     }
 

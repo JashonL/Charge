@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Timxon</string>
+    <string name="app_name">EVSElink</string>
 
     <string name="m2_parse_error_msg">Failed to parse data</string>
     <string name="m3_bad_network_msg">Internet problem</string>
@@ -9,8 +9,8 @@
 
 
     <!--排序开始-->
-    <string name="m1_welcom_erperience">Welcome to use Timxon charger super erperience</string>
-    <string name="m2_timxon">Timxon APP helps you easily manage and monitor the charger</string>
+    <string name="m1_welcom_erperience">Welcome to use EVSElink charger super erperience</string>
+    <string name="m2_timxon">EVSElink APP helps you easily manage and monitor the charger</string>
     <string name="m3_forget_password">Forget password</string>
     <string name="m4_login">Login</string>
     <string name="m5_experience_hall">Experience Hall</string>
@@ -38,12 +38,12 @@
     <string name="m25_click_agree">Click Agree to indicate that you have read and agree%s&amp;%s。</string>
     <string name="m26_privacy_dialog_content">Enerview is designed to protect your data privacy with security based on helping you efficiently manage power plants. Please read and fully understand the terms and conditions before clicking agree.</string>
     <string name="m27_web">Web</string>
-    <string name="m28_guide1">Welcome to use Timxon carger super erperience</string>
+    <string name="m28_guide1">Welcome to use EVSElink carger super erperience</string>
     <string name="m29_guide2">Add your charger</string>
     <string name="m30_guide3">Configure the network</string>
 
     <string name="m31_guide4">Regist era user</string>
-    <string name="m32_tips1">Timxon APP helps you easily manage and monitor the charger</string>
+    <string name="m32_tips1">EVSElink APP helps you easily manage and monitor the charger</string>
     <string name="m33_tips2">Scan code orenter SN to add charger</string>
     <string name="m34_tips3">Configure your charger setting and connectivity with APP</string>
     <string name="m35_tips4">Registera user,password,email verification</string>
@@ -105,7 +105,7 @@
     <string name="m85_no_phone_number">No mobile phone number was entered</string>
     <string name="m86_no_timezone">Time zone not specified</string>
     <string name="m87_no_country">Country not entered</string>
-    <string name="m88_agree_company_user_agreement">Agree with the company%s&amp;%s</string>
+    <string name="m88_agree_company_user_agreement">%s&amp;%s</string>
     <string name="m89_no_email">Email not filled in</string>
     <string name="m90_register_success">Registered successfully</string>
 

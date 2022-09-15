@@ -60,7 +60,8 @@
                 android:layout_weight="1"
                 android:hint="@string/m153_email"
                 android:paddingTop="6dp"
-                android:paddingBottom="6dp"
+                android:paddingBottom="5dp"
+                android:background="@null"
                 android:textColor="@color/color_text_33"
                 android:textSize="@dimen/size_content_sp_12"
                 android:textStyle="bold" />
@@ -93,7 +94,8 @@
             android:hint="@string/m159_please_verify_code"
             android:inputType="number"
             android:maxLength="6"
-            android:paddingBottom="12dp"
+            android:background="@null"
+            android:paddingBottom="5dp"
             android:textColor="@color/color_text_33"
             android:textSize="@dimen/size_content_sp_12"
             android:textStyle="bold" />

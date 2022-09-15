@@ -5,7 +5,20 @@
     android:layout_height="match_parent"
     android:background="@color/white">
 
-    <include layout="@layout/toolbar" />
+
+    <com.shuoxd.lib.view.StatusBarHeightView
+        android:id="@+id/status_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <com.shuoxd.charge.view.TitleBarLayout
+        android:id="@+id/title_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/status_bar" />
 
 
     <TextView
@@ -15,7 +28,7 @@
         android:layout_marginStart="@dimen/dp_20"
         android:layout_marginTop="@dimen/dp_15"
         android:padding="@dimen/dp_5"
-        android:text="@string/m3_forget_password"
+        android:text="@string/m6_register"
         android:textColor="@color/color_text_33"
         android:textSize="@dimen/size_title_bar"
         android:textStyle="bold"
@@ -247,6 +260,7 @@
         android:layout_marginTop="50dp"
         android:gravity="center_vertical"
         android:orientation="horizontal"
+        android:padding="@dimen/dp_5"
         app:layout_constraintBottom_toTopOf="@+id/btn_login"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent">

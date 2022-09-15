@@ -63,6 +63,7 @@
 
 
     <LinearLayout
+        android:id="@+id/ll_scan"
         android:layout_width="match_parent"
         android:layout_height="@dimen/dp_60"
         android:layout_marginStart="36dp"
@@ -80,6 +81,7 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:background="@null"
+            android:enabled="false"
             android:textAllCaps="false"
             android:drawablePadding="@dimen/dp_10"
             android:drawableStart="@drawable/scan"

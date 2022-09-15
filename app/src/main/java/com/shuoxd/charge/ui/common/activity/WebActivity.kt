@@ -69,9 +69,9 @@ class WebActivity : BaseActivity() {
         binding.web.webChromeClient = object : WebChromeClient() {
             override fun onReceivedTitle(view: WebView?, title: String?) {
                 super.onReceivedTitle(view, title)
-                if (TextUtils.isEmpty(webTitle) && !TextUtils.isEmpty(title)) {
+            /*    if (TextUtils.isEmpty(webTitle) && !TextUtils.isEmpty(title)) {
                     binding.title.setTitleText(title)
-                }
+                }*/
             }
 
             override fun onProgressChanged(view: WebView?, newProgress: Int) {
@@ -82,9 +82,9 @@ class WebActivity : BaseActivity() {
     }
 
     private fun initView() {
-        if (!TextUtils.isEmpty(webTitle)) {
+     /*   if (!TextUtils.isEmpty(webTitle)) {
             binding.title.setTitleText(webTitle)
-        }
+        }*/
         if (!TextUtils.isEmpty(webUrl)) {
             binding.web.loadUrl(webUrl!!)
         }

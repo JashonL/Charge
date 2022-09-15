@@ -85,6 +85,9 @@ class WebActivity : BaseActivity() {
      /*   if (!TextUtils.isEmpty(webTitle)) {
             binding.title.setTitleText(webTitle)
         }*/
+
+        binding.title.setTitleText("")
+
         if (!TextUtils.isEmpty(webUrl)) {
             binding.web.loadUrl(webUrl!!)
         }

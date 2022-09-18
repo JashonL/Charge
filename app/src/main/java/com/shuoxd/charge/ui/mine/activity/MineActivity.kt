@@ -37,6 +37,7 @@ import com.shuoxd.charge.view.itemdecoration.DividerItemDecoration
 import com.shuoxd.lib.util.ActivityBridge
 import com.shuoxd.lib.util.ToastUtil
 import com.shuoxd.lib.util.Util
+import com.shuoxd.lib.util.gone
 import java.io.File
 
 class MineActivity : BaseActivity(), View.OnClickListener {
@@ -217,6 +218,7 @@ class MineActivity : BaseActivity(), View.OnClickListener {
 
     private fun initData() {
         val chargeList = getChargeList()
+        if (chargeList.isEmpty())bind.llList.gone()
         (bind.rlvCharge.adapter as Adapter).refresh(chargeList)
         viewModel.logoutLiveData.observe(this) {
             dismissDialog()
@@ -289,10 +291,10 @@ class MineActivity : BaseActivity(), View.OnClickListener {
         private fun deleteCharge(charge: ChargeModel) {
             AlertDialog.showDialog(
                 supportFragmentManager,
-                getString(com.shuoxd.charge.R.string.m155_delete_tips),
-                getString(com.shuoxd.charge.R.string.m18_confirm),
-                getString(com.shuoxd.charge.R.string.m16_cancel),
-                getString(com.shuoxd.charge.R.string.m154_delete_charge)
+                getString(R.string.m155_delete_tips),
+                getString(R.string.m18_confirm),
+                getString(R.string.m16_cancel),
+                getString(R.string.m154_delete_charge)
             ) {
                 showDialog()
                 viewModel.delete(charge.chargerId)

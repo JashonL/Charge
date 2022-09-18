@@ -138,7 +138,7 @@ class RegisterActivity : BaseActivity(), View.OnClickListener {
 
 
     private fun updateSelectView(isAgree: Boolean) {
-        binding.ivSelect.setImageResource(if (isAgree) R.drawable.ic_unselect else R.drawable.ic_unselect)
+        binding.ivSelect.setImageResource(if (isAgree) R.drawable.unselect else R.drawable.ic_unselect)
         viewModel.isAgree = isAgree
     }
 

@@ -143,6 +143,8 @@ class ChargeActivity : BaseActivity(), View.OnClickListener {
                 val first = it.first
                 setChargeList(first.toMutableList())
                 updataChargeList(first)
+                upView(first.isNotEmpty())
+
             } else {
                 ToastUtil.show(it.second)
             }
@@ -200,6 +202,10 @@ class ChargeActivity : BaseActivity(), View.OnClickListener {
 
     }
 
+    private fun upView(isListEmpty:Boolean) {
+        binding.smartRefresh.setEnableRefresh(isListEmpty)
+    }
+
 
     private fun updataChargeList(first: List<ChargeModel>) {
         if (first.isNotEmpty()) {
@@ -223,7 +229,7 @@ class ChargeActivity : BaseActivity(), View.OnClickListener {
             }
         } else {
             //没有充电桩
-            binding.ivChargeStatus.setImageResource(R.drawable.button_gray_background)
+            binding.ivChargeStatus.setImageResource(R.drawable.unavailable)
             binding.tvChargeExcption.setText(R.string.m97_please_add_charge)
             binding.ivStart.setImageResource(R.drawable.start)
         }

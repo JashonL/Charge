@@ -5,6 +5,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.text.TextUtils
 import android.view.View
+import android.widget.TextView
 import androidx.activity.viewModels
 import androidx.lifecycle.lifecycleScope
 import com.shuoxd.charge.R
@@ -17,10 +18,13 @@ import com.shuoxd.charge.ui.charge.viewmodel.ChargeViewModel
 import com.shuoxd.charge.ui.chargesetting.activity.ChargeSettingActivity
 import com.shuoxd.charge.ui.mine.activity.LoginActivity
 import com.shuoxd.charge.ui.mine.activity.MineActivity
+import com.shuoxd.charge.ui.smartcharge.ActivityOffpeak
+import com.shuoxd.charge.ui.smartcharge.ScheduledChargeActivity
 import com.shuoxd.charge.util.StatusUtil
 import com.shuoxd.charge.util.ValueUtil
 import com.shuoxd.charge.view.dialog.AlertDialog
 import com.shuoxd.charge.view.dialog.OptionsDialog
+import com.shuoxd.charge.view.popuwindow.CustomPopuwindow
 import com.shuoxd.lib.util.ToastUtil
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
@@ -123,6 +127,7 @@ class ChargeActivity : BaseActivity(), View.OnClickListener {
         binding.ivMenu.setOnClickListener(this)
         binding.tvChargingSetting.setOnClickListener(this)
         binding.ivSet.setOnClickListener(this)
+        binding.ivOffpeakTips.setOnClickListener(this)
     }
 
 
@@ -173,6 +178,7 @@ class ChargeActivity : BaseActivity(), View.OnClickListener {
                     binding.dataViewConsumption.setValue(valueFromCost)
                     binding.dataViewTime.setValue(it.transaction.charingTimeText)
 
+
                 }
 
             } else {
@@ -202,7 +208,7 @@ class ChargeActivity : BaseActivity(), View.OnClickListener {
 
     }
 
-    private fun upView(isListEmpty:Boolean) {
+    private fun upView(isListEmpty: Boolean) {
         binding.smartRefresh.setEnableRefresh(isListEmpty)
     }
 
@@ -245,13 +251,26 @@ class ChargeActivity : BaseActivity(), View.OnClickListener {
             p0 === binding.ivMenu -> RecordActivity.start(this)
             p0 === binding.tvChargingSetting -> showSelectSetting()
             p0 === binding.ivSet -> ChargeSettingActivity.start(this)
+            p0 === binding.ivOffpeakTips ->showPopoffpeak()
         }
     }
 
 
+    private fun showPopoffpeak(){
+        val popuwindow=CustomPopuwindow(this,R.layout.offpeak_tips)
+        popuwindow.setTouchAble(true).showAsDropDown(binding.ivOffpeakTips)
+    }
+
+
+
+
+
     private fun showSelectSetting() {
         OptionsDialog.show(supportFragmentManager, ChargeSettingManager.List.toTypedArray()) {
-
+            when (ChargeSettingManager.List[it]) {
+                "Charging schedule" -> ScheduledChargeActivity.start(this)
+                "Off-peak charging"->ActivityOffpeak.start(this)
+            }
         }
     }
 
@@ -282,10 +301,21 @@ class ChargeActivity : BaseActivity(), View.OnClickListener {
 
 
     private fun chargeAction() {
-        val actionUrl = StatusUtil.getActionUrl(chargeViewModel.status)
-        if (actionUrl.isNotEmpty()) {
-            chargeViewModel.unStartOrStopCharge(actionUrl)
+        AlertDialog.showDialog(
+            supportFragmentManager,
+           "",
+            getString(R.string.m18_confirm),
+            getString(R.string.m16_cancel),
+            getString(R.string.m164_start_charging)
+        ) {
+            val actionUrl = StatusUtil.getActionUrl(chargeViewModel.status)
+            if (actionUrl.isNotEmpty()) {
+                chargeViewModel.unStartOrStopCharge(actionUrl)
+            }
         }
+
+
+
 
     }
 

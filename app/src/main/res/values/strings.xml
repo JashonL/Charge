@@ -204,7 +204,12 @@
     <string name="m160_second_after_send">%ds second after send</string>
 
 
-    <string name="m161_crop_image_menu_crop">裁剪</string>
+    <string name="m161_crop_image_menu_crop">Cropping</string>
     <string name="m162_pick_image_intent_chooser_title">Select source</string>
+    <string name="m163_offpeak_tips">You have enabled off peak charging!</string>
+    <string name="m164_start_charging">Start Charging</string>
+    <string name="m165_reservation_charging">Reservation charging</string>
+    <string name="m166_save">Save</string>
+
 
 </resources>

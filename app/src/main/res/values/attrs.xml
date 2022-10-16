@@ -21,6 +21,12 @@
     </declare-styleable>
 
 
+
+    <declare-styleable name="CheckItemView">
+        <attr name="checkTitle" format="string" />
+    </declare-styleable>
+
+
     <declare-styleable name="PersonalView">
         <attr name="personinfo" format="string" />
     </declare-styleable>

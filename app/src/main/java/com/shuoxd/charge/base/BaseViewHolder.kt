@@ -11,7 +11,6 @@ import com.shuoxd.lib.service.device.IDeviceService
 import com.shuoxd.lib.service.http.IHttpService
 import com.shuoxd.lib.service.location.ILocationService
 import com.shuoxd.lib.service.storage.IStorageService
-import com.shuoxd.charge.base.BaseActivity
 
 open class BaseViewHolder(
     itemView: View,
@@ -63,6 +62,8 @@ open class BaseViewHolder(
         onItemClickListener?.onItemLongClick(v, bindingAdapterPosition)
         return true
     }
+
+
 
 }
 

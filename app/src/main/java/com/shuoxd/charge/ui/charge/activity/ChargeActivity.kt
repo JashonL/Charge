@@ -5,7 +5,6 @@ import android.content.Intent
 import android.os.Bundle
 import android.text.TextUtils
 import android.view.View
-import android.widget.TextView
 import androidx.activity.viewModels
 import androidx.lifecycle.lifecycleScope
 import com.shuoxd.charge.R
@@ -258,7 +257,7 @@ class ChargeActivity : BaseActivity(), View.OnClickListener {
 
     private fun showPopoffpeak(){
         val popuwindow=CustomPopuwindow(this,R.layout.offpeak_tips)
-        popuwindow.setTouchAble(true).showAsDropDown(binding.ivOffpeakTips)
+        popuwindow.showAsDropDown(binding.ivOffpeakTips)
     }
 
 

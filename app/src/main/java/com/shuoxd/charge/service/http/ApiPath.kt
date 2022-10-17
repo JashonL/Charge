@@ -99,6 +99,12 @@ object ApiPath {
          */
         const val DELETECHARGER="v1/charger/removeCharger"
 
+        /**
+         * 获取计划充电信息
+         */
+        const val GETSCHEDULEDCHARGINGBYUSERID="v1/global/getScheduledChargingByUserId"
+
+
     }
 
     object Service {

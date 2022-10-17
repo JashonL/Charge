@@ -1,57 +1,106 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="@dimen/dp_60"
+    android:layout_height="wrap_content"
     android:background="@color/white"
-    android:gravity="center_vertical"
-    android:orientation="horizontal">
+    android:orientation="vertical">
 
 
-    <TextView
-        android:layout_width="@dimen/dp_60"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:text="00:00"
-        android:textColor="@color/color_text_66"
-        android:textSize="@dimen/size_content_sp_14" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_60"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
 
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="-" />
+        <FrameLayout
+            android:layout_width="@dimen/dp_130"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:id="@+id/ll_time"
+                android:visibility="gone"
+                android:layout_width="@dimen/dp_60"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/tv_start_time"
+                    android:layout_width="@dimen/dp_60"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="00:00"
+                    android:textColor="@color/color_text_66"
+                    android:textSize="@dimen/size_content_sp_14" />
 
 
-    <TextView
-        android:layout_width="@dimen/dp_60"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:text="12：00"
-        android:textColor="@color/color_text_66"
-        android:textSize="@dimen/size_content_sp_14" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="-" />
 
 
-    <androidx.legacy.widget.Space
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_weight="1" />
+                <TextView
+                    android:id="@+id/tv_end_time"
+                    android:layout_width="@dimen/dp_60"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="12：00"
+                    android:textColor="@color/color_text_66"
+                    android:textSize="@dimen/size_content_sp_14" />
+
+            </LinearLayout>
 
 
-    <EditText
-        android:layout_width="@dimen/dp_100"
-        android:layout_height="@dimen/dp_40"
-        android:textSize="@dimen/size_content_sp_14"
-        android:textColor="@color/color_text_33"
-        android:background="@drawable/shape_corner" />
+
+            <TextView
+                android:id="@+id/tv_set_time"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="@string/m169_set_time"
+                android:textColor="@color/color_app_main_pressed"
+                android:textSize="@dimen/size_content_sp_14" />
 
 
-    <TextView
-        android:layout_width="@dimen/dp_60"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:text="A"
-        android:textColor="@color/color_text_66"
-        android:textSize="@dimen/size_content_sp_14" />
+
+        </FrameLayout>
+
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+
+
+        <EditText
+            android:id="@+id/et_current"
+            android:layout_width="@dimen/dp_100"
+            android:layout_height="@dimen/dp_40"
+            android:background="@drawable/shape_corner"
+            android:gravity="center"
+            android:textColor="@color/color_text_66"
+            android:textSize="@dimen/size_content_sp_14" />
+
+
+        <TextView
+            android:layout_width="@dimen/dp_40"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="A"
+            android:textColor="@color/color_text_66"
+            android:textSize="@dimen/size_content_sp_14" />
+
+
+        <ImageView
+            android:id="@+id/iv_delete"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/dp_5"
+            android:src="@drawable/delete" />
+
+
+    </LinearLayout>
 
 
 </LinearLayout>

@@ -17,24 +17,28 @@
         android:id="@+id/title_bar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:showRightText="true"
         app:rightText="@string/m166_save"
+        app:showRightText="true"
         app:titleText="@string/m165_reservation_charging" />
 
     <com.shuoxd.charge.view.CheckItemView
         android:id="@+id/chain"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/dp_40" />
+        android:layout_height="@dimen/dp_45"
+        app:checkTitle="@string/m167_enable"
+        android:layout_marginTop="@dimen/dp_10" />
 
 
     <com.shuoxd.charge.view.CheckItemView
-        app:checkTitle="@string/app_name"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/dp_40" />
+        android:layout_height="@dimen/dp_45"
+        android:layout_marginTop="@dimen/dp_1"
+        app:checkTitle="@string/m168_keep_awake" />
 
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_time_list"
+        android:layout_marginTop="@dimen/dp_1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 

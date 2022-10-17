@@ -4,7 +4,6 @@ import android.content.Context
 import android.graphics.drawable.Drawable
 import android.widget.ImageView
 import androidx.core.content.ContextCompat
-import androidx.databinding.BindingAdapter
 import com.shuoxd.charge.R
 import com.shuoxd.charge.application.MainApplication
 import com.shuoxd.charge.service.http.ApiPath
@@ -73,7 +72,7 @@ object StatusUtil {
         return ContextCompat.getDrawable(
             context, when (status) {
                 ChargeStatus.UNAVAILABLE -> R.drawable.cant_start
-                ChargeStatus.AVAILABLE -> R.drawable.cant_start
+                ChargeStatus.AVAILABLE -> R.drawable.start
                 ChargeStatus.PREPEAR -> R.drawable.start
                 ChargeStatus.CHARGING -> R.drawable.start
                 ChargeStatus.DEVICE_STOP -> R.drawable.cant_start

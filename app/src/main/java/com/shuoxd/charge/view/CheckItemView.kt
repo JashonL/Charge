@@ -1,17 +1,15 @@
 package com.shuoxd.charge.view
 
 import android.content.Context
-import android.graphics.drawable.Drawable
 import android.util.AttributeSet
 import android.view.LayoutInflater
-import androidx.constraintlayout.widget.ConstraintLayout
+import android.widget.LinearLayout
 import com.shuoxd.charge.R
-import com.shuoxd.charge.databinding.ChargingItemBinding
 import com.shuoxd.charge.databinding.ItemCheckboxBinding
 
 class CheckItemView @JvmOverloads constructor(
     context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0
-) : ConstraintLayout(context, attrs, defStyleAttr) {
+) : LinearLayout(context, attrs, defStyleAttr) {
 
     private var bingding: ItemCheckboxBinding
 

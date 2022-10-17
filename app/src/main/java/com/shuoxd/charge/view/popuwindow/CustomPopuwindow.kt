@@ -3,8 +3,6 @@ package com.shuoxd.charge.view.popuwindow
 import android.content.Context
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
-import android.text.method.Touch
-import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.LinearLayout
@@ -18,7 +16,7 @@ class CustomPopuwindow(context: Context, layoutRes: Int, initView: ViewInit? = n
     init {
         val inflater = LayoutInflater.from(context)
         this.contentView = inflater.inflate(layoutRes, null) //布局xml
-        this.width = LinearLayout.LayoutParams.MATCH_PARENT //父布局减去padding
+        this.width = LinearLayout.LayoutParams.WRAP_CONTENT //父布局减去padding
         this.height = LinearLayout.LayoutParams.WRAP_CONTENT
         this.animationStyle = R.style.Popup_Anim  //进入和退出动画效果
         this.isOutsideTouchable = true //是否可以
@@ -28,13 +26,11 @@ class CustomPopuwindow(context: Context, layoutRes: Int, initView: ViewInit? = n
         this.setBackgroundDrawable(colorDrawable) //设置背景
         initView?.viewInitListener(contentView)
         this.setTouchInterceptor { view, _ -> false };
+        isTouchable=true
+        this.isFocusable=true
     }
 
 
-    fun setTouchAble(touch: Boolean): CustomPopuwindow {
-        this.setTouchAble(touch)
-        return this
-    }
 
 
     interface ViewInit {

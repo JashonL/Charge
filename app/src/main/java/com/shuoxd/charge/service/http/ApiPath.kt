@@ -105,6 +105,12 @@ object ApiPath {
         const val GETSCHEDULEDCHARGINGBYUSERID="v1/global/getScheduledChargingByUserId"
 
 
+
+        /**
+         * 获取计划充电信息
+         */
+        const val SETSCHEDULEDCHARGING="/v1/global/setScheduledCharging"
+
     }
 
     object Service {

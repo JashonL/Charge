@@ -20,6 +20,7 @@ import com.shuoxd.charge.databinding.ItemScheduledBinding
 import com.shuoxd.charge.model.charge.ScheduledModel
 import com.shuoxd.charge.ui.smartcharge.viewmodel.SehduleViewModel
 import com.shuoxd.charge.view.itemdecoration.DividerItemDecoration
+import com.shuoxd.lib.util.ToastUtil
 import com.shuoxd.lib.util.gone
 import com.shuoxd.lib.util.visible
 import com.shuoxd.lib.view.dialog.OnTimeSetListener
@@ -68,6 +69,48 @@ class ScheduledChargeActivity : BaseActivity(), View.OnClickListener {
             LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
         binding.rvTimeList.adapter = Adapter()
 
+
+
+        binding.titleBar.setOnRightTextClickListener {
+            save()
+        }
+
+    }
+
+
+    private fun save() {
+        val scheduledList = (binding.rvTimeList.adapter as Adapter).scheduledList
+
+        var timeList = ""
+        var limitNumList =""
+        val chargerId = getCurrentChargeModel()?.chargerId
+        val connectorId = "1"
+        val status = if (binding.status.isCheck()) "0" else "1"
+        val keepAwakeStatus = if (binding.keepAwakeStatus.isCheck()) "0" else "1"
+
+        for (i in scheduledList.indices) {
+            val scheduled = scheduledList.get(i)
+            val startTimeText = scheduled.startTimeText
+            val endtIimeText = scheduled.endTimeText
+            val limitNum = scheduled.limitNum
+            if ("--".equals(startTimeText) || "--".equals(endtIimeText) || TextUtils.isEmpty(
+                    limitNum
+                ) ||
+                TextUtils.isEmpty(startTimeText) || TextUtils.isEmpty(endtIimeText)
+            ) {
+                ToastUtil.show(getString(R.string.m170_not_empty))
+                break
+            }
+
+            if (i != 0) {
+                timeList += ",$startTimeText-$endtIimeText"
+                limitNumList += ",$limitNum"
+            } else {
+                timeList = "$startTimeText-$endtIimeText"
+                limitNumList = ",$limitNum"
+            }
+        }
+        sehduleViewModel.setScheduledCharging(timeList,limitNumList,chargerId,connectorId,status,keepAwakeStatus)
 
     }
 
@@ -129,7 +172,7 @@ class ScheduledChargeActivity : BaseActivity(), View.OnClickListener {
         @SuppressLint("NotifyDataSetChanged")
         fun addData(period: ScheduledModel.Period) {
             this.scheduledList.add(period)
-            if (scheduledList.size>=4){
+            if (scheduledList.size >= 4) {
                 binding.btAdd.gone()
             }
             notifyDataSetChanged()
@@ -191,7 +234,7 @@ class ScheduledChargeActivity : BaseActivity(), View.OnClickListener {
         @SuppressLint("NotifyDataSetChanged")
         fun deleteItem(position: Int) {
             this.scheduledList.removeAt(position)
-            if (scheduledList.size<4){
+            if (scheduledList.size < 4) {
                 binding.btAdd.visible()
             }
 
@@ -292,9 +335,6 @@ class ScheduledChargeActivity : BaseActivity(), View.OnClickListener {
         (binding.rvTimeList.adapter as Adapter).addData(period)
 
     }
-
-
-
 
 
 }

@@ -19,7 +19,7 @@ class SehduleViewModel :BaseViewModel() {
 
 
     /**
-     * 删除充电桩
+     * 获取预约充电数据
      */
     fun getScheduledChargingByUserId(userId: String?,chargerId:String?,connectorId:String?) {
 
@@ -32,6 +32,47 @@ class SehduleViewModel :BaseViewModel() {
         viewModelScope.launch {
             apiService().postForm(
                 ApiPath.Charge.GETSCHEDULEDCHARGINGBYUSERID,
+                params,
+                object : HttpCallback< HttpResult<ScheduledModel>>() {
+                    override fun success(result: HttpResult<ScheduledModel>) {
+                        scheduleLiveData.value = Pair(result.isBusinessSuccess(),result.obj)
+                    }
+
+                    override fun onFailure(errorModel: HttpErrorModel) {
+                        scheduleLiveData.value = Pair(false,null)
+                    }
+
+                })
+        }
+
+
+    }
+
+
+
+
+    /**
+     * 设置预约充电数据
+     */
+    fun setScheduledCharging(timeList: String,limitNumList:String,chargerId:String?,
+                             connectorId:String,
+                             status:String,
+                             keepAwakeStatus:String
+    ) {
+
+        val params = hashMapOf<String, String>().apply {
+            put("timeList", timeList)
+            put("limitNumList", limitNumList)
+            put("chargerId", chargerId?:"")
+            put("connectorId", connectorId)
+            put("status", status)
+            put("keepAwakeStatus", keepAwakeStatus)
+
+        }
+
+        viewModelScope.launch {
+            apiService().postForm(
+                ApiPath.Charge.SETSCHEDULEDCHARGING,
                 params,
                 object : HttpCallback< HttpResult<ScheduledModel>>() {
                     override fun success(result: HttpResult<ScheduledModel>) {

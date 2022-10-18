@@ -45,5 +45,10 @@ class CheckItemView @JvmOverloads constructor(
         bingding.itemCheckbox.isChecked=b
     }
 
+    fun isCheck() :Boolean{
+        return bingding.itemCheckbox.isChecked
+    }
+
+
 
 }

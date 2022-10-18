@@ -22,7 +22,7 @@
         app:titleText="@string/m165_reservation_charging" />
 
     <com.shuoxd.charge.view.CheckItemView
-        android:id="@+id/chain"
+        android:id="@+id/status"
         android:layout_width="match_parent"
         android:layout_height="@dimen/dp_45"
         app:checkTitle="@string/m167_enable"
@@ -30,6 +30,7 @@
 
 
     <com.shuoxd.charge.view.CheckItemView
+        android:id="@+id/keepAwakeStatus"
         android:layout_width="match_parent"
         android:layout_height="@dimen/dp_45"
         android:layout_marginTop="@dimen/dp_1"

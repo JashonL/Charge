@@ -129,6 +129,9 @@ class ScheduledChargeActivity : BaseActivity(), View.OnClickListener {
         @SuppressLint("NotifyDataSetChanged")
         fun addData(period: ScheduledModel.Period) {
             this.scheduledList.add(period)
+            if (scheduledList.size>=4){
+                binding.btAdd.gone()
+            }
             notifyDataSetChanged()
         }
 
@@ -146,30 +149,55 @@ class ScheduledChargeActivity : BaseActivity(), View.OnClickListener {
         override fun onItemChildClick(v: View?, position: Int, binding: ItemScheduledBinding) {
             when {
                 v === binding.ivDelete -> deleteItem(position)
-                v === binding.tvEndTime -> {}
-                v === binding.tvStartTime -> {}
-                v === binding.tvSetTime -> {
-                    TimePickerFragment.show(
-                        supportFragmentManager,
-                        -1,
-                        -1,
-                        object : OnTimeSetListener {
-                            override fun onTimeSelected(hour: Int, min: Int) {
-                            }
-
-                        })
-
-                }
-
-
+                v === binding.tvEndTime -> setItemTime(false, position)
+                v === binding.tvStartTime -> setItemTime(true, position)
             }
+        }
+
+
+        private fun setItemTime(startOrEnd: Boolean, position: Int) {
+            TimePickerFragment.show(
+                supportFragmentManager,
+                -1,
+                -1,
+                object : OnTimeSetListener {
+                    override fun onTimeSelected(hour: Int, min: Int) {
+                        val time = String.format("%02d:%02d", hour, min)
+                        if (startOrEnd) {
+                            setItemStartTime(position, time)
+                        } else {
+                            setItemEndTime(position, time)
+                        }
+                    }
+
+                })
+        }
+
+
+        @SuppressLint("NotifyDataSetChanged")
+        fun setItemStartTime(position: Int, time: String) {
+            scheduledList.get(position).startTimeText = time
+            notifyDataSetChanged()
+        }
+
+
+        @SuppressLint("NotifyDataSetChanged")
+        fun setItemEndTime(position: Int, time: String) {
+            scheduledList.get(position).endTimeText = time
+            notifyDataSetChanged()
         }
 
 
         @SuppressLint("NotifyDataSetChanged")
         fun deleteItem(position: Int) {
             this.scheduledList.removeAt(position)
+            if (scheduledList.size<4){
+                binding.btAdd.visible()
+            }
+
             notifyDataSetChanged()
+
+
         }
 
 
@@ -205,9 +233,7 @@ class ScheduledChargeActivity : BaseActivity(), View.OnClickListener {
                 }
 
 
-                holder.binding.tvSetTime.setOnClickListener {
-                    onitemChildClick.onItemChildClick(it, holder.bindingAdapterPosition, binding)
-                }
+
 
 
                 return holder
@@ -219,8 +245,9 @@ class ScheduledChargeActivity : BaseActivity(), View.OnClickListener {
             val startTimeText = period.startTimeText
             if (TextUtils.isEmpty(startTimeText)) {
                 binding.llTime.gone()
-                binding.tvSetTime.visible()
             } else {
+                binding.llTime.visible()
+
                 binding.tvStartTime.text = period.startTimeText
                 binding.tvEndTime.text = period.endTimeText
                 binding.etCurrent.setText(period.limitNum.toString())
@@ -257,14 +284,17 @@ class ScheduledChargeActivity : BaseActivity(), View.OnClickListener {
             0,
             currentChargeModel?.chargerId,
             user?.id?.toInt(),
-            "",
-            "",
-            0
+            "--:--",
+            "--:--",
+            ""
         )
 
         (binding.rvTimeList.adapter as Adapter).addData(period)
 
     }
+
+
+
 
 
 }

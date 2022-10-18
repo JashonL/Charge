@@ -6,12 +6,12 @@ data class ScheduledModel(
     val scList: List<Period>
 ) {
     data class Period(
-        val id: Int,
-        val chargerId: String?,
-        val userId: Int?,
-        val startTimeText: String,
-        val endTimeText: String,
-        val limitNum: Int)
+        var id: Int,
+        var chargerId: String?,
+        var userId: Int?,
+        var startTimeText: String,
+        var endTimeText: String,
+        var limitNum: String)
 }
 
 

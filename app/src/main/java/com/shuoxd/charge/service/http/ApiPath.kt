@@ -111,6 +111,18 @@ object ApiPath {
          */
         const val SETSCHEDULEDCHARGING="/v1/global/setScheduledCharging"
 
+
+
+        /**
+         * 获取非高峰充电
+         */
+        const val GETOFFPEAKCHARGINGBYUSERID="/v1/global/getOffPeakChargingByUserId"
+
+        /**
+         * 设置非高峰充电
+         */
+        const val SETOFFPEAKCHARGING="/v1/global/setOffPeakCharging"
+
     }
 
     object Service {

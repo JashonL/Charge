@@ -2,6 +2,8 @@ package com.shuoxd.charge.ui.smartcharge.viewmodel
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
+import com.shuoxd.charge.R
+import com.shuoxd.charge.application.MainApplication
 import com.shuoxd.charge.base.BaseViewModel
 import com.shuoxd.charge.model.charge.ScheduledModel
 import com.shuoxd.charge.service.http.ApiPath
@@ -14,6 +16,8 @@ class SehduleViewModel :BaseViewModel() {
 
 
     val scheduleLiveData = MutableLiveData<Pair<Boolean, ScheduledModel?>>()
+
+    val setScheduleLiveData=MutableLiveData<Pair<Boolean,String>>()
 
 
 
@@ -76,11 +80,21 @@ class SehduleViewModel :BaseViewModel() {
                 params,
                 object : HttpCallback< HttpResult<ScheduledModel>>() {
                     override fun success(result: HttpResult<ScheduledModel>) {
-                        scheduleLiveData.value = Pair(result.isBusinessSuccess(),result.obj)
+                        val msg = result.msg
+                        if (result.isBusinessSuccess()) {
+                            setScheduleLiveData.value = Pair(result.isBusinessSuccess(),
+                                msg?: MainApplication.instance().getString(
+                                    R.string.m131_set_success))
+                        }else{
+                            setScheduleLiveData.value = Pair(result.isBusinessSuccess(),
+                                msg?: MainApplication.instance().getString(
+                                    R.string.m132_set_fail))
+                        }
+
                     }
 
                     override fun onFailure(errorModel: HttpErrorModel) {
-                        scheduleLiveData.value = Pair(false,null)
+                        setScheduleLiveData.value = Pair(false,errorModel.errorMsg ?: "")
                     }
 
                 })

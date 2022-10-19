@@ -19,13 +19,15 @@
         android:layout_height="wrap_content"
         app:showRightText="true"
         app:rightText="@string/m166_save"
-        app:titleText="@string/m165_reservation_charging" />
+        app:titleText="@string/m171_offpeak" />
 
 
     <com.shuoxd.charge.view.CheckItemView
-        android:id="@+id/chain"
+        android:id="@+id/enable"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/dp_40" />
+        android:layout_height="@dimen/dp_45"
+        app:checkTitle="@string/m167_enable"
+        android:layout_marginTop="@dimen/dp_10" />
 
 
     <androidx.recyclerview.widget.RecyclerView

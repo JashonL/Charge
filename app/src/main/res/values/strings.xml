@@ -215,6 +215,8 @@
     <string name="m169_set_time">Set time</string>
     <string name="m170_not_empty">Content cannot be empty</string>
 
+    <string name="m171_offpeak">非高峰充电</string>
+
 
 
 </resources>

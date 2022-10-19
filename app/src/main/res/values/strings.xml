@@ -127,17 +127,18 @@
     <string name="m98_charge_finish">charging finish</string>
     <string name="m99_reservce">reserving…</string>
     <string name="m100_unavailable1">offline</string>
+
     <string name="m101_fault">error</string>
     <string name="m102_device_stop">charger unavailable</string>
     <string name="m103_unlock_gun">unlock</string>
     <string name="m104_unlock_gun_tips">Are you sure you want to unlock the gun？</string>
-
     <string name="m105_unlock_success">unlock success</string>
     <string name="m106_unlock_fail">unlock fail</string>
     <string name="m107_logout">Logout</string>
     <string name="m108_add_your_charge">Add charger</string>
     <string name="m109_authorize">Authorize Charger to Other</string>
     <string name="m110_personal_info">User Information</string>
+
     <string name="m111_help_support">Support</string>
     <string name="m112_other">Other</string>
     <string name="m113_enter_serial">Please enter the charger serial number</string>
@@ -150,7 +151,6 @@
     <string name="m120_money">Money</string>
 
     <string name="m121_norecord">not record</string>
-
     <string name="m122_bluetooth_connection">Bluetooth Connection</string>
     <string name="m123_wifi_account">WIFI Account</string>
     <string name="m124_wifi_password">WIFI Password</string>
@@ -169,7 +169,6 @@
     <string name="m136_choose">Select Charger</string>
     <string name="m137_add_success">Add Success</string>
     <string name="m138_add_fail">Add Fail</string>
-
     <string name="m139_change_password">Modify Password</string>
     <string name="m140_mailbox">Mailbox</string>
 
@@ -216,6 +215,8 @@
     <string name="m170_not_empty">Content cannot be empty</string>
 
     <string name="m171_offpeak">非高峰充电</string>
+    <string name="m172_connect_ev">Connect EV</string>
+    <string name="m173_disconnect_ev">Disconnect EV</string>
 
 
 

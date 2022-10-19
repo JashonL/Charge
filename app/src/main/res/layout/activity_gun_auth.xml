@@ -23,7 +23,7 @@
 
 
     <com.shuoxd.charge.view.CheckItemView
-        android:id="@+id/chain"
+        android:id="@+id/item_auth"
         android:layout_width="match_parent"
         android:layout_height="@dimen/dp_40" />
 
@@ -39,7 +39,7 @@
         android:layout_marginTop="50dp"
         android:layout_marginEnd="36dp"
         android:background="@drawable/selector_button_rect"
-        android:text="@string/m114_add"
+        android:text="@string/m18_confirm"
         android:textAllCaps="false"
         android:textColor="@color/white"
         android:textSize="@dimen/size_content_sp_12" />

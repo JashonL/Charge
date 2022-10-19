@@ -5,7 +5,7 @@ import android.content.Context
 object ChargeSettingManager {
 
 
-    val List = mutableListOf<String>("SOC settings", "Charging schedule","Solar charging","Off-peak charging")
+    val List = mutableListOf("SOC settings", "Charging schedule","Solar charging","Off-peak charging","Auth gun")
 
 
     public fun toSetCharge(context: Context, setIndex: Int) {

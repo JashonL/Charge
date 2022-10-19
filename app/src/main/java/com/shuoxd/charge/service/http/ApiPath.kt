@@ -123,6 +123,22 @@ object ApiPath {
          */
         const val SETOFFPEAKCHARGING="/v1/global/setOffPeakCharging"
 
+
+        /**
+         * 获取充电桩授权状态
+         */
+        const val CONNECTORAUTHORIZESTATUS="/v1/charger/connectorAuthorizeStatus"
+
+
+
+        /**
+         * 修改充电桩授权状态
+         */
+        const val AUTHORIZECONNECTOR="/v1/charger/authorizeConnector"
+
+
+
+
     }
 
     object Service {

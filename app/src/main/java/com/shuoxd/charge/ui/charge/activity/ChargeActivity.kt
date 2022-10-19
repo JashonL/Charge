@@ -12,6 +12,7 @@ import com.shuoxd.charge.base.BaseActivity
 import com.shuoxd.charge.databinding.ActivityChargeBinding
 import com.shuoxd.charge.model.charge.ChargeModel
 import com.shuoxd.charge.service.charge.ChargeSettingManager
+import com.shuoxd.charge.ui.authorize.activity.GunAuthActivity
 import com.shuoxd.charge.ui.charge.monitor.ChargeAactivityMonitor
 import com.shuoxd.charge.ui.charge.viewmodel.ChargeViewModel
 import com.shuoxd.charge.ui.chargesetting.activity.ChargeSettingActivity
@@ -269,6 +270,8 @@ class ChargeActivity : BaseActivity(), View.OnClickListener {
             when (ChargeSettingManager.List[it]) {
                 "Charging schedule" -> ScheduledChargeActivity.start(this)
                 "Off-peak charging"->ActivityOffpeak.start(this)
+                "Auth gun"->GunAuthActivity.start(this)
+
             }
         }
     }

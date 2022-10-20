@@ -110,6 +110,9 @@ class ScheduledChargeActivity : BaseActivity(), View.OnClickListener {
                 limitNumList = ",$limitNum"
             }
         }
+
+        if (TextUtils.isEmpty(timeList)||TextUtils.isEmpty(limitNumList))return
+
         sehduleViewModel.setScheduledCharging(timeList,limitNumList,chargerId,connectorId,status,keepAwakeStatus)
 
     }

@@ -109,32 +109,32 @@ object ApiPath {
         /**
          * 获取计划充电信息
          */
-        const val SETSCHEDULEDCHARGING="/v1/global/setScheduledCharging"
+        const val SETSCHEDULEDCHARGING="v1/global/setScheduledCharging"
 
 
 
         /**
          * 获取非高峰充电
          */
-        const val GETOFFPEAKCHARGINGBYUSERID="/v1/global/getOffPeakChargingByUserId"
+        const val GETOFFPEAKCHARGINGBYUSERID="v1/global/getOffPeakChargingByUserId"
 
         /**
          * 设置非高峰充电
          */
-        const val SETOFFPEAKCHARGING="/v1/global/setOffPeakCharging"
+        const val SETOFFPEAKCHARGING="v1/global/setOffPeakCharging"
 
 
         /**
          * 获取充电桩授权状态
          */
-        const val CONNECTORAUTHORIZESTATUS="/v1/charger/connectorAuthorizeStatus"
+        const val CONNECTORAUTHORIZESTATUS="v1/charger/connectorAuthorizeStatus"
 
 
 
         /**
          * 修改充电桩授权状态
          */
-        const val AUTHORIZECONNECTOR="/v1/charger/authorizeConnector"
+        const val AUTHORIZECONNECTOR="v1/charger/authorizeConnector"
 
 
 

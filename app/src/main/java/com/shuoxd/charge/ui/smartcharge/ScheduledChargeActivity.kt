@@ -4,7 +4,9 @@ import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.text.Editable
 import android.text.TextUtils
+import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -82,11 +84,14 @@ class ScheduledChargeActivity : BaseActivity(), View.OnClickListener {
         val scheduledList = (binding.rvTimeList.adapter as Adapter).scheduledList
 
         var timeList = ""
-        var limitNumList =""
+        var limitNumList = ""
         val chargerId = getCurrentChargeModel()?.chargerId
         val connectorId = "1"
-        val status = if (binding.status.isCheck()) "0" else "1"
-        val keepAwakeStatus = if (binding.keepAwakeStatus.isCheck()) "0" else "1"
+        val status = if (binding.status.isCheck()) "1" else "0"
+        val keepAwakeStatus = if (binding.keepAwakeStatus.isCheck()) "1" else "0"
+
+
+        var isEmpty = false
 
         for (i in scheduledList.indices) {
             val scheduled = scheduledList.get(i)
@@ -98,6 +103,7 @@ class ScheduledChargeActivity : BaseActivity(), View.OnClickListener {
                 ) ||
                 TextUtils.isEmpty(startTimeText) || TextUtils.isEmpty(endtIimeText)
             ) {
+                isEmpty = true
                 ToastUtil.show(getString(R.string.m170_not_empty))
                 break
             }
@@ -106,14 +112,21 @@ class ScheduledChargeActivity : BaseActivity(), View.OnClickListener {
                 timeList += ",$startTimeText-$endtIimeText"
                 limitNumList += ",$limitNum"
             } else {
-                timeList = "$startTimeText-$endtIimeText"
-                limitNumList = ",$limitNum"
+                timeList += "$startTimeText-$endtIimeText"
+                limitNumList += limitNum
             }
         }
 
-        if (TextUtils.isEmpty(timeList)||TextUtils.isEmpty(limitNumList))return
+        if (isEmpty) return
 
-        sehduleViewModel.setScheduledCharging(timeList,limitNumList,chargerId,connectorId,status,keepAwakeStatus)
+        sehduleViewModel.setScheduledCharging(
+            timeList,
+            limitNumList,
+            chargerId,
+            connectorId,
+            status,
+            keepAwakeStatus
+        )
 
     }
 
@@ -136,12 +149,16 @@ class ScheduledChargeActivity : BaseActivity(), View.OnClickListener {
         sehduleViewModel.scheduleLiveData.observe(this) {
             dismissDialog()
             if (it.first) {
+                val status = it.second?.status
+                val keepAwakeStatus = it.second?.keepAwakeStatus
+                binding.status.setCheck("1".equals(status))
+                binding.keepAwakeStatus.setCheck("1".equals(keepAwakeStatus))
                 val scList = it.second?.scList
                 scList?.let { it1 -> (binding.rvTimeList.adapter as Adapter).refresh(it1) }
             }
         }
 
-        sehduleViewModel.setScheduleLiveData.observe(this){
+        sehduleViewModel.setScheduleLiveData.observe(this) {
             dismissDialog()
             ToastUtil.show(it.second)
 
@@ -153,13 +170,13 @@ class ScheduledChargeActivity : BaseActivity(), View.OnClickListener {
 
     inner class Adapter(var scheduledList: MutableList<ScheduledModel.Period> = mutableListOf()) :
         RecyclerView.Adapter<ScheduledViewHolder>(), OnItemClickListener,
-        ScheduledViewHolder.OnItemChildClickListener {
+        ScheduledViewHolder.OnItemChildClickListener, ScheduledViewHolder.OnItemTextChangeLisener {
 
         override fun onCreateViewHolder(
             parent: ViewGroup,
             viewType: Int
         ): ScheduledViewHolder {
-            val holder = ScheduledViewHolder.create(parent, this, this)
+            val holder = ScheduledViewHolder.create(parent, this, this, this)
             return holder;
         }
 
@@ -226,6 +243,16 @@ class ScheduledChargeActivity : BaseActivity(), View.OnClickListener {
                 })
         }
 
+        override fun itemTextChangeListener(
+            editable: Editable?,
+            position: Int,
+            binding: ItemScheduledBinding
+        ) {
+            val current = editable.toString()
+            scheduledList.get(position).limitNum = current
+
+        }
+
 
         @SuppressLint("NotifyDataSetChanged")
         fun setItemStartTime(position: Int, time: String) {
@@ -266,7 +293,8 @@ class ScheduledChargeActivity : BaseActivity(), View.OnClickListener {
             fun create(
                 parent: ViewGroup,
                 onItemClickListener: OnItemClickListener?,
-                onitemChildClick: OnItemChildClickListener
+                onitemChildClick: OnItemChildClickListener,
+                onitemTextChangeLisener: OnItemTextChangeLisener
             ): ScheduledViewHolder {
                 val binding = ItemScheduledBinding.inflate(LayoutInflater.from(parent.context))
                 val holder = ScheduledViewHolder(binding.root, onItemClickListener)
@@ -286,9 +314,29 @@ class ScheduledChargeActivity : BaseActivity(), View.OnClickListener {
                 }
 
 
+                holder.binding.etCurrent.requestFocus()
+                if ( holder.binding.etCurrent.tag is TextWatcher) {
+                    holder.binding.etCurrent.removeTextChangedListener( holder.binding.etCurrent.getTag() as TextWatcher)
+                }
 
+                val textWatcher = object : TextWatcher {
+                    override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+                    }
 
+                    override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
 
+                    }
+
+                    override fun afterTextChanged(s: Editable?) {
+                        onitemTextChangeLisener.itemTextChangeListener(
+                            s,
+                            holder.bindingAdapterPosition,
+                            binding
+                        )
+                    }
+                }
+                holder.binding.etCurrent.addTextChangedListener(textWatcher)
+                holder.binding.etCurrent.tag = textWatcher
                 return holder
             }
         }
@@ -311,12 +359,17 @@ class ScheduledChargeActivity : BaseActivity(), View.OnClickListener {
 
 
         interface OnItemChildClickListener {
-
             fun onItemChildClick(v: View?, position: Int, binding: ItemScheduledBinding) {}
-
         }
 
-
+        interface OnItemTextChangeLisener {
+            fun itemTextChangeListener(
+                editable: Editable?,
+                position: Int,
+                binding: ItemScheduledBinding
+            ) {
+            }
+        }
     }
 
 

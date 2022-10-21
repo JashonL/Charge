@@ -38,8 +38,8 @@ object StatusUtil {
     ) {
         when (status) {
             ChargeStatus.UNAVAILABLE -> GlideUtil.showImage(context,R.drawable.unavailable,imageView,R.drawable.unavailable)
-            ChargeStatus.AVAILABLE -> GlideUtil.showGif(context, R.drawable.pre_75, imageView)
-            ChargeStatus.PREPEAR -> GlideUtil.showGif(context, R.drawable.pre_75, imageView)
+            ChargeStatus.AVAILABLE -> GlideUtil.showImage(context, R.drawable.available, imageView,R.drawable.available)
+            ChargeStatus.PREPEAR -> GlideUtil.showImage(context, R.drawable.available, imageView,R.drawable.available)
 
             ChargeStatus.CHARGING ->
                 if (energy < 5) {

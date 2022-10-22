@@ -192,7 +192,7 @@
         android:id="@+id/bottom_line"
         android:layout_width="match_parent"
         android:layout_height="@dimen/dp_1"
-        android:background="@color/gray"
+        android:background="@color/gray_eeeeeee"
         app:layout_constraintTop_toBottomOf="@+id/tv_end_time" />
 
     <TextView

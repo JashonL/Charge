@@ -32,6 +32,12 @@ class ChargeViewModel : BaseViewModel() {
 
 
 
+    lateinit var valueCurrent:Pair<String, String>
+    lateinit var valueVoltage:Pair<String, String>
+    lateinit var valuePower:Pair<String, String>
+
+
+
     fun getChargeList(
         email: String,
     ) {

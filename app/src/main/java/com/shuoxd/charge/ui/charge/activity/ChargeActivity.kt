@@ -23,9 +23,12 @@ import com.shuoxd.charge.ui.smartcharge.ScheduledChargeActivity
 import com.shuoxd.charge.util.StatusUtil
 import com.shuoxd.charge.util.ValueUtil
 import com.shuoxd.charge.view.dialog.AlertDialog
+import com.shuoxd.charge.view.dialog.CustomViewDialog
 import com.shuoxd.charge.view.dialog.OptionsDialog
 import com.shuoxd.charge.view.popuwindow.CustomPopuwindow
 import com.shuoxd.lib.util.ToastUtil
+import com.shuoxd.lib.util.gone
+import com.shuoxd.lib.util.visible
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
@@ -128,6 +131,7 @@ class ChargeActivity : BaseActivity(), View.OnClickListener {
         binding.tvChargingSetting.setOnClickListener(this)
         binding.ivSet.setOnClickListener(this)
         binding.ivOffpeakTips.setOnClickListener(this)
+        binding.dataViewPower.setOnClickListener(this)
     }
 
 
@@ -169,15 +173,29 @@ class ChargeActivity : BaseActivity(), View.OnClickListener {
                     StatusUtil.setImageStatus(this, it.status, binding.ivChargeStatus, 50)
                     val valueFromKWh = ValueUtil.valueFromKWh(it.transaction.energyKWH)
                     val valueFromA = ValueUtil.valueFromA(it.transaction.current)
-                    val valueFromW = ValueUtil.valueFromW(it.transaction.power)
+                    val valueFromW = ValueUtil.valueFromW(it.transaction.powerKW)
                     val valueFromCost = ValueUtil.valueFromCost(it.transaction.cost)
 
+
+                    if (it.transaction.powerKW==0.0||it.transaction.current==0.0){
+                        chargeViewModel.valueVoltage = ValueUtil.valueFromV(0.0)
+                    }else{
+                        chargeViewModel.valueVoltage = ValueUtil.valueFromV(it.transaction.powerKW/it.transaction.current)
+                    }
+
+
+                    chargeViewModel.valueCurrent = valueFromA
+                    chargeViewModel.valuePower = valueFromW
+
+
+
+
                     binding.dataViewCapacity.setValue(valueFromKWh.first + valueFromKWh.second)
-                    binding.dataViewCurrent.setValue(valueFromA.first + valueFromA.second)
-                    binding.dataViewVoltage.setValue(valueFromW.first + valueFromW.second)
+                    binding.dataViewPower.setValue(valueFromW.first + valueFromW.second)
+//                    binding.dataViewVoltage.setValue(valueFromW.first + valueFromW.second)
                     binding.dataViewConsumption.setValue(valueFromCost)
                     binding.dataViewTime.setValue(it.transaction.charingTimeText)
-
+                    if (it.transaction.offPeakStatus == 1) binding.ivOffpeakTips.visible() else binding.ivOffpeakTips.gone()
 
                 }
 
@@ -251,26 +269,34 @@ class ChargeActivity : BaseActivity(), View.OnClickListener {
             p0 === binding.ivMenu -> RecordActivity.start(this)
             p0 === binding.tvChargingSetting -> showSelectSetting()
             p0 === binding.ivSet -> ChargeSettingActivity.start(this)
-            p0 === binding.ivOffpeakTips ->showPopoffpeak()
+            p0 === binding.ivOffpeakTips -> showPopoffpeak()
+            p0 === binding.dataViewPower -> showCurrentVoltage()
         }
     }
 
 
-    private fun showPopoffpeak(){
-        val popuwindow=CustomPopuwindow(this,R.layout.offpeak_tips)
-        popuwindow.showAsDropDown(binding.ivOffpeakTips)
+    private fun showCurrentVoltage() {
+        CustomViewDialog.show(
+            supportFragmentManager,
+            chargeViewModel.valueCurrent,
+            chargeViewModel.valueVoltage,
+            chargeViewModel.valuePower
+            )
     }
 
 
-
+    private fun showPopoffpeak() {
+        val popuwindow = CustomPopuwindow(this, R.layout.offpeak_tips)
+        popuwindow.showAsDropDown(binding.ivOffpeakTips)
+    }
 
 
     private fun showSelectSetting() {
         OptionsDialog.show(supportFragmentManager, ChargeSettingManager.List.toTypedArray()) {
             when (ChargeSettingManager.List[it]) {
                 "Charging schedule" -> ScheduledChargeActivity.start(this)
-                "Off-peak charging"->ActivityOffpeak.start(this)
-                "Auth gun"->GunAuthActivity.start(this)
+                "Off-peak charging" -> ActivityOffpeak.start(this)
+                "Auth gun" -> GunAuthActivity.start(this)
 
             }
         }
@@ -305,7 +331,7 @@ class ChargeActivity : BaseActivity(), View.OnClickListener {
     private fun chargeAction() {
         AlertDialog.showDialog(
             supportFragmentManager,
-           "",
+            "",
             getString(R.string.m18_confirm),
             getString(R.string.m16_cancel),
             getString(R.string.m164_start_charging)
@@ -315,8 +341,6 @@ class ChargeActivity : BaseActivity(), View.OnClickListener {
                 chargeViewModel.unStartOrStopCharge(actionUrl)
             }
         }
-
-
 
 
     }

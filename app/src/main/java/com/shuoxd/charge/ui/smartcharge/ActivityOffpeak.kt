@@ -16,7 +16,7 @@ import com.shuoxd.charge.base.BaseActivity
 import com.shuoxd.charge.base.BaseViewHolder
 import com.shuoxd.charge.base.OnItemClickListener
 import com.shuoxd.charge.databinding.ActivityOffpeakBinding
-import com.shuoxd.charge.databinding.ItemScheduledBinding
+import com.shuoxd.charge.databinding.ItemOffpeakBinding
 import com.shuoxd.charge.model.charge.OffPeakModel
 import com.shuoxd.charge.ui.smartcharge.viewmodel.OffpeakViewModel
 import com.shuoxd.charge.view.itemdecoration.DividerItemDecoration
@@ -85,7 +85,7 @@ class ActivityOffpeak:BaseActivity() , View.OnClickListener{
         var timeList = ""
         val chargerId = getCurrentChargeModel()?.chargerId
         val connectorId = "1"
-        val status = if (binding.enable.isCheck()) "0" else "1"
+        val status = if (binding.enable.isCheck()) "1" else "0"
 
         for (i in offpeakList.indices) {
             val scheduled = offpeakList.get(i)
@@ -193,7 +193,7 @@ class ActivityOffpeak:BaseActivity() , View.OnClickListener{
         }
 
 
-        override fun onItemChildClick(v: View?, position: Int, binding: ItemScheduledBinding) {
+        override fun onItemChildClick(v: View?, position: Int, binding: ItemOffpeakBinding) {
             when {
                 v === binding.ivDelete -> deleteItem(position)
                 v === binding.tvEndTime -> setItemTime(false, position)
@@ -251,7 +251,7 @@ class ActivityOffpeak:BaseActivity() , View.OnClickListener{
     class OffpeakViewHolder(itemView: View, onItemClickListener: OnItemClickListener? = null) :
         BaseViewHolder(itemView, onItemClickListener) {
 
-        lateinit var binding: ItemScheduledBinding
+        lateinit var binding: ItemOffpeakBinding
 
         companion object {
             fun create(
@@ -259,7 +259,8 @@ class ActivityOffpeak:BaseActivity() , View.OnClickListener{
                 onItemClickListener: OnItemClickListener?,
                 onitemChildClick: OnItemChildClickListener
             ): OffpeakViewHolder {
-                val binding = ItemScheduledBinding.inflate(LayoutInflater.from(parent.context))
+                val binding = ItemOffpeakBinding.inflate(LayoutInflater.from(parent.context),  parent,
+                    false)
                 val holder = OffpeakViewHolder(binding.root, onItemClickListener)
                 holder.binding = binding
                 holder.binding.root.setOnLongClickListener(holder)
@@ -288,7 +289,7 @@ class ActivityOffpeak:BaseActivity() , View.OnClickListener{
 
         interface OnItemChildClickListener {
 
-            fun onItemChildClick(v: View?, position: Int, binding: ItemScheduledBinding) {}
+            fun onItemChildClick(v: View?, position: Int, binding: ItemOffpeakBinding) {}
 
         }
 

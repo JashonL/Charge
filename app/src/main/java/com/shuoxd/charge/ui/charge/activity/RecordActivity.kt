@@ -62,7 +62,8 @@ class RecordActivity : BaseActivity() {
             DividerItemDecoration(
                 this,
                 LinearLayoutManager.VERTICAL,
-                resources.getColor(R.color.transparent)
+                resources.getColor(R.color.transparent),
+                10f
             )
         )
         binding.rlvRecord.adapter = Adapter().also {

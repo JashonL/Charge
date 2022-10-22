@@ -217,6 +217,7 @@
     <string name="m171_offpeak">非高峰充电</string>
     <string name="m172_connect_ev">Connect EV</string>
     <string name="m173_disconnect_ev">Disconnect EV</string>
+    <string name="m174_authentication">Authentication</string>
 
 
 

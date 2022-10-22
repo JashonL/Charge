@@ -227,20 +227,20 @@
                                 app:title="@string/m92_energy" />
 
                             <com.shuoxd.charge.view.DataItemView
-                                android:id="@+id/dataView_current"
+                                android:id="@+id/dataView_power"
                                 android:layout_width="0dp"
                                 android:layout_height="match_parent"
                                 android:layout_weight="1"
                                 app:lefticon="@drawable/current"
-                                app:title="@string/m93_current" />
+                                app:title="@string/m128_power" />
 
-                            <com.shuoxd.charge.view.DataItemView
+                      <!--      <com.shuoxd.charge.view.DataItemView
                                 android:id="@+id/dataView_voltage"
                                 android:layout_width="0dp"
                                 android:layout_height="match_parent"
                                 android:layout_weight="1"
                                 app:lefticon="@drawable/voltage"
-                                app:title="@string/m128_power" />
+                                app:title="@string/m128_power" />-->
 
 
                         </LinearLayout>

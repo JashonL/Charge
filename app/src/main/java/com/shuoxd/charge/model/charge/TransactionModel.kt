@@ -20,8 +20,9 @@ data class TransactionModel(
         val energyKWH: Double?,
         val charingTimeText: String,
         val cost: Double,
-        val power: Double,
-        val current: Double
+        val powerKW: Double,
+        val current: Double,
+        val offPeakStatus:Int
     )
 
 

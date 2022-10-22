@@ -17,13 +17,15 @@
         android:id="@+id/title_bar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:showRightText="true"
+        app:showRightText="false"
         app:rightText="@string/m166_save"
         app:titleText="@string/m165_reservation_charging" />
 
 
     <com.shuoxd.charge.view.CheckItemView
         android:id="@+id/item_auth"
+        android:layout_marginTop="@dimen/dp_10"
+        app:checkTitle="@string/m174_authentication"
         android:layout_width="match_parent"
         android:layout_height="@dimen/dp_40" />
 

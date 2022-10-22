@@ -292,8 +292,8 @@ class MineActivity : BaseActivity(), View.OnClickListener {
             AlertDialog.showDialog(
                 supportFragmentManager,
                 getString(R.string.m155_delete_tips),
-                getString(R.string.m18_confirm),
                 getString(R.string.m16_cancel),
+                getString(R.string.m18_confirm),
                 getString(R.string.m154_delete_charge)
             ) {
                 showDialog()

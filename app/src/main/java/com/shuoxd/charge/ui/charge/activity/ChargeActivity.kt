@@ -318,8 +318,8 @@ class ChargeActivity : BaseActivity(), View.OnClickListener {
         AlertDialog.showDialog(
             supportFragmentManager,
             getString(R.string.m104_unlock_gun_tips),
-            getString(R.string.m18_confirm),
             getString(R.string.m16_cancel),
+            getString(R.string.m18_confirm),
             getString(R.string.m103_unlock_gun)
         ) {
             showDialog()
@@ -331,10 +331,10 @@ class ChargeActivity : BaseActivity(), View.OnClickListener {
     private fun chargeAction() {
         AlertDialog.showDialog(
             supportFragmentManager,
-            "",
-            getString(R.string.m18_confirm),
+            getString(R.string.m164_start_charging),
             getString(R.string.m16_cancel),
-            getString(R.string.m164_start_charging)
+            getString(R.string.m18_confirm),
+           ""
         ) {
             val actionUrl = StatusUtil.getActionUrl(chargeViewModel.status)
             if (actionUrl.isNotEmpty()) {

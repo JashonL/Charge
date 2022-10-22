@@ -6,10 +6,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.FragmentManager
-import com.shuoxd.lib.util.gone
-import com.shuoxd.lib.util.visible
 import com.shuoxd.charge.base.BaseDialogFragment
 import com.shuoxd.charge.databinding.DialogAlertBinding
+import com.shuoxd.lib.util.gone
+import com.shuoxd.lib.util.visible
 
 /**
  * 通用Dialog
@@ -21,30 +21,32 @@ class AlertDialog : BaseDialogFragment(), View.OnClickListener {
         fun showDialog(
             fm: FragmentManager,
             content: String?,
-            grayButtonText: String? = null,
-            redButtonText: String? = null,
+            cancelText: String? = null,
+            comfirText: String? = null,
             title: String? = null,
-            onRedButtonClick: (() -> Unit)? = null,
-            onGrayButtonClick: (() -> Unit)?
+            onCancelClick: (() -> Unit)? = null,
+            onComfirClick: (() -> Unit)?
 
         ) {
             val dialog = AlertDialog()
             dialog.content = content
             dialog.title = title
-            dialog.grayButtonText = grayButtonText
-            dialog.redButtonText = redButtonText
-            dialog.onGrayButtonClick = onGrayButtonClick
-            dialog.onRedButtonClick = onRedButtonClick
+            dialog.cancelText = cancelText
+            dialog.comfirText = comfirText
+            dialog.onCancelClick = onCancelClick
+            dialog.onComfirClick = onComfirClick
             dialog.show(fm, AlertDialog::class.java.name)
         }
     }
 
     private lateinit var binding: DialogAlertBinding
     private var content: String? = null
-    private var grayButtonText: String? = null
-    private var redButtonText: String? = null
-    private var onGrayButtonClick: (() -> Unit)? = null
-    private var onRedButtonClick: (() -> Unit)? = null
+
+    private var cancelText: String? = null
+    private var comfirText: String? = null
+    private var onCancelClick: (() -> Unit)? = null//确定
+    private var onComfirClick: (() -> Unit)? = null//取消
+
     private var title: String? = null
 
     override fun onCreateView(
@@ -58,8 +60,8 @@ class AlertDialog : BaseDialogFragment(), View.OnClickListener {
     }
 
     private fun initView() {
-        binding.btGray.setOnClickListener(this)
-        binding.btRed.setOnClickListener(this)
+        binding.btCancel.setOnClickListener(this)
+        binding.btConfirm.setOnClickListener(this)
         if (TextUtils.isEmpty(title)) {
             binding.tvTitle.text = content
             binding.tvContent.gone()
@@ -68,23 +70,23 @@ class AlertDialog : BaseDialogFragment(), View.OnClickListener {
             binding.tvContent.visible()
             binding.tvContent.text = content
         }
-        if (!grayButtonText.isNullOrEmpty()) {
-            binding.btGray.text = grayButtonText
+        if (!cancelText.isNullOrEmpty()) {
+            binding.btCancel.text = cancelText
         }
-        if (!redButtonText.isNullOrEmpty()) {
-            binding.btRed.text = redButtonText
+        if (!comfirText.isNullOrEmpty()) {
+            binding.btConfirm.text = comfirText
         }
     }
 
     override fun onClick(v: View?) {
         when {
-            v === binding.btGray -> {
+            v === binding.btCancel -> {
                 dismissAllowingStateLoss()
-                onGrayButtonClick?.invoke()
+                onCancelClick?.invoke()
             }
-            v === binding.btRed -> {
+            v === binding.btConfirm -> {
                 dismissAllowingStateLoss()
-                onRedButtonClick?.invoke()
+                onComfirClick?.invoke()
             }
         }
     }

@@ -73,12 +73,9 @@ public class CropImageActivity extends BaseActivity implements CropImageView.OnS
     }
 
     private void initView() {
-        binding.title.setOnRightButtonClickListener(new Function1<View, Unit>() {
-            @Override
-            public Unit invoke(View view) {
-                cropImage();
-                return null;
-            }
+        binding.title.setOnRightTextClickListener(view -> {
+            cropImage();
+            return null;
         });
     }
 

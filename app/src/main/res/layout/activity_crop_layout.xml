@@ -25,7 +25,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:rightButtonText="@string/m161_crop_image_menu_crop"
-            app:showRightButton="true" />
+            app:showRightButton="false"
+            app:showRightText="true"
+            app:rightText="@string/m166_save"
+            />
 
     </LinearLayout>
 </FrameLayout>

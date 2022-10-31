@@ -49,7 +49,7 @@
         android:layout_alignParentEnd="true"
         android:layout_centerVertical="true"
         android:gravity="center"
-        android:textColor="@color/color_text_99"
+        android:textColor="@color/color_text_33"
         android:textSize="@dimen/size_content_sp_14"
         tools:text="@string/m73_sms_find_back" />
 

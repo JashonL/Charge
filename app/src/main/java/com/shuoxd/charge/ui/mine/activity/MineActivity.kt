@@ -34,13 +34,14 @@ import com.shuoxd.charge.util.AppUtil
 import com.shuoxd.charge.view.dialog.AlertDialog
 import com.shuoxd.charge.view.dialog.OptionsDialog
 import com.shuoxd.charge.view.itemdecoration.DividerItemDecoration
+import com.shuoxd.lib.service.account.IAccountService
 import com.shuoxd.lib.util.ActivityBridge
 import com.shuoxd.lib.util.ToastUtil
 import com.shuoxd.lib.util.Util
 import com.shuoxd.lib.util.gone
 import java.io.File
 
-class MineActivity : BaseActivity(), View.OnClickListener {
+class MineActivity : BaseActivity(), View.OnClickListener , IAccountService.OnUserProfileChangeListener{
 
     companion object {
         fun start(context: Context?) {
@@ -368,6 +369,9 @@ class MineActivity : BaseActivity(), View.OnClickListener {
             .into(bind.ivAvatar)
     }
 
+    override fun onUserProfileChange(account: IAccountService) {
+
+    }
 
 
 }

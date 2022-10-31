@@ -40,8 +40,10 @@ object ApiPath {
          */
         const val SENDEMAILCODE ="/v1/user/sendEmailCode"
 
-
-
+        /**
+         * 上传用户头像
+         */
+        const val UPLOADAVATAR ="/v1/user/uploadAvatar"
 
     }
 

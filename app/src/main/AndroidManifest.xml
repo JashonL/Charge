@@ -129,6 +129,14 @@
             android:screenOrientation="nosensor" />
 
 
+        <activity
+            android:name=".component.image.crop.CropImageActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:exported="false"
+            android:screenOrientation="nosensor"
+            android:windowSoftInputMode="stateAlwaysHidden" />
+
+
 
         <provider
             android:name="androidx.core.content.FileProvider"

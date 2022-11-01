@@ -8,6 +8,7 @@ import com.shuoxd.lib.service.http.HttpCallback
 import com.shuoxd.lib.service.http.HttpErrorModel
 import com.shuoxd.lib.service.http.HttpResult
 import kotlinx.coroutines.launch
+import java.io.File
 
 /**
  * 选择国家/地区
@@ -20,6 +21,8 @@ class SettingViewModel : BaseViewModel() {
     val deleteLiveData = MutableLiveData<Pair<Boolean, String?>>()
 
     var position: Int = 0
+
+    val uploadUserAvatarLiveData = MutableLiveData<Pair<String?, String?>>()
 
 
     /**
@@ -78,6 +81,32 @@ class SettingViewModel : BaseViewModel() {
         }
 
 
+    }
+
+
+
+    /**
+     * 设置-上传用户头像
+     */
+    fun uploadUserAvatar(filePath: String) {
+        viewModelScope.launch {
+            apiService().postFile(
+                ApiPath.Mine.UPLOADAVATAR, hashMapOf(), File(filePath),
+                object : HttpCallback<HttpResult<String>>() {
+                    override fun success(result: HttpResult<String>) {
+                        if (result.isBusinessSuccess()) {
+                            uploadUserAvatarLiveData.value = Pair(result.obj, result.msg ?: "")
+                        } else {
+                            uploadUserAvatarLiveData.value = Pair(null, result.msg ?: "")
+                        }
+                    }
+
+                    override fun onFailure(errorModel: HttpErrorModel) {
+                        uploadUserAvatarLiveData.value = Pair(null, errorModel.errorMsg ?: "")
+                    }
+
+                })
+        }
     }
 
 

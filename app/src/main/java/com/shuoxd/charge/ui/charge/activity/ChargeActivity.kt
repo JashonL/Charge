@@ -7,6 +7,7 @@ import android.text.TextUtils
 import android.view.View
 import androidx.activity.viewModels
 import androidx.lifecycle.lifecycleScope
+import com.bumptech.glide.Glide
 import com.shuoxd.charge.R
 import com.shuoxd.charge.base.BaseActivity
 import com.shuoxd.charge.databinding.ActivityChargeBinding
@@ -26,13 +27,14 @@ import com.shuoxd.charge.view.dialog.AlertDialog
 import com.shuoxd.charge.view.dialog.CustomViewDialog
 import com.shuoxd.charge.view.dialog.OptionsDialog
 import com.shuoxd.charge.view.popuwindow.CustomPopuwindow
+import com.shuoxd.lib.service.account.IAccountService
 import com.shuoxd.lib.util.ToastUtil
 import com.shuoxd.lib.util.gone
 import com.shuoxd.lib.util.visible
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
-class ChargeActivity : BaseActivity(), View.OnClickListener {
+class ChargeActivity : BaseActivity(), View.OnClickListener , IAccountService.OnUserProfileChangeListener{
 
     companion object {
         fun start(context: Context?) {
@@ -120,6 +122,9 @@ class ChargeActivity : BaseActivity(), View.OnClickListener {
                 chargeViewModel.getChargeInfo()
             }
         }
+
+        refreshUserProfile()
+
     }
 
     private fun setOnclickListeners() {
@@ -343,6 +348,18 @@ class ChargeActivity : BaseActivity(), View.OnClickListener {
         }
 
 
+    }
+
+
+
+    private fun refreshUserProfile() {
+        Glide.with(this).load(accountService().userAvatar())
+            .placeholder(R.drawable.big_user)
+            .into(binding.ivAvatar)
+    }
+
+    override fun onUserProfileChange(account: IAccountService) {
+        refreshUserProfile()
     }
 
 

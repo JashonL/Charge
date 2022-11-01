@@ -41,7 +41,8 @@ import com.shuoxd.lib.util.Util
 import com.shuoxd.lib.util.gone
 import java.io.File
 
-class MineActivity : BaseActivity(), View.OnClickListener , IAccountService.OnUserProfileChangeListener{
+class MineActivity : BaseActivity(), View.OnClickListener,
+    IAccountService.OnUserProfileChangeListener {
 
     companion object {
         fun start(context: Context?) {
@@ -96,6 +97,7 @@ class MineActivity : BaseActivity(), View.OnClickListener , IAccountService.OnUs
             LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
         bind.rlvCharge.adapter = Adapter()
 
+        refreshUserProfile()
 
     }
 
@@ -130,7 +132,6 @@ class MineActivity : BaseActivity(), View.OnClickListener , IAccountService.OnUs
             }
         }
     }
-
 
 
     /**
@@ -177,7 +178,6 @@ class MineActivity : BaseActivity(), View.OnClickListener , IAccountService.OnUs
     }
 
 
-
     private fun fromTheAlbum() {
         RequestPermissionHub.requestPermission(
             supportFragmentManager,
@@ -216,10 +216,9 @@ class MineActivity : BaseActivity(), View.OnClickListener , IAccountService.OnUs
     }
 
 
-
     private fun initData() {
         val chargeList = getChargeList()
-        if (chargeList.isEmpty())bind.llList.gone()
+        if (chargeList.isEmpty()) bind.llList.gone()
         (bind.rlvCharge.adapter as Adapter).refresh(chargeList)
         viewModel.logoutLiveData.observe(this) {
             dismissDialog()
@@ -242,6 +241,18 @@ class MineActivity : BaseActivity(), View.OnClickListener , IAccountService.OnUs
                 ChargeAactivityMonitor.notifyPlant()
             }
 
+        }
+
+
+
+        viewModel.uploadUserAvatarLiveData.observe(this) {
+            dismissDialog()
+            ToastUtil.show(it.second)
+            if (it.first != null) {
+                accountService().saveUserAvatar(it.first)
+                accountService().user()?.address = it.first.toString()
+                refreshUserProfile()
+            }
         }
 
 
@@ -348,29 +359,37 @@ class MineActivity : BaseActivity(), View.OnClickListener , IAccountService.OnUs
     }
 
 
-
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if (resultCode == RESULT_OK) {
             //剪裁图片回调
             if (requestCode == ImageCrop.CROP_IMAGE_ACTIVITY_REQUEST_CODE) {
                 ImageCrop.getActivityResult(data).uri?.path?.also {
-                    refreshUserProfile(it)
+                    showDialog()
+                    viewModel.uploadUserAvatar(it)
                 }
             }
         }
     }
 
 
+    private fun refreshUserProfile() {
+        /*       Glide.with(this).load(path)
+                   .placeholder(R.drawable.big_user)
+                   .into(bind.ivAvatar)*/
 
-    private fun refreshUserProfile(path:String) {
-        Glide.with(this).load(path)
+        Glide.with(this).load(accountService().userAvatar())
             .placeholder(R.drawable.big_user)
             .into(bind.ivAvatar)
     }
 
     override fun onUserProfileChange(account: IAccountService) {
+        refreshUserProfile()
+    }
 
+    override fun onDestroy() {
+        accountService().removeUserProfileChangeListener(this)
+        super.onDestroy()
     }
 
 

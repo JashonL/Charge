@@ -16,6 +16,6 @@ data class User(
     var country: String,
     var city: String,
     var timeZone: String,
-    var password:String
-
+    var password:String,
+    var address:String
 )

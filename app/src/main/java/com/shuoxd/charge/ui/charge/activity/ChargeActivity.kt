@@ -226,13 +226,13 @@ class ChargeActivity : BaseActivity(), View.OnClickListener,
                     } else {
                         binding.itemCheckbox.gone()
                     }
-                    binding.itemCheckbox.isChecked = it.transaction.scheduledStatus==1
+                    binding.itemCheckbox.isChecked = it.transaction.scheduledStatus == 1
                     authorizeStatus = it.transaction.authorizeStatus
-                    if (chargeViewModel.status== ChargeStatus.AVAILABLE){
-                        if (authorizeStatus==1){
+                    if (it.status == ChargeStatus.PREPEAR && chargeViewModel.status == ChargeStatus.AVAILABLE) {
+                        if (authorizeStatus == 1) {
                             //授权开启时 检测到插枪 弹框提示去充电
                             showDialogCharge()
-                        }else{
+                        } else {
                             //授权关闭时 检测到插枪 直接去充电
                             chargeAction()
                         }
@@ -352,6 +352,8 @@ class ChargeActivity : BaseActivity(), View.OnClickListener,
 
     private fun showSelectChartType() {
         OptionsDialog.show(supportFragmentManager, chargeViewModel.chargeids.toTypedArray()) {
+            chargeViewModel.status=ChargeStatus.NONE
+
             chargeViewModel.chargerId = chargeViewModel.chargeids[it]
             binding.tvChargeChoose.text = chargeViewModel.chargerId
             setCurrenChargeModel(chargeViewModel.chargeList[it])
@@ -383,13 +385,10 @@ class ChargeActivity : BaseActivity(), View.OnClickListener,
         }
 
 
-
-
     }
 
 
-
-    private fun showDialogCharge(){
+    private fun showDialogCharge() {
         AlertDialog.showDialog(
             supportFragmentManager,
             getString(R.string.m164_start_charging),
@@ -403,10 +402,6 @@ class ChargeActivity : BaseActivity(), View.OnClickListener,
             }
         }
     }
-
-
-
-
 
 
     private fun refreshUserProfile() {

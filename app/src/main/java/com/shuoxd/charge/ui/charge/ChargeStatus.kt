@@ -41,6 +41,7 @@ annotation class ChargeStatus {
         const val RESERVCE = 7
         const val UNAVAILABLE1 = 8
         const val FAULT = 9
+        const val NONE=10
 
         fun getChargeStatus(@ChargeStatus status: Int): String {
             return MainApplication.instance().getString(

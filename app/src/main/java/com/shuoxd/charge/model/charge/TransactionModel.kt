@@ -3,7 +3,8 @@ package com.shuoxd.charge.model.charge
 data class TransactionModel(
     val status: Int,
     val transaction: Transaction,
-    val charge: Charge
+    val charge: Charge,
+    val scList: List<ScheduledModel.Period>
 ) {
 
     data class Transaction(

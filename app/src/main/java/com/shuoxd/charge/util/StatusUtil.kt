@@ -72,8 +72,8 @@ object StatusUtil {
         return ContextCompat.getDrawable(
             context, when (status) {
                 ChargeStatus.UNAVAILABLE -> R.drawable.cant_start
-                ChargeStatus.AVAILABLE -> R.drawable.start
-                ChargeStatus.PREPEAR -> R.drawable.start
+                ChargeStatus.AVAILABLE -> R.drawable.start_charge
+                ChargeStatus.PREPEAR -> R.drawable.start_charge
                 ChargeStatus.CHARGING -> R.drawable.start
                 ChargeStatus.DEVICE_STOP -> R.drawable.cant_start
                 ChargeStatus.CAR_STOP -> R.drawable.cant_start

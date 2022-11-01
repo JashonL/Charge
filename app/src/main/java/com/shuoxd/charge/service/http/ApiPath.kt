@@ -141,6 +141,15 @@ object ApiPath {
 
 
 
+        /**
+         * 设置计划充电状态
+         */
+
+        const val SETSCHEDULEDCHARGINGSTATUS="v1/global/setScheduledChargingStatus"
+
+
+
+
     }
 
     object Service {

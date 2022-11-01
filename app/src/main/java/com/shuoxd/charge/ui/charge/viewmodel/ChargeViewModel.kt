@@ -18,24 +18,21 @@ class ChargeViewModel : BaseViewModel() {
     val chargeListLiveData = MutableLiveData<Pair<List<ChargeModel>, String?>>()
     val chargeInfoLiveData = MutableLiveData<Pair<TransactionModel?, String?>>()
     val chargeUnlockLiveData = MutableLiveData<String>()
+    val chargeTransactionLiveData = MutableLiveData<Pair<Boolean, String?>>()
+    val chargeSechLiveData = MutableLiveData<String>()
 
-    val chargeTransactionLiveData=MutableLiveData<Pair<Boolean,String?>>()
 
-
-
-    var chargeList= mutableListOf<ChargeModel>()
+    var chargeList = mutableListOf<ChargeModel>()
     val chargeids = mutableListOf<String>()
     var chargerId: String? = ""
     var connectorId: String? = ""
     var status: Int = 0
-    var isListCallback=false
+    var isListCallback = false
 
 
-
-    lateinit var valueCurrent:Pair<String, String>
-    lateinit var valueVoltage:Pair<String, String>
-    lateinit var valuePower:Pair<String, String>
-
+    lateinit var valueCurrent: Pair<String, String>
+    lateinit var valueVoltage: Pair<String, String>
+    lateinit var valuePower: Pair<String, String>
 
 
     fun getChargeList(
@@ -67,14 +64,14 @@ class ChargeViewModel : BaseViewModel() {
                     }
 
                     override fun success(result: HttpResult<Array<ChargeModel>>) {
-                        isListCallback=true
+                        isListCallback = true
                         val mutableListOf = mutableListOf<ChargeModel>()
                         if (result.isBusinessSuccess()) {
                             val obj = result.obj
                             obj?.let {
                                 mutableListOf.addAll(it)
                             }
-                            chargeList=mutableListOf
+                            chargeList = mutableListOf
                             chargeListLiveData.value = Pair(mutableListOf, null)
                         } else {
                             chargeListLiveData.value = Pair(emptyList(), result.msg ?: "")
@@ -166,12 +163,43 @@ class ChargeViewModel : BaseViewModel() {
                 params,
                 object : HttpCallback<HttpResult<String>>() {
                     override fun success(result: HttpResult<String>) {
-                       chargeTransactionLiveData.value=Pair(result.isBusinessSuccess(),result.msg)
+                        chargeTransactionLiveData.value =
+                            Pair(result.isBusinessSuccess(), result.msg)
                     }
 
                     override fun onFailure(errorModel: HttpErrorModel) {
                         chargeUnlockLiveData.value = errorModel.errorMsg ?: ""
                     }
+                })
+
+        }
+
+    }
+
+
+    fun setScheduledChargingStatus(status: String) {
+        val params = hashMapOf<String, String>().apply {
+            put("chargerId", chargerId ?: "")
+            put("connectorId", connectorId ?: "")
+            put("status", status)
+        }
+
+
+        viewModelScope.launch {
+            apiService().postForm(
+                ApiPath.Charge.SETSCHEDULEDCHARGINGSTATUS,
+                params,
+                object : HttpCallback<HttpResult<String>>() {
+                    override fun success(result: HttpResult<String>) {
+                        val msg = result.msg
+                        chargeSechLiveData.value=msg?:""
+
+                    }
+
+                    override fun onFailure(errorModel: HttpErrorModel) {
+                        chargeSechLiveData.value = errorModel.errorMsg ?: ""
+                    }
+
                 })
 
         }

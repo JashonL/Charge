@@ -47,8 +47,8 @@
 
         <androidx.constraintlayout.utils.widget.ImageFilterView
             android:id="@+id/iv_avatar"
-            android:layout_width="@dimen/dp_37"
-            android:layout_height="@dimen/dp_37"
+            android:layout_width="@dimen/dp_60"
+            android:layout_height="@dimen/dp_60"
             android:layout_centerVertical="true"
             android:layout_marginStart="@dimen/dp_10"
             android:scaleType="centerCrop"
@@ -203,7 +203,59 @@
                             app:layout_constraintLeft_toLeftOf="@+id/iv_charge_status"
                             app:layout_constraintRight_toRightOf="@+id/iv_charge_status"
                             app:layout_constraintTop_toBottomOf="@+id/tv_charge_excption"
-                            tools:src="@drawable/start" />
+                            tools:src="@drawable/start_charge" />
+
+
+                        <LinearLayout
+                            android:id="@+id/ll_schedule"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/dp_50"
+                            android:layout_marginStart="@dimen/dp_10"
+                            android:layout_marginEnd="@dimen/dp_10"
+                            android:background="@color/white"
+                            android:gravity="center_vertical"
+                            android:orientation="horizontal"
+                            app:layout_constraintLeft_toLeftOf="parent"
+                            app:layout_constraintRight_toRightOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/iv_start">
+
+                            <ImageView
+                                android:id="@+id/iv_icon"
+                                android:layout_width="@dimen/dp_30"
+                                android:layout_height="@dimen/dp_30"
+                                android:layout_marginStart="@dimen/dp_10"
+                                android:src="@drawable/charge_time"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintLeft_toLeftOf="parent"
+                                app:layout_constraintRight_toLeftOf="@+id/tv_value"
+                                app:layout_constraintTop_toTopOf="parent" />
+
+
+                            <TextView
+                                android:id="@+id/tv_schdule"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="@dimen/dp_10"
+                                android:text="@string/m175_not_set"
+                                android:textColor="@color/color_text_33"
+                                android:textSize="@dimen/size_content_sp_14"
+                                 />
+
+                            <androidx.legacy.widget.Space
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1" />
+
+
+                            <CheckBox
+                                android:id="@+id/item_checkbox"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginEnd="@dimen/dp_10"
+                                android:button="@drawable/selector_checkbox"
+                                android:src="@drawable/right" />
+
+                        </LinearLayout>
 
 
                         <LinearLayout
@@ -211,11 +263,12 @@
                             android:layout_width="match_parent"
                             android:layout_height="@dimen/dp_100"
                             android:layout_marginStart="@dimen/dp_10"
+                            android:layout_marginTop="@dimen/dp_10"
                             android:layout_marginEnd="@dimen/dp_10"
                             android:orientation="horizontal"
                             app:layout_constraintLeft_toLeftOf="parent"
                             app:layout_constraintRight_toRightOf="parent"
-                            app:layout_constraintTop_toBottomOf="@+id/iv_start">
+                            app:layout_constraintTop_toBottomOf="@+id/ll_schedule">
 
 
                             <com.shuoxd.charge.view.DataItemView
@@ -223,7 +276,7 @@
                                 android:layout_width="0dp"
                                 android:layout_height="match_parent"
                                 android:layout_weight="1"
-                                app:lefticon="@drawable/capacity"
+                                app:lefticon="@drawable/energy"
                                 app:title="@string/m92_energy" />
 
                             <com.shuoxd.charge.view.DataItemView
@@ -231,16 +284,16 @@
                                 android:layout_width="0dp"
                                 android:layout_height="match_parent"
                                 android:layout_weight="1"
-                                app:lefticon="@drawable/current"
+                                app:lefticon="@drawable/power"
                                 app:title="@string/m128_power" />
 
-                      <!--      <com.shuoxd.charge.view.DataItemView
-                                android:id="@+id/dataView_voltage"
-                                android:layout_width="0dp"
-                                android:layout_height="match_parent"
-                                android:layout_weight="1"
-                                app:lefticon="@drawable/voltage"
-                                app:title="@string/m128_power" />-->
+                            <!--      <com.shuoxd.charge.view.DataItemView
+                                      android:id="@+id/dataView_voltage"
+                                      android:layout_width="0dp"
+                                      android:layout_height="match_parent"
+                                      android:layout_weight="1"
+                                      app:lefticon="@drawable/voltage"
+                                      app:title="@string/m128_power" />-->
 
 
                         </LinearLayout>
@@ -260,22 +313,22 @@
 
 
                             <com.shuoxd.charge.view.DataItemView
-                                android:id="@+id/dataView_consumption"
+                                android:id="@+id/dataView_time"
                                 android:layout_width="0dp"
                                 android:layout_height="match_parent"
                                 android:layout_weight="1"
-                                app:lefticon="@drawable/consumption"
-                                app:title="@string/m95_consumption" />
+                                app:lefticon="@drawable/charge_time"
+                                app:title="@string/m96_charge_time" />
 
 
                             <com.shuoxd.charge.view.DataItemView
-                                android:id="@+id/dataView_time"
+                                android:id="@+id/dataView_consumption"
                                 android:layout_width="0dp"
                                 android:layout_height="match_parent"
                                 android:layout_marginStart="@dimen/dp_10"
                                 android:layout_weight="1"
-                                app:lefticon="@drawable/charge_time"
-                                app:title="@string/m96_charge_time" />
+                                app:lefticon="@drawable/cost"
+                                app:title="@string/m95_consumption" />
 
 
                         </LinearLayout>

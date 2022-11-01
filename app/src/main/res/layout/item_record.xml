@@ -188,10 +188,15 @@
         app:layout_constraintTop_toTopOf="@+id/tv_end_time" />
 
 
+
+
+
+
     <View
         android:id="@+id/bottom_line"
         android:layout_width="match_parent"
         android:layout_height="@dimen/dp_1"
+        android:visibility="gone"
         android:background="@color/gray_eeeeeee"
         app:layout_constraintTop_toBottomOf="@+id/tv_end_time" />
 
@@ -201,6 +206,7 @@
         android:layout_height="wrap_content"
         android:padding="@dimen/dp_10"
         android:text="@string/m172_connect_ev"
+        android:visibility="gone"
         android:textColor="@color/color_text_66"
         android:textSize="@dimen/size_title_sp_12"
         app:layout_constraintHorizontal_chainStyle="spread_inside"
@@ -214,6 +220,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/recoder_connect"
+        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="@+id/tv_connect_ev"
         app:layout_constraintLeft_toRightOf="@+id/tv_connect_ev"
         app:layout_constraintRight_toLeftOf="@+id/tv_connect_time"
@@ -226,6 +233,7 @@
         android:layout_height="wrap_content"
         android:padding="@dimen/dp_10"
         android:text="10:00:00"
+        android:visibility="gone"
         android:textColor="@color/color_text_66"
         android:textSize="@dimen/size_title_sp_14"
         app:layout_constraintBottom_toBottomOf="@+id/tv_connect_ev"
@@ -240,6 +248,7 @@
         android:layout_height="wrap_content"
         android:padding="@dimen/dp_10"
         android:text="@string/m173_disconnect_ev"
+        android:visibility="gone"
         android:textColor="@color/color_text_66"
         android:textSize="@dimen/size_title_sp_12"
         app:layout_constraintBottom_toBottomOf="@+id/tv_connect_ev"
@@ -251,6 +260,7 @@
         android:id="@+id/iv_disconnect"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:visibility="gone"
         android:src="@drawable/recoder_disconnect"
         app:layout_constraintBottom_toBottomOf="@+id/tv_connect_ev"
         app:layout_constraintRight_toLeftOf="@+id/tv_disconnect_time"
@@ -264,6 +274,7 @@
         android:layout_height="wrap_content"
         android:padding="@dimen/dp_10"
         android:text="20:00:00"
+        android:visibility="gone"
         android:textColor="@color/color_text_66"
         android:textSize="@dimen/size_title_sp_14"
         app:layout_constraintBottom_toBottomOf="@+id/tv_connect_ev"

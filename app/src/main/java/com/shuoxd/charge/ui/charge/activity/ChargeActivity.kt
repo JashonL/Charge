@@ -5,6 +5,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.text.TextUtils
 import android.view.View
+import android.widget.CompoundButton
 import androidx.activity.viewModels
 import androidx.lifecycle.lifecycleScope
 import com.bumptech.glide.Glide
@@ -34,7 +35,8 @@ import com.shuoxd.lib.util.visible
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
-class ChargeActivity : BaseActivity(), View.OnClickListener , IAccountService.OnUserProfileChangeListener{
+class ChargeActivity : BaseActivity(), View.OnClickListener,
+    IAccountService.OnUserProfileChangeListener, CompoundButton.OnCheckedChangeListener {
 
     companion object {
         fun start(context: Context?) {
@@ -123,6 +125,8 @@ class ChargeActivity : BaseActivity(), View.OnClickListener , IAccountService.On
             }
         }
 
+        binding.itemCheckbox.setOnCheckedChangeListener(this)
+
         refreshUserProfile()
 
     }
@@ -137,6 +141,7 @@ class ChargeActivity : BaseActivity(), View.OnClickListener , IAccountService.On
         binding.ivSet.setOnClickListener(this)
         binding.ivOffpeakTips.setOnClickListener(this)
         binding.dataViewPower.setOnClickListener(this)
+        binding.llSchedule.setOnClickListener(this)
     }
 
 
@@ -182,10 +187,11 @@ class ChargeActivity : BaseActivity(), View.OnClickListener , IAccountService.On
                     val valueFromCost = ValueUtil.valueFromCost(it.transaction.cost)
 
 
-                    if (it.transaction.powerKW==0.0||it.transaction.current==0.0){
+                    if (it.transaction.powerKW == 0.0 || it.transaction.current == 0.0) {
                         chargeViewModel.valueVoltage = ValueUtil.valueFromV(0.0)
-                    }else{
-                        chargeViewModel.valueVoltage = ValueUtil.valueFromV(it.transaction.powerKW/it.transaction.current)
+                    } else {
+                        chargeViewModel.valueVoltage =
+                            ValueUtil.valueFromV(it.transaction.powerKW / it.transaction.current)
                     }
 
 
@@ -201,6 +207,22 @@ class ChargeActivity : BaseActivity(), View.OnClickListener , IAccountService.On
                     binding.dataViewConsumption.setValue(valueFromCost)
                     binding.dataViewTime.setValue(it.transaction.charingTimeText)
                     if (it.transaction.offPeakStatus == 1) binding.ivOffpeakTips.visible() else binding.ivOffpeakTips.gone()
+
+
+                    val scList = it.scList
+                    if (scList.isNotEmpty()) {
+                        var schedule = scList.get(0)
+                        val startTimeText = schedule.startTimeText
+                        schedule = scList.get(scList.size - 1)
+                        val endTimeText = schedule.endTimeText
+                        val s = String.format("%s-%s", startTimeText, endTimeText)
+                        binding.tvSchdule.text = s
+                        binding.itemCheckbox.visible()
+                    } else {
+                        binding.itemCheckbox.gone()
+                    }
+                    binding.itemCheckbox.isChecked = it.transaction.offPeakStatus == 1
+
 
                 }
 
@@ -226,6 +248,11 @@ class ChargeActivity : BaseActivity(), View.OnClickListener , IAccountService.On
                 delay(3000)
                 chargeViewModel.getChargeInfo()
             }
+        }
+
+        chargeViewModel.chargeSechLiveData.observe(this) {
+            dismissDialog()
+            ToastUtil.show(it)
         }
 
 
@@ -276,6 +303,7 @@ class ChargeActivity : BaseActivity(), View.OnClickListener , IAccountService.On
             p0 === binding.ivSet -> ChargeSettingActivity.start(this)
             p0 === binding.ivOffpeakTips -> showPopoffpeak()
             p0 === binding.dataViewPower -> showCurrentVoltage()
+            p0 === binding.llSchedule -> ScheduledChargeActivity.start(this)
         }
     }
 
@@ -286,7 +314,7 @@ class ChargeActivity : BaseActivity(), View.OnClickListener , IAccountService.On
             chargeViewModel.valueCurrent,
             chargeViewModel.valueVoltage,
             chargeViewModel.valuePower
-            )
+        )
     }
 
 
@@ -339,7 +367,7 @@ class ChargeActivity : BaseActivity(), View.OnClickListener , IAccountService.On
             getString(R.string.m164_start_charging),
             getString(R.string.m16_cancel),
             getString(R.string.m18_confirm),
-           ""
+            ""
         ) {
             val actionUrl = StatusUtil.getActionUrl(chargeViewModel.status)
             if (actionUrl.isNotEmpty()) {
@@ -351,7 +379,6 @@ class ChargeActivity : BaseActivity(), View.OnClickListener , IAccountService.On
     }
 
 
-
     private fun refreshUserProfile() {
         Glide.with(this).load(accountService().userAvatar())
             .placeholder(R.drawable.big_user)
@@ -360,6 +387,12 @@ class ChargeActivity : BaseActivity(), View.OnClickListener , IAccountService.On
 
     override fun onUserProfileChange(account: IAccountService) {
         refreshUserProfile()
+    }
+
+    override fun onCheckedChanged(p0: CompoundButton?, p1: Boolean) {
+        if (p0?.isPressed == true) {
+            chargeViewModel.setScheduledChargingStatus(if (p1) "1" else "0")
+        }
     }
 
 

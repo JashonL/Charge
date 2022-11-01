@@ -378,7 +378,7 @@ class MineActivity : BaseActivity(), View.OnClickListener,
                    .placeholder(R.drawable.big_user)
                    .into(bind.ivAvatar)*/
 
-        Glide.with(this).load(accountService().userAvatar())
+        Glide.with(this).load(accountService().user()?.address)
             .placeholder(R.drawable.big_user)
             .into(bind.ivAvatar)
     }

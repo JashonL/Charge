@@ -214,11 +214,16 @@
     <string name="m169_set_time">Set time</string>
     <string name="m170_not_empty">Content cannot be empty</string>
 
-    <string name="m171_offpeak">非高峰充电</string>
+    <string name="m171_offpeak">Off-peak charging</string>
     <string name="m172_connect_ev">Connect EV</string>
     <string name="m173_disconnect_ev">Disconnect EV</string>
     <string name="m174_authentication">Authentication</string>
     <string name="m175_not_set">Not set</string>
+
+    <string name="m176_auth_tips">注:\n当关闭授权时，如果检测到插枪（充电桩状态从avaliable变成Preparing），自动启动充电\n\n当开启授权时，如果检测到插枪（充电桩状态从avaliable变成Preparing），会弹窗提示是否启动充电 </string>
+
+
+
 
 
 

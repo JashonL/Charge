@@ -130,6 +130,8 @@ class ActivityOffpeak:BaseActivity() , View.OnClickListener{
             if (it.first) {
                 val scList = it.second?.ocList
                 scList?.let { it1 -> (binding.rvTimeList.adapter as Adapter).refresh(it1) }
+                binding.enable.setCheck("1".equals(it.second?.status))
+
             }
         }
 

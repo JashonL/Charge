@@ -23,7 +23,9 @@ data class TransactionModel(
         val cost: Double,
         val powerKW: Double,
         val current: Double,
-        val offPeakStatus:Int
+        val offPeakStatus:Int,
+        val authorizeStatus:Int,
+        val scheduledStatus:Int
     )
 
 
@@ -44,7 +46,7 @@ data class TransactionModel(
         val meterType: String,
         val meterSerialNumber: String,
         val charingRate: Double,
-        val connectorNum: Int,
+        val connectorNum: Int
     )
 
 

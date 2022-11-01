@@ -30,6 +30,14 @@
         android:layout_height="@dimen/dp_40" />
 
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp_20"
+        android:padding="@dimen/dp_5"
+        android:text="@string/m176_auth_tips"
+        android:textColor="@color/color_text_99"
+        android:textSize="@dimen/size_content_sp_14" />
 
 
 

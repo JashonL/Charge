@@ -15,6 +15,7 @@ import com.shuoxd.charge.databinding.ActivityChargeBinding
 import com.shuoxd.charge.model.charge.ChargeModel
 import com.shuoxd.charge.service.charge.ChargeSettingManager
 import com.shuoxd.charge.ui.authorize.activity.GunAuthActivity
+import com.shuoxd.charge.ui.charge.ChargeStatus
 import com.shuoxd.charge.ui.charge.monitor.ChargeAactivityMonitor
 import com.shuoxd.charge.ui.charge.viewmodel.ChargeViewModel
 import com.shuoxd.charge.ui.chargesetting.activity.ChargeSettingActivity
@@ -37,6 +38,11 @@ import kotlinx.coroutines.launch
 
 class ChargeActivity : BaseActivity(), View.OnClickListener,
     IAccountService.OnUserProfileChangeListener, CompoundButton.OnCheckedChangeListener {
+
+
+    //枪的授权状态
+    var authorizeStatus = 0
+
 
     companion object {
         fun start(context: Context?) {
@@ -179,7 +185,6 @@ class ChargeActivity : BaseActivity(), View.OnClickListener,
                 binding.chargeInfo = it.first
                 it.first?.let { it ->
 
-                    chargeViewModel.status = it.status
                     StatusUtil.setImageStatus(this, it.status, binding.ivChargeStatus, 50)
                     val valueFromKWh = ValueUtil.valueFromKWh(it.transaction.energyKWH)
                     val valueFromA = ValueUtil.valueFromA(it.transaction.current)
@@ -221,9 +226,18 @@ class ChargeActivity : BaseActivity(), View.OnClickListener,
                     } else {
                         binding.itemCheckbox.gone()
                     }
-                    binding.itemCheckbox.isChecked = it.transaction.offPeakStatus == 1
-
-
+                    binding.itemCheckbox.isChecked = it.transaction.scheduledStatus==1
+                    authorizeStatus = it.transaction.authorizeStatus
+                    if (chargeViewModel.status== ChargeStatus.AVAILABLE){
+                        if (authorizeStatus==1){
+                            //授权开启时 检测到插枪 弹框提示去充电
+                            showDialogCharge()
+                        }else{
+                            //授权关闭时 检测到插枪 直接去充电
+                            chargeAction()
+                        }
+                    }
+                    chargeViewModel.status = it.status
                 }
 
             } else {
@@ -362,6 +376,20 @@ class ChargeActivity : BaseActivity(), View.OnClickListener,
 
 
     private fun chargeAction() {
+
+        val actionUrl = StatusUtil.getActionUrl(chargeViewModel.status)
+        if (actionUrl.isNotEmpty()) {
+            chargeViewModel.unStartOrStopCharge(actionUrl)
+        }
+
+
+
+
+    }
+
+
+
+    private fun showDialogCharge(){
         AlertDialog.showDialog(
             supportFragmentManager,
             getString(R.string.m164_start_charging),
@@ -369,18 +397,20 @@ class ChargeActivity : BaseActivity(), View.OnClickListener,
             getString(R.string.m18_confirm),
             ""
         ) {
-            val actionUrl = StatusUtil.getActionUrl(chargeViewModel.status)
+            val actionUrl = StatusUtil.getActionUrl(ChargeStatus.PREPEAR)
             if (actionUrl.isNotEmpty()) {
                 chargeViewModel.unStartOrStopCharge(actionUrl)
             }
         }
-
-
     }
 
 
+
+
+
+
     private fun refreshUserProfile() {
-        Glide.with(this).load(accountService().userAvatar())
+        Glide.with(this).load(accountService().user()?.address)
             .placeholder(R.drawable.big_user)
             .into(binding.ivAvatar)
     }

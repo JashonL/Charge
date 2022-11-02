@@ -10,6 +10,7 @@ import androidx.activity.viewModels
 import androidx.lifecycle.lifecycleScope
 import com.bumptech.glide.Glide
 import com.shuoxd.charge.R
+import com.shuoxd.charge.application.MainApplication
 import com.shuoxd.charge.base.BaseActivity
 import com.shuoxd.charge.databinding.ActivityChargeBinding
 import com.shuoxd.charge.model.charge.ChargeModel
@@ -30,6 +31,7 @@ import com.shuoxd.charge.view.dialog.CustomViewDialog
 import com.shuoxd.charge.view.dialog.OptionsDialog
 import com.shuoxd.charge.view.popuwindow.CustomPopuwindow
 import com.shuoxd.lib.service.account.IAccountService
+import com.shuoxd.lib.service.storage.DefaultStorageService.Companion.CURRENT_CHARGE
 import com.shuoxd.lib.util.ToastUtil
 import com.shuoxd.lib.util.gone
 import com.shuoxd.lib.util.visible
@@ -280,7 +282,22 @@ class ChargeActivity : BaseActivity(), View.OnClickListener,
     private fun updataChargeList(first: List<ChargeModel>) {
         if (first.isNotEmpty()) {
             //取第一个充电桩
-            val chargeModel = first[0]
+//            MainApplication.instance().storageService().put(CURRENT_CHARGE,chargeViewModel.chargerId);
+            //上一个充电桩
+            val storageCharge =
+                MainApplication.instance().storageService().getString(CURRENT_CHARGE, "")
+            var chargeModel = first[0]
+            if (!TextUtils.isEmpty(storageCharge)) {
+                for (i in first.indices) {
+                    val charge = first.get(i)
+                    charge.chargerId?.let {
+                        if (storageCharge.equals(it)) {
+                            chargeModel = first[i]
+                        }
+                    }
+                }
+            }
+
             setCurrenChargeModel(chargeModel)
             chargeViewModel.chargerId = chargeModel.chargerId
             chargeViewModel.connectorId = "1"
@@ -352,7 +369,7 @@ class ChargeActivity : BaseActivity(), View.OnClickListener,
 
     private fun showSelectChartType() {
         OptionsDialog.show(supportFragmentManager, chargeViewModel.chargeids.toTypedArray()) {
-            chargeViewModel.status=ChargeStatus.NONE
+            chargeViewModel.status = ChargeStatus.NONE
 
             chargeViewModel.chargerId = chargeViewModel.chargeids[it]
             binding.tvChargeChoose.text = chargeViewModel.chargerId

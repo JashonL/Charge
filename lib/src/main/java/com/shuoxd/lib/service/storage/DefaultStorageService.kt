@@ -8,6 +8,12 @@ import android.content.Context.MODE_PRIVATE
  */
 class DefaultStorageService(context: Context, name: String = "shuoxd_charge") : IStorageService {
 
+
+    companion object {
+        val CURRENT_CHARGE = "current_charge"
+    }
+
+
     private val storage by lazy(LazyThreadSafetyMode.NONE) {
         context.getSharedPreferences(name, MODE_PRIVATE)
     }

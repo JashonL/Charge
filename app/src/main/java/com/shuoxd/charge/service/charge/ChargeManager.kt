@@ -1,12 +1,8 @@
 package com.shuoxd.charge.service.charge
 
+import com.shuoxd.charge.application.MainApplication
 import com.shuoxd.charge.model.charge.ChargeModel
-import com.shuoxd.lib.service.ServiceManager
-import com.shuoxd.lib.service.account.IAccountService
-import com.shuoxd.lib.service.device.IDeviceService
-import com.shuoxd.lib.service.http.IHttpService
-import com.shuoxd.lib.service.location.ILocationService
-import com.shuoxd.lib.service.storage.IStorageService
+import com.shuoxd.lib.service.storage.DefaultStorageService
 
 class ChargeManager private constructor() {
 
@@ -33,6 +29,7 @@ class ChargeManager private constructor() {
 
 
     fun setCurrentCharge(chargeModel: ChargeModel?) {
+        MainApplication.instance().storageService().put(DefaultStorageService.CURRENT_CHARGE, chargeModel?.chargerId)
         this.chargeModel = chargeModel
     }
 

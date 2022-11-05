@@ -94,15 +94,15 @@ object ValueUtil {
             wValue == null -> {
                 Pair("0", MainApplication.instance().getString(R.string.m60_kw))
             }
-            wValue < 1000000000 -> {
+            wValue < 1000000 -> {
                 Pair(
-                    Util.getDoubleText(wValue / 1000),
+                    Util.getDoubleText(wValue),
                     MainApplication.instance().getString(R.string.m60_kw)
                 )
             }
             else -> {
                 Pair(
-                    Util.getDoubleText(wValue / 1000000),
+                    Util.getDoubleText(wValue / 1000),
                     MainApplication.instance().getString(R.string.m61_mw)
                 )
             }

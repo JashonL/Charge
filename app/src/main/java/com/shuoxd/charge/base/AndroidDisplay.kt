@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.view.Window
 import com.shuoxd.charge.R
 import com.shuoxd.charge.databinding.DefaultActivityErrorPageBinding
+import com.shuoxd.charge.view.dialog.AlertDialog
 import java.lang.ref.WeakReference
 
 /**
@@ -67,6 +68,24 @@ class AndroidDisplay(activity: BaseActivity) : IDisplay {
         val activity = wrActivity.get() ?: return
         findPlaceholderContainerView(activity).removeView(pageErrorView)
         pageErrorView = null
+    }
+
+    override fun showResultDialog(
+        result: String?,
+        onCancelClick: (() -> Unit)?,
+        onComfirClick: (() -> Unit)?
+    ) {
+        val activity = wrActivity.get() ?: return
+        AlertDialog.showDialog(
+            activity.supportFragmentManager,
+            result,
+            activity.getString(R.string.m16_cancel),
+            activity.getString(R.string.m18_confirm),
+            activity.getString(R.string.m36_tip),
+            onCancelClick,
+            onComfirClick
+            )
+
     }
 
     private fun findPlaceholderContainerView(activity: BaseActivity): ViewGroup {

@@ -193,18 +193,21 @@ class ChargeActivity : BaseActivity(), View.OnClickListener,
                     val valueFromW = ValueUtil.valueFromW(it.transaction.powerKW)
                     val valueFromCost = ValueUtil.valueFromCost(it.transaction.cost)
 
+                    val valueFromV = ValueUtil.valueFromV(it.transaction.voltage)
 
-                    if (it.transaction.powerKW == 0.0 || it.transaction.current == 0.0) {
+
+
+               /*     if (it.transaction.powerKW == 0.0 || it.transaction.current == 0.0) {
                         chargeViewModel.valueVoltage = ValueUtil.valueFromV(0.0)
                     } else {
                         chargeViewModel.valueVoltage =
                             ValueUtil.valueFromV(it.transaction.powerKW / it.transaction.current)
-                    }
+                    }*/
 
 
                     chargeViewModel.valueCurrent = valueFromA
                     chargeViewModel.valuePower = valueFromW
-
+                    chargeViewModel.valueVoltage =valueFromV
 
 
 
@@ -360,7 +363,7 @@ class ChargeActivity : BaseActivity(), View.OnClickListener,
             when (ChargeSettingManager.List[it]) {
                 "Charging schedule" -> ScheduledChargeActivity.start(this)
                 "Off-peak charging" -> ActivityOffpeak.start(this)
-                "Auth gun" -> GunAuthActivity.start(this)
+                "Authorization management" -> GunAuthActivity.start(this)
 
             }
         }

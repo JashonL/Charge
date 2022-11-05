@@ -92,7 +92,8 @@ class ForgotPasswordActivity:BaseActivity() ,View.OnClickListener{
 
         verifyCodeViewModel.findPasswordLiveData.observe(this){
             dismissDialog()
-            ToastUtil.show(it.second)
+//            ToastUtil.show(it.second)
+            showResultDialog(it.second,null,null)
         }
 
     }

@@ -23,6 +23,7 @@ data class TransactionModel(
         val cost: Double,
         val powerKW: Double,
         val current: Double,
+        val voltage:Double,
         val offPeakStatus:Int,
         val authorizeStatus:Int,
         val scheduledStatus:Int

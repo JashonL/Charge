@@ -30,6 +30,35 @@ object StatusUtil {
     }
 
 
+    fun getTextColorByStatus(@ChargeStatus status: Int): Int {
+
+        return ContextCompat.getColor(MainApplication.instance(),when (status) {
+            ChargeStatus.UNAVAILABLE -> R.color.red
+            ChargeStatus.AVAILABLE -> R.color.black_333333
+            ChargeStatus.PREPEAR -> R.color.black_333333
+            ChargeStatus.CHARGING -> R.color.color_app_main_pressed
+            ChargeStatus.DEVICE_STOP -> R.color.black_333333
+            ChargeStatus.CAR_STOP -> R.color.black_333333
+            ChargeStatus.CHARGE_FINISH -> R.color.black_333333
+            ChargeStatus.RESERVCE -> R.color.black_333333
+            ChargeStatus.UNAVAILABLE1 -> R.color.red
+            else -> R.color.black_333333
+        })
+ /*       return when (status) {
+            ChargeStatus.UNAVAILABLE -> R.color.red
+            ChargeStatus.AVAILABLE -> R.color.black_333333
+            ChargeStatus.PREPEAR -> R.color.black_333333
+            ChargeStatus.CHARGING -> R.color.color_app_main_pressed
+            ChargeStatus.DEVICE_STOP -> R.color.black_333333
+            ChargeStatus.CAR_STOP -> R.color.black_333333
+            ChargeStatus.CHARGE_FINISH -> R.color.black_333333
+            ChargeStatus.RESERVCE -> R.color.black_333333
+            ChargeStatus.UNAVAILABLE1 -> R.color.red
+            else -> R.color.black_333333
+        }*/
+    }
+
+
     fun setImageStatus(
         context: Context,
         @ChargeStatus status: Int,
@@ -37,9 +66,24 @@ object StatusUtil {
         energy: Int
     ) {
         when (status) {
-            ChargeStatus.UNAVAILABLE -> GlideUtil.showImage(context,R.drawable.unavailable,imageView,R.drawable.unavailable)
-            ChargeStatus.AVAILABLE -> GlideUtil.showImage(context, R.drawable.available, imageView,R.drawable.available)
-            ChargeStatus.PREPEAR -> GlideUtil.showImage(context, R.drawable.available, imageView,R.drawable.available)
+            ChargeStatus.UNAVAILABLE -> GlideUtil.showImage(
+                context,
+                R.drawable.unavailable,
+                imageView,
+                R.drawable.unavailable
+            )
+            ChargeStatus.AVAILABLE -> GlideUtil.showImage(
+                context,
+                R.drawable.available,
+                imageView,
+                R.drawable.available
+            )
+            ChargeStatus.PREPEAR -> GlideUtil.showImage(
+                context,
+                R.drawable.available,
+                imageView,
+                R.drawable.available
+            )
 
             ChargeStatus.CHARGING ->
                 if (energy < 5) {
@@ -56,14 +100,34 @@ object StatusUtil {
                     GlideUtil.showGif(context, R.drawable.precent_100, imageView)
                 }
 
-            ChargeStatus.DEVICE_STOP -> GlideUtil.showImage(context,R.drawable.unavailable,imageView,R.drawable.unavailable)
+            ChargeStatus.DEVICE_STOP -> GlideUtil.showImage(
+                context,
+                R.drawable.unavailable,
+                imageView,
+                R.drawable.unavailable
+            )
 
-            ChargeStatus.CAR_STOP -> GlideUtil.showImage(context,R.drawable.unavailable,imageView,R.drawable.unavailable)
+            ChargeStatus.CAR_STOP -> GlideUtil.showImage(
+                context,
+                R.drawable.unavailable,
+                imageView,
+                R.drawable.unavailable
+            )
 
             ChargeStatus.CHARGE_FINISH -> GlideUtil.showGif(context, R.drawable.pre_75, imageView)
             ChargeStatus.RESERVCE -> GlideUtil.showGif(context, R.drawable.pre_75, imageView)
-            ChargeStatus.UNAVAILABLE1 ->GlideUtil.showImage(context,R.drawable.unavailable,imageView,R.drawable.unavailable)
-            else -> GlideUtil.showImage(context,R.drawable.unavailable,imageView,R.drawable.unavailable)
+            ChargeStatus.UNAVAILABLE1 -> GlideUtil.showImage(
+                context,
+                R.drawable.unavailable,
+                imageView,
+                R.drawable.unavailable
+            )
+            else -> GlideUtil.showImage(
+                context,
+                R.drawable.unavailable,
+                imageView,
+                R.drawable.unavailable
+            )
         }
     }
 

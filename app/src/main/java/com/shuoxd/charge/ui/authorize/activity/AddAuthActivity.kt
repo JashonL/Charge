@@ -69,8 +69,10 @@ class AddAuthActivity:BaseActivity() ,View.OnClickListener{
                     TextUtils.isEmpty(username)->ToastUtil.show(getString(R.string.m74_please_input_username))
                     TextUtils.isEmpty(chargeId)->ToastUtil.show(getString(R.string.m136_choose))
                     else ->{
-                        val email = accountService().user()?.email
-                        authModel.addAuthlist(chargeId,email)
+//                        val email = accountService().user()?.email
+
+
+                        authModel.addAuthlist(chargeId,username)
                     }
 
                 }

@@ -17,4 +17,8 @@ interface IDisplay {
 
     fun hidePageErrorView()
 
+    fun showResultDialog(result:String?,  onCancelClick: (() -> Unit)? = null,
+                         onComfirClick: (() -> Unit)?)
+
+
 }

@@ -109,4 +109,15 @@ abstract class BaseActivity : AppCompatActivity(), ServiceManager.ServiceInterfa
         display.hidePageLoadingView()
     }
 
+
+    override fun showResultDialog(
+        result: String?,
+        onCancelClick: (() -> Unit)?,
+        onComfirClick: (() -> Unit)?
+    ) {
+        display.showResultDialog(result,onCancelClick,onComfirClick)
+    }
+
+
+
 }

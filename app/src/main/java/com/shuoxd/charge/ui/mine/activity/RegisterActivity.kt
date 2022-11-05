@@ -12,7 +12,6 @@ import android.text.style.ClickableSpan
 import android.text.style.ForegroundColorSpan
 import android.view.View
 import androidx.activity.viewModels
-import com.shuoxd.charge.BuildConfig
 import com.shuoxd.charge.R
 import com.shuoxd.charge.base.BaseActivity
 import com.shuoxd.charge.databinding.ActivityRegisterBinding
@@ -54,7 +53,8 @@ class RegisterActivity : BaseActivity(), View.OnClickListener {
                 //注册成功，关闭页面返回登录页面
                 finish()
             } else {
-                ToastUtil.show(it)
+//                ToastUtil.show(it)
+                showResultDialog(it,null,null)
             }
         }
 

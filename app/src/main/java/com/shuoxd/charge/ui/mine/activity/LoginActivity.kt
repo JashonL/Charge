@@ -72,7 +72,11 @@ class LoginActivity : BaseActivity(), View.OnClickListener {
                 val user = it.first
                 loginSuccess(user)
             } else {
-                ToastUtil.show(it.second)
+//                ToastUtil.show(it.second)
+
+                showResultDialog(it.second,null,null)
+
+
             }
 
         }

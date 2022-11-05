@@ -60,7 +60,8 @@ class AddYourChargeActivity : BaseActivity(), View.OnClickListener {
                 ChargeAactivityMonitor.notifyPlant()
                 finish()
             } else {
-                ToastUtil.show(it)
+                showResultDialog(it,null,null)
+//                ToastUtil.show(it)
             }
         }
 

@@ -227,7 +227,8 @@ class MineActivity : BaseActivity(), View.OnClickListener,
                 accountService().login(this)
                 finish()
             } else {
-                ToastUtil.show(it)
+//                ToastUtil.show(it)
+                showResultDialog(it,null,null)
             }
         }
 

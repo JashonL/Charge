@@ -137,7 +137,9 @@ class ActivityOffpeak:BaseActivity() , View.OnClickListener{
 
         offpeakViewModel.setOffpeakLiveData.observe(this){
             dismissDialog()
-            ToastUtil.show(it.second)
+//            ToastUtil.show(it.second)
+            showResultDialog(it.second,null,null)
+
         }
 
 

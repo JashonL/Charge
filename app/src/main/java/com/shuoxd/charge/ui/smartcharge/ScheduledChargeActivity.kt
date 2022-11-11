@@ -160,7 +160,9 @@ class ScheduledChargeActivity : BaseActivity(), View.OnClickListener {
 
         sehduleViewModel.setScheduleLiveData.observe(this) {
             dismissDialog()
-            ToastUtil.show(it.second)
+//            ToastUtil.show(it.second)
+
+            showResultDialog(it.second,null,null)
 
         }
 

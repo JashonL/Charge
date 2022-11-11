@@ -151,7 +151,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:text="@string/m108_add_your_charge"
+        android:text="@string/m118_electricity"
         android:textColor="@color/color_text_66"
         android:textSize="@dimen/size_content_sp_10"
         app:layout_constraintBottom_toBottomOf="@+id/tv_end_time"

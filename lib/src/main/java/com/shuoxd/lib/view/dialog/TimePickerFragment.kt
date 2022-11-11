@@ -1,5 +1,6 @@
 package com.shuoxd.lib.view.dialog
 
+import android.app.AlertDialog
 import android.app.Dialog
 import android.app.TimePickerDialog
 import android.os.Bundle
@@ -53,7 +54,7 @@ class TimePickerFragment : DialogFragment(), TimePickerDialog.OnTimeSetListener 
         if (this.min == -1) {
             this.min = min
         }
-        return TimePickerDialog(requireActivity(), this, this.hour, this.min, true)
+        return TimePickerDialog(requireActivity(), AlertDialog.THEME_HOLO_LIGHT,this, this.hour, this.min, true)
 
     }
 

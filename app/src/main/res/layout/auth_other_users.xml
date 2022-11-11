@@ -31,16 +31,37 @@
 
 
     <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp_30"
+        android:padding="@dimen/dp_5"
+        android:text="@string/m136_choose"
+        android:textColor="@color/color_text_33"
+        android:textSize="@dimen/size_content_sp_14" />
+
+
+    <TextView
         android:id="@+id/tv_charge_id"
         android:layout_width="match_parent"
         android:layout_height="@dimen/dp_40"
-        android:layout_margin="@dimen/dp_30"
-        android:padding="@dimen/dp_5"
+        android:layout_marginStart="@dimen/dp_30"
+        android:layout_marginEnd="@dimen/dp_30"
         android:background="@drawable/setting_layer"
         android:gravity="center"
         android:hint="@string/m136_choose"
-        android:textColorHint="@color/white"
+        android:padding="@dimen/dp_5"
         android:textColor="@color/white"
+        android:textColorHint="@color/white"
+        android:textSize="@dimen/size_content_sp_14" />
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp_30"
+        android:padding="@dimen/dp_5"
+        android:text="@string/m177_authorized_user"
+        android:textColor="@color/color_text_33"
         android:textSize="@dimen/size_content_sp_14" />
 
 
@@ -48,7 +69,8 @@
         android:id="@+id/et_username"
         android:layout_width="match_parent"
         android:layout_height="@dimen/dp_60"
-        android:layout_margin="@dimen/dp_30"
+        android:layout_marginStart="@dimen/dp_30"
+        android:layout_marginEnd="@dimen/dp_30"
         android:background="@drawable/shape_stroke_gradient"
         android:gravity="center" />
 

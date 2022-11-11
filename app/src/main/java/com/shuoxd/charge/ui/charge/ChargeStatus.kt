@@ -18,7 +18,8 @@ import com.shuoxd.charge.application.MainApplication
     ChargeStatus.CHARGE_FINISH,
     ChargeStatus.RESERVCE,
     ChargeStatus.UNAVAILABLE1,
-    ChargeStatus.FAULT
+    ChargeStatus.FAULT,
+    ChargeStatus.NONE
 
 )
 

@@ -41,10 +41,15 @@ class AddAuthActivity:BaseActivity() ,View.OnClickListener{
     private fun initData() {
         authModel.addAuthLiveData.observe(this){
             dismissDialog()
-            ToastUtil.show(it.second)
+//            ToastUtil.show(it.second)
             if (it.first) {
-                AuthMonitor.notifyPlant()
-                finish()
+                showResultDialog(it.second,null){
+                    AuthMonitor.notifyPlant()
+                    finish()
+                }
+
+            }else{
+                showResultDialog(it.second,null,null)
             }
         }
     }

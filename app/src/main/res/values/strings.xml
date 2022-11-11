@@ -148,7 +148,7 @@
     <string name="m117_record">Record</string>
     <string name="m118_electricity">Electricity</string>
     <string name="m119_time">Time</string>
-    <string name="m120_money">Money</string>
+    <string name="m120_money">cost</string>
 
     <string name="m121_norecord">not record</string>
     <string name="m122_bluetooth_connection">Bluetooth Connection</string>
@@ -166,7 +166,7 @@
     <string name="m133_rate_not_null">charge rate not enpty~</string>
     <string name="m134_auth">Charger Authorization</string>
     <string name="m135_delete">Delete</string>
-    <string name="m136_choose">Select Charger</string>
+    <string name="m136_choose">Select a Charge Point</string>
     <string name="m137_add_success">Add Success</string>
     <string name="m138_add_fail">Add Fail</string>
     <string name="m139_change_password">Modify Password</string>
@@ -220,8 +220,10 @@
     <string name="m174_authentication">Authentication</string>
     <string name="m175_not_set">Not set</string>
 
-    <string name="m176_auth_tips">注:\n当关闭授权时，如果检测到插枪（充电桩状态从avaliable变成Preparing），自动启动充电\n\n当开启授权时，如果检测到插枪（充电桩状态从avaliable变成Preparing），会弹窗提示是否启动充电 </string>
+    <string name="m176_auth_tips">Note: \nAutomatically start charging when authorization is turned off; \n\n When the authorization is enabled, a window will pop up asking whether charging is required</string>
 
+
+    <string name="m177_authorized_user">Authorized user</string>
 
 
 

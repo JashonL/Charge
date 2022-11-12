@@ -220,10 +220,12 @@
     <string name="m174_authentication">Authentication</string>
     <string name="m175_not_set">Not set</string>
 
-    <string name="m176_auth_tips">Note: \nAutomatically start charging when authorization is turned off; \n\n When the authorization is enabled, a window will pop up asking whether charging is required</string>
+    <string name="m176_auth_tips">Note: \nWhen the authorization is enabled, a window will pop up asking whether charging is required; \n\n Automatically start charging when authorization is turned off</string>
 
 
     <string name="m177_authorized_user">Authorized user</string>
+    <string name="m178_serial_number_filling">Serial number filling</string>
+    <string name="m178_user_name_filling">User name filling</string>
 
 
 

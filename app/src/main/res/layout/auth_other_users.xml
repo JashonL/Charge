@@ -35,7 +35,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/dp_30"
         android:padding="@dimen/dp_5"
-        android:text="@string/m136_choose"
+        android:text="@string/m178_serial_number_filling"
         android:textColor="@color/color_text_33"
         android:textSize="@dimen/size_content_sp_14" />
 
@@ -60,7 +60,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/dp_30"
         android:padding="@dimen/dp_5"
-        android:text="@string/m177_authorized_user"
+        android:text="@string/m178_user_name_filling"
         android:textColor="@color/color_text_33"
         android:textSize="@dimen/size_content_sp_14" />
 

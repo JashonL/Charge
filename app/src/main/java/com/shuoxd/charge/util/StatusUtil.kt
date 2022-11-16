@@ -150,6 +150,11 @@ object StatusUtil {
     }
 
 
+
+
+
+
+
     fun getActionUrl(@ChargeStatus status: Int): String {
         return when (status) {
             ChargeStatus.UNAVAILABLE -> ""
@@ -165,6 +170,26 @@ object StatusUtil {
         }
 
     }
+
+
+    fun getStartStatus(@ChargeStatus status: Int): String {
+        return MainApplication.instance().getString(
+            when (status) {
+                ChargeStatus.UNAVAILABLE -> R.string.m181_start
+                ChargeStatus.AVAILABLE -> R.string.m181_start
+                ChargeStatus.PREPEAR -> R.string.m181_start
+                ChargeStatus.CHARGING -> R.string.m182_stop
+                ChargeStatus.DEVICE_STOP -> R.string.m181_start
+                ChargeStatus.CAR_STOP -> R.string.m181_start
+                ChargeStatus.CHARGE_FINISH -> R.string.m181_start
+                ChargeStatus.RESERVCE -> R.string.m181_start
+                ChargeStatus.UNAVAILABLE1 -> R.string.m181_start
+                else -> R.string.m181_start
+            }
+        )
+
+    }
+
 
 
 }

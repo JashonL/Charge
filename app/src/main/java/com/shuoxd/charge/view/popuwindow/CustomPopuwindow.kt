@@ -13,6 +13,7 @@ class CustomPopuwindow(context: Context, layoutRes: Int, initView: ViewInit? = n
     PopupWindow() {
 
 
+
     init {
         val inflater = LayoutInflater.from(context)
         this.contentView = inflater.inflate(layoutRes, null) //布局xml
@@ -26,16 +27,17 @@ class CustomPopuwindow(context: Context, layoutRes: Int, initView: ViewInit? = n
         this.setBackgroundDrawable(colorDrawable) //设置背景
         initView?.viewInitListener(contentView)
         this.setTouchInterceptor { view, _ -> false };
-        isTouchable=true
-        this.isFocusable=true
+        isTouchable = true
+        this.isFocusable = true
     }
-
-
 
 
     interface ViewInit {
         fun viewInitListener(view: View);
     }
+
+
+
 
 
 }

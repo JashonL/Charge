@@ -47,8 +47,8 @@
 
         <androidx.constraintlayout.utils.widget.ImageFilterView
             android:id="@+id/iv_avatar"
-            android:layout_width="@dimen/dp_60"
-            android:layout_height="@dimen/dp_60"
+            android:layout_width="@dimen/dp_50"
+            android:layout_height="@dimen/dp_50"
             android:layout_centerVertical="true"
             android:layout_marginStart="@dimen/dp_10"
             android:scaleType="centerCrop"
@@ -57,6 +57,17 @@
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toTopOf="@+id/v_top_bg"
             app:roundPercent="1" />
+
+
+        <TextView
+            android:id="@+id/tv_personal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/m179_personal"
+            android:textColor="@color/white"
+            app:layout_constraintLeft_toLeftOf="@+id/iv_avatar"
+            app:layout_constraintRight_toRightOf="@+id/iv_avatar"
+            app:layout_constraintTop_toBottomOf="@+id/iv_avatar" />
 
 
         <ImageView
@@ -78,11 +89,20 @@
             android:layout_marginEnd="@dimen/dp_10"
             android:scaleType="centerCrop"
             android:src="@drawable/setting"
-
             app:layout_constraintBottom_toBottomOf="@+id/v_top_bg"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="@+id/v_top_bg"
             app:roundPercent="1" />
+
+        <TextView
+            android:id="@+id/tv_setting"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/m180_set"
+            android:textColor="@color/white"
+            app:layout_constraintLeft_toLeftOf="@+id/iv_set"
+            app:layout_constraintRight_toRightOf="@+id/iv_set"
+            app:layout_constraintTop_toTopOf="@+id/tv_personal" />
 
 
         <com.scwang.smart.refresh.layout.SmartRefreshLayout
@@ -111,8 +131,8 @@
                             android:layout_centerVertical="true"
                             android:layout_margin="@dimen/dp_10"
                             android:background="@drawable/setting_layer"
-                            android:padding="@dimen/dp_5"
                             android:minWidth="@dimen/dp_80"
+                            android:padding="@dimen/dp_5"
                             android:textColor="@color/white"
                             android:textSize="@dimen/size_content_sp_14"
                             android:textStyle="bold"
@@ -154,9 +174,7 @@
                             android:src="@drawable/pre_1"
                             app:layout_constraintLeft_toLeftOf="parent"
                             app:layout_constraintRight_toRightOf="parent"
-                            app:layout_constraintTop_toBottomOf="@+id/tv_charging_setting"
-
-                            />
+                            app:layout_constraintTop_toBottomOf="@+id/tv_charging_setting" />
 
 
                         <ImageView
@@ -167,6 +185,16 @@
                             app:layout_constraintBottom_toBottomOf="@+id/iv_charge_status"
                             app:layout_constraintRight_toLeftOf="@+id/iv_charge_status" />
 
+                        <TextView
+                            android:id="@+id/tv_lock"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/m103_unlock_gun"
+                            android:textColor="@color/color_app_main"
+                            app:layout_constraintLeft_toLeftOf="@+id/iv_lock"
+                            app:layout_constraintRight_toRightOf="@+id/iv_lock"
+                            app:layout_constraintTop_toBottomOf="@+id/iv_lock" />
+
 
                         <ImageView
                             android:id="@+id/iv_menu"
@@ -175,6 +203,17 @@
                             android:src="@drawable/menu"
                             app:layout_constraintBottom_toBottomOf="@+id/iv_charge_status"
                             app:layout_constraintLeft_toRightOf="@+id/iv_charge_status" />
+
+
+                        <TextView
+                            android:id="@+id/tv_record"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/m117_record"
+                            android:textColor="@color/color_app_main"
+                            app:layout_constraintLeft_toLeftOf="@+id/iv_menu"
+                            app:layout_constraintRight_toRightOf="@+id/iv_menu"
+                            app:layout_constraintTop_toBottomOf="@+id/iv_menu" />
 
 
                         <TextView
@@ -206,6 +245,19 @@
                             tools:src="@drawable/start_charge" />
 
 
+                        <TextView
+                            android:id="@+id/tv_start"
+                            android:padding="@dimen/dp_5"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@{StatusUtil.INSTANCE.getStartStatus(chargeInfo.status)}"
+                            android:textColor="@color/color_app_main"
+                            app:layout_constraintLeft_toLeftOf="@+id/iv_start"
+                            app:layout_constraintRight_toRightOf="@+id/iv_start"
+                            app:layout_constraintTop_toBottomOf="@+id/iv_start" />
+
+
+
                         <LinearLayout
                             android:id="@+id/ll_schedule"
                             android:layout_width="match_parent"
@@ -217,7 +269,7 @@
                             android:orientation="horizontal"
                             app:layout_constraintLeft_toLeftOf="parent"
                             app:layout_constraintRight_toRightOf="parent"
-                            app:layout_constraintTop_toBottomOf="@+id/iv_start">
+                            app:layout_constraintTop_toBottomOf="@+id/tv_start">
 
                             <ImageView
                                 android:id="@+id/iv_icon"
@@ -238,8 +290,7 @@
                                 android:layout_marginStart="@dimen/dp_10"
                                 android:text="@string/m175_not_set"
                                 android:textColor="@color/color_text_33"
-                                android:textSize="@dimen/size_content_sp_14"
-                                 />
+                                android:textSize="@dimen/size_content_sp_14" />
 
                             <androidx.legacy.widget.Space
                                 android:layout_width="0dp"

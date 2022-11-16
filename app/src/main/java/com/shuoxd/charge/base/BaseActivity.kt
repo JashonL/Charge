@@ -23,6 +23,8 @@ abstract class BaseActivity : AppCompatActivity(), ServiceManager.ServiceInterfa
         AndroidDisplay(this)
     }
 
+
+
     /**
      * 多语言初始化
      */

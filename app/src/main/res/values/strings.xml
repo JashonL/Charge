@@ -226,6 +226,10 @@
     <string name="m177_authorized_user">Authorized user</string>
     <string name="m178_serial_number_filling">Serial number filling</string>
     <string name="m178_user_name_filling">User name filling</string>
+    <string name="m179_personal">Personal</string>
+    <string name="m180_set">Set</string>
+    <string name="m181_start">Start</string>
+    <string name="m182_stop">Stop</string>
 
 
 

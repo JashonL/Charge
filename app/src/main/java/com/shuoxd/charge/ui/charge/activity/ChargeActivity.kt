@@ -45,6 +45,7 @@ class ChargeActivity : BaseActivity(), View.OnClickListener,
     //枪的授权状态
     var authorizeStatus = 0
 
+    var popShow = false
 
     companion object {
         fun start(context: Context?) {
@@ -196,18 +197,17 @@ class ChargeActivity : BaseActivity(), View.OnClickListener,
                     val valueFromV = ValueUtil.valueFromV(it.transaction.voltage)
 
 
-
-               /*     if (it.transaction.powerKW == 0.0 || it.transaction.current == 0.0) {
-                        chargeViewModel.valueVoltage = ValueUtil.valueFromV(0.0)
-                    } else {
-                        chargeViewModel.valueVoltage =
-                            ValueUtil.valueFromV(it.transaction.powerKW / it.transaction.current)
-                    }*/
+                    /*     if (it.transaction.powerKW == 0.0 || it.transaction.current == 0.0) {
+                             chargeViewModel.valueVoltage = ValueUtil.valueFromV(0.0)
+                         } else {
+                             chargeViewModel.valueVoltage =
+                                 ValueUtil.valueFromV(it.transaction.powerKW / it.transaction.current)
+                         }*/
 
 
                     chargeViewModel.valueCurrent = valueFromA
                     chargeViewModel.valuePower = valueFromW
-                    chargeViewModel.valueVoltage =valueFromV
+                    chargeViewModel.valueVoltage = valueFromV
 
 
 
@@ -216,7 +216,10 @@ class ChargeActivity : BaseActivity(), View.OnClickListener,
 //                    binding.dataViewVoltage.setValue(valueFromW.first + valueFromW.second)
                     binding.dataViewConsumption.setValue(valueFromCost)
                     binding.dataViewTime.setValue(it.transaction.charingTimeText)
-                    if (it.transaction.offPeakStatus == 1) binding.ivOffpeakTips.visible() else binding.ivOffpeakTips.gone()
+                    if (it.transaction.offPeakStatus == 1) {
+                        binding.ivOffpeakTips.visible()
+                        if (!popShow)showPopoffpeak()
+                    } else binding.ivOffpeakTips.gone()
 
 
                     val scList = it.scList
@@ -353,6 +356,7 @@ class ChargeActivity : BaseActivity(), View.OnClickListener,
 
 
     private fun showPopoffpeak() {
+        popShow=true
         val popuwindow = CustomPopuwindow(this, R.layout.offpeak_tips)
         popuwindow.showAsDropDown(binding.ivOffpeakTips)
     }

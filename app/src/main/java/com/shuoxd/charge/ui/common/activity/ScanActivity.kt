@@ -46,6 +46,7 @@ class ScanActivity : BaseActivity(), OnCaptureCallback {
             it.onCreate()
             it.vibrate(true)
             it.framingRectRatio(0.625f)
+            it.supportVerticalCode(true)
         }
     }
 

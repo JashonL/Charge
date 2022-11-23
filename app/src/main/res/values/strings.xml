@@ -120,7 +120,7 @@
 
 
     <string name="m93_unavailable">unavailable</string>
-    <string name="m94_available">free</string>
+    <string name="m94_available">Available</string>
     <string name="m95_prepear">preparing</string>
     <string name="m96_charging">Charging…</string>
     <string name="m97_car_stop">car stop charging</string>
@@ -136,7 +136,7 @@
     <string name="m106_unlock_fail">unlock fail</string>
     <string name="m107_logout">Logout</string>
     <string name="m108_add_your_charge">Add charger</string>
-    <string name="m109_authorize">Authorize to other useers</string>
+    <string name="m109_authorize">Authorize to other users</string>
     <string name="m110_personal_info">User Information</string>
 
     <string name="m111_help_support">Support</string>
@@ -207,7 +207,7 @@
     <string name="m162_pick_image_intent_chooser_title">Select source</string>
     <string name="m163_offpeak_tips">You have enabled off peak charging!</string>
     <string name="m164_start_charging">Start Charging</string>
-    <string name="m165_reservation_charging">Reservation charging</string>
+    <string name="m165_reservation_charging">Schedule charging</string>
     <string name="m166_save">Save</string>
     <string name="m167_enable">Enable</string>
     <string name="m168_keep_awake">Keep awake</string>
@@ -217,10 +217,12 @@
     <string name="m171_offpeak">Off-peak charging</string>
     <string name="m172_connect_ev">Connect EV</string>
     <string name="m173_disconnect_ev">Disconnect EV</string>
-    <string name="m174_authentication">Authentication</string>
+    <string name="m174_authentication">Require Authentication</string>
     <string name="m175_not_set">Not set</string>
 
-    <string name="m176_auth_tips">Note: \nWhen the authorization is enabled, a window will pop up asking whether charging is required; \n\n Automatically start charging when authorization is turned off</string>
+    <string name="m176_auth_tips">Note: \nWhen this option is enabled, you will be asked to confirm in the APP to start charging
+after plug in your car。 \n\n When this option is disabled, the charging will commence without further
+confirmation after plug in your car。</string>
 
 
     <string name="m177_authorized_user">Authorized user</string>

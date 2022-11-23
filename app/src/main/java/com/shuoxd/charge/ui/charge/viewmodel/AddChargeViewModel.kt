@@ -14,7 +14,7 @@ import kotlinx.coroutines.launch
 
 class AddChargeViewModel : BaseViewModel() {
 
-   val  addchargeLiveData=MutableLiveData<String>()
+   val  addchargeLiveData=MutableLiveData<Pair<Boolean,String>>()
 
 
     fun addChage(chargeId:String?){
@@ -31,21 +31,26 @@ class AddChargeViewModel : BaseViewModel() {
                     override fun success(result: HttpResult<TransactionModel>) {
                         val msg = result.msg
                         if (result.isBusinessSuccess()) {
-                            addchargeLiveData.value =
-                                msg ?: MainApplication.instance().getString(
-                                    R.string.m105_unlock_success
-                                )
+                            addchargeLiveData.value =Pair(  true,msg ?: MainApplication.instance().getString(
+                                R.string.m105_unlock_success
+                            ))
+
                         } else {
-                            addchargeLiveData.value =
+                      /*      addchargeLiveData.value =
                                 msg ?: MainApplication.instance().getString(
                                     R.string.m106_unlock_fail
-                                )
+                                )*/
+
+
+                            addchargeLiveData.value =Pair(false,msg ?: MainApplication.instance().getString(
+                                R.string.m106_unlock_fail))
                         }
 
                     }
 
                     override fun onFailure(errorModel: HttpErrorModel) {
-                        addchargeLiveData.value = errorModel.errorMsg ?: ""
+
+                        addchargeLiveData.value =Pair(false,errorModel.errorMsg ?: "")
                     }
 
                 })

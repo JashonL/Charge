@@ -12,6 +12,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.activity.viewModels
 import androidx.core.content.FileProvider
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
@@ -26,19 +27,22 @@ import com.shuoxd.charge.databinding.ActivityUserBinding
 import com.shuoxd.charge.databinding.ItemChargeInMineBinding
 import com.shuoxd.charge.model.charge.ChargeModel
 import com.shuoxd.charge.ui.authorize.activity.AuthListActivity
+import com.shuoxd.charge.ui.charge.ChargeStatus
 import com.shuoxd.charge.ui.charge.activity.AddYourChargeActivity
 import com.shuoxd.charge.ui.charge.monitor.ChargeAactivityMonitor
+import com.shuoxd.charge.ui.charge.viewmodel.ChargeViewModel
 import com.shuoxd.charge.ui.common.fragment.RequestPermissionHub
 import com.shuoxd.charge.ui.mine.viewmodel.SettingViewModel
 import com.shuoxd.charge.util.AppUtil
+import com.shuoxd.charge.util.StatusUtil
+import com.shuoxd.charge.util.ValueUtil
 import com.shuoxd.charge.view.dialog.AlertDialog
 import com.shuoxd.charge.view.dialog.OptionsDialog
 import com.shuoxd.charge.view.itemdecoration.DividerItemDecoration
 import com.shuoxd.lib.service.account.IAccountService
-import com.shuoxd.lib.util.ActivityBridge
-import com.shuoxd.lib.util.ToastUtil
-import com.shuoxd.lib.util.Util
-import com.shuoxd.lib.util.gone
+import com.shuoxd.lib.util.*
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 import java.io.File
 
 class MineActivity : BaseActivity(), View.OnClickListener,
@@ -55,6 +59,10 @@ class MineActivity : BaseActivity(), View.OnClickListener,
 
     private val viewModel: SettingViewModel by viewModels()
 
+    private val chargeViewModel: ChargeViewModel by viewModels()
+
+
+
     private var takePictureFile: File? = null
 
 
@@ -65,7 +73,51 @@ class MineActivity : BaseActivity(), View.OnClickListener,
         initViews()
         initData()
         setlisteners()
+        setOnResume()
+        getChargeData()
     }
+
+    private fun setOnResume() {
+        ChargeAactivityMonitor.watchAddCharge(lifecycle){
+            freshChage()
+        }
+
+    }
+
+
+
+
+
+
+
+
+
+
+    private fun freshChage() {
+        //请求充电桩列表
+        val user = accountService().user()
+        if (user != null) {
+            chargeViewModel.getChargeList(user.email)
+        }
+    }
+
+
+    private fun getChargeData() {
+        //充电桩列表
+        chargeViewModel.chargeListLiveData.observe(this) {
+            dismissDialog()
+            if (it.second == null) {
+                val first = it.first
+                setChargeList(first.toMutableList())
+                (bind.rlvCharge.adapter as Adapter).refresh(first)
+            } else {
+                ToastUtil.show(it.second)
+            }
+        }
+
+    }
+
+
 
     private fun setlisteners() {
         bind.itemAddCharger.setOnClickListener(this)
@@ -214,6 +266,11 @@ class MineActivity : BaseActivity(), View.OnClickListener,
                 .start(this@MineActivity)
         }
     }
+
+
+
+
+
 
 
     private fun initData() {

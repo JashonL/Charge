@@ -39,6 +39,25 @@ class ChargeAactivityMonitor: BroadcastReceiver(),LifecycleObserver {
         }
 
 
+
+        fun watchAddCharge(
+            lifecycle: Lifecycle? = null,
+            listener2: (monitor: ChargeAactivityMonitor) -> Unit
+        ): ChargeAactivityMonitor {
+            val intentFilter = IntentFilter()
+            intentFilter.addAction(ACTION_CHARGE)
+            val monitor = ChargeAactivityMonitor()
+            monitor.listener2=listener2
+            lifecycle?.addObserver(monitor)
+            LocalBroadcastManager.getInstance(MainApplication.instance())
+                .registerReceiver(monitor, intentFilter)
+            return monitor
+        }
+
+
+
+
+
         fun notifyPlant() {
             LocalBroadcastManager.getInstance(MainApplication.instance())
                 .sendBroadcast(Intent().apply {

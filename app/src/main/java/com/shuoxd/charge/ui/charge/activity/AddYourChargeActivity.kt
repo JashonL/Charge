@@ -56,12 +56,10 @@ class AddYourChargeActivity : BaseActivity(), View.OnClickListener {
         //充电桩列表
         addChargeViewModel.addchargeLiveData.observe(this) {
             dismissDialog()
-            if (it == null) {
+            showResultDialog(it.second, null, null)
+            if (it.first) {
                 ChargeAactivityMonitor.notifyPlant()
                 finish()
-            } else {
-                showResultDialog(it,null,null)
-//                ToastUtil.show(it)
             }
         }
 
@@ -82,7 +80,7 @@ class AddYourChargeActivity : BaseActivity(), View.OnClickListener {
                 }
             }
 
-            p0===binding.llScan->{
+            p0 === binding.llScan -> {
                 RequestPermissionHub.requestPermission(
                     supportFragmentManager,
                     arrayOf(Manifest.permission.CAMERA)

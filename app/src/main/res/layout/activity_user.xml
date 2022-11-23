@@ -127,6 +127,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
                     app:itemName="@string/m111_help_support"
+                    android:visibility="gone"
                     app:leftIcon="@drawable/help"
                     app:showLeftIcon="true"
                     app:showSubName="true" />

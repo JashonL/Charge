@@ -19,7 +19,7 @@
         android:layout_height="wrap_content"
         app:showRightText="false"
         app:rightText="@string/m166_save"
-        app:titleText="@string/m165_reservation_charging" />
+        app:titleText="@string/m183_authorization_management" />
 
 
     <com.shuoxd.charge.view.CheckItemView

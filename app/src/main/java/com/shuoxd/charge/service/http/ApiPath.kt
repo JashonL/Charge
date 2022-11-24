@@ -48,6 +48,13 @@ object ApiPath {
     }
 
     object Charge {
+
+        /**
+         * 未授权的电桩列表
+         */
+        const val CHARGER_LIST_ORIGINAL = "v1/charger/chargerListOriginal"
+
+
         /**
          * 电桩列表
          */

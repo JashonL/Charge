@@ -234,6 +234,9 @@ confirmation after plug in your car。</string>
     <string name="m182_stop">Stop</string>
 
 
+    <string name="m183_authorization_management">Authorization management</string>
+    <string name="m184_pin">Pin</string>
+    <string name="m185_pin_not_empty">Pin Not Empty</string>
 
 
 

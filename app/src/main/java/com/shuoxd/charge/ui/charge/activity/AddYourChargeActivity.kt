@@ -69,13 +69,18 @@ class AddYourChargeActivity : BaseActivity(), View.OnClickListener {
         when {
             p0 === binding.btAdd -> {
                 val text = binding.etSn.text.toString().trim()
+                val pin = binding.etPin.text.toString().trim()
+
                 when {
                     text.isEmpty() -> {
                         ToastUtil.show(getString(R.string.m116_sn_not_null))
                     }
+                    pin.isEmpty()->{
+                        ToastUtil.show(getString(R.string.m185_pin_not_empty))
+                    }
                     else -> {
                         showDialog()
-                        addChargeViewModel.addChage(text)
+                        addChargeViewModel.addChage(text,pin)
                     }
                 }
             }
@@ -109,8 +114,8 @@ class AddYourChargeActivity : BaseActivity(), View.OnClickListener {
                     if (resultCode == RESULT_OK && data?.hasExtra(ScanActivity.KEY_CODE_TEXT) == true) {
                         val collectionSN = data.getStringExtra(ScanActivity.KEY_CODE_TEXT)
                         binding.etSn.setText(collectionSN)
-                        showDialog()
-                        addChargeViewModel.addChage(collectionSN)
+                      /*  showDialog()
+                        addChargeViewModel.addChage(collectionSN)*/
                     }
                 }
             })

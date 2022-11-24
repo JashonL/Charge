@@ -10,9 +10,9 @@ ext {
     //ODM定制属性
     odm = [
             //用户协议
-            userAgreementUrl         : "http://charger.shuoxd.com:50015/resources/userterms/",
+            userAgreementUrl         : "http://charger.shuoxd.com:50015/resources/userterms/userterms_en.html",
             //隐私条款
-            privacyPolicyUrl         : "http://charger.shuoxd.com:50015/resources/userterms/",
+            privacyPolicyUrl         : "http://charger.shuoxd.com:50015/resources/userterms/userterms_en.html",
             //公司官网
             companyWebsite           : "www.atesspower.com",
             //公司手机号

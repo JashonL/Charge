@@ -17,10 +17,11 @@ class AddChargeViewModel : BaseViewModel() {
    val  addchargeLiveData=MutableLiveData<Pair<Boolean,String>>()
 
 
-    fun addChage(chargeId:String?){
+    fun addChage(chargeId:String?,pin:String){
 
         val params = hashMapOf<String, String>().apply {
             put("chargerId", chargeId?:"")
+            put("pin", pin)
         }
 
         viewModelScope.launch {

@@ -34,8 +34,13 @@ class AddAuthActivity:BaseActivity() ,View.OnClickListener{
         setContentView(binding.root)
         initData()
         setOnclickListener()
+        getOrinalList()
     }
 
+    private fun getOrinalList() {
+        val user = accountService().user()
+        authModel.getChargeList(user?.email)
+    }
 
 
     private fun initData() {
@@ -52,6 +57,19 @@ class AddAuthActivity:BaseActivity() ,View.OnClickListener{
                 showResultDialog(it.second,null,null)
             }
         }
+
+        //充电桩列表
+        authModel.chargeListLiveData.observe(this) {
+            dismissDialog()
+            if (it.second == null) {
+//                val first = it.first
+                authModel.chargeList= it.first.toMutableList()
+
+            } else {
+                ToastUtil.show(it.second)
+            }
+        }
+
     }
 
     private fun setOnclickListener() {
@@ -90,14 +108,20 @@ class AddAuthActivity:BaseActivity() ,View.OnClickListener{
 
 
     private fun showSelectChartType() {
-        val chargeList = getChargeList()
-        val list= mutableListOf<String>()
-        for (i in chargeList.indices){
-            chargeList.get(i).chargerId?.let { list.add(it) }
+        val chargeList = authModel.chargeList
+        if (chargeList==null){
+            getOrinalList()
+        }else{
+            val list= mutableListOf<String>()
+            for (i in chargeList.indices){
+                chargeList.get(i).chargerId?.let { list.add(it) }
+            }
+            OptionsDialog.show(supportFragmentManager, list.toTypedArray()) {
+                binding.tvChargeId.text=list.get(it)
+            }
         }
-        OptionsDialog.show(supportFragmentManager, list.toTypedArray()) {
-            binding.tvChargeId.text=list.get(it)
-        }
+
+
     }
 
 

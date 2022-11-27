@@ -4,7 +4,7 @@ ext {
     publish = [
             versionCode  : 1,
             versionName  : "1.1.221124.0",
-            applicationId: "com.shuoxd.charge"
+            applicationId: "com.hechuang.charge"
     ]
 
     //ODM定制属性

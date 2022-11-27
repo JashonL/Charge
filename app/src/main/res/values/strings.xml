@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">EVSElink</string>
+    <string name="app_name">Autobot Charge</string>
 
     <string name="m2_parse_error_msg">Failed to parse data</string>
     <string name="m3_bad_network_msg">Internet problem</string>

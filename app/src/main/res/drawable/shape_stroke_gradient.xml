@@ -5,8 +5,8 @@
     <item>
         <shape>
             <gradient
-                android:endColor="@color/color_gradien_start"
-                android:startColor="@color/color_gradien_end" />
+                android:endColor="@color/color_btn_start"
+                android:startColor="@color/color_btn_end" />
             <corners android:radius="@dimen/dp_180" />
 
         </shape>

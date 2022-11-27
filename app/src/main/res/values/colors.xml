@@ -43,8 +43,8 @@
 
 
     <!--主色-->
-    <color name="color_app_main">#5AB755</color>
-    <color name="color_app_main_pressed">#00B050</color>
+    <color name="color_app_main">#4760FF</color>
+    <color name="color_app_main_pressed">#2049E8</color>
     <!--分割线颜色-->
     <color name="color_item_divider_66">#666666</color>
     <color name="color_item_divider_99">#999999</color>
@@ -54,11 +54,11 @@
     <color name="color_text_33">#333333</color>
     <color name="color_text_66">#666666</color>
     <color name="color_text_99">#999999</color>
-    <color name="color_theme_green">#4B814B</color>
 
 
 
-    <color name="splash_background">#58B653</color>
+
+    <color name="splash_background">#4760FF</color>
 
     <!--登录-->
     <color name="color_login_background">#ECEFF1</color>
@@ -84,21 +84,14 @@
     <color name="pie_pm">#FE7701</color>
 
 
-
-    <color name="color_navigation">#00AF50</color>
-    <color name="color_navigation_press">#00AF99</color>
     <color name="color_bill_chart">#55BFBF</color>
-
-
-
-    <color name="color_btn_start">#1AC6BA</color>
-    <color name="color_btn_end">#59C657</color>
+    <color name="color_btn_start">#4860FF</color>
+    <color name="color_btn_end">#1BB0FF</color>
     <color name="color_default_background">#edf0f2</color>
     <color name="color_red_80">#CCE2001A</color>
 
 
-    <color name="color_gradien_start">#1AC6BA</color>
-    <color name="color_gradien_end">#59C657</color>
+
 
 
 

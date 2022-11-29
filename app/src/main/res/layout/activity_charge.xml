@@ -171,7 +171,7 @@
                             android:id="@+id/iv_charge_status"
                             android:layout_width="@dimen/dp_200"
                             android:layout_height="@dimen/dp_200"
-                            android:src="@drawable/pre_1"
+                            android:src="@drawable/available"
                             app:layout_constraintLeft_toLeftOf="parent"
                             app:layout_constraintRight_toRightOf="parent"
                             app:layout_constraintTop_toBottomOf="@+id/tv_charging_setting" />

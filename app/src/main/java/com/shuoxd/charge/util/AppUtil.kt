@@ -1,11 +1,9 @@
 package com.shuoxd.charge.util
 
 import android.content.Context
-import android.graphics.Bitmap
 import android.net.Uri
 import android.os.Build
 import android.os.Environment
-import androidx.annotation.WorkerThread
 import androidx.core.content.FileProvider
 import com.shuoxd.charge.BuildConfig
 import com.shuoxd.charge.application.MainApplication
@@ -98,10 +96,9 @@ object AppUtil {
 
     fun getUserAgreement():String{
         val appLang = LibApplication.instance().deviceService().getAppLang()
-        val agreementUrl: String;
-        when{
-            appLang==="zh_CN"->agreementUrl= BuildConfig.userAgreementUrl+"userterms_cn.html"
-            else->agreementUrl= BuildConfig.userAgreementUrl+"userterms_en.html"
+        val agreementUrl: String = when{
+            appLang==="zh_CN"-> BuildConfig.userAgreementUrl+"userterms_cn.html"
+            else-> BuildConfig.userAgreementUrl+"userterms_en.html"
         }
         return agreementUrl;
     }
@@ -109,10 +106,9 @@ object AppUtil {
 
     fun getPrivacy():String{
         val appLang = LibApplication.instance().deviceService().getAppLang()
-        val agreementUrl: String;
-        when{
-            appLang==="zh_CN"->agreementUrl= BuildConfig.userAgreementUrl+"userterms_cn.html"
-            else->agreementUrl= BuildConfig.userAgreementUrl+"userterms_en.html"
+        val agreementUrl: String = when{
+            appLang==="zh_CN"-> BuildConfig.userAgreementUrl+"userterms_cn.html"
+            else-> BuildConfig.userAgreementUrl+"userterms_en.html"
         }
         return agreementUrl;
     }

@@ -56,7 +56,7 @@
         android:layout_marginTop="@dimen/dp_80"
         android:layout_marginEnd="@dimen/dp_20"
         android:focusable="false"
-        android:hint="@string/m7_username"
+        android:hint="@string/m153_email"
         android:focusableInTouchMode="false"
         app:hintTextAppearance="@style/hintAppearence"
         app:layout_constraintTop_toBottomOf="@+id/tv_experience_hall">
@@ -113,6 +113,7 @@
         android:background="@drawable/selector_button_rect"
         android:minWidth="@dimen/dp_250"
         android:padding="@dimen/dp_5"
+        android:textAllCaps="false"
         android:text="@string/m4_login"
         android:textColor="@color/white"
         android:textSize="@dimen/size_title_sp_14"

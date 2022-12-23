@@ -3,8 +3,10 @@ package com.shuoxd.charge.ui.chargesetting.activity
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import com.shuoxd.charge.R
 import com.shuoxd.charge.base.BaseActivity
 import com.shuoxd.charge.databinding.ActivitySettingBinding
+import com.shuoxd.lib.util.ToastUtil
 
 class ChargeSettingActivity:BaseActivity() {
 
@@ -28,9 +30,21 @@ class ChargeSettingActivity:BaseActivity() {
     }
 
     private fun initLiseners() {
-        binding.itemSetRate.setOnClickListener {
+     /*   binding.itemSetRate.setOnClickListener {
             RateActivity.start(this)
+        }*/
+
+
+
+        binding.itemSetServer.setOnClickListener {
+            ToastUtil.show(getString(R.string.m194_not_yet_open))
         }
+
+
+        binding.itemSetBluetooth.setOnClickListener {
+            ToastUtil.show(getString(R.string.m194_not_yet_open))
+        }
+
     }
 
 

@@ -30,9 +30,9 @@ class ChargeViewModel : BaseViewModel() {
     var isListCallback = false
 
 
-    lateinit var valueCurrent: Pair<String, String>
-    lateinit var valueVoltage: Pair<String, String>
-    lateinit var valuePower: Pair<String, String>
+    var valueCurrent: Pair<String, String>? = null
+    var valueVoltage: Pair<String, String>? = null
+    var valuePower: Pair<String, String>? = null
 
 
     fun getChargeList(
@@ -192,7 +192,7 @@ class ChargeViewModel : BaseViewModel() {
                 object : HttpCallback<HttpResult<String>>() {
                     override fun success(result: HttpResult<String>) {
                         val msg = result.msg
-                        chargeSechLiveData.value=msg?:""
+                        chargeSechLiveData.value = msg ?: ""
 
                     }
 

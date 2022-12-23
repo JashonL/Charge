@@ -24,26 +24,27 @@ class GuidePager @JvmOverloads constructor(
 
 
     private val titles: Array<String> = arrayOf(
-        context.getString(R.string.m28_guide1),
+        context.getString(R.string.m31_guide4),
         context.getString(R.string.m29_guide2),
         context.getString(R.string.m30_guide3),
-        context.getString(R.string.m31_guide4)
+        context.getString(R.string.m28_guide1),
     )
 
 
     private val imagesRes: IntArray = intArrayOf(
-        R.drawable.guide_car,
+        R.drawable.guide_era,
         R.drawable.guide_charge,
         R.drawable.guide_network,
-        R.drawable.guide_era
-    )
+        R.drawable.guide_car,
+
+        )
 
 
     private val tips: Array<String> = arrayOf(
-        context.getString(R.string.m32_tips1),
+        context.getString(R.string.m35_tips4),
         context.getString(R.string.m33_tips2),
         context.getString(R.string.m34_tips3),
-        context.getString(R.string.m35_tips4)
+        context.getString(R.string.m32_tips1)
     )
 
 
@@ -61,7 +62,7 @@ class GuidePager @JvmOverloads constructor(
             textView.apply {
                 //设置大小
                 val layoutParams = LinearLayout.LayoutParams(35, 35)
-                layoutParams.setMargins(0,0,20,0)
+                layoutParams.setMargins(0, 0, 20, 0)
                 setLayoutParams(layoutParams)
 
                 //设置背景

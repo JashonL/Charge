@@ -14,9 +14,9 @@ class CustomViewDialog : BaseDialogFragment() {
 
         fun show(
             fragmentManager: FragmentManager,
-            current: Pair<String, String>,
-            voltage: Pair<String, String>,
-            power: Pair<String, String>
+            current: Pair<String, String>?,
+            voltage: Pair<String, String>?,
+            power: Pair<String, String>?
         ) {
             val dialog = CustomViewDialog()
             dialog.valueCurrent = current
@@ -30,10 +30,9 @@ class CustomViewDialog : BaseDialogFragment() {
 
     private lateinit var binding: DialogCurrentVolBinding
 
-    lateinit var valueCurrent:Pair<String, String>
-    lateinit var valueVoltage:Pair<String, String>
-    lateinit var valuePower:Pair<String, String>
-
+    var valueCurrent: Pair<String, String>? = null
+    var valueVoltage: Pair<String, String>? = null
+    var valuePower: Pair<String, String>? = null
 
 
     override fun onCreateView(
@@ -47,8 +46,8 @@ class CustomViewDialog : BaseDialogFragment() {
     }
 
     private fun initView() {
-        binding.dataViewCurrent.setValue(valueCurrent.first + valueCurrent.second)
-        binding.dataViewVol.setValue(valueVoltage.first + valueVoltage.second)
+        binding.dataViewCurrent.setValue(valueCurrent?.first + valueCurrent?.second)
+        binding.dataViewVol.setValue(valueVoltage?.first + valueVoltage?.second)
     }
 
 

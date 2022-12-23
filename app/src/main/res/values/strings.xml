@@ -11,10 +11,10 @@
     <!--排序开始-->
     <string name="m1_welcom_erperience">Welcome to use Autobot Charge charger super erperience</string>
     <string name="m2_timxon">Autobot Charge APP helps you easily manage and monitor the charger</string>
-    <string name="m3_forget_password">Forget password</string>
-    <string name="m4_login">Login</string>
+    <string name="m3_forget_password">Forgot password</string>
+    <string name="m4_login">Sign in</string>
     <string name="m5_experience_hall">Experience Hall</string>
-    <string name="m6_register">Register</string>
+    <string name="m6_register">Sign up</string>
     <string name="m7_username">Username</string>
     <string name="m8_mailbox">Mailbox</string>
     <string name="m9_phone">Phone</string>
@@ -93,7 +93,7 @@
     <string name="m75_please_input_password">enter your password</string>
     <string name="m76_password_cant_empty">The password cannot be empty</string>
     <string name="m77_password">Password</string>
-    <string name="m77_re_enter_password">Re-enter Password</string>
+    <string name="m77_re_enter_password">Repeat Password</string>
     <string name="m78_city">City</string>
     <string name="m79_country">Country</string>
     <string name="m80_time_zone">Time Zone</string>
@@ -207,7 +207,7 @@
     <string name="m162_pick_image_intent_chooser_title">Select source</string>
     <string name="m163_offpeak_tips">You have enabled off peak charging!</string>
     <string name="m164_start_charging">Start Charging</string>
-    <string name="m165_reservation_charging">Schedule charging</string>
+    <string name="m165_reservation_charging">Charging Schedule</string>
     <string name="m166_save">Save</string>
     <string name="m167_enable">Enable</string>
     <string name="m168_keep_awake">Keep awake</string>
@@ -237,6 +237,22 @@ confirmation after plug in your car。</string>
     <string name="m183_authorization_management">Authorization management</string>
     <string name="m184_pin">Pin</string>
     <string name="m185_pin_not_empty">Pin Not Empty</string>
+
+
+
+    <string name="m186_password">*Password</string>
+    <string name="m187_username">*Username</string>
+    <string name="m188_re_enter_password">*Repeat Password</string>
+    <string name="m189_phone">*Phone</string>
+
+    <string name="m190_reset_password">Reset password</string>
+    <string name="m191_no_schedule">No schedule</string>
+
+    <string name="m192_via_bluetooth">Via Bluetooth</string>
+    <string name="m193_via_server">Via Server</string>
+    <string name="m194_not_yet_open">Not yet open</string>
+    <string name="m195_disconnection">Disconnection</string>
+
 
 
 

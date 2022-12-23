@@ -15,6 +15,9 @@ import com.shuoxd.charge.base.BaseActivity
 import com.shuoxd.charge.databinding.ActivityChargeBinding
 import com.shuoxd.charge.model.charge.ChargeModel
 import com.shuoxd.charge.service.charge.ChargeSettingManager
+import com.shuoxd.charge.service.charge.ChargeSettingManager.AUTHORIZATION_MANAGEMENT
+import com.shuoxd.charge.service.charge.ChargeSettingManager.CHARGING_SCHEDULE
+import com.shuoxd.charge.service.charge.ChargeSettingManager.OFF_PEAK_CHARGING
 import com.shuoxd.charge.ui.authorize.activity.GunAuthActivity
 import com.shuoxd.charge.ui.charge.ChargeStatus
 import com.shuoxd.charge.ui.charge.monitor.ChargeAactivityMonitor
@@ -232,6 +235,7 @@ class ChargeActivity : BaseActivity(), View.OnClickListener,
                         binding.tvSchdule.text = s
                         binding.itemCheckbox.visible()
                     } else {
+                        binding.tvSchdule.text = getString(R.string.m191_no_schedule)
                         binding.itemCheckbox.gone()
                     }
                     binding.itemCheckbox.isChecked = it.transaction.scheduledStatus == 1
@@ -325,6 +329,11 @@ class ChargeActivity : BaseActivity(), View.OnClickListener,
             binding.ivChargeStatus.setImageResource(R.drawable.unavailable)
             binding.tvChargeExcption.setText(R.string.m97_please_add_charge)
             binding.ivStart.setImageResource(R.drawable.start)
+
+
+            //跳转添加页面
+            AddYourChargeActivity.start(this)
+
         }
     }
 
@@ -346,6 +355,8 @@ class ChargeActivity : BaseActivity(), View.OnClickListener,
 
 
     private fun showCurrentVoltage() {
+
+
         CustomViewDialog.show(
             supportFragmentManager,
             chargeViewModel.valueCurrent,
@@ -365,9 +376,9 @@ class ChargeActivity : BaseActivity(), View.OnClickListener,
     private fun showSelectSetting() {
         OptionsDialog.show(supportFragmentManager, ChargeSettingManager.List.toTypedArray()) {
             when (ChargeSettingManager.List[it]) {
-                "Charging schedule" -> ScheduledChargeActivity.start(this)
-                "Off-peak charging" -> ActivityOffpeak.start(this)
-                "Authorization management" -> GunAuthActivity.start(this)
+                CHARGING_SCHEDULE -> ScheduledChargeActivity.start(this)
+                OFF_PEAK_CHARGING -> ActivityOffpeak.start(this)
+                AUTHORIZATION_MANAGEMENT -> GunAuthActivity.start(this)
 
             }
         }

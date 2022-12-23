@@ -1,15 +1,17 @@
 package com.shuoxd.charge.service.charge
 
-import android.content.Context
 
 object ChargeSettingManager {
 
 
-    val List = mutableListOf("Charging schedule","Off-peak charging","Authorization management")
+    const val CHARGING_SCHEDULE = "Charging schedule"
+    const val OFF_PEAK_CHARGING = "Off-peak charging"
+    const val AUTHORIZATION_MANAGEMENT = "Authorization management"
 
 
-    public fun toSetCharge(context: Context, setIndex: Int) {
+    val List = mutableListOf(CHARGING_SCHEDULE, OFF_PEAK_CHARGING, AUTHORIZATION_MANAGEMENT)
 
-    }
+
+
 
 }

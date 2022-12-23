@@ -5,15 +5,16 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.shuoxd.charge.base.BaseViewModel
 import com.shuoxd.charge.service.http.ApiPath
+import com.shuoxd.lib.service.account.User
 import com.shuoxd.lib.service.http.HttpCallback
 import com.shuoxd.lib.service.http.HttpErrorModel
 import com.shuoxd.lib.service.http.HttpResult
 import com.shuoxd.lib.util.MD5Util
 import kotlinx.coroutines.launch
 
-class RegisterViewModel :BaseViewModel(){
+class RegisterViewModel : BaseViewModel() {
 
-    val  registerLiveData=MutableLiveData<String?>()
+    val registerLiveData = MutableLiveData<User?>()
 
     /**
      * 是否同意隐私政策
@@ -21,12 +22,13 @@ class RegisterViewModel :BaseViewModel(){
     var isAgree = false
 
 
-
     /**
      * 注册
      */
-    fun register(email: String, password: String, country: String,
-                 city: String,phoneNum:String,timeZone:String) {
+    fun register(
+        email: String, password: String, country: String,
+        city: String, phoneNum: String, timeZone: String
+    ) {
         viewModelScope.launch {
             val params = hashMapOf<String, String>().apply {
                 put("email", email)
@@ -37,23 +39,25 @@ class RegisterViewModel :BaseViewModel(){
                 put("timeZone", timeZone)
             }
             apiService().postForm(ApiPath.Mine.REGISTER, params, object :
-                HttpCallback<HttpResult<String>>() {
-                override fun success(result: HttpResult<String>) {
+                HttpCallback<HttpResult<User>>() {
+                override fun success(result: HttpResult<User>) {
                     if (result.isBusinessSuccess()) {
-                        registerLiveData.value = null
+
+                        val user = result.obj
+                        user?.password = password
+                        registerLiveData.value = user
                     } else {
-                        registerLiveData.value = result.msg ?: ""
+                        registerLiveData.value = null
                     }
                 }
 
                 override fun onFailure(errorModel: HttpErrorModel) {
-                    registerLiveData.value = errorModel.errorMsg ?: ""
+                    registerLiveData.value = null
                 }
 
             })
         }
     }
-
 
 
 }

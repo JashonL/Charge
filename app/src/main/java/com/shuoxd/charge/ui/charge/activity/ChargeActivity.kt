@@ -325,6 +325,11 @@ class ChargeActivity : BaseActivity(), View.OnClickListener,
             binding.ivChargeStatus.setImageResource(R.drawable.unavailable)
             binding.tvChargeExcption.setText(R.string.m97_please_add_charge)
             binding.ivStart.setImageResource(R.drawable.start)
+
+
+            //跳转添加页面
+            AddYourChargeActivity.start(this)
+
         }
     }
 
@@ -346,6 +351,8 @@ class ChargeActivity : BaseActivity(), View.OnClickListener,
 
 
     private fun showCurrentVoltage() {
+
+
         CustomViewDialog.show(
             supportFragmentManager,
             chargeViewModel.valueCurrent,

@@ -13,11 +13,16 @@ import android.text.style.ForegroundColorSpan
 import android.view.View
 import androidx.activity.viewModels
 import com.shuoxd.charge.R
+import com.shuoxd.charge.application.MainApplication
 import com.shuoxd.charge.base.BaseActivity
 import com.shuoxd.charge.databinding.ActivityRegisterBinding
+import com.shuoxd.charge.ui.charge.activity.ChargeActivity
 import com.shuoxd.charge.ui.common.activity.WebActivity
+import com.shuoxd.charge.ui.mine.viewmodel.LoginViewModel
 import com.shuoxd.charge.ui.mine.viewmodel.RegisterViewModel
 import com.shuoxd.charge.util.AppUtil
+import com.shuoxd.lib.service.account.User
+import com.shuoxd.lib.util.MD5Util
 import com.shuoxd.lib.util.ToastUtil
 import com.shuoxd.lib.util.Util
 
@@ -33,7 +38,7 @@ class RegisterActivity : BaseActivity(), View.OnClickListener {
     private lateinit var binding: ActivityRegisterBinding
 
     private val viewModel: RegisterViewModel by viewModels()
-
+    private val logViewModel: LoginViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -48,17 +53,73 @@ class RegisterActivity : BaseActivity(), View.OnClickListener {
     private fun initData() {
         viewModel.registerLiveData.observe(this) {
             dismissDialog()
-            if (it == null) {
+            if (it != null) {
                 ToastUtil.show(getString(R.string.m90_register_success))
-                //注册成功，关闭页面返回登录页面
-                finish()
+
+                //去登录
+                login( it.password,it.email)
             } else {
 //                ToastUtil.show(it)
                 showResultDialog(it,null,null)
             }
         }
 
+
+
+
+
+
+
+        logViewModel.loginLiveData.observe(this) {
+            dismissDialog()
+            if (it.second == null) {
+                val user = it.first
+                loginSuccess(user)
+            } else {
+
+                showResultDialog(it.second,null,null)
+
+
+            }
+
+        }
+
+
+
+
     }
+
+
+
+
+    private fun login(password: String, userName: String) {
+        if (!TextUtils.isEmpty(password)) {
+            showDialog()
+            val pwd_md5 = MD5Util.md5(password)
+            var version = Util.getVersion(this)
+            val phoneModel = Util.getPhoneModel()
+            if (version == null) version = "";
+            if (pwd_md5 != null) {
+                logViewModel.login(userName, pwd_md5, MainApplication.APP_OS, phoneModel, version)
+            }
+        }
+
+    }
+
+
+
+
+    private fun loginSuccess(user: User?) {
+        user?.password = binding.etPassword.text.toString()
+        accountService().saveUserInfo(user)
+        ChargeActivity.start(this)
+        finish()
+
+    }
+
+
+
+
 
     private fun initView() {
         val timeZone = Util.getTimeZone()

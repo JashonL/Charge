@@ -288,7 +288,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="@dimen/dp_10"
-                                android:text="@string/m175_not_set"
+                                android:text="@string/m191_no_schedule"
                                 android:textColor="@color/color_text_33"
                                 android:textSize="@dimen/size_content_sp_14" />
 

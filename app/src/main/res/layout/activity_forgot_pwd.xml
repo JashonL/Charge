@@ -122,7 +122,7 @@
         android:minWidth="@dimen/dp_250"
         android:padding="@dimen/dp_5"
         android:textAllCaps="false"
-        android:text="@string/m18_confirm"
+        android:text="@string/m190_reset_password"
         android:textColor="@color/white"
         android:textSize="@dimen/size_title_sp_14"
         app:layout_constraintEnd_toEndOf="parent"

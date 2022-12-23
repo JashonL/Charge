@@ -97,8 +97,8 @@ object AppUtil {
     fun getUserAgreement():String{
         val appLang = LibApplication.instance().deviceService().getAppLang()
         val agreementUrl: String = when{
-            appLang==="zh_CN"-> BuildConfig.userAgreementUrl+"userterms_cn.html"
-            else-> BuildConfig.userAgreementUrl+"userterms_en.html"
+            appLang==="zh_CN"-> BuildConfig.userAgreementUrl
+            else-> BuildConfig.userAgreementUrl
         }
         return agreementUrl;
     }
@@ -107,8 +107,8 @@ object AppUtil {
     fun getPrivacy():String{
         val appLang = LibApplication.instance().deviceService().getAppLang()
         val agreementUrl: String = when{
-            appLang==="zh_CN"-> BuildConfig.userAgreementUrl+"userterms_cn.html"
-            else-> BuildConfig.userAgreementUrl+"userterms_en.html"
+            appLang==="zh_CN"-> BuildConfig.userAgreementUrl
+            else-> BuildConfig.userAgreementUrl
         }
         return agreementUrl;
     }

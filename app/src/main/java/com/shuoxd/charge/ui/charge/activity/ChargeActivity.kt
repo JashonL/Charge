@@ -15,6 +15,9 @@ import com.shuoxd.charge.base.BaseActivity
 import com.shuoxd.charge.databinding.ActivityChargeBinding
 import com.shuoxd.charge.model.charge.ChargeModel
 import com.shuoxd.charge.service.charge.ChargeSettingManager
+import com.shuoxd.charge.service.charge.ChargeSettingManager.AUTHORIZATION_MANAGEMENT
+import com.shuoxd.charge.service.charge.ChargeSettingManager.CHARGING_SCHEDULE
+import com.shuoxd.charge.service.charge.ChargeSettingManager.OFF_PEAK_CHARGING
 import com.shuoxd.charge.ui.authorize.activity.GunAuthActivity
 import com.shuoxd.charge.ui.charge.ChargeStatus
 import com.shuoxd.charge.ui.charge.monitor.ChargeAactivityMonitor
@@ -373,9 +376,9 @@ class ChargeActivity : BaseActivity(), View.OnClickListener,
     private fun showSelectSetting() {
         OptionsDialog.show(supportFragmentManager, ChargeSettingManager.List.toTypedArray()) {
             when (ChargeSettingManager.List[it]) {
-                "Schedule Charging" -> ScheduledChargeActivity.start(this)
-                "Off-peak charging" -> ActivityOffpeak.start(this)
-                "Authorization management" -> GunAuthActivity.start(this)
+                CHARGING_SCHEDULE -> ScheduledChargeActivity.start(this)
+                OFF_PEAK_CHARGING -> ActivityOffpeak.start(this)
+                AUTHORIZATION_MANAGEMENT -> GunAuthActivity.start(this)
 
             }
         }

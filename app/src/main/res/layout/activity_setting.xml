@@ -22,17 +22,16 @@
         app:titleText="@string/m38_setting" />
 
 
-<!--    <com.shuoxd.charge.view.SettingItemView
-        android:id="@+id/item_set_rate"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_marginTop="@dimen/dp_30"
-        app:itemName="@string/m129_rate"
-        app:leftIcon="@drawable/add_charge"
-        app:showLeftIcon="true"
-        app:showRightIcon="true"
-        app:showSubName="true" />-->
-
+    <!--    <com.shuoxd.charge.view.SettingItemView
+            android:id="@+id/item_set_rate"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginTop="@dimen/dp_30"
+            app:itemName="@string/m129_rate"
+            app:leftIcon="@drawable/add_charge"
+            app:showLeftIcon="true"
+            app:showRightIcon="true"
+            app:showSubName="true" />-->
 
 
     <com.shuoxd.charge.view.SettingItemView
@@ -41,10 +40,10 @@
         android:layout_height="50dp"
         android:layout_marginTop="@dimen/dp_30"
         app:itemName="@string/m192_via_bluetooth"
+        app:leftIcon="@drawable/via_bluetooth"
         app:showLeftIcon="true"
         app:showRightIcon="true"
         app:showSubName="true" />
-
 
 
     <com.shuoxd.charge.view.SettingItemView
@@ -53,12 +52,10 @@
         android:layout_height="50dp"
         android:layout_marginTop="@dimen/dp_1"
         app:itemName="@string/m193_via_server"
+        app:leftIcon="@drawable/via_server"
         app:showLeftIcon="true"
         app:showRightIcon="true"
         app:showSubName="true" />
-
-
-
 
 
 </LinearLayout>

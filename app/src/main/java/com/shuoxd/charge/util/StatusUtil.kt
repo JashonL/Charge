@@ -15,6 +15,7 @@ object StatusUtil {
     fun getChargeStatus(@ChargeStatus status: Int): String {
         return MainApplication.instance().getString(
             when (status) {
+                ChargeStatus.DISCONNECTION -> R.string.m195_disconnection
                 ChargeStatus.UNAVAILABLE -> R.string.m93_unavailable
                 ChargeStatus.AVAILABLE -> R.string.m94_available
                 ChargeStatus.PREPEAR -> R.string.m95_prepear
@@ -33,6 +34,7 @@ object StatusUtil {
     fun getTextColorByStatus(@ChargeStatus status: Int): Int {
 
         return ContextCompat.getColor(MainApplication.instance(),when (status) {
+            ChargeStatus.DISCONNECTION -> R.color.gray
             ChargeStatus.UNAVAILABLE -> R.color.red
             ChargeStatus.AVAILABLE -> R.color.black_333333
             ChargeStatus.PREPEAR -> R.color.black_333333
@@ -66,6 +68,15 @@ object StatusUtil {
         energy: Int
     ) {
         when (status) {
+            ChargeStatus.DISCONNECTION -> GlideUtil.showImage(
+                context,
+                R.drawable.unavailable,
+                imageView,
+                R.drawable.unavailable
+            )
+
+
+
             ChargeStatus.UNAVAILABLE -> GlideUtil.showImage(
                 context,
                 R.drawable.unavailable,
@@ -135,6 +146,7 @@ object StatusUtil {
     fun getActionImageStatus(context: Context, @ChargeStatus status: Int): Drawable? {
         return ContextCompat.getDrawable(
             context, when (status) {
+                ChargeStatus.DISCONNECTION -> R.drawable.cant_start
                 ChargeStatus.UNAVAILABLE -> R.drawable.cant_start
                 ChargeStatus.AVAILABLE -> R.drawable.start_charge
                 ChargeStatus.PREPEAR -> R.drawable.start_charge
@@ -157,6 +169,7 @@ object StatusUtil {
 
     fun getActionUrl(@ChargeStatus status: Int): String {
         return when (status) {
+            ChargeStatus.DISCONNECTION -> ""
             ChargeStatus.UNAVAILABLE -> ""
             ChargeStatus.AVAILABLE -> ApiPath.Charge.REMOTESTARTTRANSACTION
             ChargeStatus.PREPEAR -> ApiPath.Charge.REMOTESTARTTRANSACTION
@@ -175,6 +188,7 @@ object StatusUtil {
     fun getStartStatus(@ChargeStatus status: Int): String {
         return MainApplication.instance().getString(
             when (status) {
+                ChargeStatus.DISCONNECTION -> R.string.m181_start
                 ChargeStatus.UNAVAILABLE -> R.string.m181_start
                 ChargeStatus.AVAILABLE -> R.string.m181_start
                 ChargeStatus.PREPEAR -> R.string.m181_start

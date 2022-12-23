@@ -9,6 +9,8 @@ import com.shuoxd.charge.application.MainApplication
  */
 
 @IntDef(
+    ChargeStatus.DISCONNECTION,
+
     ChargeStatus.UNAVAILABLE,
     ChargeStatus.AVAILABLE,
     ChargeStatus.PREPEAR,
@@ -32,6 +34,7 @@ annotation class ChargeStatus {
     	状态，0不可用， 1可使用,2准备充电,3充电中,4充电设施停用,5车辆停用,6充电结束中,7预约中,8不可使用,9故障
     */
     companion object{
+        const val DISCONNECTION=-1
         const val UNAVAILABLE = 0
         const val AVAILABLE = 1
         const val PREPEAR = 2
@@ -47,6 +50,7 @@ annotation class ChargeStatus {
         fun getChargeStatus(@ChargeStatus status: Int): String {
             return MainApplication.instance().getString(
                 when (status) {
+                    DISCONNECTION->R.string.m195_disconnection
                     UNAVAILABLE -> R.string.m93_unavailable
                     AVAILABLE -> R.string.m94_available
                     PREPEAR -> R.string.m95_prepear

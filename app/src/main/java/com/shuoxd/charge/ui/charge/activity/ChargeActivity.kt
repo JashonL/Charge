@@ -232,6 +232,7 @@ class ChargeActivity : BaseActivity(), View.OnClickListener,
                         binding.tvSchdule.text = s
                         binding.itemCheckbox.visible()
                     } else {
+                        binding.tvSchdule.text = getString(R.string.m191_no_schedule)
                         binding.itemCheckbox.gone()
                     }
                     binding.itemCheckbox.isChecked = it.transaction.scheduledStatus == 1
@@ -372,7 +373,7 @@ class ChargeActivity : BaseActivity(), View.OnClickListener,
     private fun showSelectSetting() {
         OptionsDialog.show(supportFragmentManager, ChargeSettingManager.List.toTypedArray()) {
             when (ChargeSettingManager.List[it]) {
-                "Charging schedule" -> ScheduledChargeActivity.start(this)
+                "Schedule Charging" -> ScheduledChargeActivity.start(this)
                 "Off-peak charging" -> ActivityOffpeak.start(this)
                 "Authorization management" -> GunAuthActivity.start(this)
 

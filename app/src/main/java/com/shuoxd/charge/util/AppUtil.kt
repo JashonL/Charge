@@ -100,8 +100,8 @@ object AppUtil {
         val appLang = LibApplication.instance().deviceService().getAppLang()
         val agreementUrl: String;
         when{
-            appLang==="zh_CN"->agreementUrl= BuildConfig.userAgreementUrl+"userterms_cn.html"
-            else->agreementUrl= BuildConfig.userAgreementUrl+"userterms_en.html"
+            appLang==="zh_CN"->agreementUrl= BuildConfig.userAgreementUrl
+            else->agreementUrl= BuildConfig.userAgreementUrl
         }
         return agreementUrl;
     }
@@ -111,8 +111,8 @@ object AppUtil {
         val appLang = LibApplication.instance().deviceService().getAppLang()
         val agreementUrl: String;
         when{
-            appLang==="zh_CN"->agreementUrl= BuildConfig.userAgreementUrl+"userterms_cn.html"
-            else->agreementUrl= BuildConfig.userAgreementUrl+"userterms_en.html"
+            appLang==="zh_CN"->agreementUrl= BuildConfig.userAgreementUrl
+            else->agreementUrl= BuildConfig.userAgreementUrl
         }
         return agreementUrl;
     }

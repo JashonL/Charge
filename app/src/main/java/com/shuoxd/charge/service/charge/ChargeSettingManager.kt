@@ -4,7 +4,7 @@ package com.shuoxd.charge.service.charge
 object ChargeSettingManager {
 
 
-    const val CHARGING_SCHEDULE = "Charging schedule"
+    const val CHARGING_SCHEDULE = "Schedule Charging"
     const val OFF_PEAK_CHARGING = "Off-peak charging"
     const val AUTHORIZATION_MANAGEMENT = "Authorization management"
 

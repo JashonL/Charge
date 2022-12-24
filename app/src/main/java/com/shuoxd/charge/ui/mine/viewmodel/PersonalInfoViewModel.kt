@@ -16,7 +16,7 @@ class PersonalInfoViewModel : BaseViewModel() {
         val params = hashMapOf<String, String>().apply {
             put("phoneNum", phoneNum ?: "")
             put("country", country ?: "")
-            put("city", city ?: "")
+            put("city", city)
         }
 
 

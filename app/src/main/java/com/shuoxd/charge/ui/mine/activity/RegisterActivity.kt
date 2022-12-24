@@ -53,14 +53,16 @@ class RegisterActivity : BaseActivity(), View.OnClickListener {
     private fun initData() {
         viewModel.registerLiveData.observe(this) {
             dismissDialog()
-            if (it != null) {
+            if (it.first != null) {
                 ToastUtil.show(getString(R.string.m90_register_success))
 
                 //去登录
-                login( it.password,it.email)
+                login(it.first?.password, it.first?.email)
             } else {
 //                ToastUtil.show(it)
-                showResultDialog(it,null,null)
+                showResultDialog(it.second, null, null)
+
+
             }
         }
 
@@ -76,37 +78,26 @@ class RegisterActivity : BaseActivity(), View.OnClickListener {
                 val user = it.first
                 loginSuccess(user)
             } else {
-
-                showResultDialog(it.second,null,null)
-
-
+                showResultDialog(it.second, null, null)
             }
 
         }
-
-
-
-
     }
 
 
-
-
-    private fun login(password: String, userName: String) {
+    private fun login(password: String?, userName: String?) {
         if (!TextUtils.isEmpty(password)) {
             showDialog()
-            val pwd_md5 = MD5Util.md5(password)
+            val pwd_md5 = MD5Util.md5(password.toString())
             var version = Util.getVersion(this)
             val phoneModel = Util.getPhoneModel()
             if (version == null) version = "";
             if (pwd_md5 != null) {
-                logViewModel.login(userName, pwd_md5, MainApplication.APP_OS, phoneModel, version)
+                logViewModel.login(userName.toString(), pwd_md5, MainApplication.APP_OS, phoneModel, version)
             }
         }
 
     }
-
-
 
 
     private fun loginSuccess(user: User?) {
@@ -116,9 +107,6 @@ class RegisterActivity : BaseActivity(), View.OnClickListener {
         finish()
 
     }
-
-
-
 
 
     private fun initView() {

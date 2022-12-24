@@ -46,8 +46,17 @@ class CustomViewDialog : BaseDialogFragment() {
     }
 
     private fun initView() {
-        binding.dataViewCurrent.setValue(valueCurrent?.first + valueCurrent?.second)
-        binding.dataViewVol.setValue(valueVoltage?.first + valueVoltage?.second)
+        val current = valueCurrent?.first ?: "0.0"
+        val currentUnit = valueCurrent?.second ?: "A"
+
+
+        binding.dataViewCurrent.setValue(current +currentUnit)
+
+
+        val vol = valueVoltage?.first ?: "0.0"
+        val volUnit = valueVoltage?.second ?: "A"
+
+        binding.dataViewVol.setValue(vol + volUnit)
     }
 
 

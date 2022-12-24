@@ -1,6 +1,5 @@
 package com.shuoxd.charge.ui.mine.viewmodel
 
-import android.text.TextUtils
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.shuoxd.charge.base.BaseViewModel
@@ -14,7 +13,7 @@ import kotlinx.coroutines.launch
 
 class RegisterViewModel : BaseViewModel() {
 
-    val registerLiveData = MutableLiveData<User?>()
+    val registerLiveData = MutableLiveData<Pair<User?,String?>>()
 
     /**
      * 是否同意隐私政策
@@ -45,14 +44,14 @@ class RegisterViewModel : BaseViewModel() {
 
                         val user = result.obj
                         user?.password = password
-                        registerLiveData.value = user
+                        registerLiveData.value = Pair(user,null)
                     } else {
-                        registerLiveData.value = null
+                        registerLiveData.value = Pair(null,result.msg.toString())
                     }
                 }
 
                 override fun onFailure(errorModel: HttpErrorModel) {
-                    registerLiveData.value = null
+                    registerLiveData.value = Pair(null,errorModel.errorMsg.toString())
                 }
 
             })

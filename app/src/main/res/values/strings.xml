@@ -44,9 +44,9 @@
 
     <string name="m31_guide4">Regist era user</string>
     <string name="m32_tips1">EVSElink APP helps you easily manage and monitor the charger</string>
-    <string name="m33_tips2">Scan code orenter SN to add charger</string>
+    <string name="m33_tips2">Scan code or enter SN to add charger</string>
     <string name="m34_tips3">Configure your charger setting and connectivity with APP</string>
-    <string name="m35_tips4">Registera user,password,email verification</string>
+    <string name="m35_tips4">Register a user,password,email verification</string>
     <string name="m36_tip">Tips</string>
     <string name="m37_need_to_open_location_service">The location service needs to be enabled</string>
     <string name="m38_setting">Setting</string>
@@ -241,7 +241,7 @@ confirmation after plug in your car。</string>
 
 
     <string name="m186_password">*Password</string>
-    <string name="m187_username">*Username</string>
+    <string name="m187_username">*Email</string>
     <string name="m188_re_enter_password">*Repeat Password</string>
     <string name="m189_phone">*Phone</string>
 

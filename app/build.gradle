@@ -53,7 +53,7 @@ android {
         release {
             keyAlias "key"
             keyPassword "123456"
-            storeFile file("G:\\WorkPlace\\key\\sxd.jks")
+            storeFile file("D:\\workplace\\key\\sxd\\camera.jks")
 //            storeFile file("G:\\WorkPlace\\key\\sxd.jks")
             storePassword "123456"
         }

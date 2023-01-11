@@ -2,8 +2,8 @@ ext {
 
     //发版可能需要更改这个位置
     publish = [
-            versionCode  : 1,
-            versionName  : "1.1.221124.0",
+            versionCode  : 2,
+            versionName  : "1.1.230111.0",
             applicationId: "com.hechuang.charge"
     ]
 

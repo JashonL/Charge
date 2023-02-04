@@ -107,8 +107,12 @@ android.applicationVariants.all { variant ->
 }
 
 dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar', '*.aar'])
+    implementation files('libs/cplib-1.0.aar')
     implementation project(path: ':lib')
     implementation project(path: ':thirdsdk:amap')
     implementation project(path: ':thirdsdk:scan')
     implementation project(path: ':thirdsdk:mpchart')
+    implementation 'com.zhy:base-rvadapter:3.0.3'
+
 }

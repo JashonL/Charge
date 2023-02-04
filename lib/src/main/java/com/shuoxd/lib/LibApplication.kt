@@ -2,6 +2,7 @@ package com.shuoxd.lib
 
 import android.app.Application
 import com.shuoxd.lib.service.ServiceManager
+import com.timxon.cplib.BleCPClient
 
 abstract class LibApplication : Application(), ServiceManager.ServiceInterface {
 

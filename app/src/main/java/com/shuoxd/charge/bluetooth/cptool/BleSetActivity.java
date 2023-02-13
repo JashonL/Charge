@@ -241,7 +241,7 @@ public class BleSetActivity extends AppCompatActivity {
     }
 
     private void gotoConfig(String pwd) {
-        Intent intent = new Intent(this, ConfigActivity.class);
+        Intent intent = new Intent(this, BleConfigActivity.class);
         intent.putExtra("pwd", pwd);
         intent.putExtra("DeviceInfo", cpClient.getDeviceInfo());
         startActivityForResult(intent, 100);

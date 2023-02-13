@@ -148,6 +148,11 @@
             android:exported="false"
             android:screenOrientation="nosensor" />
 
+        <activity
+            android:name=".bluetooth.cptool.BleConfigActivity"
+            android:exported="false"
+            android:screenOrientation="nosensor" />
+
 
         <provider
             android:name="androidx.core.content.FileProvider"

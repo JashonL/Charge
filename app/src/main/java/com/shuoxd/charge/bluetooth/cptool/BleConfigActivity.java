@@ -77,7 +77,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 
 
-public class ConfigActivity extends AppCompatActivity implements View.OnClickListener {
+public class BleConfigActivity extends AppCompatActivity implements View.OnClickListener {
 
 
     public static final String TAG = "ConfigActivity";

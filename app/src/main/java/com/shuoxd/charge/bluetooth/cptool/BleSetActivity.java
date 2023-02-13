@@ -10,6 +10,7 @@ import android.bluetooth.BluetoothDevice;
 import android.bluetooth.le.BluetoothLeScanner;
 import android.bluetooth.le.ScanCallback;
 import android.bluetooth.le.ScanResult;
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
@@ -25,6 +26,7 @@ import android.widget.TextView;
 
 
 import com.shuoxd.charge.R;
+import com.shuoxd.charge.application.MainApplication;
 import com.shuoxd.charge.databinding.ActivityBluetoothMainBinding;
 import com.timxon.cplib.BleCPClient;
 import com.timxon.cplib.ConnectCallback;
@@ -49,7 +51,14 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 
 
 
-public class MainActivity extends AppCompatActivity {
+public class BleSetActivity extends AppCompatActivity {
+
+
+    public static void start(Context context){
+        Intent intent=new Intent(context,BleSetActivity.class);
+        context.startActivity(intent);
+    }
+
 
     private static final int REQUEST_CODE_BLUETOOTH_ENABLE = 1;
     private static final int REQUEST_CODE_PERMISSION = 2;
@@ -75,7 +84,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = ActivityBluetoothMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-        cpClient = MyApplication.getInstance().getBleCPClient();
+        cpClient = MainApplication.Companion.instance().getBleCPClient();
         initView();
         checkPermissionAndSearchDevices();
     }

@@ -2,6 +2,10 @@ package com.shuoxd.charge.bluetooth.cptool;
 
 
 
+import com.timxon.cplib.BleCPClient;
+import com.timxon.cplib.protocol.FirmwareUploadRequest;
+import com.timxon.cplib.protocol.FirmwareUploadResponse;
+
 import java.util.Arrays;
 
 public class FirmwareUploader {

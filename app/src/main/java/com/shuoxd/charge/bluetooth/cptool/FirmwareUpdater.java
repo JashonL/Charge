@@ -4,6 +4,12 @@ import android.os.Handler;
 import android.os.Looper;
 
 
+import com.timxon.cplib.BleCPClient;
+import com.timxon.cplib.protocol.FirmwareVerifyRequest;
+import com.timxon.cplib.protocol.FirmwareVerifyResponse;
+import com.timxon.cplib.protocol.RequestFirmwareUpdateRequest;
+import com.timxon.cplib.protocol.RequestFirmwareUpdateResponse;
+
 import java.io.IOException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;

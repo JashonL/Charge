@@ -2,6 +2,7 @@ package com.shuoxd.charge.bluetooth.cptool;
 
 
 
+import com.shuoxd.charge.application.MainApplication;
 import com.timxon.cplib.BleCPClient;
 import com.timxon.cplib.protocol.FirmwareUploadRequest;
 import com.timxon.cplib.protocol.FirmwareUploadResponse;
@@ -12,7 +13,7 @@ public class FirmwareUploader {
 
     public static final int MAX_PACKET_SIZE = 200;
 
-    private BleCPClient cpClient = MyApplication.getInstance().getBleCPClient();
+    private BleCPClient cpClient = MainApplication.Companion.instance().getBleCPClient();
     private UploadProgressCallback uploadProgressCallback;
     private UploadCompleteCallback uploadCompleteCallback;
 

@@ -8,6 +8,8 @@ import android.text.Spanned;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.shuoxd.charge.application.MainApplication;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -18,7 +20,7 @@ import java.util.regex.Pattern;
 public class MyUtils {
 
 	public static void showToast(String s) {
-		Toast.makeText(MyApplication.getInstance(), s, Toast.LENGTH_SHORT).show();
+		Toast.makeText(MainApplication.Companion.instance(), s, Toast.LENGTH_SHORT).show();
 	}
 
 	public static final InputFilter asciiFilter = new InputFilter() {

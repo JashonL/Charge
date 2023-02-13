@@ -22,6 +22,7 @@ import android.widget.Spinner;
 
 
 import com.shuoxd.charge.R;
+import com.shuoxd.charge.application.MainApplication;
 import com.shuoxd.charge.databinding.ActivityConfigBinding;
 import com.timxon.cplib.BleCPClient;
 import com.timxon.cplib.protocol.ChangePasswordRequest;
@@ -119,7 +120,7 @@ public class ConfigActivity extends AppCompatActivity implements View.OnClickLis
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = ActivityConfigBinding.inflate(getLayoutInflater());
-        cpClient = MyApplication.getInstance().getBleCPClient();
+        cpClient = MainApplication.Companion.instance().getBleCPClient();
         setContentView(binding.getRoot());
         initView();
         initData();

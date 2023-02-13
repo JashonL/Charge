@@ -4,6 +4,7 @@ import android.os.Handler;
 import android.os.Looper;
 
 
+import com.shuoxd.charge.application.MainApplication;
 import com.timxon.cplib.BleCPClient;
 import com.timxon.cplib.protocol.FirmwareVerifyRequest;
 import com.timxon.cplib.protocol.FirmwareVerifyResponse;
@@ -30,7 +31,7 @@ public class FirmwareUpdater {
 
     private final FirmwareDownloader downloader;
     private final FirmwareUploader uploader = new FirmwareUploader();
-    private final BleCPClient cpClient = MyApplication.getInstance().getBleCPClient();
+    private final BleCPClient cpClient = MainApplication.Companion.instance().getBleCPClient();
 
     private final Handler handler = new Handler(Looper.getMainLooper());
 

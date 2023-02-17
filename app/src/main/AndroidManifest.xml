@@ -153,6 +153,14 @@
             android:exported="false"
             android:screenOrientation="nosensor" />
 
+        <activity
+            android:name=".ui.chargesetting.activity.BleSetParamsActivity"
+            android:exported="false"
+            android:screenOrientation="nosensor" />
+
+
+
+
 
         <provider
             android:name="androidx.core.content.FileProvider"

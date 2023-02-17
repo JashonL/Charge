@@ -1,15 +1,14 @@
 package com.shuoxd.charge.ui.chargesetting.activity
 
-import android.Manifest
 import android.content.Context
 import android.content.Intent
-import android.os.Build
 import android.os.Bundle
+import android.view.View
+import android.widget.Button
 import com.shuoxd.charge.R
 import com.shuoxd.charge.base.BaseActivity
-import com.shuoxd.charge.bluetooth.cptool.BleSetActivity
 import com.shuoxd.charge.databinding.ActivitySettingBinding
-import com.shuoxd.charge.ui.common.fragment.RequestPermissionHub
+import com.shuoxd.charge.view.dialog.BottomDialog
 import com.shuoxd.lib.util.ToastUtil
 
 class ChargeSettingActivity:BaseActivity() {
@@ -47,7 +46,7 @@ class ChargeSettingActivity:BaseActivity() {
 
         binding.itemSetBluetooth.setOnClickListener {
 //            ToastUtil.show(getString(R.string.m194_not_yet_open))
-            val permissions = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+    /*        val permissions = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
                 arrayOf(
                     Manifest.permission.BLUETOOTH_CONNECT,
                     Manifest.permission.BLUETOOTH_SCAN,
@@ -69,11 +68,48 @@ class ChargeSettingActivity:BaseActivity() {
                 if (it) {
                     BleSetActivity.start(this)
                 }
-            }
+            }*/
+
+
+//            BleConnetFragment.startBleCon(this,getCurrentChargeModel()?.chargePointModel)
+
+            BleSetParamsActivity.start(this)
 
         }
 
     }
+
+
+    fun showNoBleDialog(){
+        //弹框提示
+        BottomDialog.show(
+            supportFragmentManager,
+            R.layout.dialog_bluetooth_connet_fail,
+            object : BottomDialog.OnviewListener {
+                override fun onViewLisener(
+                    view: View,
+                    dialog: BottomDialog
+                ) {
+                    val btCancel =
+                        view.findViewById<Button>(R.id.bt_cancel)
+                    val btComfir =
+                        view.findViewById<Button>(R.id.bt_comfirm)
+                    btCancel.setOnClickListener {
+                        dialog.dismissAllowingStateLoss()
+
+                    }
+                    btComfir.setOnClickListener {
+                        dialog.dismissAllowingStateLoss()
+
+                    }
+
+                }
+
+            })
+
+    }
+
+
 
 
 }

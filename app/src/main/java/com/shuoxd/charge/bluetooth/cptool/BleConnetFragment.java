@@ -10,10 +10,8 @@ import android.bluetooth.BluetoothDevice;
 import android.bluetooth.le.BluetoothLeScanner;
 import android.bluetooth.le.ScanCallback;
 import android.bluetooth.le.ScanResult;
-import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
@@ -24,10 +22,18 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.core.content.ContextCompat;
+import androidx.fragment.app.FragmentActivity;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import com.shuoxd.charge.R;
 import com.shuoxd.charge.application.MainApplication;
-import com.shuoxd.charge.databinding.ActivityBluetoothMainBinding;
+import com.shuoxd.charge.base.BaseFragment;
+import com.shuoxd.charge.ui.chargesetting.activity.ChargeSettingActivity;
+import com.shuoxd.charge.ui.common.fragment.RequestPermissionHub;
 import com.shuoxd.charge.view.dialog.BottomDialog;
 import com.timxon.cplib.BleCPClient;
 import com.timxon.cplib.ConnectCallback;
@@ -36,59 +42,57 @@ import com.timxon.cplib.protocol.CPUtils;
 import com.timxon.cplib.protocol.Response;
 import com.timxon.cplib.protocol.VerifyPasswordRequest;
 import com.timxon.cplib.protocol.VerifyPasswordResponse;
-import com.zhy.adapter.recyclerview.CommonAdapter;
-import com.zhy.adapter.recyclerview.base.ViewHolder;
-
 
 import java.util.ArrayList;
 import java.util.List;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
-import androidx.recyclerview.widget.LinearLayoutManager;
+import kotlin.Unit;
+import kotlin.jvm.functions.Function0;
 
-
-
-public class BleSetActivity extends AppCompatActivity {
-
-
-    public static void start(Context context){
-        Intent intent=new Intent(context,BleSetActivity.class);
-        context.startActivity(intent);
-    }
-
+public class BleConnetFragment extends BaseFragment {
+    private static final String TAG = "BleConnetFragment";
 
     private static final int REQUEST_CODE_BLUETOOTH_ENABLE = 1;
     private static final int REQUEST_CODE_PERMISSION = 2;
-    private static final String TAG = "MainActivity";
+
 
     private List<BluetoothDevice> devices = new ArrayList<>();
 
     private ProgressDialog progressDialog;
-    private CommonAdapter<BluetoothDevice> adapter;
 
     private BluetoothAdapter bluetoothAdapter;
     private boolean mScanning;
     // Stops scanning after 10 seconds.
-    private static final long SCAN_PERIOD = 30000;
+    private static final long SCAN_PERIOD = 10000;
     private final Handler handler = new Handler(Looper.getMainLooper());
     private BleCPClient cpClient;
 
-    private ActivityBluetoothMainBinding binding;
+
+    //充电桩序列号
+    private String chargeSn;
+
+
+    public BleConnetFragment(String chargeSn) {
+        this.chargeSn = chargeSn;
+    }
+
+
+    public static void startBleCon(FragmentActivity activity, String chargeSn) {
+        FragmentManager supportFragmentManager = activity.getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = supportFragmentManager.beginTransaction();
+        BleConnetFragment bleConnetFragment = new BleConnetFragment(chargeSn);
+        fragmentTransaction.add(bleConnetFragment, BleConnetFragment.class.getSimpleName());
+        fragmentTransaction.commitAllowingStateLoss();
+    }
 
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        binding = ActivityBluetoothMainBinding.inflate(getLayoutInflater());
-        setContentView(binding.getRoot());
         cpClient = MainApplication.Companion.instance().getBleCPClient();
-        initView();
         checkPermissionAndSearchDevices();
     }
+
 
     private void checkPermissionAndSearchDevices() {
         if (hasPermission(Manifest.permission_group.LOCATION)
@@ -104,60 +108,75 @@ public class BleSetActivity extends AppCompatActivity {
                 permissions.add(Manifest.permission.BLUETOOTH_SCAN);
                 permissions.add(Manifest.permission.BLUETOOTH_CONNECT);
             }
-            ActivityCompat.requestPermissions(this, permissions.toArray(new String[0]), REQUEST_CODE_PERMISSION);
+            requestPermissions(permissions.toArray(new String[0]), REQUEST_CODE_PERMISSION);
         }
     }
 
     private boolean hasPermission(String permission) {
-        return ContextCompat.checkSelfPermission(this, permission) == PackageManager.PERMISSION_GRANTED;
+        return ContextCompat.checkSelfPermission(getActivity(), permission) == PackageManager.PERMISSION_GRANTED;
     }
 
-    private void initView() {
-        binding.refreshLayout.setOnRefreshListener(() -> {
-            if (!mScanning) {
-                devices.clear();
-                adapter.notifyDataSetChanged();
-                checkPermissionAndSearchDevices();
-            } else {
-                binding.refreshLayout.setRefreshing(false);
-            }
-        });
-        binding.rvBluetoothList.setLayoutManager(new LinearLayoutManager(this));
-        adapter = new CommonAdapter<BluetoothDevice>(this, R.layout.item_device_list, devices) {
-            @SuppressLint("MissingPermission")
-            @Override
-            protected void convert(ViewHolder holder, final BluetoothDevice device, int position) {
-                holder.setText(R.id.name, device.getName());
-                holder.setText(R.id.mac, device.getAddress());
-                holder.setVisible(R.id.tvDisconnect, device.equals(cpClient.getConnectedDevice())
-                        && cpClient.isConnected());
-                holder.setOnClickListener(R.id.tvDisconnect, v -> {
-                    sendExitCmd();
-                });
-                holder.itemView.setOnClickListener(v -> {
-                    if (checkBluetoothState()) return;
-                    connect(device);
-                });
-            }
-        };
-        binding.rvBluetoothList.setAdapter(adapter);
 
-        binding.llBottomButtons.setVisibility(View.GONE);
-
-        binding.tvVersion.setVisibility(View.VISIBLE);
-        binding.tvVersion.setText(String.format("version: %s", MyUtils.getVersionName(this)));
-
+    private void searchDevice() {
+        bluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
+        if (bluetoothAdapter == null) {
+            MyUtils.showToast("This device do not support bluetooth");
+            return;
+        }
+        if (checkBluetoothState()) return;
+        startScanDevice();
     }
 
-    public void openWebPage(String url) {
-        try {
-            Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
-            startActivity(intent);
-        } catch (Exception e) {
-            MyUtils.showToast("The System has no browser");
-            Logger.e(TAG, "openWebPage error:", e);
+
+    @SuppressLint("MissingPermission")
+    private void requestEnableBluetooth() {
+        Intent intent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
+        startActivityForResult(intent, REQUEST_CODE_BLUETOOTH_ENABLE);
+    }
+
+
+    @SuppressLint("MissingPermission")
+    private void scanBleDevice(final boolean enable) {
+        if (enable) {
+            MyUtils.showToast("开始搜索蓝牙");
+            handler.postDelayed(this::stopScanDevice, SCAN_PERIOD);
+            mScanning = true;
+            BluetoothLeScanner bluetoothLeScanner = bluetoothAdapter.getBluetoothLeScanner();
+            bluetoothLeScanner.startScan(scanCallback);
+            showDialog();
+        } else {
+            MyUtils.showToast("停止搜索蓝牙");
+            mScanning = false;
+            BluetoothLeScanner bluetoothLeScanner = bluetoothAdapter.getBluetoothLeScanner();
+            bluetoothLeScanner.stopScan(scanCallback);
+            dismissDialog();
         }
     }
+
+
+    private final ScanCallback scanCallback = new ScanCallback() {
+        @SuppressLint("MissingPermission")
+        @Override
+        public void onScanResult(int callbackType, ScanResult result) {
+            BluetoothDevice device = result.getDevice();
+            if (!devices.contains(device) && !TextUtils.isEmpty(device.getName())) {
+                Log.e(TAG, "搜索中: " + device.getName());
+                if (device.getName().equals(chargeSn)) {
+                    devices.add(device);
+                    stopScanDevice();
+                    //去连接
+                    connect(device);
+                }
+            }
+        }
+    };
+
+
+    @Override
+    public void showResultDialog(@Nullable String result, @Nullable Function0<Unit> onCancelClick, @Nullable Function0<Unit> onComfirClick) {
+
+    }
+
 
     @SuppressLint("MissingPermission")
     private void connect(final BluetoothDevice device) {
@@ -167,7 +186,6 @@ public class BleSetActivity extends AppCompatActivity {
             public void onSuccess() {
                 dismissProgress();
                 MyUtils.showToast("Connected to charger successfully");
-                adapter.notifyDataSetChanged();
                 showVerifyPasswordDialog();
             }
 
@@ -179,10 +197,10 @@ public class BleSetActivity extends AppCompatActivity {
             }
         });
         if (started) {
-            adapter.notifyDataSetChanged();
             showProgress("Connecting");
         }
     }
+
 
     private boolean checkBluetoothState() {
         if (!bluetoothAdapter.isEnabled()) {
@@ -194,8 +212,8 @@ public class BleSetActivity extends AppCompatActivity {
 
 
     private void showVerifyPasswordDialog() {
-        View view = View.inflate(this, R.layout.dialog_verify_password, null);
-        final AlertDialog dialog = new AlertDialog.Builder(this)
+        View view = View.inflate(getActivity(), R.layout.dialog_verify_password, null);
+        final AlertDialog dialog = new AlertDialog.Builder(getActivity())
                 .setView(view)
                 .show();
         dialog.setCanceledOnTouchOutside(false);
@@ -217,6 +235,7 @@ public class BleSetActivity extends AppCompatActivity {
         });
         tvCancel.setOnClickListener(v -> dialog.cancel());
     }
+
 
     private void verifyPassword(String pwd, String magicNo) {
         showProgress("Verifying");
@@ -241,71 +260,35 @@ public class BleSetActivity extends AppCompatActivity {
         });
     }
 
+
     private void gotoConfig(String pwd) {
-        Intent intent = new Intent(this, BleConfigActivity.class);
+        Intent intent = new Intent(getActivity(), BleConfigActivity.class);
         intent.putExtra("pwd", pwd);
         intent.putExtra("DeviceInfo", cpClient.getDeviceInfo());
         startActivityForResult(intent, 100);
     }
+
 
     private void startScanDevice() {
         scanBleDevice(true);
     }
 
     private void stopScanDevice() {
+        if (devices==null||devices.size()==0){
+            ((ChargeSettingActivity) getActivity()).showNoBleDialog();
+            cpClient.close();
+            detach();
+        }
         scanBleDevice(false);
     }
 
-    @SuppressLint("MissingPermission")
-    private void scanBleDevice(final boolean enable) {
-        if (enable) {
-            handler.postDelayed(this::stopScanDevice, SCAN_PERIOD);
-            mScanning = true;
-            BluetoothLeScanner bluetoothLeScanner = bluetoothAdapter.getBluetoothLeScanner();
-            bluetoothLeScanner.startScan(scanCallback);
-            binding.refreshLayout.setRefreshing(true);
-        } else {
-            mScanning = false;
-            BluetoothLeScanner bluetoothLeScanner = bluetoothAdapter.getBluetoothLeScanner();
-            bluetoothLeScanner.stopScan(scanCallback);
-            binding.refreshLayout.setRefreshing(false);
-        }
-    }
-
-    private final ScanCallback scanCallback = new ScanCallback() {
-        @SuppressLint("MissingPermission")
-        @Override
-        public void onScanResult(int callbackType, ScanResult result) {
-            BluetoothDevice device = result.getDevice();
-            if (!devices.contains(device) && !TextUtils.isEmpty(device.getName())) {
-                devices.add(device);
-                adapter.notifyDataSetChanged();
-            }
-        }
-    };
-
-    private void searchDevice() {
-        bluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
-        if (bluetoothAdapter == null) {
-            MyUtils.showToast("This device do not support bluetooth");
-            return;
-        }
-        if (checkBluetoothState()) return;
-        startScanDevice();
-    }
-
-    @SuppressLint("MissingPermission")
-    private void requestEnableBluetooth() {
-        Intent intent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
-        startActivityForResult(intent, REQUEST_CODE_BLUETOOTH_ENABLE);
-    }
 
     private void showProgress(String strMsg) {
-        if (isFinishing() || isDestroyed()) {
+   /*     if (isFinishing() || isDestroyed()) {
             return;
-        }
+        }*/
         dismissProgress();
-        progressDialog = new ProgressDialog(this);
+        progressDialog = new ProgressDialog(getActivity());
         progressDialog.setCancelable(true);
         progressDialog.setCanceledOnTouchOutside(false);
         progressDialog.setMessage(strMsg);
@@ -313,9 +296,9 @@ public class BleSetActivity extends AppCompatActivity {
     }
 
     private void dismissProgress() {
-        if (isFinishing() || isDestroyed()) {
+  /*      if (isFinishing() || isDestroyed()) {
             return;
-        }
+        }*/
         try {
             if (progressDialog != null && progressDialog.isShowing()) {
                 progressDialog.dismiss();
@@ -325,7 +308,6 @@ public class BleSetActivity extends AppCompatActivity {
             exception.printStackTrace();
         }
     }
-
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
@@ -342,8 +324,9 @@ public class BleSetActivity extends AppCompatActivity {
         }
     }
 
+
     @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == REQUEST_CODE_BLUETOOTH_ENABLE && resultCode == Activity.RESULT_OK) {
             searchDevice();
@@ -351,24 +334,12 @@ public class BleSetActivity extends AppCompatActivity {
             sendExitCmd();
             if (data != null && data.getBooleanExtra("chargerIdChanged", false)) {
                 devices.clear();
-                adapter.notifyDataSetChanged();
                 searchDevice();
             }
         }
+
     }
 
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        if (mScanning) {
-            stopScanDevice();
-        }
-        if (cpClient.isConnected()) {
-            sendExitCmd();
-        } else {
-            cpClient.close();
-        }
-    }
 
     private void sendExitCmd() {
         showProgress("Disconnecting");
@@ -376,19 +347,23 @@ public class BleSetActivity extends AppCompatActivity {
             @Override
             public void onResponse(Response response) {
                 Logger.d(TAG, "exit");
-                adapter.notifyDataSetChanged();
                 dismissProgress();
             }
-
 
 
             @Override
             public void onError(Throwable error) {
                 Logger.e(TAG, "exit", error);
                 MyUtils.showToast(error.getMessage());
-                adapter.notifyDataSetChanged();
                 dismissProgress();
             }
         });
     }
+
+
+    private void detach() {
+        getParentFragmentManager().beginTransaction().remove(this).commitAllowingStateLoss();
+    }
+
+
 }

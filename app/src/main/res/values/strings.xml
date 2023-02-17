@@ -253,6 +253,24 @@ confirmation after plug in your car。</string>
     <string name="m194_not_yet_open">Not yet open</string>
     <string name="m195_disconnection">Disconnection</string>
 
+    <string name="m196_bluetooth_connection_failed">Bluetooth connection failed,please scan the code again to add</string>
+
+    <string name="m197_wifi_ssid">WiFi SSID</string>
+    <string name="m198_wifi_password">WiFi Password</string>
+    <string name="m199_4g_apn">4G APN</string>
+    <string name="m200_4g_account">4G Account</string>
+    <string name="m201_4g_password">4G Password</string>
+    <string name="m202_server_url">Server URL</string>
+    <string name="m203_cp_name">CP Name</string>
+    <string name="m204_authorization_key">Authorization Key</string>
+    <string name="m205_output_current">Output Current</string>
+    <string name="m206_charge_mode">Charge Mode</string>
+    <string name="m207_power_distribution_enable">Power Distribution Enable</string>
+    <string name="m208_sampling_method">Sampling Method</string>
+    <string name="m209_home_power_current">Home Power Current</string>
+    <string name="m210_power_meter_address">Power Meter Address</string>
+    <string name="m211_manual_input">manual input</string>
+
 
 
 

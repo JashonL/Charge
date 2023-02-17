@@ -115,4 +115,8 @@ dependencies {
     implementation project(path: ':thirdsdk:mpchart')
     implementation 'com.zhy:base-rvadapter:3.0.3'
 
+    /*BRVAH*/
+    implementation 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.50'
+    implementation 'com.mylhyl:circleDialog:5.2.0'
+
 }

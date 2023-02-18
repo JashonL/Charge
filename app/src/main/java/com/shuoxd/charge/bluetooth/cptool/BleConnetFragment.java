@@ -32,6 +32,7 @@ import androidx.fragment.app.FragmentTransaction;
 import com.shuoxd.charge.R;
 import com.shuoxd.charge.application.MainApplication;
 import com.shuoxd.charge.base.BaseFragment;
+import com.shuoxd.charge.ui.chargesetting.activity.BleSetParamsActivity;
 import com.shuoxd.charge.ui.chargesetting.activity.ChargeSettingActivity;
 import com.shuoxd.charge.ui.common.fragment.RequestPermissionHub;
 import com.shuoxd.charge.view.dialog.BottomDialog;
@@ -186,7 +187,7 @@ public class BleConnetFragment extends BaseFragment {
             public void onSuccess() {
                 dismissProgress();
                 MyUtils.showToast("Connected to charger successfully");
-                showVerifyPasswordDialog();
+                setDefaultPwd();
             }
 
             @Override
@@ -209,6 +210,14 @@ public class BleConnetFragment extends BaseFragment {
         }
         return false;
     }
+
+
+
+
+    private void setDefaultPwd(){
+        verifyPassword("12345678", "magicNo");
+    }
+
 
 
     private void showVerifyPasswordDialog() {
@@ -234,6 +243,8 @@ public class BleConnetFragment extends BaseFragment {
             verifyPassword(pwd, magicNo);
         });
         tvCancel.setOnClickListener(v -> dialog.cancel());
+
+
     }
 
 
@@ -247,7 +258,7 @@ public class BleConnetFragment extends BaseFragment {
                 if (response.isSuccessful()) {
                     gotoConfig(pwd);
                 } else {
-                    MyUtils.showToast("wrong password");
+                    showVerifyPasswordDialog();
                 }
             }
 
@@ -262,10 +273,12 @@ public class BleConnetFragment extends BaseFragment {
 
 
     private void gotoConfig(String pwd) {
-        Intent intent = new Intent(getActivity(), BleConfigActivity.class);
+        BleSetParamsActivity.start(getActivity(),pwd,cpClient.getDeviceInfo());
+
+/*        Intent intent = new Intent(getActivity(), BleConfigActivity.class);
         intent.putExtra("pwd", pwd);
         intent.putExtra("DeviceInfo", cpClient.getDeviceInfo());
-        startActivityForResult(intent, 100);
+        startActivityForResult(intent, 100);*/
     }
 
 

@@ -7,6 +7,7 @@ import android.view.View
 import android.widget.Button
 import com.shuoxd.charge.R
 import com.shuoxd.charge.base.BaseActivity
+import com.shuoxd.charge.bluetooth.cptool.BleConnetFragment
 import com.shuoxd.charge.databinding.ActivitySettingBinding
 import com.shuoxd.charge.view.dialog.BottomDialog
 import com.shuoxd.lib.util.ToastUtil
@@ -71,9 +72,9 @@ class ChargeSettingActivity:BaseActivity() {
             }*/
 
 
-//            BleConnetFragment.startBleCon(this,getCurrentChargeModel()?.chargePointModel)
+            BleConnetFragment.startBleCon(this,getCurrentChargeModel()?.chargePointModel)
 
-            BleSetParamsActivity.start(this)
+//            BleSetParamsActivity.start(this)
 
         }
 

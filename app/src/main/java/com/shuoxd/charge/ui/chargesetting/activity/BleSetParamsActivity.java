@@ -1,14 +1,20 @@
 package com.shuoxd.charge.ui.chargesetting.activity;
 
+import static com.shuoxd.charge.ui.chargesetting.bean.BleSetBean.ItemKey.KEY_4G_ACCOUNT;
+import static com.shuoxd.charge.ui.chargesetting.bean.BleSetBean.ItemKey.KEY_4G_APN;
+import static com.shuoxd.charge.ui.chargesetting.bean.BleSetBean.ItemKey.KEY_4G_PASSWORD;
+import static com.shuoxd.charge.ui.chargesetting.bean.BleSetBean.ItemKey.KEY_AUTH_KEY;
+import static com.shuoxd.charge.ui.chargesetting.bean.BleSetBean.ItemKey.KEY_CP_NAME;
 import static com.shuoxd.charge.ui.chargesetting.bean.BleSetBean.ItemKey.KEY_HOME_POWER_CURRENT;
 import static com.shuoxd.charge.ui.chargesetting.bean.BleSetBean.ItemKey.KEY_POWER_DISTRIBUTION_ENABLE;
 import static com.shuoxd.charge.ui.chargesetting.bean.BleSetBean.ItemKey.KEY_POWER_METER_ADDR;
 import static com.shuoxd.charge.ui.chargesetting.bean.BleSetBean.ItemKey.KEY_SAMPLING_METHOD;
+import static com.shuoxd.charge.ui.chargesetting.bean.BleSetBean.ItemKey.KEY_SERVER_URL;
+import static com.shuoxd.charge.ui.chargesetting.bean.BleSetBean.ItemKey.KEY_WIFI_PASSWORD;
+import static com.shuoxd.charge.ui.chargesetting.bean.BleSetBean.ItemKey.KEY_WIFI_SSID;
 
 import android.annotation.SuppressLint;
-import android.app.AlertDialog;
 import android.app.ProgressDialog;
-import android.bluetooth.BluetoothDevice;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -17,8 +23,6 @@ import android.net.wifi.ScanResult;
 import android.net.wifi.WifiManager;
 import android.os.Bundle;
 import android.text.TextUtils;
-import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 
 
@@ -26,29 +30,24 @@ import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.shuoxd.charge.R;
+import com.shuoxd.charge.application.MainApplication;
 import com.shuoxd.charge.base.BaseActivity;
-import com.shuoxd.charge.bluetooth.cptool.CheckUtils;
-import com.shuoxd.charge.bluetooth.cptool.FirmwareUpdater;
-import com.shuoxd.charge.bluetooth.cptool.Logger;
 import com.shuoxd.charge.bluetooth.cptool.MyUtils;
 import com.shuoxd.charge.bluetooth.cptool.SimpleCPCallback;
 import com.shuoxd.charge.databinding.ActivityBleSetParamBinding;
-import com.shuoxd.charge.databinding.ActivityConfigBinding;
 import com.shuoxd.charge.ui.chargesetting.adapter.ItemSettingAdapter;
 import com.shuoxd.charge.ui.chargesetting.bean.BleSetBean;
 import com.shuoxd.charge.ui.chargesetting.settype.OneCheckItem;
 import com.shuoxd.charge.ui.chargesetting.settype.OneInputItem;
 import com.shuoxd.charge.ui.chargesetting.settype.OneSelectItem;
 import com.timxon.cplib.BleCPClient;
-import com.timxon.cplib.protocol.ChangePasswordRequest;
-import com.timxon.cplib.protocol.ChangePasswordResponse;
+import com.timxon.cplib.protocol.CPClient;
 import com.timxon.cplib.protocol.DeviceInfo;
 import com.timxon.cplib.protocol.Get4GParametersRequest;
 import com.timxon.cplib.protocol.Get4GParametersResponse;
 import com.timxon.cplib.protocol.GetChargeModeRequest;
 import com.timxon.cplib.protocol.GetChargeModeResponse;
 import com.timxon.cplib.protocol.GetChargerStatusRequest;
-import com.timxon.cplib.protocol.GetChargerStatusResponse;
 import com.timxon.cplib.protocol.GetEthernetParametersRequest;
 import com.timxon.cplib.protocol.GetEthernetParametersResponse;
 import com.timxon.cplib.protocol.GetHomeLoadBalancingRequest;
@@ -61,16 +60,13 @@ import com.timxon.cplib.protocol.GetServerInfoRequest;
 import com.timxon.cplib.protocol.GetServerInfoResponse;
 import com.timxon.cplib.protocol.GetWifiInfoRequest;
 import com.timxon.cplib.protocol.GetWifiInfoResponse;
+import com.timxon.cplib.protocol.Response;
 import com.timxon.cplib.protocol.Set4GParametersRequest;
 import com.timxon.cplib.protocol.Set4GParametersResponse;
 import com.timxon.cplib.protocol.SetChargeModeRequest;
 import com.timxon.cplib.protocol.SetChargeModeResponse;
-import com.timxon.cplib.protocol.SetEthernetParametersRequest;
-import com.timxon.cplib.protocol.SetEthernetParametersResponse;
 import com.timxon.cplib.protocol.SetHomeLoadBalancingRequest;
 import com.timxon.cplib.protocol.SetHomeLoadBalancingResponse;
-import com.timxon.cplib.protocol.SetNetInterfaceSwitchRequest;
-import com.timxon.cplib.protocol.SetNetInterfaceSwitchResponse;
 import com.timxon.cplib.protocol.SetRatedCurrentRequest;
 import com.timxon.cplib.protocol.SetRatedCurrentResponse;
 import com.timxon.cplib.protocol.SetServerInfoRequest;
@@ -84,8 +80,11 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 public class BleSetParamsActivity extends BaseActivity {
 
-    public static void start(Context context) {
-        context.startActivity(new Intent(context, BleSetParamsActivity.class));
+    public static void start(Context context,String pwd,DeviceInfo info) {
+        Intent intent = new Intent(context, BleSetParamsActivity.class);
+        intent.putExtra("pwd", pwd);
+        intent.putExtra("DeviceInfo", info);
+        context.startActivity(intent);
     }
 
 
@@ -154,13 +153,13 @@ public class BleSetParamsActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         binding = ActivityBleSetParamBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+        cpClient = MainApplication.Companion.instance().getBleCPClient();
         initSetItems();
         initViews();
         initData();
     }
 
     private void initData() {
-        BluetoothDevice connectedDevice = cpClient.getConnectedDevice();
         pwd = getIntent().getStringExtra("pwd");
         deviceInfo = (DeviceInfo) getIntent().getSerializableExtra("DeviceInfo");
         checkDefaultPassword();
@@ -522,14 +521,14 @@ public class BleSetParamsActivity extends BaseActivity {
         };
 
         String[] key = new String[]{
-                BleSetBean.ItemKey.KEY_WIFI_SSID,
-                BleSetBean.ItemKey.KEY_WIFI_PASSWORD,
-                BleSetBean.ItemKey.KEY_4G_APN,
-                BleSetBean.ItemKey.KEY_4G_ACCOUNT,
-                BleSetBean.ItemKey.KEY_4G_PASSWORD,
-                BleSetBean.ItemKey.KEY_SERVER_URL,
-                BleSetBean.ItemKey.KEY_CP_NAME,
-                BleSetBean.ItemKey.KEY_AUTH_KEY,
+                KEY_WIFI_SSID,
+                KEY_WIFI_PASSWORD,
+                KEY_4G_APN,
+                KEY_4G_ACCOUNT,
+                KEY_4G_PASSWORD,
+                KEY_SERVER_URL,
+                KEY_CP_NAME,
+                KEY_AUTH_KEY,
                 BleSetBean.ItemKey.KEY_OUT_PUT_CURRENT,
                 BleSetBean.ItemKey.KEY_CHARGE_MODE,
                 KEY_POWER_DISTRIBUTION_ENABLE,
@@ -624,71 +623,112 @@ public class BleSetParamsActivity extends BaseActivity {
     private void setCharge(BleSetBean item) {
         String key = item.key;
         switch (key) {
-            case BleSetBean.ItemKey.KEY_WIFI_SSID:
+            case KEY_WIFI_SSID:
                 String oneChooseValue = ((OneSelectItem) item).oneChooseValue;
-                setWifiInfo(oneChooseValue,"");
+                setWifiInfo(oneChooseValue, getValueByKey(KEY_WIFI_PASSWORD));
                 break;
-            case BleSetBean.ItemKey.KEY_WIFI_PASSWORD:
+            case KEY_WIFI_PASSWORD:
                 String password = ((OneInputItem) item).value;
-                setWifiInfo("",password);
+                setWifiInfo(getValueByKey(KEY_WIFI_SSID), password);
                 break;
-            case BleSetBean.ItemKey.KEY_4G_APN:
+            case KEY_4G_APN:
                 String vpn = ((OneInputItem) item).value;
-                set4GParameters(vpn,"","");
+                set4GParameters(vpn, getValueByKey(KEY_4G_ACCOUNT), getValueByKey(KEY_4G_PASSWORD));
                 break;
-            case BleSetBean.ItemKey.KEY_4G_ACCOUNT:
+            case KEY_4G_ACCOUNT:
                 String account = ((OneInputItem) item).value;
-                set4GParameters("",account,"");
+                set4GParameters(getValueByKey(KEY_4G_APN), account, getValueByKey(KEY_4G_PASSWORD));
                 break;
-            case BleSetBean.ItemKey.KEY_4G_PASSWORD:
+            case KEY_4G_PASSWORD:
                 String _4gPassword = ((OneInputItem) item).value;
-                set4GParameters("","",_4gPassword);
+                set4GParameters(getValueByKey(KEY_4G_APN), getValueByKey(KEY_4G_ACCOUNT), _4gPassword);
                 break;
-            case BleSetBean.ItemKey.KEY_SERVER_URL:
+            case KEY_SERVER_URL:
                 String url = ((OneInputItem) item).value;
-                setServerInfo(false,url,"","");
+                setServerInfo(false, url,  getValueByKey(KEY_CP_NAME),  getValueByKey(KEY_AUTH_KEY));
+
+
                 break;
-            case BleSetBean.ItemKey.KEY_CP_NAME:
+            case KEY_CP_NAME:
                 String cpName = ((OneInputItem) item).value;
-                setServerInfo(false,"",cpName,"");
+                setServerInfo(false, getValueByKey(KEY_SERVER_URL), cpName, getValueByKey(KEY_AUTH_KEY));
+
+
                 break;
-            case BleSetBean.ItemKey.KEY_AUTH_KEY:
+            case KEY_AUTH_KEY:
                 String auth = ((OneInputItem) item).value;
-                setServerInfo(false,"","",auth);
+                setServerInfo(false, getValueByKey(KEY_SERVER_URL), getValueByKey(KEY_CP_NAME), auth);
                 break;
             case BleSetBean.ItemKey.KEY_OUT_PUT_CURRENT:
                 String current = ((OneInputItem) item).value;
                 setRatedCurrent(current);
                 break;
             case BleSetBean.ItemKey.KEY_CHARGE_MODE:
-                chargeMode=((OneSelectItem) item).oneChooseValue;
+                chargeMode = ((OneSelectItem) item).oneChooseValue;
                 setChargeMode();
                 break;
             case KEY_POWER_DISTRIBUTION_ENABLE:
                 boolean isCheck = ((OneCheckItem) item).isCheck;
-                setHomeLoadBalancing("","",isCheck?1:0);
+                setHomeLoadBalancing(getValueByKey(KEY_HOME_POWER_CURRENT), getValueByKey(KEY_POWER_METER_ADDR), isCheck ? 1 : 0);
                 break;
             case KEY_SAMPLING_METHOD:
                 samplingMethod = ((OneSelectItem) item).oneChooseValue;
-                setHomeLoadBalancing("","",-1);
+                setHomeLoadBalancing(getValueByKey(KEY_HOME_POWER_CURRENT),  getValueByKey(KEY_POWER_METER_ADDR), Integer.parseInt(getValueByKey(KEY_POWER_DISTRIBUTION_ENABLE)));
                 break;
             case KEY_HOME_POWER_CURRENT:
                 String homePowerCurrent = ((OneInputItem) item).value;
-                setHomeLoadBalancing(homePowerCurrent,"",-1);
+                setHomeLoadBalancing(homePowerCurrent, getValueByKey(KEY_POWER_METER_ADDR),  Integer.parseInt(getValueByKey(KEY_POWER_DISTRIBUTION_ENABLE)));
                 break;
             case KEY_POWER_METER_ADDR:
                 String powerMeterAddress = ((OneInputItem) item).value;
-                setHomeLoadBalancing("",powerMeterAddress,-1);
+                setHomeLoadBalancing(getValueByKey(KEY_HOME_POWER_CURRENT), powerMeterAddress,  Integer.parseInt(getValueByKey(KEY_POWER_DISTRIBUTION_ENABLE)));
                 break;
         }
-
 
     }
 
 
+    private String getValueByKey(String key) {
+        String value = "";
+        BleSetBean item = null;
+        for (int i = 0; i < adapter.getData().size(); i++) {
+            BleSetBean bleSetBean = adapter.getData().get(i);
+            String key1 = bleSetBean.key;
+            if (key.equals(key1)) {
+                item = bleSetBean;
+            }
+        }
 
-
-
+        if (item == null) return "";
+        switch (key) {
+            case KEY_WIFI_SSID:
+                value = ((OneSelectItem) item).oneChooseValue;
+                break;
+            case KEY_WIFI_PASSWORD:
+            case KEY_4G_APN:
+            case KEY_4G_ACCOUNT:
+            case KEY_4G_PASSWORD:
+            case KEY_SERVER_URL:
+            case KEY_CP_NAME:
+            case KEY_AUTH_KEY:
+            case BleSetBean.ItemKey.KEY_OUT_PUT_CURRENT:
+            case KEY_HOME_POWER_CURRENT:
+            case KEY_POWER_METER_ADDR:
+                value = ((OneInputItem) item).value;
+                break;
+            case BleSetBean.ItemKey.KEY_CHARGE_MODE:
+                chargeMode = ((OneSelectItem) item).oneChooseValue;
+                break;
+            case KEY_POWER_DISTRIBUTION_ENABLE:
+                boolean isCheck = ((OneCheckItem) item).isCheck;
+                value = isCheck ? "1" : "0";
+                break;
+            case KEY_SAMPLING_METHOD:
+                samplingMethod = ((OneSelectItem) item).oneChooseValue;
+                break;
+        }
+        return value;
+    }
 
 
 
@@ -925,7 +965,9 @@ public class BleSetParamsActivity extends BaseActivity {
 //        }
     }
 
-    private void setHomeLoadBalancing(String homePowerCurrent,String powerMeterAddress,int powerDistributionEnable) {
+    private void setHomeLoadBalancing(String homePowerCurrent, String powerMeterAddress, int powerDistributionEnable) {
+        counter.set(0);
+        setCounter.set(0);
         if (getHomeLoadBalancingResponse == null) {
             return;
         }
@@ -984,11 +1026,12 @@ public class BleSetParamsActivity extends BaseActivity {
                 dismissProgressIfNeeded();
             }
         });
-        counter.addAndGet(1);
-        setCounter.addAndGet(1);
+
     }
 
     private void setChargeMode() {
+        counter.set(0);
+        setCounter.set(0);
         if (getChargeModeResponse == null) {
             return;
         }
@@ -1020,11 +1063,12 @@ public class BleSetParamsActivity extends BaseActivity {
                 dismissProgressIfNeeded();
             }
         });
-        counter.addAndGet(1);
-        setCounter.addAndGet(1);
+
     }
 
-    private void set4GParameters(String apn,String account,String password) {
+    private void set4GParameters(String apn, String account, String password) {
+        counter.set(0);
+        setCounter.set(0);
         if (get4GParametersResponse == null) {
             return;
         }
@@ -1062,11 +1106,12 @@ public class BleSetParamsActivity extends BaseActivity {
                 dismissProgressIfNeeded();
             }
         });
-        counter.addAndGet(1);
-        setCounter.addAndGet(1);
+
     }
 
     private void setRatedCurrent(String current) {
+        counter.set(0);
+        setCounter.set(0);
         if (getRatedCurrentResponse == null) {
             return;
         }
@@ -1103,11 +1148,12 @@ public class BleSetParamsActivity extends BaseActivity {
                 dismissProgressIfNeeded();
             }
         });
-        counter.addAndGet(1);
-        setCounter.addAndGet(1);
+
     }
 
-    private void setServerInfo(final boolean inBackground,String url,String chargerId,String authKey) {
+    private void setServerInfo(final boolean inBackground, String url, String chargerId, String authKey) {
+        counter.set(0);
+        setCounter.set(0);
         if (getServerInfoResponse == null) {
             return;
         }
@@ -1157,13 +1203,12 @@ public class BleSetParamsActivity extends BaseActivity {
                 }
             }
         });
-        if (!inBackground) {
-            counter.addAndGet(1);
-            setCounter.addAndGet(1);
-        }
+
     }
 
-    private void setWifiInfo(String ssid,String password) {
+    private void setWifiInfo(String ssid, String password) {
+        counter.set(0);
+        setCounter.set(0);
         if (getWifiInfoResponse == null) {
             return;
         }
@@ -1200,8 +1245,7 @@ public class BleSetParamsActivity extends BaseActivity {
                 dismissProgressIfNeeded();
             }
         });
-        counter.addAndGet(1);
-        setCounter.addAndGet(1);
+
     }
 
     public void showProgress(String strMsg) {
@@ -1252,5 +1296,34 @@ public class BleSetParamsActivity extends BaseActivity {
         setResult(RESULT_OK, new Intent().putExtra("chargerIdChanged", chargerIdChanged));
     }
 
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if (cpClient.isConnected()) {
+            sendExitCmd();
+        } else {
+            cpClient.close();
+        }
+    }
+
+
+    private void sendExitCmd() {
+        showProgress("Disconnecting");
+        cpClient.sendExitCommand(new CPClient.Callback() {
+            @Override
+            public void onResponse(Response response) {
+                dismissProgress();
+            }
+
+
+
+            @Override
+            public void onError(Throwable error) {
+                MyUtils.showToast(error.getMessage());
+                dismissProgress();
+            }
+        });
+    }
 
 }

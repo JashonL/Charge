@@ -4,8 +4,10 @@ import static com.shuoxd.charge.ui.chargesetting.bean.BleSetBean.ItemKey.KEY_4G_
 import static com.shuoxd.charge.ui.chargesetting.bean.BleSetBean.ItemKey.KEY_4G_APN;
 import static com.shuoxd.charge.ui.chargesetting.bean.BleSetBean.ItemKey.KEY_4G_PASSWORD;
 import static com.shuoxd.charge.ui.chargesetting.bean.BleSetBean.ItemKey.KEY_AUTH_KEY;
+import static com.shuoxd.charge.ui.chargesetting.bean.BleSetBean.ItemKey.KEY_CHARGE_MODE;
 import static com.shuoxd.charge.ui.chargesetting.bean.BleSetBean.ItemKey.KEY_CP_NAME;
 import static com.shuoxd.charge.ui.chargesetting.bean.BleSetBean.ItemKey.KEY_HOME_POWER_CURRENT;
+import static com.shuoxd.charge.ui.chargesetting.bean.BleSetBean.ItemKey.KEY_OUT_PUT_CURRENT;
 import static com.shuoxd.charge.ui.chargesetting.bean.BleSetBean.ItemKey.KEY_POWER_DISTRIBUTION_ENABLE;
 import static com.shuoxd.charge.ui.chargesetting.bean.BleSetBean.ItemKey.KEY_POWER_METER_ADDR;
 import static com.shuoxd.charge.ui.chargesetting.bean.BleSetBean.ItemKey.KEY_SAMPLING_METHOD;
@@ -80,7 +82,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 public class BleSetParamsActivity extends BaseActivity {
 
-    public static void start(Context context,String pwd,DeviceInfo info) {
+    public static void start(Context context, String pwd, DeviceInfo info) {
         Intent intent = new Intent(context, BleSetParamsActivity.class);
         intent.putExtra("pwd", pwd);
         intent.putExtra("DeviceInfo", info);
@@ -529,8 +531,8 @@ public class BleSetParamsActivity extends BaseActivity {
                 KEY_SERVER_URL,
                 KEY_CP_NAME,
                 KEY_AUTH_KEY,
-                BleSetBean.ItemKey.KEY_OUT_PUT_CURRENT,
-                BleSetBean.ItemKey.KEY_CHARGE_MODE,
+                KEY_OUT_PUT_CURRENT,
+                KEY_CHARGE_MODE,
                 KEY_POWER_DISTRIBUTION_ENABLE,
                 KEY_SAMPLING_METHOD,
                 KEY_HOME_POWER_CURRENT,
@@ -572,6 +574,8 @@ public class BleSetParamsActivity extends BaseActivity {
 
                 chooseItems.add(new OneSelectItem.SelectItem(getString(R.string.m211_manual_input), "0"));
                 oneSelectItem.selectItems = chooseItems;
+
+                settingItems.add(oneSelectItem);
             } else if (i == 9) {
                 OneSelectItem oneSelectItem = new OneSelectItem();
                 oneSelectItem.title = titles[i];
@@ -589,12 +593,14 @@ public class BleSetParamsActivity extends BaseActivity {
                 }
                 chooseItems.add(new OneSelectItem.SelectItem(getString(R.string.m211_manual_input), "0"));
                 oneSelectItem.selectItems = chooseItems;
+                settingItems.add(oneSelectItem);
             } else if (i == 10) {
                 OneCheckItem oneCheckItem = new OneCheckItem();
                 oneCheckItem.key = key[i];
                 oneCheckItem.title = titles[i];
                 oneCheckItem.itemType = itemType[i];
                 oneCheckItem.isCheck = false;
+                settingItems.add(oneCheckItem);
             } else {
                 OneInputItem inputItem = new OneInputItem();
                 inputItem.key = key[i];
@@ -645,7 +651,7 @@ public class BleSetParamsActivity extends BaseActivity {
                 break;
             case KEY_SERVER_URL:
                 String url = ((OneInputItem) item).value;
-                setServerInfo(false, url,  getValueByKey(KEY_CP_NAME),  getValueByKey(KEY_AUTH_KEY));
+                setServerInfo(false, url, getValueByKey(KEY_CP_NAME), getValueByKey(KEY_AUTH_KEY));
 
 
                 break;
@@ -659,11 +665,11 @@ public class BleSetParamsActivity extends BaseActivity {
                 String auth = ((OneInputItem) item).value;
                 setServerInfo(false, getValueByKey(KEY_SERVER_URL), getValueByKey(KEY_CP_NAME), auth);
                 break;
-            case BleSetBean.ItemKey.KEY_OUT_PUT_CURRENT:
+            case KEY_OUT_PUT_CURRENT:
                 String current = ((OneInputItem) item).value;
                 setRatedCurrent(current);
                 break;
-            case BleSetBean.ItemKey.KEY_CHARGE_MODE:
+            case KEY_CHARGE_MODE:
                 chargeMode = ((OneSelectItem) item).oneChooseValue;
                 setChargeMode();
                 break;
@@ -673,15 +679,15 @@ public class BleSetParamsActivity extends BaseActivity {
                 break;
             case KEY_SAMPLING_METHOD:
                 samplingMethod = ((OneSelectItem) item).oneChooseValue;
-                setHomeLoadBalancing(getValueByKey(KEY_HOME_POWER_CURRENT),  getValueByKey(KEY_POWER_METER_ADDR), Integer.parseInt(getValueByKey(KEY_POWER_DISTRIBUTION_ENABLE)));
+                setHomeLoadBalancing(getValueByKey(KEY_HOME_POWER_CURRENT), getValueByKey(KEY_POWER_METER_ADDR), Integer.parseInt(getValueByKey(KEY_POWER_DISTRIBUTION_ENABLE)));
                 break;
             case KEY_HOME_POWER_CURRENT:
                 String homePowerCurrent = ((OneInputItem) item).value;
-                setHomeLoadBalancing(homePowerCurrent, getValueByKey(KEY_POWER_METER_ADDR),  Integer.parseInt(getValueByKey(KEY_POWER_DISTRIBUTION_ENABLE)));
+                setHomeLoadBalancing(homePowerCurrent, getValueByKey(KEY_POWER_METER_ADDR), Integer.parseInt(getValueByKey(KEY_POWER_DISTRIBUTION_ENABLE)));
                 break;
             case KEY_POWER_METER_ADDR:
                 String powerMeterAddress = ((OneInputItem) item).value;
-                setHomeLoadBalancing(getValueByKey(KEY_HOME_POWER_CURRENT), powerMeterAddress,  Integer.parseInt(getValueByKey(KEY_POWER_DISTRIBUTION_ENABLE)));
+                setHomeLoadBalancing(getValueByKey(KEY_HOME_POWER_CURRENT), powerMeterAddress, Integer.parseInt(getValueByKey(KEY_POWER_DISTRIBUTION_ENABLE)));
                 break;
         }
 
@@ -711,12 +717,12 @@ public class BleSetParamsActivity extends BaseActivity {
             case KEY_SERVER_URL:
             case KEY_CP_NAME:
             case KEY_AUTH_KEY:
-            case BleSetBean.ItemKey.KEY_OUT_PUT_CURRENT:
+            case KEY_OUT_PUT_CURRENT:
             case KEY_HOME_POWER_CURRENT:
             case KEY_POWER_METER_ADDR:
                 value = ((OneInputItem) item).value;
                 break;
-            case BleSetBean.ItemKey.KEY_CHARGE_MODE:
+            case KEY_CHARGE_MODE:
                 chargeMode = ((OneSelectItem) item).oneChooseValue;
                 break;
             case KEY_POWER_DISTRIBUTION_ENABLE:
@@ -1315,7 +1321,6 @@ public class BleSetParamsActivity extends BaseActivity {
             public void onResponse(Response response) {
                 dismissProgress();
             }
-
 
 
             @Override

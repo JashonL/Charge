@@ -159,7 +159,7 @@ public class BleConnetFragment extends BaseFragment {
         public void onScanResult(int callbackType, ScanResult result) {
             BluetoothDevice device = result.getDevice();
             if (!devices.contains(device) && !TextUtils.isEmpty(device.getName())) {
-                Log.e(TAG, "搜索中: " + device.getName());
+                Log.e(TAG, "充电桩名称："+chargeSn+"搜索中: " + device.getName());
                 if (device.getName().equals(chargeSn)) {
                     devices.add(device);
                     stopScanDevice();

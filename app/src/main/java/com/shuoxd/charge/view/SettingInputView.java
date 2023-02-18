@@ -124,7 +124,9 @@ public class SettingInputView extends LinearLayout implements CompoundButton.OnC
     //根据值设置选中项
     public void setValue(String value) {
         this.value = value;
-
+        if (!TextUtils.isEmpty(value)){
+            tvValue.setText(value);
+        }
     }
 
     public String getValue() {

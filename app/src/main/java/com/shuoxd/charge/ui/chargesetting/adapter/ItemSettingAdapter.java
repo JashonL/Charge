@@ -63,6 +63,8 @@ public class ItemSettingAdapter extends BaseMultiItemQuickAdapter<BleSetBean, Ba
 
                 //选中项初始化
                 chooseView.setValue(((OneSelectItem) item).dataValue);
+
+
                 break;
             case BleSetBean.ItemType.ONE_SELECT_ITEM_NEXT:
                 SettingInputView inputView = helper.getView(R.id.view_input_setting);

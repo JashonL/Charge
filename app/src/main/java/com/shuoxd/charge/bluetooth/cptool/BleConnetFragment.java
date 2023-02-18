@@ -215,7 +215,8 @@ public class BleConnetFragment extends BaseFragment {
 
 
     private void setDefaultPwd(){
-        verifyPassword("12345678", "magicNo");
+        String randomHexString = CPUtils.genRandomHexString(4);
+        verifyPassword("12345678", randomHexString);
     }
 
 

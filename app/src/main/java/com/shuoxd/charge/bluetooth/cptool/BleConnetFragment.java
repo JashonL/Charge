@@ -139,14 +139,12 @@ public class BleConnetFragment extends BaseFragment {
     @SuppressLint("MissingPermission")
     private void scanBleDevice(final boolean enable) {
         if (enable) {
-            MyUtils.showToast("开始搜索蓝牙");
             handler.postDelayed(this::stopScanDevice, SCAN_PERIOD);
             mScanning = true;
             BluetoothLeScanner bluetoothLeScanner = bluetoothAdapter.getBluetoothLeScanner();
             bluetoothLeScanner.startScan(scanCallback);
             showDialog();
         } else {
-            MyUtils.showToast("停止搜索蓝牙");
             mScanning = false;
             BluetoothLeScanner bluetoothLeScanner = bluetoothAdapter.getBluetoothLeScanner();
             bluetoothLeScanner.stopScan(scanCallback);

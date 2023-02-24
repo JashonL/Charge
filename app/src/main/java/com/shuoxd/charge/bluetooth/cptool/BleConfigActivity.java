@@ -345,7 +345,7 @@ public class BleConfigActivity extends AppCompatActivity implements View.OnClick
             binding.tvBluetoothName.setText(connectedDevice.getName());
         }
         pwd = getIntent().getStringExtra("pwd");
-        deviceInfo = (DeviceInfo) getIntent().getSerializableExtra("DeviceInfo");
+//        deviceInfo = (DeviceInfo) getIntent().getSerializableExtra("DeviceInfo");
         checkDefaultPassword();
         initWiFiScan();
         getChargerConfigInfo();

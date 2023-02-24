@@ -12,6 +12,7 @@ import static com.shuoxd.charge.ui.chargesetting.bean.BleSetBean.ItemKey.KEY_POW
 import static com.shuoxd.charge.ui.chargesetting.bean.BleSetBean.ItemKey.KEY_POWER_METER_ADDR;
 import static com.shuoxd.charge.ui.chargesetting.bean.BleSetBean.ItemKey.KEY_SAMPLING_METHOD;
 import static com.shuoxd.charge.ui.chargesetting.bean.BleSetBean.ItemKey.KEY_SERVER_URL;
+import static com.shuoxd.charge.ui.chargesetting.bean.BleSetBean.ItemKey.KEY_UPDATE;
 import static com.shuoxd.charge.ui.chargesetting.bean.BleSetBean.ItemKey.KEY_WIFI_PASSWORD;
 import static com.shuoxd.charge.ui.chargesetting.bean.BleSetBean.ItemKey.KEY_WIFI_SSID;
 
@@ -25,15 +26,18 @@ import android.net.wifi.ScanResult;
 import android.net.wifi.WifiManager;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.widget.Spinner;
 
 
 import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.shuoxd.charge.R;
 import com.shuoxd.charge.application.MainApplication;
 import com.shuoxd.charge.base.BaseActivity;
+import com.shuoxd.charge.bluetooth.cptool.FirmwareUpdater;
 import com.shuoxd.charge.bluetooth.cptool.MyUtils;
 import com.shuoxd.charge.bluetooth.cptool.SimpleCPCallback;
 import com.shuoxd.charge.databinding.ActivityBleSetParamBinding;
@@ -130,6 +134,7 @@ public class BleSetParamsActivity extends BaseActivity {
 
 
     private void onScanResults() {
+        Log.i("扫描回调", "扫描回调");
         List<ScanResult> results = wifiManager.getScanResults();
         if (results == null || results.isEmpty()) {
             return;
@@ -137,10 +142,27 @@ public class BleSetParamsActivity extends BaseActivity {
         for (ScanResult result : results) {
             if (result.frequency < 2500 && !ssidList.contains(result.SSID)) {
                 // 只支持2.4G
-                ssidList.add(result.SSID);
-            }
+                if (!TextUtils.isEmpty(result.SSID)) {
+                    ssidList.add(result.SSID);
+                }
 
+            }
         }
+        //刷新选项
+        if (adapter != null) {
+            BleSetBean bleSetBean = adapter.getData().get(0);
+            OneSelectItem bleSetBean1 = (OneSelectItem) bleSetBean;
+            List<OneSelectItem.SelectItem> chooseItems = new ArrayList<>();
+            for (int i = 0; i < ssidList.size(); i++) {
+                chooseItems.add(new OneSelectItem.SelectItem(
+                        ssidList.get(i),
+                        ssidList.get(i)
+                ));
+            }
+            bleSetBean1.selectItems = chooseItems;
+            adapter.notifyDataSetChanged();
+        }
+
 
     }
 
@@ -159,6 +181,7 @@ public class BleSetParamsActivity extends BaseActivity {
         initSetItems();
         initViews();
         initData();
+        onScanResults();
     }
 
     private void initData() {
@@ -376,7 +399,7 @@ public class BleSetParamsActivity extends BaseActivity {
                 getChargeModeResponse = response;
                 String chargeMode = getChargeModeResponse.getChargeMode();
 
-                OneSelectItem oneSelectItem = (OneSelectItem) adapter.getData().get(9);
+                OneSelectItem oneSelectItem = (OneSelectItem) getItemByKey(KEY_CHARGE_MODE);
                 List<OneSelectItem.SelectItem> selectItems = oneSelectItem.selectItems;
                 for (int i = 0; i < selectItems.size(); i++) {
                     OneSelectItem.SelectItem selectItem = selectItems.get(i);
@@ -406,13 +429,13 @@ public class BleSetParamsActivity extends BaseActivity {
             public void onResponse2(Get4GParametersResponse response) {
                 get4GParametersResponse = response;
 
-                OneInputItem input4gAPN = (OneInputItem) adapter.getData().get(2);
+                OneInputItem input4gAPN = (OneInputItem) getItemByKey(KEY_4G_APN);
                 input4gAPN.value = get4GParametersResponse.getApn();
 
-                OneInputItem input4gAccount = (OneInputItem) adapter.getData().get(3);
+                OneInputItem input4gAccount = (OneInputItem) getItemByKey(KEY_4G_ACCOUNT);
                 input4gAccount.value = get4GParametersResponse.getAccount();
 
-                OneInputItem input4gPassword = (OneInputItem) adapter.getData().get(4);
+                OneInputItem input4gPassword = (OneInputItem) getItemByKey(KEY_4G_PASSWORD);
                 input4gPassword.value = get4GParametersResponse.getPassword();
 
                 dismissProgressIfNeeded();
@@ -432,7 +455,7 @@ public class BleSetParamsActivity extends BaseActivity {
             @Override
             public void onResponse2(GetRatedCurrentResponse response) {
                 getRatedCurrentResponse = response;
-                OneInputItem input4gPassword = (OneInputItem) adapter.getData().get(8);
+                OneInputItem input4gPassword = (OneInputItem) getItemByKey(KEY_OUT_PUT_CURRENT);
                 input4gPassword.value = getRatedCurrentResponse.getRatedCurrent();
 
                 dismissProgressIfNeeded();
@@ -461,13 +484,13 @@ public class BleSetParamsActivity extends BaseActivity {
             @Override
             public void onResponse2(GetServerInfoResponse response) {
                 getServerInfoResponse = response;
-                OneInputItem url = (OneInputItem) adapter.getData().get(5);
+                OneInputItem url = (OneInputItem) getItemByKey(KEY_SERVER_URL);
                 url.value = getServerInfoResponse.getUrl();
 
-                OneInputItem chargeid = (OneInputItem) adapter.getData().get(6);
-                chargeid.value = getServerInfoResponse.getChargerId();
+//                OneInputItem chargeid = (OneInputItem) adapter.getData().get(6);
+                binding.tvChargeId.setText(getServerInfoResponse.getChargerId());
 
-                OneInputItem authkey = (OneInputItem) adapter.getData().get(7);
+                OneInputItem authkey = (OneInputItem) getItemByKey(KEY_AUTH_KEY);
                 authkey.value = getServerInfoResponse.getAuthKey();
 
                 dismissProgressIfNeeded();
@@ -487,9 +510,9 @@ public class BleSetParamsActivity extends BaseActivity {
             @Override
             public void onResponse2(GetWifiInfoResponse response) {
                 getWifiInfoResponse = response;
-                OneSelectItem oneSelectItem = (OneSelectItem) adapter.getData().get(0);
+                OneSelectItem oneSelectItem = (OneSelectItem) getItemByKey(KEY_WIFI_SSID);
                 oneSelectItem.dataValue = getWifiInfoResponse.getWifiSSID();
-                OneInputItem oneInputItem = (OneInputItem) adapter.getData().get(1);
+                OneInputItem oneInputItem = (OneInputItem) getItemByKey(KEY_WIFI_PASSWORD);
                 oneInputItem.value = getWifiInfoResponse.getWifiPassword();
                 dismissProgressIfNeeded();
             }
@@ -503,6 +526,19 @@ public class BleSetParamsActivity extends BaseActivity {
     }
 
 
+    private BleSetBean getItemByKey(String key) {
+        List<BleSetBean> data = adapter.getData();
+        for (int i = 0; i < data.size(); i++) {
+            BleSetBean bleSetBean = data.get(i);
+            String key1 = bleSetBean.key;
+            if (key.equals(key1)) {
+                return bleSetBean;
+            }
+        }
+        return null;
+    }
+
+
     private void initSetItems() {
         titles = new String[]{
                 getString(R.string.m197_wifi_ssid),
@@ -511,7 +547,6 @@ public class BleSetParamsActivity extends BaseActivity {
                 getString(R.string.m200_4g_account),
                 getString(R.string.m201_4g_password),
                 getString(R.string.m202_server_url),
-                getString(R.string.m203_cp_name),
                 getString(R.string.m204_authorization_key),
                 getString(R.string.m205_output_current),
                 getString(R.string.m206_charge_mode),
@@ -529,7 +564,6 @@ public class BleSetParamsActivity extends BaseActivity {
                 KEY_4G_ACCOUNT,
                 KEY_4G_PASSWORD,
                 KEY_SERVER_URL,
-                KEY_CP_NAME,
                 KEY_AUTH_KEY,
                 KEY_OUT_PUT_CURRENT,
                 KEY_CHARGE_MODE,
@@ -549,12 +583,11 @@ public class BleSetParamsActivity extends BaseActivity {
                 BleSetBean.ItemType.ONE_SELECT_ITEM_NEXT,
                 BleSetBean.ItemType.ONE_SELECT_ITEM_NEXT,
                 BleSetBean.ItemType.ONE_SELECT_ITEM_NEXT,
-                BleSetBean.ItemType.ONE_SELECT_ITEM_NEXT,
                 BleSetBean.ItemType.ONE_SELECT_ITEM_CHOOSE,
                 BleSetBean.ItemType.ONE_SELECT_ITEM_CHECK,
+                BleSetBean.ItemType.ONE_SELECT_ITEM_CHOOSE,
                 BleSetBean.ItemType.ONE_SELECT_ITEM_NEXT,
                 BleSetBean.ItemType.ONE_SELECT_ITEM_NEXT,
-                BleSetBean.ItemType.ONE_SELECT_ITEM_NEXT
 
         };
 
@@ -571,12 +604,9 @@ public class BleSetParamsActivity extends BaseActivity {
                             String.valueOf(1)
                     ));
                 }
-
-                chooseItems.add(new OneSelectItem.SelectItem(getString(R.string.m211_manual_input), "0"));
                 oneSelectItem.selectItems = chooseItems;
-
                 settingItems.add(oneSelectItem);
-            } else if (i == 9) {
+            } else if (i == 8) {
                 OneSelectItem oneSelectItem = new OneSelectItem();
                 oneSelectItem.title = titles[i];
                 oneSelectItem.itemType = itemType[i];
@@ -594,13 +624,31 @@ public class BleSetParamsActivity extends BaseActivity {
                 chooseItems.add(new OneSelectItem.SelectItem(getString(R.string.m211_manual_input), "0"));
                 oneSelectItem.selectItems = chooseItems;
                 settingItems.add(oneSelectItem);
-            } else if (i == 10) {
+            } else if (i == 9) {
                 OneCheckItem oneCheckItem = new OneCheckItem();
                 oneCheckItem.key = key[i];
                 oneCheckItem.title = titles[i];
                 oneCheckItem.itemType = itemType[i];
                 oneCheckItem.isCheck = false;
                 settingItems.add(oneCheckItem);
+            } else if (i == 10) {
+                OneSelectItem oneSelectItem = new OneSelectItem();
+                oneSelectItem.title = titles[i];
+                oneSelectItem.itemType = itemType[i];
+                oneSelectItem.key = key[i];
+
+                List<OneSelectItem.SelectItem> chooseItems = new ArrayList<>();
+
+                String[] stringArray = getResources().getStringArray(R.array.sampling_method_values);
+                for (int j = 0; j < stringArray.length; j++) {
+                    chooseItems.add(new OneSelectItem.SelectItem(
+                            stringArray[j],
+                            String.valueOf(j)
+                    ));
+                }
+                chooseItems.add(new OneSelectItem.SelectItem(getString(R.string.m211_manual_input), "0"));
+                oneSelectItem.selectItems = chooseItems;
+                settingItems.add(oneSelectItem);
             } else {
                 OneInputItem inputItem = new OneInputItem();
                 inputItem.key = key[i];
@@ -617,6 +665,11 @@ public class BleSetParamsActivity extends BaseActivity {
 
 
     private void initViews() {
+        binding.srlPull.setOnRefreshListener(() -> {
+            binding.srlPull.setRefreshing(false);
+            getChargerConfigInfo();
+        });
+
         //初始化标题
         //初始化recycleView
         binding.rlvParams.setLayoutManager(new LinearLayoutManager(this));
@@ -631,39 +684,43 @@ public class BleSetParamsActivity extends BaseActivity {
         switch (key) {
             case KEY_WIFI_SSID:
                 String oneChooseValue = ((OneSelectItem) item).oneChooseValue;
-                setWifiInfo(oneChooseValue, getValueByKey(KEY_WIFI_PASSWORD));
+                if (TextUtils.isEmpty(oneChooseValue)) {
+                    return;
+                }
+                setWifiInfo(oneChooseValue, getWifiInfoResponse.getWifiPassword());
                 break;
             case KEY_WIFI_PASSWORD:
                 String password = ((OneInputItem) item).value;
-                setWifiInfo(getValueByKey(KEY_WIFI_SSID), password);
+                if (TextUtils.isEmpty(password)) {
+                    return;
+                }
+                setWifiInfo(getWifiInfoResponse.getWifiSSID(), password);
                 break;
             case KEY_4G_APN:
                 String vpn = ((OneInputItem) item).value;
-                set4GParameters(vpn, getValueByKey(KEY_4G_ACCOUNT), getValueByKey(KEY_4G_PASSWORD));
+                set4GParameters(vpn, get4GParametersResponse.getAccount(), get4GParametersResponse.getPassword());
                 break;
             case KEY_4G_ACCOUNT:
                 String account = ((OneInputItem) item).value;
-                set4GParameters(getValueByKey(KEY_4G_APN), account, getValueByKey(KEY_4G_PASSWORD));
+                set4GParameters(get4GParametersResponse.getApn(), account, get4GParametersResponse.getPassword());
                 break;
             case KEY_4G_PASSWORD:
                 String _4gPassword = ((OneInputItem) item).value;
-                set4GParameters(getValueByKey(KEY_4G_APN), getValueByKey(KEY_4G_ACCOUNT), _4gPassword);
+                set4GParameters(get4GParametersResponse.getApn(), get4GParametersResponse.getAccount(), _4gPassword);
                 break;
             case KEY_SERVER_URL:
                 String url = ((OneInputItem) item).value;
-                setServerInfo(false, url, getValueByKey(KEY_CP_NAME), getValueByKey(KEY_AUTH_KEY));
-
-
+                setServerInfo(false, url, getServerInfoResponse.getChargerId(), getServerInfoResponse.getAuthKey());
                 break;
             case KEY_CP_NAME:
                 String cpName = ((OneInputItem) item).value;
-                setServerInfo(false, getValueByKey(KEY_SERVER_URL), cpName, getValueByKey(KEY_AUTH_KEY));
+                setServerInfo(false, getServerInfoResponse.getUrl(), cpName, getServerInfoResponse.getAuthKey());
 
 
                 break;
             case KEY_AUTH_KEY:
                 String auth = ((OneInputItem) item).value;
-                setServerInfo(false, getValueByKey(KEY_SERVER_URL), getValueByKey(KEY_CP_NAME), auth);
+                setServerInfo(false, getServerInfoResponse.getUrl(), getServerInfoResponse.getChargerId(), auth);
                 break;
             case KEY_OUT_PUT_CURRENT:
                 String current = ((OneInputItem) item).value;
@@ -675,22 +732,69 @@ public class BleSetParamsActivity extends BaseActivity {
                 break;
             case KEY_POWER_DISTRIBUTION_ENABLE:
                 boolean isCheck = ((OneCheckItem) item).isCheck;
-                setHomeLoadBalancing(getValueByKey(KEY_HOME_POWER_CURRENT), getValueByKey(KEY_POWER_METER_ADDR), isCheck ? 1 : 0);
+                setHomeLoadBalancing(String.valueOf(getHomeLoadBalancingResponse.getHomePowerCurrent()), String.valueOf(getHomeLoadBalancingResponse.getPowerMeterAddress()), isCheck ? 1 : 0);
                 break;
             case KEY_SAMPLING_METHOD:
                 samplingMethod = ((OneSelectItem) item).oneChooseValue;
-                setHomeLoadBalancing(getValueByKey(KEY_HOME_POWER_CURRENT), getValueByKey(KEY_POWER_METER_ADDR), Integer.parseInt(getValueByKey(KEY_POWER_DISTRIBUTION_ENABLE)));
+                setHomeLoadBalancing(String.valueOf(getHomeLoadBalancingResponse.getHomePowerCurrent()), String.valueOf(getHomeLoadBalancingResponse.getPowerMeterAddress()), getHomeLoadBalancingResponse.getPowerDistributionEnable());
                 break;
             case KEY_HOME_POWER_CURRENT:
                 String homePowerCurrent = ((OneInputItem) item).value;
-                setHomeLoadBalancing(homePowerCurrent, getValueByKey(KEY_POWER_METER_ADDR), Integer.parseInt(getValueByKey(KEY_POWER_DISTRIBUTION_ENABLE)));
+                setHomeLoadBalancing(homePowerCurrent, String.valueOf(getHomeLoadBalancingResponse.getPowerMeterAddress()), getHomeLoadBalancingResponse.getPowerDistributionEnable());
                 break;
             case KEY_POWER_METER_ADDR:
                 String powerMeterAddress = ((OneInputItem) item).value;
-                setHomeLoadBalancing(getValueByKey(KEY_HOME_POWER_CURRENT), powerMeterAddress, Integer.parseInt(getValueByKey(KEY_POWER_DISTRIBUTION_ENABLE)));
+                setHomeLoadBalancing(String.valueOf(getHomeLoadBalancingResponse.getHomePowerCurrent()), powerMeterAddress, getHomeLoadBalancingResponse.getPowerDistributionEnable());
+                break;
+            case KEY_UPDATE:
+                updateFirmware(((OneInputItem) item).value);
                 break;
         }
 
+        adapter.notifyDataSetChanged();
+
+    }
+
+
+    private void updateFirmware(String fileName) {
+        if (TextUtils.isEmpty(fileName)) {
+            MyUtils.showToast("Please enter file name");
+            return;
+        }
+        FirmwareUpdater firmwareUpdater = new FirmwareUpdater();
+        firmwareUpdater.setFirmwareUpdateListener(new FirmwareUpdater.FirmwareUpdateListener() {
+            @Override
+            public void onStateChanged(int state) {
+                if (state == FirmwareUpdater.DOWNLOADING) {
+                    dismissProgress();
+                    showProgress("Downloading firmware", 0);
+                } else if (state == FirmwareUpdater.REQUESTING) {
+                    showProgress("Requesting update");
+                } else if (state == FirmwareUpdater.UPLOADING) {
+                    dismissProgress();
+                    showProgress("Uploading firmware to the charger", 0);
+                } else if (state == FirmwareUpdater.VERIFYING) {
+                    showProgress("Verifying firmware");
+                } else if (state == FirmwareUpdater.DONE) {
+                    MyUtils.showToast("Firmware update done");
+                    dismissProgress();
+                    setResult();
+                } else if (state == FirmwareUpdater.FAILED) {
+                    dismissProgress();
+                }
+            }
+
+            @Override
+            public void onUploadProgress(float progress) {
+                showProgress("Uploading firmware to the charger", (int) (100 * progress));
+            }
+
+            @Override
+            public void onDownloadProgress(float progress) {
+                showProgress("Downloading firmware", (int) (100 * progress));
+            }
+        });
+        firmwareUpdater.update(fileName);
     }
 
 
@@ -737,234 +841,6 @@ public class BleSetParamsActivity extends BaseActivity {
     }
 
 
-
-
-
-
-
-
- /*   private void updateFirmware() {
-        String fileName = binding.etFileName.getText().toString().trim();
-        if (TextUtils.isEmpty(fileName)) {
-            MyUtils.showToast("Please enter file name");
-            return;
-        }
-        FirmwareUpdater firmwareUpdater = new FirmwareUpdater();
-        firmwareUpdater.setFirmwareUpdateListener(new FirmwareUpdater.FirmwareUpdateListener() {
-            @Override
-            public void onStateChanged(int state) {
-                if (state == FirmwareUpdater.DOWNLOADING) {
-                    dismissProgress();
-                    showProgress("Downloading firmware", 0);
-                } else if (state == FirmwareUpdater.REQUESTING) {
-                    showProgress("Requesting update");
-                } else if (state == FirmwareUpdater.UPLOADING) {
-                    dismissProgress();
-                    showProgress("Uploading firmware to the charger", 0);
-                } else if (state == FirmwareUpdater.VERIFYING) {
-                    showProgress("Verifying firmware");
-                } else if (state == FirmwareUpdater.DONE) {
-                    MyUtils.showToast("Firmware update done");
-                    dismissProgress();
-                    setResult();
-                } else if (state == FirmwareUpdater.FAILED) {
-                    dismissProgress();
-                }
-            }
-
-            @Override
-            public void onUploadProgress(float progress) {
-                showProgress("Uploading firmware to the charger", (int) (100 * progress));
-            }
-
-            @Override
-            public void onDownloadProgress(float progress) {
-                showProgress("Downloading firmware", (int) (100 * progress));
-            }
-        });
-        firmwareUpdater.update(fileName);
-    }
-
-    private void changePassword() {
-        String p1 = binding.etEnterPwd.getText().toString().trim();
-        String p2 = binding.etReenterPwd.getText().toString().trim();
-        if (TextUtils.isEmpty(p1)) {
-            MyUtils.showToast("Please enter password");
-            return;
-        }
-        if (TextUtils.isEmpty(p2)) {
-            MyUtils.showToast("Please Re-enter password");
-            return;
-        }
-        if (!TextUtils.equals(p1, p2)) {
-            MyUtils.showToast("The two passwords are not equal");
-            return;
-        }
-        showProgress("Submitting");
-        ChangePasswordRequest request = new ChangePasswordRequest(p1);
-        cpClient.enqueue(request, new SimpleCPCallback<ChangePasswordResponse>(ChangePasswordResponse.class) {
-            @Override
-            public void onResponse2(ChangePasswordResponse response) {
-                if (response.isSuccessful()) {
-                    MyUtils.showToast("change password successfully");
-                    setResult();
-                    finish();
-                } else {
-                    MyUtils.showToast("change password unsuccessfully");
-                }
-                dismissProgress();
-            }
-
-            @Override
-            public void onError(Throwable error) {
-                super.onError(error);
-                dismissProgress();
-            }
-        });
-    }*/
-
-/*    private void setChargerConfigInfo() {
-        counter.set(0);
-        setCounter.set(0);
-        setWifiInfo();
-        set4GParameters();
-        setServerInfo(false);
-        setRatedCurrent();
-        setChargeMode();
-        setHomeLoadBalancing();
-        if (enableEthernetConfig()) {
-            setNetInterfaceSwitch();
-            setEthernetParameters();
-        }
-        if (counter.get() > 0) {
-            showProgress("Submitting");
-        }
-    }*/
-
-/*    private void setEthernetParameters() {
-        if (getEthernetParametersResponse == null) {
-            return;
-        }
-        String ip = binding.etIpAddress.getText().toString().trim();
-        String subnetMask = binding.etSubnetMask.getText().toString().trim();
-        String gateway = binding.etDefaultGateway.getText().toString().trim();
-        String dns = binding.etDNS.getText().toString().trim();
-        boolean enableDHCP = binding.swDHCP.isChecked();
-        if (TextUtils.isEmpty(ip)) {
-            MyUtils.showToast("The IP address cannot be empty");
-            return;
-        }
-        if (!CheckUtils.isValidIpV4Address(ip)) {
-            MyUtils.showToast("The IP address is invalid");
-            return;
-        }
-        if (TextUtils.isEmpty(subnetMask)) {
-            MyUtils.showToast("The subnet mask cannot be empty");
-            return;
-        }
-        if (!CheckUtils.isValidIpV4Address(ip)) {
-            MyUtils.showToast("The subnet mask is invalid");
-            return;
-        }
-        if (TextUtils.isEmpty(gateway)) {
-            MyUtils.showToast("The default gateway cannot be empty");
-            return;
-        }
-        if (!CheckUtils.isValidIpV4Address(gateway)) {
-            MyUtils.showToast("The default gateway is invalid");
-            return;
-        }
-        if (TextUtils.isEmpty(dns)) {
-            MyUtils.showToast("The DNS cannot be empty");
-            return;
-        }
-        if (!CheckUtils.isValidIpV4Address(dns)) {
-            MyUtils.showToast("The DNS is invalid");
-            return;
-        }
-        if (getEthernetParametersResponse.isEnableDHCP() == enableDHCP
-                && TextUtils.equals(getEthernetParametersResponse.getIp(), ip)
-                && TextUtils.equals(getEthernetParametersResponse.getSubnetMask(), subnetMask)
-                && TextUtils.equals(getEthernetParametersResponse.getGateway(), gateway)
-                && TextUtils.equals(getEthernetParametersResponse.getDns(), dns)) {
-            return;
-        }
-        SetEthernetParametersRequest request = new SetEthernetParametersRequest();
-        request.setIp(ip);
-        request.setSubnetMask(subnetMask);
-        request.setGateway(gateway);
-        request.setDns(dns);
-        request.setEnableDHCP(enableDHCP);
-        cpClient.enqueue(request, new SimpleCPCallback<SetEthernetParametersResponse>(SetEthernetParametersResponse.class) {
-            @Override
-            public void onResponse2(SetEthernetParametersResponse response) {
-                if (response.isSuccessful()) {
-                    MyUtils.showToast("set successfully");
-                    getEthernetParametersResponse.setIp(ip);
-                    getEthernetParametersResponse.setSubnetMask(subnetMask);
-                    getEthernetParametersResponse.setGateway(gateway);
-                    getEthernetParametersResponse.setDns(dns);
-                    getEthernetParametersResponse.setEnableDHCP(enableDHCP);
-                    setResult();
-                    exitOnSuccess();
-                } else {
-                    MyUtils.showToast("set unsuccessfully");
-                }
-                dismissProgressIfNeeded();
-            }
-
-            @Override
-            public void onError(Throwable error) {
-                super.onError(error);
-                dismissProgressIfNeeded();
-            }
-        });
-        counter.addAndGet(1);
-        setCounter.addAndGet(1);
-    }*/
-
-/*    private void setNetInterfaceSwitch() {
-        if (getNetInterfaceSwitchResponse == null) {
-            return;
-        }
-        boolean is4GEnabled = binding.sw4G.isChecked();
-        boolean isWiFiEnabled = binding.swWiFi.isChecked();
-        boolean isLANEnabled = binding.swLAN.isChecked();
-        if (getNetInterfaceSwitchResponse.is4GEnabled() == is4GEnabled
-                && getNetInterfaceSwitchResponse.isWiFiEnabled() == isWiFiEnabled
-                && getNetInterfaceSwitchResponse.isLANEnabled() == isLANEnabled) {
-            return;
-        }
-        SetNetInterfaceSwitchRequest request = new SetNetInterfaceSwitchRequest();
-        request.set4GEnabled(is4GEnabled);
-        request.setWiFiEnabled(isWiFiEnabled);
-        request.setLANEnabled(isLANEnabled);
-        cpClient.enqueue(request, new SimpleCPCallback<SetNetInterfaceSwitchResponse>(SetNetInterfaceSwitchResponse.class) {
-            @Override
-            public void onResponse2(SetNetInterfaceSwitchResponse response) {
-                if (response.isSuccessful()) {
-                    MyUtils.showToast("set successfully");
-                    getNetInterfaceSwitchResponse.set4GEnabled(is4GEnabled);
-                    getNetInterfaceSwitchResponse.setWiFiEnabled(isWiFiEnabled);
-                    getNetInterfaceSwitchResponse.setLANEnabled(isLANEnabled);
-                    setResult();
-                    exitOnSuccess();
-                } else {
-                    MyUtils.showToast("set unsuccessfully");
-                }
-                dismissProgressIfNeeded();
-            }
-
-            @Override
-            public void onError(Throwable error) {
-                super.onError(error);
-                dismissProgressIfNeeded();
-            }
-        });
-        counter.addAndGet(1);
-        setCounter.addAndGet(1);
-    }*/
-
     private void exitOnSuccess() {
 //        if (setCounter.decrementAndGet() <= 0) {
 //            finish();
@@ -975,14 +851,6 @@ public class BleSetParamsActivity extends BaseActivity {
         counter.set(0);
         setCounter.set(0);
         if (getHomeLoadBalancingResponse == null) {
-            return;
-        }
-/*        final String homePowerCurrent = binding.etHomePowerCurrent.getText().toString().trim();
-        final String powerMeterAddress = binding.etPowerMeterAddress.getText().toString().trim();
-        final int powerDistributionEnable = binding.swPowerDistributionEnable.isChecked() ? 1 : 0;*/
-        if (TextUtils.isEmpty(samplingMethod)
-                || TextUtils.isEmpty(homePowerCurrent)
-                || TextUtils.isEmpty(powerMeterAddress)) {
             return;
         }
         final int iCurrent = Integer.parseInt(homePowerCurrent);
@@ -1163,12 +1031,6 @@ public class BleSetParamsActivity extends BaseActivity {
         if (getServerInfoResponse == null) {
             return;
         }
-  /*      final String url = binding.etServerUrl.getText().toString().trim();
-        final String chargerId = binding.etCpName.getText().toString().trim();
-        final String authKey = binding.etAuthKey.getText().toString().trim();*/
-        if (TextUtils.isEmpty(chargerId) || TextUtils.isEmpty(authKey)) {
-            return;
-        }
         if (TextUtils.equals(getServerInfoResponse.getUrl(), url)
                 && TextUtils.equals(getServerInfoResponse.getChargerId(), chargerId)
                 && TextUtils.equals(getServerInfoResponse.getAuthKey(), authKey)) {
@@ -1218,11 +1080,7 @@ public class BleSetParamsActivity extends BaseActivity {
         if (getWifiInfoResponse == null) {
             return;
         }
-//        final String ssid = binding.etWifiSSID.getText().toString().trim();
-//        final String password = binding.etWifiPassword.getText().toString().trim();
-        if (TextUtils.isEmpty(ssid) || (TextUtils.isEmpty(password) && false)) {
-            return;
-        }
+
         if (TextUtils.equals(getWifiInfoResponse.getWifiSSID(), ssid)
                 && TextUtils.equals(getWifiInfoResponse.getWifiPassword(), password)) {
             return;
@@ -1299,7 +1157,7 @@ public class BleSetParamsActivity extends BaseActivity {
     }
 
     private void setResult() {
-        setResult(RESULT_OK, new Intent().putExtra("chargerIdChanged", chargerIdChanged));
+//        setResult(RESULT_OK, new Intent().putExtra("chargerIdChanged", chargerIdChanged));
     }
 
 

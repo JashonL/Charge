@@ -40,8 +40,8 @@ public class ItemSettingAdapter extends BaseMultiItemQuickAdapter<BleSetBean, Ba
         addItemType(BleSetBean.ItemType.ONE_SELECT_ITEM_CHOOSE, R.layout.item_setting_oneselect);
         addItemType(BleSetBean.ItemType.ONE_SELECT_ITEM_CHECK, R.layout.item_setting_check);
         this.onchooseListener = onchooseListener;
-        this.onInputLisener = onInputLisener;
-        this.onCheckListener = onCheckListener;
+        this.onInputLisener = inputLisener;
+        this.onCheckListener = checkListener;
     }
 
     @Override

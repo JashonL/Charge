@@ -34,6 +34,7 @@ public class BleSetBean implements MultiItemEntity {
         public static final String KEY_SAMPLING_METHOD= "KEY_SAMPLING_METHOD";
         public static final String KEY_HOME_POWER_CURRENT = "KEY_HOME_POWER_CURRENT";
         public static final String KEY_POWER_METER_ADDR = "KEY_POWER_METER_ADDR";
+        public static final String KEY_UPDATE = "KEY_UPDATE";
 
     }
 

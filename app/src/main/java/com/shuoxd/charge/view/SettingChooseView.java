@@ -108,6 +108,7 @@ public class SettingChooseView extends LinearLayout implements CompoundButton.On
                 .setTitle(title)
                 .setGravity(Gravity.CENTER)
                 .setWidth(0.7f)
+                .setMaxHeight(0.5f)
                 .setItems(mItems, (parent, view, position, id) -> {
                     value_index = position;
                     value = mItems[position];

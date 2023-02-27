@@ -1,6 +1,5 @@
 package com.shuoxd.charge.ui.chargesetting.bean;
 
-import android.view.View;
 
 import com.chad.library.adapter.base.entity.MultiItemEntity;
 
@@ -10,6 +9,7 @@ public class BleSetBean implements MultiItemEntity {
     public String title;
     public String key;
     public boolean isCheck;
+    public boolean enable;
 
 
     public static class ItemType {
@@ -35,6 +35,18 @@ public class BleSetBean implements MultiItemEntity {
         public static final String KEY_HOME_POWER_CURRENT = "KEY_HOME_POWER_CURRENT";
         public static final String KEY_POWER_METER_ADDR = "KEY_POWER_METER_ADDR";
         public static final String KEY_UPDATE = "KEY_UPDATE";
+
+
+        public static final String KEY_WIFI = "KEY_WIFI";
+        public static final String KEY_4G = "KEY_4G";
+        public static final String KEY_LAN = "KEY_LAN";
+
+        public static final String KEY_IP_ADDRESS= "KEY_IP_ADDRESS";
+        public static final String KEY_SUBNET_MASK = "KEY_SUBNET_MASK";
+        public static final String KEY_DEFAULT_GATEWAY = "KEY_DEFAULT_GATEWAY";
+        public static final String KEY_DNS = "KEY_DNS";
+        public static final String KEY_LAN_DHCP = "KEY_LAN_DHCP";
+
 
     }
 

@@ -70,6 +70,7 @@ public class ItemSettingAdapter extends BaseMultiItemQuickAdapter<BleSetBean, Ba
                 SettingInputView inputView = helper.getView(R.id.view_input_setting);
                 OneInputItem item1 = (OneInputItem) item;
                 inputView.setTitle(item1.title);
+                inputView.setEnable(item1.enable);
                 inputView.setOnitemChooseLiseners(value -> {
                     ((OneInputItem) item).value = value;
                     onInputLisener.input(item);

@@ -40,6 +40,9 @@ public class SettingInputView extends LinearLayout implements CompoundButton.OnC
     private String hint = "";
     private String key;
 
+
+    private boolean enable;
+
     private OnItemInputLiseners onInputListener;
 
     public SettingInputView(Context context) {
@@ -63,8 +66,12 @@ public class SettingInputView extends LinearLayout implements CompoundButton.OnC
         llChooseContent = view.findViewById(R.id.ll_select);
         tvItemTitle = view.findViewById(R.id.tv_item_name);
         tvValue = view.findViewById(R.id.tv_item_value);
-        llChooseContent.setOnClickListener(v -> showSelect());
 
+        llChooseContent.setOnClickListener(v -> {
+            if (enable) {
+                showSelect();
+            }
+        });
     }
 
 
@@ -111,7 +118,7 @@ public class SettingInputView extends LinearLayout implements CompoundButton.OnC
 
                     @Override
                     public void onComfir(String value) {
-                        if (onInputListener!=null){
+                        if (onInputListener != null) {
                             onInputListener.onInputValue(value);
                         }
                     }
@@ -124,7 +131,7 @@ public class SettingInputView extends LinearLayout implements CompoundButton.OnC
     //根据值设置选中项
     public void setValue(String value) {
         this.value = value;
-        if (!TextUtils.isEmpty(value)){
+        if (!TextUtils.isEmpty(value)) {
             tvValue.setText(value);
         }
     }
@@ -165,6 +172,14 @@ public class SettingInputView extends LinearLayout implements CompoundButton.OnC
 
     }
 
+
+    public boolean isEnable() {
+        return enable;
+    }
+
+    public void setEnable(boolean enable) {
+        this.enable = enable;
+    }
 
     public OnItemInputLiseners getOnitemChooseLiseners() {
         return onInputListener;

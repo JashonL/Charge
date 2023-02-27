@@ -1,18 +1,26 @@
 package com.shuoxd.charge.ui.chargesetting.activity;
 
+import static com.shuoxd.charge.ui.chargesetting.bean.BleSetBean.ItemKey.KEY_4G;
 import static com.shuoxd.charge.ui.chargesetting.bean.BleSetBean.ItemKey.KEY_4G_ACCOUNT;
 import static com.shuoxd.charge.ui.chargesetting.bean.BleSetBean.ItemKey.KEY_4G_APN;
 import static com.shuoxd.charge.ui.chargesetting.bean.BleSetBean.ItemKey.KEY_4G_PASSWORD;
 import static com.shuoxd.charge.ui.chargesetting.bean.BleSetBean.ItemKey.KEY_AUTH_KEY;
 import static com.shuoxd.charge.ui.chargesetting.bean.BleSetBean.ItemKey.KEY_CHARGE_MODE;
 import static com.shuoxd.charge.ui.chargesetting.bean.BleSetBean.ItemKey.KEY_CP_NAME;
+import static com.shuoxd.charge.ui.chargesetting.bean.BleSetBean.ItemKey.KEY_DEFAULT_GATEWAY;
+import static com.shuoxd.charge.ui.chargesetting.bean.BleSetBean.ItemKey.KEY_DNS;
 import static com.shuoxd.charge.ui.chargesetting.bean.BleSetBean.ItemKey.KEY_HOME_POWER_CURRENT;
+import static com.shuoxd.charge.ui.chargesetting.bean.BleSetBean.ItemKey.KEY_IP_ADDRESS;
+import static com.shuoxd.charge.ui.chargesetting.bean.BleSetBean.ItemKey.KEY_LAN;
+import static com.shuoxd.charge.ui.chargesetting.bean.BleSetBean.ItemKey.KEY_LAN_DHCP;
 import static com.shuoxd.charge.ui.chargesetting.bean.BleSetBean.ItemKey.KEY_OUT_PUT_CURRENT;
 import static com.shuoxd.charge.ui.chargesetting.bean.BleSetBean.ItemKey.KEY_POWER_DISTRIBUTION_ENABLE;
 import static com.shuoxd.charge.ui.chargesetting.bean.BleSetBean.ItemKey.KEY_POWER_METER_ADDR;
 import static com.shuoxd.charge.ui.chargesetting.bean.BleSetBean.ItemKey.KEY_SAMPLING_METHOD;
 import static com.shuoxd.charge.ui.chargesetting.bean.BleSetBean.ItemKey.KEY_SERVER_URL;
+import static com.shuoxd.charge.ui.chargesetting.bean.BleSetBean.ItemKey.KEY_SUBNET_MASK;
 import static com.shuoxd.charge.ui.chargesetting.bean.BleSetBean.ItemKey.KEY_UPDATE;
+import static com.shuoxd.charge.ui.chargesetting.bean.BleSetBean.ItemKey.KEY_WIFI;
 import static com.shuoxd.charge.ui.chargesetting.bean.BleSetBean.ItemKey.KEY_WIFI_PASSWORD;
 import static com.shuoxd.charge.ui.chargesetting.bean.BleSetBean.ItemKey.KEY_WIFI_SSID;
 
@@ -37,6 +45,7 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import com.shuoxd.charge.R;
 import com.shuoxd.charge.application.MainApplication;
 import com.shuoxd.charge.base.BaseActivity;
+import com.shuoxd.charge.bluetooth.cptool.CheckUtils;
 import com.shuoxd.charge.bluetooth.cptool.FirmwareUpdater;
 import com.shuoxd.charge.bluetooth.cptool.MyUtils;
 import com.shuoxd.charge.bluetooth.cptool.SimpleCPCallback;
@@ -46,6 +55,7 @@ import com.shuoxd.charge.ui.chargesetting.bean.BleSetBean;
 import com.shuoxd.charge.ui.chargesetting.settype.OneCheckItem;
 import com.shuoxd.charge.ui.chargesetting.settype.OneInputItem;
 import com.shuoxd.charge.ui.chargesetting.settype.OneSelectItem;
+import com.shuoxd.lib.util.ToastUtil;
 import com.timxon.cplib.BleCPClient;
 import com.timxon.cplib.protocol.CPClient;
 import com.timxon.cplib.protocol.DeviceInfo;
@@ -71,8 +81,12 @@ import com.timxon.cplib.protocol.Set4GParametersRequest;
 import com.timxon.cplib.protocol.Set4GParametersResponse;
 import com.timxon.cplib.protocol.SetChargeModeRequest;
 import com.timxon.cplib.protocol.SetChargeModeResponse;
+import com.timxon.cplib.protocol.SetEthernetParametersRequest;
+import com.timxon.cplib.protocol.SetEthernetParametersResponse;
 import com.timxon.cplib.protocol.SetHomeLoadBalancingRequest;
 import com.timxon.cplib.protocol.SetHomeLoadBalancingResponse;
+import com.timxon.cplib.protocol.SetNetInterfaceSwitchRequest;
+import com.timxon.cplib.protocol.SetNetInterfaceSwitchResponse;
 import com.timxon.cplib.protocol.SetRatedCurrentRequest;
 import com.timxon.cplib.protocol.SetRatedCurrentResponse;
 import com.timxon.cplib.protocol.SetServerInfoRequest;
@@ -293,6 +307,23 @@ public class BleSetParamsActivity extends BaseActivity {
                 binding.etDNS.setText(getEthernetParametersResponse.getDns());
                 binding.swDHCP.setChecked(getEthernetParametersResponse.isEnableDHCP());*/
 
+                OneInputItem ipAddress = (OneInputItem) getItemByKey(KEY_IP_ADDRESS);
+                OneInputItem subNetMask = (OneInputItem) getItemByKey(KEY_SUBNET_MASK);
+                OneInputItem gateway = (OneInputItem) getItemByKey(KEY_DEFAULT_GATEWAY);
+                OneInputItem dns = (OneInputItem) getItemByKey(KEY_DNS);
+                OneCheckItem dhcp = (OneCheckItem) getItemByKey(KEY_LAN_DHCP);
+
+                ipAddress.value = getEthernetParametersResponse.getIp();
+                subNetMask.value = getEthernetParametersResponse.getSubnetMask();
+                gateway.value = getEthernetParametersResponse.getGateway();
+                dns.value = getEthernetParametersResponse.getDns();
+                dhcp.isCheck = getEthernetParametersResponse.isEnableDHCP();
+
+                ipAddress.enable=!dhcp.isCheck;
+                subNetMask.enable=!dhcp.isCheck;
+                gateway.enable=!dhcp.isCheck;
+                dns.enable=!dhcp.isCheck;
+
 
                 dismissProgressIfNeeded();
             }
@@ -314,6 +345,17 @@ public class BleSetParamsActivity extends BaseActivity {
 /*                binding.sw4G.setChecked(getNetInterfaceSwitchResponse.is4GEnabled());
                 binding.swWiFi.setChecked(getNetInterfaceSwitchResponse.isWiFiEnabled());
                 binding.swLAN.setChecked(getNetInterfaceSwitchResponse.isLANEnabled());*/
+
+
+                OneCheckItem wifiEnable = (OneCheckItem) getItemByKey(KEY_WIFI);
+                OneCheckItem _4gEnable = (OneCheckItem) getItemByKey(KEY_4G);
+                OneCheckItem lanEnable = (OneCheckItem) getItemByKey(KEY_LAN);
+
+                wifiEnable.isCheck = getNetInterfaceSwitchResponse.is4GEnabled();
+                _4gEnable.isCheck = getNetInterfaceSwitchResponse.isWiFiEnabled();
+                lanEnable.isCheck = getNetInterfaceSwitchResponse.isLANEnabled();
+
+
                 dismissProgressIfNeeded();
             }
 
@@ -555,6 +597,17 @@ public class BleSetParamsActivity extends BaseActivity {
                 getString(R.string.m209_home_power_current),
                 getString(R.string.m210_power_meter_address),
 
+
+                getString(R.string.m213_swwifi),
+                getString(R.string.m214_4g),
+                getString(R.string.m215_lan),
+                getString(R.string.m216_ip_address),
+                getString(R.string.m217_subnet_mask),
+                getString(R.string.m218_default_gateway),
+                getString(R.string.m219_dns),
+                getString(R.string.m220_lan_dhcp),
+
+
         };
 
         String[] key = new String[]{
@@ -571,6 +624,18 @@ public class BleSetParamsActivity extends BaseActivity {
                 KEY_SAMPLING_METHOD,
                 KEY_HOME_POWER_CURRENT,
                 KEY_POWER_METER_ADDR,
+
+
+                KEY_WIFI,
+                KEY_4G,
+                KEY_LAN,
+                KEY_IP_ADDRESS,
+                KEY_SUBNET_MASK,
+                KEY_DEFAULT_GATEWAY,
+                KEY_DNS,
+                KEY_LAN_DHCP,
+
+
         };
 
 
@@ -589,7 +654,44 @@ public class BleSetParamsActivity extends BaseActivity {
                 BleSetBean.ItemType.ONE_SELECT_ITEM_NEXT,
                 BleSetBean.ItemType.ONE_SELECT_ITEM_NEXT,
 
+                BleSetBean.ItemType.ONE_SELECT_ITEM_CHECK,
+                BleSetBean.ItemType.ONE_SELECT_ITEM_CHECK,
+                BleSetBean.ItemType.ONE_SELECT_ITEM_CHECK,
+                BleSetBean.ItemType.ONE_SELECT_ITEM_NEXT,
+                BleSetBean.ItemType.ONE_SELECT_ITEM_NEXT,
+                BleSetBean.ItemType.ONE_SELECT_ITEM_NEXT,
+                BleSetBean.ItemType.ONE_SELECT_ITEM_NEXT,
+                BleSetBean.ItemType.ONE_SELECT_ITEM_CHECK
+
         };
+
+
+
+        boolean[] enables={
+                true,
+                true,
+                true,
+                true,
+                true,
+                true,
+                true,
+                true,
+                true,
+                true,
+                true,
+                true,
+                true,
+                true,
+                true,
+                true,
+                true,
+                true,
+                true,
+                true,
+                true,
+        };
+
+
 
         for (int i = 0; i < titles.length; i++) {
             if (i == 0) {
@@ -597,6 +699,7 @@ public class BleSetParamsActivity extends BaseActivity {
                 oneSelectItem.title = titles[i];
                 oneSelectItem.itemType = itemType[i];
                 oneSelectItem.key = key[i];
+                oneSelectItem.enable=enables[i];
                 List<OneSelectItem.SelectItem> chooseItems = new ArrayList<>();
                 for (int j = 0; j < ssidList.size(); j++) {
                     chooseItems.add(new OneSelectItem.SelectItem(
@@ -611,6 +714,7 @@ public class BleSetParamsActivity extends BaseActivity {
                 oneSelectItem.title = titles[i];
                 oneSelectItem.itemType = itemType[i];
                 oneSelectItem.key = key[i];
+                oneSelectItem.enable=enables[i];
 
                 List<OneSelectItem.SelectItem> chooseItems = new ArrayList<>();
 
@@ -623,8 +727,9 @@ public class BleSetParamsActivity extends BaseActivity {
                 }
                 oneSelectItem.selectItems = chooseItems;
                 settingItems.add(oneSelectItem);
-            } else if (i == 9) {
+            } else if (i == 9 || i == 13 || i == 14 || i == 15 || i == 20) {
                 OneCheckItem oneCheckItem = new OneCheckItem();
+                oneCheckItem.enable=enables[i];
                 oneCheckItem.key = key[i];
                 oneCheckItem.title = titles[i];
                 oneCheckItem.itemType = itemType[i];
@@ -632,6 +737,7 @@ public class BleSetParamsActivity extends BaseActivity {
                 settingItems.add(oneCheckItem);
             } else if (i == 10) {
                 OneSelectItem oneSelectItem = new OneSelectItem();
+                oneSelectItem.enable=enables[i];
                 oneSelectItem.title = titles[i];
                 oneSelectItem.itemType = itemType[i];
                 oneSelectItem.key = key[i];
@@ -649,6 +755,7 @@ public class BleSetParamsActivity extends BaseActivity {
                 settingItems.add(oneSelectItem);
             } else {
                 OneInputItem inputItem = new OneInputItem();
+                inputItem.enable=enables[i];
                 inputItem.key = key[i];
                 inputItem.title = titles[i];
                 inputItem.itemType = itemType[i];
@@ -747,10 +854,185 @@ public class BleSetParamsActivity extends BaseActivity {
             case KEY_UPDATE:
                 updateFirmware(((OneInputItem) item).value);
                 break;
+
+
+            case KEY_WIFI:
+                boolean wifiEnable = ((OneCheckItem) item).isCheck;
+                getNetInterfaceSwitchResponse.setWiFiEnabled(wifiEnable);
+                if (wifiEnable) {
+                    getNetInterfaceSwitchResponse.set4GEnabled(false);
+                    getNetInterfaceSwitchResponse.setLANEnabled(false);
+                }
+                setNetInterfaceSwitch();
+                break;
+            case KEY_4G:
+                boolean _4gEnable = ((OneCheckItem) item).isCheck;
+                if (_4gEnable) {
+                    getNetInterfaceSwitchResponse.setWiFiEnabled(false);
+                    getNetInterfaceSwitchResponse.setLANEnabled(false);
+                }
+                setNetInterfaceSwitch();
+                break;
+            case KEY_LAN:
+                boolean lanEnable = ((OneCheckItem) item).isCheck;
+                if (lanEnable) {
+                    getNetInterfaceSwitchResponse.setWiFiEnabled(false);
+                    getNetInterfaceSwitchResponse.set4GEnabled(false);
+                }
+                setNetInterfaceSwitch();
+                break;
+
+            case KEY_IP_ADDRESS:
+                String ip = ((OneInputItem) item).value;
+                getEthernetParametersResponse.setIp(ip);
+                setEthernetParameters();
+                break;
+            case KEY_SUBNET_MASK:
+                String subnet = ((OneInputItem) item).value;
+                getEthernetParametersResponse.setSubnetMask(subnet);
+                setEthernetParameters();
+                break;
+            case KEY_DEFAULT_GATEWAY:
+                String gateway = ((OneInputItem) item).value;
+                getEthernetParametersResponse.setGateway(gateway);
+                setEthernetParameters();
+                break;
+            case KEY_DNS:
+                String dns = ((OneInputItem) item).value;
+                getEthernetParametersResponse.setDns(dns);
+                setEthernetParameters();
+                break;
+            case KEY_LAN_DHCP:
+                boolean dhcpEnable = ((OneCheckItem) item).isCheck;
+                getEthernetParametersResponse.setEnableDHCP(dhcpEnable);
+                setEthernetParameters();
+                break;
+
         }
 
-        adapter.notifyDataSetChanged();
 
+    }
+
+
+    private void setEthernetParameters() {
+        if (getEthernetParametersResponse == null) {
+            return;
+        }
+        String ip = getEthernetParametersResponse.getIp();
+        String subnetMask = getEthernetParametersResponse.getSubnetMask();
+        String gateway = getEthernetParametersResponse.getGateway();
+        String dns = getEthernetParametersResponse.getDns();
+        boolean enableDHCP = getEthernetParametersResponse.isEnableDHCP();
+        if (TextUtils.isEmpty(ip)) {
+            MyUtils.showToast("The IP address cannot be empty");
+            return;
+        }
+        if (!CheckUtils.isValidIpV4Address(ip)) {
+            MyUtils.showToast("The IP address is invalid");
+            return;
+        }
+        if (TextUtils.isEmpty(subnetMask)) {
+            MyUtils.showToast("The subnet mask cannot be empty");
+            return;
+        }
+        if (!CheckUtils.isValidIpV4Address(ip)) {
+            MyUtils.showToast("The subnet mask is invalid");
+            return;
+        }
+        if (TextUtils.isEmpty(gateway)) {
+            MyUtils.showToast("The default gateway cannot be empty");
+            return;
+        }
+        if (!CheckUtils.isValidIpV4Address(gateway)) {
+            MyUtils.showToast("The default gateway is invalid");
+            return;
+        }
+        if (TextUtils.isEmpty(dns)) {
+            MyUtils.showToast("The DNS cannot be empty");
+            return;
+        }
+        if (!CheckUtils.isValidIpV4Address(dns)) {
+            MyUtils.showToast("The DNS is invalid");
+            return;
+        }
+        if (getEthernetParametersResponse.isEnableDHCP() == enableDHCP
+                && TextUtils.equals(getEthernetParametersResponse.getIp(), ip)
+                && TextUtils.equals(getEthernetParametersResponse.getSubnetMask(), subnetMask)
+                && TextUtils.equals(getEthernetParametersResponse.getGateway(), gateway)
+                && TextUtils.equals(getEthernetParametersResponse.getDns(), dns)) {
+            return;
+        }
+        SetEthernetParametersRequest request = new SetEthernetParametersRequest();
+        request.setIp(ip);
+        request.setSubnetMask(subnetMask);
+        request.setGateway(gateway);
+        request.setDns(dns);
+        request.setEnableDHCP(enableDHCP);
+        cpClient.enqueue(request, new SimpleCPCallback<SetEthernetParametersResponse>(SetEthernetParametersResponse.class) {
+            @Override
+            public void onResponse2(SetEthernetParametersResponse response) {
+                if (response.isSuccessful()) {
+                    MyUtils.showToast("set successfully");
+                    getEthernetParametersResponse.setIp(ip);
+                    getEthernetParametersResponse.setSubnetMask(subnetMask);
+                    getEthernetParametersResponse.setGateway(gateway);
+                    getEthernetParametersResponse.setDns(dns);
+                    getEthernetParametersResponse.setEnableDHCP(enableDHCP);
+                    setResult();
+                    exitOnSuccess();
+                } else {
+                    MyUtils.showToast("set unsuccessfully");
+                }
+                dismissProgressIfNeeded();
+            }
+
+            @Override
+            public void onError(Throwable error) {
+                super.onError(error);
+                dismissProgressIfNeeded();
+            }
+        });
+        counter.addAndGet(1);
+        setCounter.addAndGet(1);
+    }
+
+
+    private void setNetInterfaceSwitch() {
+        if (getNetInterfaceSwitchResponse == null) {
+            return;
+        }
+        boolean is4GEnabled = getNetInterfaceSwitchResponse.is4GEnabled();
+        boolean isWiFiEnabled = getNetInterfaceSwitchResponse.isWiFiEnabled();
+        boolean isLANEnabled = getNetInterfaceSwitchResponse.isLANEnabled();
+
+        SetNetInterfaceSwitchRequest request = new SetNetInterfaceSwitchRequest();
+        request.set4GEnabled(is4GEnabled);
+        request.setWiFiEnabled(isWiFiEnabled);
+        request.setLANEnabled(isLANEnabled);
+        cpClient.enqueue(request, new SimpleCPCallback<SetNetInterfaceSwitchResponse>(SetNetInterfaceSwitchResponse.class) {
+            @Override
+            public void onResponse2(SetNetInterfaceSwitchResponse response) {
+                if (response.isSuccessful()) {
+                    MyUtils.showToast("set successfully");
+                    getNetInterfaceSwitchResponse.set4GEnabled(is4GEnabled);
+                    getNetInterfaceSwitchResponse.setWiFiEnabled(isWiFiEnabled);
+                    getNetInterfaceSwitchResponse.setLANEnabled(isLANEnabled);
+                    setResult();
+                    exitOnSuccess();
+                } else {
+                    MyUtils.showToast("set unsuccessfully");
+                }
+                dismissProgressIfNeeded();
+            }
+
+            @Override
+            public void onError(Throwable error) {
+                super.onError(error);
+                dismissProgressIfNeeded();
+            }
+        });
+        counter.addAndGet(1);
+        setCounter.addAndGet(1);
     }
 
 
@@ -794,9 +1076,6 @@ public class BleSetParamsActivity extends BaseActivity {
         });
         firmwareUpdater.update(fileName);
     }
-
-
-
 
 
     private void exitOnSuccess() {

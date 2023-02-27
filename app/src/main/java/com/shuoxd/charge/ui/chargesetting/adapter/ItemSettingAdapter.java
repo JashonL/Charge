@@ -84,8 +84,10 @@ public class ItemSettingAdapter extends BaseMultiItemQuickAdapter<BleSetBean, Ba
                 CheckBox cb = helper.getView(R.id.iv_check);
                 tvTitle.setText(checkItem.title);
                 cb.setOnCheckedChangeListener((buttonView, isChecked) -> {
-                    ((OneCheckItem) item).isCheck = isChecked;
-                    onCheckListener.check(item);
+                    if (cb.isPressed()){
+                        ((OneCheckItem) item).isCheck = isChecked;
+                        onCheckListener.check(item);
+                    }
                 });
 
                 //初始化

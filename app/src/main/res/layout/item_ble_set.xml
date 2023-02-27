@@ -24,26 +24,13 @@
         android:textSize="@dimen/size_content_sp_14"
         android:textStyle="bold" />
 
-    <Space
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_weight="1" />
 
-    <TextView
-        android:id="@+id/tv_red_point"
-        android:layout_width="wrap_content"
-        android:layout_height="16dp"
-        android:gravity="center"
-        android:minWidth="16dp"
-        android:paddingStart="5dp"
-        android:paddingEnd="5dp"
-        android:textColor="@color/white"
-        android:textSize="@dimen/size_content_sp_12"
-        tools:text="1" />
 
     <TextView
         android:id="@+id/tv_item_value"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:gravity="end"
         android:layout_height="wrap_content"
         android:textColor="@color/color_text_66"
         android:textSize="@dimen/size_content_sp_12" />

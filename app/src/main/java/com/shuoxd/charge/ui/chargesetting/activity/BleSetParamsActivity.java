@@ -621,7 +621,6 @@ public class BleSetParamsActivity extends BaseActivity {
                             String.valueOf(j)
                     ));
                 }
-                chooseItems.add(new OneSelectItem.SelectItem(getString(R.string.m211_manual_input), "0"));
                 oneSelectItem.selectItems = chooseItems;
                 settingItems.add(oneSelectItem);
             } else if (i == 9) {
@@ -646,7 +645,6 @@ public class BleSetParamsActivity extends BaseActivity {
                             String.valueOf(j)
                     ));
                 }
-                chooseItems.add(new OneSelectItem.SelectItem(getString(R.string.m211_manual_input), "0"));
                 oneSelectItem.selectItems = chooseItems;
                 settingItems.add(oneSelectItem);
             } else {
@@ -798,47 +796,7 @@ public class BleSetParamsActivity extends BaseActivity {
     }
 
 
-    private String getValueByKey(String key) {
-        String value = "";
-        BleSetBean item = null;
-        for (int i = 0; i < adapter.getData().size(); i++) {
-            BleSetBean bleSetBean = adapter.getData().get(i);
-            String key1 = bleSetBean.key;
-            if (key.equals(key1)) {
-                item = bleSetBean;
-            }
-        }
 
-        if (item == null) return "";
-        switch (key) {
-            case KEY_WIFI_SSID:
-                value = ((OneSelectItem) item).oneChooseValue;
-                break;
-            case KEY_WIFI_PASSWORD:
-            case KEY_4G_APN:
-            case KEY_4G_ACCOUNT:
-            case KEY_4G_PASSWORD:
-            case KEY_SERVER_URL:
-            case KEY_CP_NAME:
-            case KEY_AUTH_KEY:
-            case KEY_OUT_PUT_CURRENT:
-            case KEY_HOME_POWER_CURRENT:
-            case KEY_POWER_METER_ADDR:
-                value = ((OneInputItem) item).value;
-                break;
-            case KEY_CHARGE_MODE:
-                chargeMode = ((OneSelectItem) item).oneChooseValue;
-                break;
-            case KEY_POWER_DISTRIBUTION_ENABLE:
-                boolean isCheck = ((OneCheckItem) item).isCheck;
-                value = isCheck ? "1" : "0";
-                break;
-            case KEY_SAMPLING_METHOD:
-                samplingMethod = ((OneSelectItem) item).oneChooseValue;
-                break;
-        }
-        return value;
-    }
 
 
     private void exitOnSuccess() {

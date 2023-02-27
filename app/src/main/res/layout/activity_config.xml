@@ -48,7 +48,7 @@
                 tools:text="A12345" />
 
             <FrameLayout
-                android:visibility="gone"
+                android:visibility="visible"
                 android:id="@+id/layNetSwitchs"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

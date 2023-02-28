@@ -114,7 +114,7 @@ public class BleSetParamsActivity extends BaseActivity {
     private GetRatedCurrentResponse getRatedCurrentResponse;
     private Get4GParametersResponse get4GParametersResponse;
     private GetChargeModeResponse getChargeModeResponse;
-    private GetHomeLoadBalancingResponse getHomeLoadBalancingResponse=new GetHomeLoadBalancingResponse(5);
+    private GetHomeLoadBalancingResponse getHomeLoadBalancingResponse = new GetHomeLoadBalancingResponse(5);
     private GetEthernetParametersResponse getEthernetParametersResponse;
     private GetNetInterfaceSwitchResponse getNetInterfaceSwitchResponse;
 
@@ -133,7 +133,7 @@ public class BleSetParamsActivity extends BaseActivity {
     private final AtomicInteger setCounter = new AtomicInteger();
     private boolean chargerIdChanged;
     private String chargeMode = "";
-    private String samplingMethod="1";
+    private String samplingMethod = "1";
     private String serverUrl = "";
 
     private WifiManager wifiManager;
@@ -319,10 +319,10 @@ public class BleSetParamsActivity extends BaseActivity {
                 dns.value = getEthernetParametersResponse.getDns();
                 dhcp.isCheck = getEthernetParametersResponse.isEnableDHCP();
 
-                ipAddress.enable=!dhcp.isCheck;
-                subNetMask.enable=!dhcp.isCheck;
-                gateway.enable=!dhcp.isCheck;
-                dns.enable=!dhcp.isCheck;
+                ipAddress.enable = !dhcp.isCheck;
+                subNetMask.enable = !dhcp.isCheck;
+                gateway.enable = !dhcp.isCheck;
+                dns.enable = !dhcp.isCheck;
 
 
                 dismissProgressIfNeeded();
@@ -351,8 +351,8 @@ public class BleSetParamsActivity extends BaseActivity {
                 OneCheckItem _4gEnable = (OneCheckItem) getItemByKey(KEY_4G);
                 OneCheckItem lanEnable = (OneCheckItem) getItemByKey(KEY_LAN);
 
-                wifiEnable.isCheck = getNetInterfaceSwitchResponse.is4GEnabled();
-                _4gEnable.isCheck = getNetInterfaceSwitchResponse.isWiFiEnabled();
+                wifiEnable.isCheck = getNetInterfaceSwitchResponse.isWiFiEnabled();
+                _4gEnable.isCheck = getNetInterfaceSwitchResponse.is4GEnabled();
                 lanEnable.isCheck = getNetInterfaceSwitchResponse.isLANEnabled();
 
 
@@ -382,7 +382,7 @@ public class BleSetParamsActivity extends BaseActivity {
                             ((OneCheckItem) bleSetBean).isCheck = getHomeLoadBalancingResponse.getPowerDistributionEnable() == 1;
                             break;
                         case KEY_SAMPLING_METHOD:
-                            samplingMethod= String.valueOf(getHomeLoadBalancingResponse.getSamplingMethod());
+                            samplingMethod = String.valueOf(getHomeLoadBalancingResponse.getSamplingMethod());
                             OneSelectItem oneSelectItem = ((OneSelectItem) bleSetBean);
                             List<OneSelectItem.SelectItem> selectItems = oneSelectItem.selectItems;
                             for (int j = 0; j < selectItems.size(); j++) {
@@ -667,8 +667,7 @@ public class BleSetParamsActivity extends BaseActivity {
         };
 
 
-
-        boolean[] enables={
+        boolean[] enables = {
                 true,
                 true,
                 true,
@@ -693,14 +692,13 @@ public class BleSetParamsActivity extends BaseActivity {
         };
 
 
-
         for (int i = 0; i < titles.length; i++) {
             if (i == 0) {
                 OneSelectItem oneSelectItem = new OneSelectItem();
                 oneSelectItem.title = titles[i];
                 oneSelectItem.itemType = itemType[i];
                 oneSelectItem.key = key[i];
-                oneSelectItem.enable=enables[i];
+                oneSelectItem.enable = enables[i];
                 List<OneSelectItem.SelectItem> chooseItems = new ArrayList<>();
                 for (int j = 0; j < ssidList.size(); j++) {
                     chooseItems.add(new OneSelectItem.SelectItem(
@@ -715,7 +713,7 @@ public class BleSetParamsActivity extends BaseActivity {
                 oneSelectItem.title = titles[i];
                 oneSelectItem.itemType = itemType[i];
                 oneSelectItem.key = key[i];
-                oneSelectItem.enable=enables[i];
+                oneSelectItem.enable = enables[i];
 
                 List<OneSelectItem.SelectItem> chooseItems = new ArrayList<>();
 
@@ -723,14 +721,14 @@ public class BleSetParamsActivity extends BaseActivity {
                 for (int j = 0; j < stringArray.length; j++) {
                     chooseItems.add(new OneSelectItem.SelectItem(
                             stringArray[j],
-                            String.valueOf(j+1)
+                            String.valueOf(j + 1)
                     ));
                 }
                 oneSelectItem.selectItems = chooseItems;
                 settingItems.add(oneSelectItem);
             } else if (i == 9 || i == 13 || i == 14 || i == 15 || i == 20) {
                 OneCheckItem oneCheckItem = new OneCheckItem();
-                oneCheckItem.enable=enables[i];
+                oneCheckItem.enable = enables[i];
                 oneCheckItem.key = key[i];
                 oneCheckItem.title = titles[i];
                 oneCheckItem.itemType = itemType[i];
@@ -738,7 +736,7 @@ public class BleSetParamsActivity extends BaseActivity {
                 settingItems.add(oneCheckItem);
             } else if (i == 10) {
                 OneSelectItem oneSelectItem = new OneSelectItem();
-                oneSelectItem.enable=enables[i];
+                oneSelectItem.enable = enables[i];
                 oneSelectItem.title = titles[i];
                 oneSelectItem.itemType = itemType[i];
                 oneSelectItem.key = key[i];
@@ -756,7 +754,7 @@ public class BleSetParamsActivity extends BaseActivity {
                 settingItems.add(oneSelectItem);
             } else {
                 OneInputItem inputItem = new OneInputItem();
-                inputItem.enable=enables[i];
+                inputItem.enable = enables[i];
                 inputItem.key = key[i];
                 inputItem.title = titles[i];
                 inputItem.itemType = itemType[i];
@@ -956,13 +954,13 @@ public class BleSetParamsActivity extends BaseActivity {
             MyUtils.showToast("The DNS is invalid");
             return;
         }
-        if (getEthernetParametersResponse.isEnableDHCP() == enableDHCP
+ /*       if (getEthernetParametersResponse.isEnableDHCP() == enableDHCP
                 && TextUtils.equals(getEthernetParametersResponse.getIp(), ip)
                 && TextUtils.equals(getEthernetParametersResponse.getSubnetMask(), subnetMask)
                 && TextUtils.equals(getEthernetParametersResponse.getGateway(), gateway)
                 && TextUtils.equals(getEthernetParametersResponse.getDns(), dns)) {
             return;
-        }
+        }*/
         SetEthernetParametersRequest request = new SetEthernetParametersRequest();
         request.setIp(ip);
         request.setSubnetMask(subnetMask);

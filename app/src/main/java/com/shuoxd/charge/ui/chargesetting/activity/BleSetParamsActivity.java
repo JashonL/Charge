@@ -114,7 +114,7 @@ public class BleSetParamsActivity extends BaseActivity {
     private GetRatedCurrentResponse getRatedCurrentResponse;
     private Get4GParametersResponse get4GParametersResponse;
     private GetChargeModeResponse getChargeModeResponse;
-    private GetHomeLoadBalancingResponse getHomeLoadBalancingResponse;
+    private GetHomeLoadBalancingResponse getHomeLoadBalancingResponse=new GetHomeLoadBalancingResponse(5);
     private GetEthernetParametersResponse getEthernetParametersResponse;
     private GetNetInterfaceSwitchResponse getNetInterfaceSwitchResponse;
 
@@ -133,7 +133,7 @@ public class BleSetParamsActivity extends BaseActivity {
     private final AtomicInteger setCounter = new AtomicInteger();
     private boolean chargerIdChanged;
     private String chargeMode = "";
-    private String samplingMethod;
+    private String samplingMethod="1";
     private String serverUrl = "";
 
     private WifiManager wifiManager;
@@ -382,12 +382,13 @@ public class BleSetParamsActivity extends BaseActivity {
                             ((OneCheckItem) bleSetBean).isCheck = getHomeLoadBalancingResponse.getPowerDistributionEnable() == 1;
                             break;
                         case KEY_SAMPLING_METHOD:
+                            samplingMethod= String.valueOf(getHomeLoadBalancingResponse.getSamplingMethod());
                             OneSelectItem oneSelectItem = ((OneSelectItem) bleSetBean);
                             List<OneSelectItem.SelectItem> selectItems = oneSelectItem.selectItems;
                             for (int j = 0; j < selectItems.size(); j++) {
                                 OneSelectItem.SelectItem selectItem = selectItems.get(j);
                                 String value = selectItem.value;
-                                if (value.equals(String.valueOf(getHomeLoadBalancingResponse.getSamplingMethod()))) {
+                                if (value.equals(samplingMethod)) {
                                     oneSelectItem.dataValue = selectItem.title;
                                     break;
                                 }
@@ -439,7 +440,7 @@ public class BleSetParamsActivity extends BaseActivity {
             @Override
             public void onResponse2(GetChargeModeResponse response) {
                 getChargeModeResponse = response;
-                String chargeMode = getChargeModeResponse.getChargeMode();
+                chargeMode = getChargeModeResponse.getChargeMode();
 
                 OneSelectItem oneSelectItem = (OneSelectItem) getItemByKey(KEY_CHARGE_MODE);
                 List<OneSelectItem.SelectItem> selectItems = oneSelectItem.selectItems;
@@ -722,7 +723,7 @@ public class BleSetParamsActivity extends BaseActivity {
                 for (int j = 0; j < stringArray.length; j++) {
                     chooseItems.add(new OneSelectItem.SelectItem(
                             stringArray[j],
-                            String.valueOf(j)
+                            String.valueOf(j+1)
                     ));
                 }
                 oneSelectItem.selectItems = chooseItems;

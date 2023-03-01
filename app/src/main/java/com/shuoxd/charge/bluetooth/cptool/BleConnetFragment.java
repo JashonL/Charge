@@ -11,6 +11,7 @@ import android.bluetooth.le.BluetoothLeScanner;
 import android.bluetooth.le.ScanCallback;
 import android.bluetooth.le.ScanResult;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
@@ -36,6 +37,8 @@ import com.shuoxd.charge.ui.chargesetting.activity.BleSetParamsActivity;
 import com.shuoxd.charge.ui.chargesetting.activity.ChargeSettingActivity;
 import com.shuoxd.charge.ui.common.fragment.RequestPermissionHub;
 import com.shuoxd.charge.view.dialog.BottomDialog;
+import com.shuoxd.lib.service.storage.DefaultStorageService;
+import com.shuoxd.lib.service.storage.IStorageService;
 import com.timxon.cplib.BleCPClient;
 import com.timxon.cplib.ConnectCallback;
 import com.timxon.cplib.protocol.CPClient;
@@ -55,7 +58,7 @@ public class BleConnetFragment extends BaseFragment {
 
     private static final int REQUEST_CODE_BLUETOOTH_ENABLE = 1;
     private static final int REQUEST_CODE_PERMISSION = 2;
-
+    public static final String BLE_CONNETC_PASSWORD = "BLE_STORAGE";
 
     private List<BluetoothDevice> devices = new ArrayList<>();
 
@@ -159,7 +162,7 @@ public class BleConnetFragment extends BaseFragment {
         public void onScanResult(int callbackType, ScanResult result) {
             BluetoothDevice device = result.getDevice();
             if (!devices.contains(device) && !TextUtils.isEmpty(device.getName())) {
-                Log.e(TAG, "充电桩名称："+chargeSn+"搜索中: " + device.getName());
+                Log.e(TAG, "充电桩名称：" + chargeSn + "搜索中: " + device.getName());
                 if (device.getName().equals(chargeSn)) {
                     devices.add(device);
                     stopScanDevice();
@@ -210,13 +213,11 @@ public class BleConnetFragment extends BaseFragment {
     }
 
 
-
-
-    private void setDefaultPwd(){
+    private void setDefaultPwd() {
         String randomHexString = CPUtils.genRandomHexString(4);
-        verifyPassword("12345678", randomHexString);
+        String pwd = storageService().getString(BLE_CONNETC_PASSWORD, "12345678");
+        verifyPassword(pwd, randomHexString);
     }
-
 
 
     private void showVerifyPasswordDialog() {
@@ -255,6 +256,7 @@ public class BleConnetFragment extends BaseFragment {
             public void onResponse2(VerifyPasswordResponse response) {
                 dismissProgress();
                 if (response.isSuccessful()) {
+                    storageService().put(BLE_CONNETC_PASSWORD,pwd);
                     gotoConfig(pwd);
                 } else {
                     showVerifyPasswordDialog();
@@ -272,7 +274,7 @@ public class BleConnetFragment extends BaseFragment {
 
 
     private void gotoConfig(String pwd) {
-        BleSetParamsActivity.start(getActivity(),pwd,cpClient.getDeviceInfo());
+        BleSetParamsActivity.start(getActivity(), pwd, cpClient.getDeviceInfo());
 
 /*        Intent intent = new Intent(getActivity(), BleConfigActivity.class);
         intent.putExtra("pwd", pwd);
@@ -286,7 +288,7 @@ public class BleConnetFragment extends BaseFragment {
     }
 
     private void stopScanDevice() {
-        if (devices==null||devices.size()==0){
+        if (devices == null || devices.size() == 0) {
             ((ChargeSettingActivity) getActivity()).showNoBleDialog();
             cpClient.close();
             detach();

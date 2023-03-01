@@ -24,10 +24,14 @@ import com.shuoxd.lib.service.location.ILocationService
 import com.shuoxd.lib.service.storage.DefaultStorageService
 import com.shuoxd.lib.service.storage.IStorageService
 import com.shuoxd.lib.util.Util
+import com.timxon.cplib.BleCPClient
+import com.timxon.cplib.CPInitializer
 
 
 class MainApplication : LibApplication() {
 
+
+    private var bleCPClient: BleCPClient? = null
 
     companion object {
         const val APP_FIRST: String = "app_first"
@@ -47,8 +51,19 @@ class MainApplication : LibApplication() {
     override fun onCreate() {
         super.onCreate()
         instance = this
+        CPInitializer.init()
         init()
     }
+
+
+    @Synchronized
+    fun getBleCPClient(): BleCPClient? {
+        if (bleCPClient == null) {
+            bleCPClient = BleCPClient(this)
+        }
+        return bleCPClient
+    }
+
 
     private fun init() {
         //过滤掉其它进程

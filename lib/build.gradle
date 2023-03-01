@@ -30,9 +30,17 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
+
 }
 
+
+
+
+
 dependencies {
+
+
+
     //注意Android官方库版本不能升级，升级后compileSdk得提升到31，就需要对Android12进行适配
     api dependency.androidxCoreKtx
     api dependency.androidxAppcompat
@@ -61,6 +69,8 @@ dependencies {
     api dependency.flexbox
     api dependency.banner
     api dependency.swipe
+
+
     //方便查看gradle源码
     compileOnly "com.android.tools.build:gradle:3.0.1"
 }

@@ -4,7 +4,6 @@ import android.app.ActivityManager
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager.NameNotFoundException
-import android.icu.text.TimeZoneFormat
 import android.location.LocationManager
 import android.net.Uri
 import android.os.Build
@@ -142,17 +141,8 @@ object Util {
 
 
     fun getTimeZone(): String {
-
-        var tz: String
         val timezone: TimeZone = TimeZone.getDefault()
-        val displayName = timezone.getDisplayName(false, TimeZone.SHORT)
-        val substring = displayName.substring(4)
-        val split = substring.split(":")
-        tz = split[0].toInt().toString()
-        if (split[1] == "30") {
-            tz += "0.5"
-        }
-        return tz
+        return timezone.getDisplayName(false, TimeZone.SHORT)
 
     }
 

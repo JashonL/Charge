@@ -164,7 +164,7 @@ public class BleSetParamsActivity extends BaseActivity {
         }
         //刷新选项
         if (adapter != null) {
-            BleSetBean bleSetBean = adapter.getData().get(0);
+            BleSetBean bleSetBean = getItemByKey(KEY_WIFI_SSID);
             OneSelectItem bleSetBean1 = (OneSelectItem) bleSetBean;
             List<OneSelectItem.SelectItem> chooseItems = new ArrayList<>();
             for (int i = 0; i < ssidList.size(); i++) {
@@ -584,6 +584,11 @@ public class BleSetParamsActivity extends BaseActivity {
 
     private void initSetItems() {
         titles = new String[]{
+                getString(R.string.m213_swwifi),
+                getString(R.string.m214_4g),
+                getString(R.string.m215_lan),
+
+
                 getString(R.string.m197_wifi_ssid),
                 getString(R.string.m198_wifi_password),
                 getString(R.string.m199_4g_apn),
@@ -599,9 +604,7 @@ public class BleSetParamsActivity extends BaseActivity {
                 getString(R.string.m210_power_meter_address),
 
 
-                getString(R.string.m213_swwifi),
-                getString(R.string.m214_4g),
-                getString(R.string.m215_lan),
+
                 getString(R.string.m216_ip_address),
                 getString(R.string.m217_subnet_mask),
                 getString(R.string.m218_default_gateway),
@@ -612,6 +615,12 @@ public class BleSetParamsActivity extends BaseActivity {
         };
 
         String[] key = new String[]{
+
+                KEY_WIFI,
+                KEY_4G,
+                KEY_LAN,
+
+
                 KEY_WIFI_SSID,
                 KEY_WIFI_PASSWORD,
                 KEY_4G_APN,
@@ -627,9 +636,6 @@ public class BleSetParamsActivity extends BaseActivity {
                 KEY_POWER_METER_ADDR,
 
 
-                KEY_WIFI,
-                KEY_4G,
-                KEY_LAN,
                 KEY_IP_ADDRESS,
                 KEY_SUBNET_MASK,
                 KEY_DEFAULT_GATEWAY,
@@ -641,6 +647,11 @@ public class BleSetParamsActivity extends BaseActivity {
 
 
         int[] itemType = new int[]{
+                BleSetBean.ItemType.ONE_SELECT_ITEM_CHECK,
+                BleSetBean.ItemType.ONE_SELECT_ITEM_CHECK,
+                BleSetBean.ItemType.ONE_SELECT_ITEM_CHECK,
+
+
                 BleSetBean.ItemType.ONE_SELECT_ITEM_CHOOSE,
                 BleSetBean.ItemType.ONE_SELECT_ITEM_NEXT,
                 BleSetBean.ItemType.ONE_SELECT_ITEM_NEXT,
@@ -655,9 +666,7 @@ public class BleSetParamsActivity extends BaseActivity {
                 BleSetBean.ItemType.ONE_SELECT_ITEM_NEXT,
                 BleSetBean.ItemType.ONE_SELECT_ITEM_NEXT,
 
-                BleSetBean.ItemType.ONE_SELECT_ITEM_CHECK,
-                BleSetBean.ItemType.ONE_SELECT_ITEM_CHECK,
-                BleSetBean.ItemType.ONE_SELECT_ITEM_CHECK,
+
                 BleSetBean.ItemType.ONE_SELECT_ITEM_NEXT,
                 BleSetBean.ItemType.ONE_SELECT_ITEM_NEXT,
                 BleSetBean.ItemType.ONE_SELECT_ITEM_NEXT,
@@ -866,6 +875,7 @@ public class BleSetParamsActivity extends BaseActivity {
                 break;
             case KEY_4G:
                 boolean _4gEnable = ((OneCheckItem) item).isCheck;
+                getNetInterfaceSwitchResponse.set4GEnabled(_4gEnable);
                 if (_4gEnable) {
                     getNetInterfaceSwitchResponse.setWiFiEnabled(false);
                     getNetInterfaceSwitchResponse.setLANEnabled(false);
@@ -874,6 +884,7 @@ public class BleSetParamsActivity extends BaseActivity {
                 break;
             case KEY_LAN:
                 boolean lanEnable = ((OneCheckItem) item).isCheck;
+                getNetInterfaceSwitchResponse.setLANEnabled(lanEnable);
                 if (lanEnable) {
                     getNetInterfaceSwitchResponse.setWiFiEnabled(false);
                     getNetInterfaceSwitchResponse.set4GEnabled(false);

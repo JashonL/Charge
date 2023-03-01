@@ -594,6 +594,15 @@ public class BleSetParamsActivity extends BaseActivity {
                 getString(R.string.m199_4g_apn),
                 getString(R.string.m200_4g_account),
                 getString(R.string.m201_4g_password),
+
+
+                getString(R.string.m216_ip_address),
+                getString(R.string.m217_subnet_mask),
+                getString(R.string.m218_default_gateway),
+                getString(R.string.m219_dns),
+                getString(R.string.m220_lan_dhcp),
+
+
                 getString(R.string.m202_server_url),
                 getString(R.string.m204_authorization_key),
                 getString(R.string.m205_output_current),
@@ -605,11 +614,7 @@ public class BleSetParamsActivity extends BaseActivity {
 
 
 
-                getString(R.string.m216_ip_address),
-                getString(R.string.m217_subnet_mask),
-                getString(R.string.m218_default_gateway),
-                getString(R.string.m219_dns),
-                getString(R.string.m220_lan_dhcp),
+
 
 
         };
@@ -626,6 +631,16 @@ public class BleSetParamsActivity extends BaseActivity {
                 KEY_4G_APN,
                 KEY_4G_ACCOUNT,
                 KEY_4G_PASSWORD,
+
+
+                KEY_IP_ADDRESS,
+                KEY_SUBNET_MASK,
+                KEY_DEFAULT_GATEWAY,
+                KEY_DNS,
+                KEY_LAN_DHCP,
+
+
+
                 KEY_SERVER_URL,
                 KEY_AUTH_KEY,
                 KEY_OUT_PUT_CURRENT,
@@ -636,11 +651,6 @@ public class BleSetParamsActivity extends BaseActivity {
                 KEY_POWER_METER_ADDR,
 
 
-                KEY_IP_ADDRESS,
-                KEY_SUBNET_MASK,
-                KEY_DEFAULT_GATEWAY,
-                KEY_DNS,
-                KEY_LAN_DHCP,
 
 
         };
@@ -657,6 +667,17 @@ public class BleSetParamsActivity extends BaseActivity {
                 BleSetBean.ItemType.ONE_SELECT_ITEM_NEXT,
                 BleSetBean.ItemType.ONE_SELECT_ITEM_NEXT,
                 BleSetBean.ItemType.ONE_SELECT_ITEM_NEXT,
+
+
+
+                BleSetBean.ItemType.ONE_SELECT_ITEM_NEXT,
+                BleSetBean.ItemType.ONE_SELECT_ITEM_NEXT,
+                BleSetBean.ItemType.ONE_SELECT_ITEM_NEXT,
+                BleSetBean.ItemType.ONE_SELECT_ITEM_NEXT,
+                BleSetBean.ItemType.ONE_SELECT_ITEM_CHECK,
+
+
+
                 BleSetBean.ItemType.ONE_SELECT_ITEM_NEXT,
                 BleSetBean.ItemType.ONE_SELECT_ITEM_NEXT,
                 BleSetBean.ItemType.ONE_SELECT_ITEM_NEXT,
@@ -666,12 +687,6 @@ public class BleSetParamsActivity extends BaseActivity {
                 BleSetBean.ItemType.ONE_SELECT_ITEM_NEXT,
                 BleSetBean.ItemType.ONE_SELECT_ITEM_NEXT,
 
-
-                BleSetBean.ItemType.ONE_SELECT_ITEM_NEXT,
-                BleSetBean.ItemType.ONE_SELECT_ITEM_NEXT,
-                BleSetBean.ItemType.ONE_SELECT_ITEM_NEXT,
-                BleSetBean.ItemType.ONE_SELECT_ITEM_NEXT,
-                BleSetBean.ItemType.ONE_SELECT_ITEM_CHECK
 
         };
 

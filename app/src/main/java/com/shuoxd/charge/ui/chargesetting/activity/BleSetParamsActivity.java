@@ -701,8 +701,9 @@ public class BleSetParamsActivity extends BaseActivity {
         };
 
 
-        for (int i = 0; i < titles.length; i++) {
-            if (i == 0) {
+        for (int i = 0; i < key.length; i++) {
+            String s = key[i];
+            if (KEY_WIFI_SSID.equals(s)) {
                 OneSelectItem oneSelectItem = new OneSelectItem();
                 oneSelectItem.title = titles[i];
                 oneSelectItem.itemType = itemType[i];
@@ -717,7 +718,7 @@ public class BleSetParamsActivity extends BaseActivity {
                 }
                 oneSelectItem.selectItems = chooseItems;
                 settingItems.add(oneSelectItem);
-            } else if (i == 8) {
+            } else if (KEY_CHARGE_MODE.equals(s)) {
                 OneSelectItem oneSelectItem = new OneSelectItem();
                 oneSelectItem.title = titles[i];
                 oneSelectItem.itemType = itemType[i];
@@ -735,7 +736,11 @@ public class BleSetParamsActivity extends BaseActivity {
                 }
                 oneSelectItem.selectItems = chooseItems;
                 settingItems.add(oneSelectItem);
-            } else if (i == 9 || i == 13 || i == 14 || i == 15 || i == 20) {
+            } else if (KEY_POWER_DISTRIBUTION_ENABLE.equals(s) ||
+                    KEY_WIFI.equals(s) ||
+                    KEY_4G.equals(s) ||
+                    KEY_LAN.equals(s) ||
+                    KEY_LAN_DHCP.equals(s) ) {
                 OneCheckItem oneCheckItem = new OneCheckItem();
                 oneCheckItem.enable = enables[i];
                 oneCheckItem.key = key[i];
@@ -743,7 +748,7 @@ public class BleSetParamsActivity extends BaseActivity {
                 oneCheckItem.itemType = itemType[i];
                 oneCheckItem.isCheck = false;
                 settingItems.add(oneCheckItem);
-            } else if (i == 10) {
+            } else if (KEY_SAMPLING_METHOD.equals(s)) {
                 OneSelectItem oneSelectItem = new OneSelectItem();
                 oneSelectItem.enable = enables[i];
                 oneSelectItem.title = titles[i];

@@ -165,6 +165,8 @@ public class BleSetParamsActivity extends BaseActivity {
         //刷新选项
         if (adapter != null) {
             BleSetBean bleSetBean = getItemByKey(KEY_WIFI_SSID);
+            if (bleSetBean == null) return;
+
             OneSelectItem bleSetBean1 = (OneSelectItem) bleSetBean;
             List<OneSelectItem.SelectItem> chooseItems = new ArrayList<>();
             for (int i = 0; i < ssidList.size(); i++) {
@@ -313,17 +315,37 @@ public class BleSetParamsActivity extends BaseActivity {
                 OneInputItem dns = (OneInputItem) getItemByKey(KEY_DNS);
                 OneCheckItem dhcp = (OneCheckItem) getItemByKey(KEY_LAN_DHCP);
 
-                ipAddress.value = getEthernetParametersResponse.getIp();
-                subNetMask.value = getEthernetParametersResponse.getSubnetMask();
-                gateway.value = getEthernetParametersResponse.getGateway();
-                dns.value = getEthernetParametersResponse.getDns();
-                dhcp.isCheck = getEthernetParametersResponse.isEnableDHCP();
 
-                ipAddress.enable = !dhcp.isCheck;
-                subNetMask.enable = !dhcp.isCheck;
-                gateway.enable = !dhcp.isCheck;
-                dns.enable = !dhcp.isCheck;
+                boolean enableDHCP = getEthernetParametersResponse.isEnableDHCP();
 
+                if (dhcp != null) {
+                    dhcp.isCheck = enableDHCP;
+
+                }
+
+
+                if (ipAddress != null) {
+                    ipAddress.value = getEthernetParametersResponse.getIp();
+                    ipAddress.enable = !enableDHCP;
+                }
+
+
+                if (subNetMask != null) {
+                    subNetMask.value = getEthernetParametersResponse.getSubnetMask();
+                    subNetMask.enable = !enableDHCP;
+                }
+
+
+                if (gateway != null) {
+                    gateway.value = getEthernetParametersResponse.getGateway();
+                    gateway.enable = !enableDHCP;
+                }
+
+
+                if (dns != null) {
+                    dns.value = getEthernetParametersResponse.getDns();
+                    dns.enable = !enableDHCP;
+                }
 
                 dismissProgressIfNeeded();
             }
@@ -351,9 +373,20 @@ public class BleSetParamsActivity extends BaseActivity {
                 OneCheckItem _4gEnable = (OneCheckItem) getItemByKey(KEY_4G);
                 OneCheckItem lanEnable = (OneCheckItem) getItemByKey(KEY_LAN);
 
-                wifiEnable.isCheck = getNetInterfaceSwitchResponse.isWiFiEnabled();
-                _4gEnable.isCheck = getNetInterfaceSwitchResponse.is4GEnabled();
-                lanEnable.isCheck = getNetInterfaceSwitchResponse.isLANEnabled();
+                if (wifiEnable != null) {
+                    wifiEnable.isCheck = getNetInterfaceSwitchResponse.isWiFiEnabled();
+                }
+
+
+                if (_4gEnable != null) {
+                    _4gEnable.isCheck = getNetInterfaceSwitchResponse.is4GEnabled();
+
+                }
+
+                if (lanEnable != null) {
+                    lanEnable.isCheck = getNetInterfaceSwitchResponse.isLANEnabled();
+
+                }
 
 
                 dismissProgressIfNeeded();
@@ -443,6 +476,8 @@ public class BleSetParamsActivity extends BaseActivity {
                 chargeMode = getChargeModeResponse.getChargeMode();
 
                 OneSelectItem oneSelectItem = (OneSelectItem) getItemByKey(KEY_CHARGE_MODE);
+
+                if (oneSelectItem == null) return;
                 List<OneSelectItem.SelectItem> selectItems = oneSelectItem.selectItems;
                 for (int i = 0; i < selectItems.size(); i++) {
                     OneSelectItem.SelectItem selectItem = selectItems.get(i);
@@ -473,14 +508,20 @@ public class BleSetParamsActivity extends BaseActivity {
                 get4GParametersResponse = response;
 
                 OneInputItem input4gAPN = (OneInputItem) getItemByKey(KEY_4G_APN);
-                input4gAPN.value = get4GParametersResponse.getApn();
+                if (input4gAPN!=null){
+                    input4gAPN.value = get4GParametersResponse.getApn();
+                }
 
                 OneInputItem input4gAccount = (OneInputItem) getItemByKey(KEY_4G_ACCOUNT);
-                input4gAccount.value = get4GParametersResponse.getAccount();
+                if (input4gAccount!=null){
+                    input4gAccount.value = get4GParametersResponse.getAccount();
+
+                }
 
                 OneInputItem input4gPassword = (OneInputItem) getItemByKey(KEY_4G_PASSWORD);
-                input4gPassword.value = get4GParametersResponse.getPassword();
-
+                if (input4gPassword!=null){
+                    input4gPassword.value = get4GParametersResponse.getPassword();
+                }
                 dismissProgressIfNeeded();
             }
 
@@ -499,7 +540,9 @@ public class BleSetParamsActivity extends BaseActivity {
             public void onResponse2(GetRatedCurrentResponse response) {
                 getRatedCurrentResponse = response;
                 OneInputItem input4gPassword = (OneInputItem) getItemByKey(KEY_OUT_PUT_CURRENT);
-                input4gPassword.value = getRatedCurrentResponse.getRatedCurrent();
+                if (input4gPassword!=null){
+                    input4gPassword.value = getRatedCurrentResponse.getRatedCurrent();
+                }
 
                 dismissProgressIfNeeded();
             }
@@ -528,13 +571,19 @@ public class BleSetParamsActivity extends BaseActivity {
             public void onResponse2(GetServerInfoResponse response) {
                 getServerInfoResponse = response;
                 OneInputItem url = (OneInputItem) getItemByKey(KEY_SERVER_URL);
-                url.value = getServerInfoResponse.getUrl();
+                if (url!=null){
+                    url.value = getServerInfoResponse.getUrl();
+                }
 
 //                OneInputItem chargeid = (OneInputItem) adapter.getData().get(6);
                 binding.tvChargeId.setText(getServerInfoResponse.getChargerId());
 
                 OneInputItem authkey = (OneInputItem) getItemByKey(KEY_AUTH_KEY);
-                authkey.value = getServerInfoResponse.getAuthKey();
+                if (authkey!=null){
+                    authkey.value = getServerInfoResponse.getAuthKey();
+
+                }
+
 
                 dismissProgressIfNeeded();
             }
@@ -554,9 +603,14 @@ public class BleSetParamsActivity extends BaseActivity {
             public void onResponse2(GetWifiInfoResponse response) {
                 getWifiInfoResponse = response;
                 OneSelectItem oneSelectItem = (OneSelectItem) getItemByKey(KEY_WIFI_SSID);
-                oneSelectItem.dataValue = getWifiInfoResponse.getWifiSSID();
+                if (oneSelectItem!=null){
+                    oneSelectItem.dataValue = getWifiInfoResponse.getWifiSSID();
+                }
                 OneInputItem oneInputItem = (OneInputItem) getItemByKey(KEY_WIFI_PASSWORD);
-                oneInputItem.value = getWifiInfoResponse.getWifiPassword();
+                if (oneInputItem!=null){
+                    oneInputItem.value = getWifiInfoResponse.getWifiPassword();
+
+                }
                 dismissProgressIfNeeded();
             }
 
@@ -585,23 +639,23 @@ public class BleSetParamsActivity extends BaseActivity {
     private void initSetItems() {
         titles = new String[]{
                 getString(R.string.m213_swwifi),
-          /*      getString(R.string.m214_4g),
-                getString(R.string.m215_lan),*/
+                /*      getString(R.string.m214_4g),
+                      getString(R.string.m215_lan),*/
 
 
                 getString(R.string.m197_wifi_ssid),
                 getString(R.string.m198_wifi_password),
 
-        /*        getString(R.string.m199_4g_apn),
-                getString(R.string.m200_4g_account),
-                getString(R.string.m201_4g_password),
+                /*        getString(R.string.m199_4g_apn),
+                        getString(R.string.m200_4g_account),
+                        getString(R.string.m201_4g_password),
 
 
-                getString(R.string.m216_ip_address),
-                getString(R.string.m217_subnet_mask),
-                getString(R.string.m218_default_gateway),
-                getString(R.string.m219_dns),
-                getString(R.string.m220_lan_dhcp),*/
+                        getString(R.string.m216_ip_address),
+                        getString(R.string.m217_subnet_mask),
+                        getString(R.string.m218_default_gateway),
+                        getString(R.string.m219_dns),
+                        getString(R.string.m220_lan_dhcp),*/
 
 
                 getString(R.string.m202_server_url),
@@ -614,33 +668,29 @@ public class BleSetParamsActivity extends BaseActivity {
                 getString(R.string.m210_power_meter_address),
 
 
-
-
-
-
         };
 
         String[] key = new String[]{
 
                 KEY_WIFI,
-         /*       KEY_4G,
-                KEY_LAN,*/
+                /*       KEY_4G,
+                       KEY_LAN,*/
 
 
                 KEY_WIFI_SSID,
                 KEY_WIFI_PASSWORD,
 
 
-      /*          KEY_4G_APN,
-                KEY_4G_ACCOUNT,
-                KEY_4G_PASSWORD,
+                /*          KEY_4G_APN,
+                          KEY_4G_ACCOUNT,
+                          KEY_4G_PASSWORD,
 
 
-                KEY_IP_ADDRESS,
-                KEY_SUBNET_MASK,
-                KEY_DEFAULT_GATEWAY,
-                KEY_DNS,
-                KEY_LAN_DHCP,*/
+                          KEY_IP_ADDRESS,
+                          KEY_SUBNET_MASK,
+                          KEY_DEFAULT_GATEWAY,
+                          KEY_DNS,
+                          KEY_LAN_DHCP,*/
 
 
 
@@ -654,31 +704,29 @@ public class BleSetParamsActivity extends BaseActivity {
                 KEY_POWER_METER_ADDR,
 
 
-
-
         };
 
 
         int[] itemType = new int[]{
                 BleSetBean.ItemType.ONE_SELECT_ITEM_CHECK,
-           /*     BleSetBean.ItemType.ONE_SELECT_ITEM_CHECK,
-                BleSetBean.ItemType.ONE_SELECT_ITEM_CHECK,*/
+                /*     BleSetBean.ItemType.ONE_SELECT_ITEM_CHECK,
+                     BleSetBean.ItemType.ONE_SELECT_ITEM_CHECK,*/
 
 
                 BleSetBean.ItemType.ONE_SELECT_ITEM_CHOOSE,
                 BleSetBean.ItemType.ONE_SELECT_ITEM_NEXT,
 
-          /*      BleSetBean.ItemType.ONE_SELECT_ITEM_NEXT,
-                BleSetBean.ItemType.ONE_SELECT_ITEM_NEXT,
-                BleSetBean.ItemType.ONE_SELECT_ITEM_NEXT,
+                /*      BleSetBean.ItemType.ONE_SELECT_ITEM_NEXT,
+                      BleSetBean.ItemType.ONE_SELECT_ITEM_NEXT,
+                      BleSetBean.ItemType.ONE_SELECT_ITEM_NEXT,
 
 
 
-                BleSetBean.ItemType.ONE_SELECT_ITEM_NEXT,
-                BleSetBean.ItemType.ONE_SELECT_ITEM_NEXT,
-                BleSetBean.ItemType.ONE_SELECT_ITEM_NEXT,
-                BleSetBean.ItemType.ONE_SELECT_ITEM_NEXT,
-                BleSetBean.ItemType.ONE_SELECT_ITEM_CHECK,*/
+                      BleSetBean.ItemType.ONE_SELECT_ITEM_NEXT,
+                      BleSetBean.ItemType.ONE_SELECT_ITEM_NEXT,
+                      BleSetBean.ItemType.ONE_SELECT_ITEM_NEXT,
+                      BleSetBean.ItemType.ONE_SELECT_ITEM_NEXT,
+                      BleSetBean.ItemType.ONE_SELECT_ITEM_CHECK,*/
 
 
 
@@ -759,7 +807,7 @@ public class BleSetParamsActivity extends BaseActivity {
                     KEY_WIFI.equals(s) ||
                     KEY_4G.equals(s) ||
                     KEY_LAN.equals(s) ||
-                    KEY_LAN_DHCP.equals(s) ) {
+                    KEY_LAN_DHCP.equals(s)) {
                 OneCheckItem oneCheckItem = new OneCheckItem();
                 oneCheckItem.enable = enables[i];
                 oneCheckItem.key = key[i];
